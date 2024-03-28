@@ -38,10 +38,6 @@ window.addEventListener('scroll', makeBackgroundSolid)
   </div>
 </template>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Yeseva+One&display=swap')
-</style>
-
 <style scoped>
 .content {
   transition: padding 0.5s ease;
@@ -83,7 +79,7 @@ window.addEventListener('scroll', makeBackgroundSolid)
 .logo {
   color: white;
   text-decoration: none;
-  font-family: "Yeseva One", serif !important;
+  font-family: 'Yeseva One' !important;
   font-weight: 300 !important;
   font-style: normal !important;
   font-size: 2rem;
