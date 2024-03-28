@@ -3,14 +3,31 @@ import Panel from "./Panel.vue";
 </script>
 
 <template>
-  <Panel class="font-yeseva welcome" max-width="750px">
-    Witam na mojej stronie. Nazywam się Adam Kurzawa i zapraszam Cię do
-    spędzenia kilku chwil pośród opowiadań mojego autorstwa.
+  <Panel class="font-segoe welcome" max-width="750px">
+    Witam na Alternacie, czyli mojej skromnej stronie. Nazywam się Adam Kurzawa
+    i zapraszam Cię do spędzenia kilku chwil pośród opowiadań mojego autorstwa.
+    Jeśli doceniasz moją twórczość, możesz
+    <a class="buycoffee font-madimi" href="https://buycoffee.to/"
+      ><img src="@/assets/buycoffee.png" /> postawić mi kawę</a
+    >.
   </Panel>
 </template>
 
 <style scoped>
 .welcome {
+  text-align: center;
   font-size: 1.25rem;
+  line-height: 2rem;
+}
+
+.buycoffee {
+  background-color: lightblue;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
 }
 </style>

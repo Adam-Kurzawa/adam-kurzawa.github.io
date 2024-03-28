@@ -230,6 +230,7 @@ const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode
 
 .transition {
   transition: background 1s ease;
+  margin-bottom: 10rem;
 }
 
 @media screen and (max-width: 1200px) {

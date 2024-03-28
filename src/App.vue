@@ -26,8 +26,8 @@ window.addEventListener('scroll', makeBackgroundSolid)
         <div class="navbar-section">
           <RouterLink to="/" class="navlink">Opowiadania</RouterLink>
           <RouterLink to="/" class="navlink">Książki</RouterLink>
+          <RouterLink to="/" class="navlink">Blog</RouterLink>
           <RouterLink to="/" class="navlink">O mnie</RouterLink>
-          <RouterLink to="/" class="navlink">Kontakt</RouterLink>
           <RouterLink to="/" class="navlink">ENG</RouterLink>
         </div>
       </nav>
