@@ -118,5 +118,15 @@ window.addEventListener('scroll', makeBackgroundSolid)
     padding-left: 1rem;
     padding-right: 1rem;
   }
+
+  .navlink {
+    display: none;
+  }
+
+  .content {
+    margin-top: 5rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 </style>

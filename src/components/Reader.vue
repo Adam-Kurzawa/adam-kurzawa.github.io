@@ -17,11 +17,31 @@ const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode
   <main>
     <Panel class="float" :class="[semitransparentBgClass]">
       <div class="settings">
-        <div class="btn-group">
-          <p :class="[textClass]">Motyw</p>
-          <button @click="() => { darkMode = !darkMode; }" :class="[textClass]">
-            {{ darkMode ? "Jasny" : "Ciemny" }}
-          </button>
+        <div class="small-controls">
+          <div class="btn-group dropdown">
+            <p
+              :class="[textClass]"
+              style="
+                border-top-right-radius: 0.5rem !important;
+                border-bottom-right-radius: 0.5rem !important;
+                border-right: 1px #e69b54 solid;
+              "
+            >
+              Pobierz
+            </p>
+            <div class="dropdown-content" :class="[solidBgClass]">
+              <a href="#" class="font-segoe" :class="[textClass]">PDF</a>
+              <a href="#" class="font-segoe" :class="[textClass]">Epub</a>
+              <a href="#" class="font-segoe" :class="[textClass]">Mobi</a>
+              <a href="#" class="font-segoe" :class="[textClass]">AZW3</a>
+            </div>
+          </div>
+          <div class="btn-group">
+            <p :class="[textClass]">Motyw</p>
+            <button @click="() => { darkMode = !darkMode; }" :class="[textClass]">
+              {{ darkMode ? "Jasny" : "Ciemny" }}
+            </button>
+          </div>
         </div>
         <div class="btn-group">
           <p :class="[textClass]">Rozmiar tekstu</p>
@@ -31,28 +51,10 @@ const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode
         </div>
         <div class="btn-group">
           <p :class="[textClass]">Czcionka</p>
-          <button @click="() => { fontFamily = 'Times New Roman'; }" :class="[textClass]">Times New Roman</button>
+          <button @click="() => { fontFamily = 'Times New Roman'; }" :class="[textClass]">Times</button>
           <button @click="() => { fontFamily = 'Georgia'; }" :class="[textClass]">Georgia</button>
           <button @click="() => { fontFamily = 'Arial'; }" :class="[textClass]">Arial</button>
           <button @click="() => { fontFamily = 'Verdana'; }" :class="[textClass]">Verdana</button>
-        </div>
-        <div class="btn-group dropdown">
-          <p
-            :class="[textClass]"
-            style="
-              border-top-right-radius: 0.5rem !important;
-              border-bottom-right-radius: 0.5rem !important;
-              border-right: 1px #e69b54 solid;
-            "
-          >
-            Pobierz
-          </p>
-          <div class="dropdown-content" :class="[solidBgClass]">
-            <a href="#" class="font-segoe" :class="[textClass]">PDF</a>
-            <a href="#" class="font-segoe" :class="[textClass]">Epub</a>
-            <a href="#" class="font-segoe" :class="[textClass]">Mobi</a>
-            <a href="#" class="font-segoe" :class="[textClass]">AZW3</a>
-          </div>
         </div>
       </div>
     </Panel>
@@ -134,6 +136,7 @@ const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode
 }
 
 .btn-group button {
+  transition: font-size 1s ease;
   border: 1px solid #e69b54;
   padding: 0.5rem 1rem;
   background: none;
@@ -144,6 +147,7 @@ const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode
 }
 
 .btn-group p {
+  transition: font-size 1s ease;
   border: 1px solid #e69b54;
   padding: 0.5rem 1rem;
   float: left;
@@ -154,6 +158,7 @@ const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode
 }
 
 .btn-group select {
+  transition: font-size 1s ease;
   border: 1px solid #e69b54;
   padding: 0.5rem 1rem;
   float: left;
@@ -197,6 +202,10 @@ const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode
   backdrop-filter: blur(10px);
 }
 
+.small-controls {
+  display: contents;
+}
+
 .settings {
   display: flex;
   gap: 2rem;
@@ -221,5 +230,51 @@ const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode
 
 .transition {
   transition: background 1s ease;
+}
+
+@media screen and (max-width: 1200px) {
+  .btn-group button {
+    font-size: 0.75rem;
+  }
+
+  .btn-group p {
+    font-size: 0.75rem;
+  }
+
+  .btn-group select {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .settings {
+    display: block;
+  }
+  
+  .btn-group {
+    margin-bottom: 0.5rem;
+  }
+
+  .btn-group button {
+    font-size: 0.75rem;
+  }
+
+  .btn-group p {
+    font-size: 0.75rem;
+  }
+
+  .btn-group select {
+    font-size: 0.75rem;
+  }
+
+  .float {
+    padding-bottom: 0 !important;
+    padding-top: 1rem !important;
+  }
+
+  .small-controls {
+    display: flex;
+    gap: 1rem;
+  }
 }
 </style>
