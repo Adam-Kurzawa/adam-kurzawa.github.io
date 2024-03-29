@@ -6,6 +6,14 @@ body {
   margin: 0 !important;
 }
 
+.navlink {
+  color: white;
+  text-decoration: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+  margin-top: 0.75rem;
+}
+
 .font-segoe {
   font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif
 }

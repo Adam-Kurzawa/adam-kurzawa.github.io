@@ -4,12 +4,10 @@ import Panel from "./Panel.vue";
 
 <template>
   <Panel class="font-segoe welcome" max-width="1000px">
-    Witam na Alternacie, czyli mojej skromnej stronie. Nazywam się Adam Kurzawa
-    i zapraszam Cię do spędzenia kilku chwil pośród opowiadań mojego autorstwa.
-    Jeśli doceniasz moją twórczość, możesz
-    <a class="buycoffee font-madimi" href="https://buycoffee.to/"
-      ><img src="@/assets/buycoffee.png" /> postawić mi kawę</a
-    >.
+    Witaj na Alternacie, mojej skromnej stronie. Nazywam się Adam Kurzawa
+    i zapraszam Cię do spędzenia kilku chwil pośród tekstów mojego autorstwa. Odnajdziesz tutaj opowiadania sci-fi,
+    różnotematyczne artykuły na blogu oraz prologi z książek. Jeśli doceniasz moją twórczość, możesz
+    <a class="buycoffee font-madimi" href="https://buycoffee.to/"><img src="@/assets/buycoffee.png" /> postawić mi kawę</a>.
   </Panel>
 </template>
 
@@ -21,6 +19,7 @@ import Panel from "./Panel.vue";
 }
 
 .buycoffee {
+  text-wrap: nowrap;
   background-color: lightblue;
   padding-bottom: 0.25rem;
   padding-left: 0.5rem;
