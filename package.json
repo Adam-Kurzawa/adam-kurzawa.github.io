@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "errorpage": "cd ./public && del 404.html && cd .. && copyfiles index.html ./public && cd ./public && renamer index.html --replace 404.html && cd ..",
-    "build": "npm run errorpage && vite build",
+    "errorpage": "cd ./dist && del 404.html && del temp && copyfiles index.html ./temp && cd ./temp && renamer index.html --replace 404.html && copyfiles 404.html .. && cd .. && del temp && cd ..",
+    "build": "vite build && npm run errorpage",
     "preview": "npm run build && vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
