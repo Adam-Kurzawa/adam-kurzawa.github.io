@@ -17,7 +17,8 @@ const deselectOnLeave = () => {
 <template>
   <div class="collapsible-menu" @mouseleave="deselectOnLeave">
     <input class="hidden-checkbox" type="checkbox" :id="props.id" v-model="selected">
-    <label class="navlink" :for="props.id" @mouseenter="selectOnHover">{{ props.label }}</label>
+    <label class="navlink" v-if="props.label" :for="props.id" @mouseenter="selectOnHover">{{ props.label }}</label>
+    <label v-if="!props.label" :for="props.id" @mouseenter="selectOnHover"><img class="hamburger" src="@/assets/hamburger.png" /></label>
     <div class="menu-content" :class="[ props.right ? 'to-right' : '' ]">
       <ul>
         <slot></slot>
@@ -68,6 +69,11 @@ input:checked~.menu-content {
   background-color: rgb(30, 54, 54);
   border: 1px #e69b54 solid;
   border-radius: 0.5rem;
+}
+
+.hamburger {
+  margin-top: 0.5rem;
+  width: 1.5rem;
 }
 
 /*

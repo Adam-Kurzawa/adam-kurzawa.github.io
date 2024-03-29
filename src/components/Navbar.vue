@@ -53,7 +53,7 @@ window.addEventListener('scroll', makeBackgroundSolid)
     <span class="navbar-minimal">
       <RouterLink to="/" class="logo">Alternata</RouterLink>
       <span class="navbar-section">
-        <Submenu label="X" id="menu-overflow-minimal" right="true">
+        <Submenu id="menu-overflow-minimal" right="true">
           <li><RouterLink to="/" class="navlink">Opowiadania</RouterLink></li>
           <li><RouterLink to="/" class="navlink">Książki</RouterLink></li>
           <li><RouterLink to="/" class="navlink">Blog</RouterLink></li>
@@ -86,6 +86,7 @@ window.addEventListener('scroll', makeBackgroundSolid)
 }
 
 .navbar-section {
+  transition: gap 1s ease;
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
@@ -161,6 +162,12 @@ window.addEventListener('scroll', makeBackgroundSolid)
 
   .navbar-section {
     justify-content: right;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar-section {
+    gap: 1.5rem;
   }
 }
 </style>
