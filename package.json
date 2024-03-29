@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "errorpage": "del --verbose 404.html && copyfiles index.html ./temp && cd ./temp && renamer index.html --replace 404.html && copyfiles 404.html .. && cd .. && del --verbose temp",
+    "errorpage": "cd ./public && del 404.html && cd .. && copyfiles index.html ./public && cd ./public && renamer index.html --replace 404.html && cd ..",
     "build": "npm run errorpage && vite build",
     "preview": "npm run build && vite preview",
     "predeploy": "npm run build",
