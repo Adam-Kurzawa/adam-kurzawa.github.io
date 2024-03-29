@@ -31,7 +31,7 @@ const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode
             </p>
             <div class="dropdown-content" :class="[solidBgClass]">
               <a href="#" class="font-segoe" :class="[textClass]">PDF</a>
-              <a href="#" class="font-segoe" :class="[textClass]">Epub</a>
+              <a href="#" class="font-segoe" :class="[textClass]">ePUB</a>
               <a href="#" class="font-segoe" :class="[textClass]">Mobi</a>
               <a href="#" class="font-segoe" :class="[textClass]">AZW3</a>
             </div>
