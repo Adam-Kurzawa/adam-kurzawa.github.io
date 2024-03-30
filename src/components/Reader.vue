@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 import Panel from "./Panel.vue";
 import { PdfService } from "@/utils/PdfService.js";
+import { EpubService } from "@/utils/EpubService.js";
 
 const props = defineProps(['story']);
 
@@ -14,6 +15,7 @@ const solidBgClass = computed(() => darkMode.value ? 'dark-mode-bg' : 'light-mod
 const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode-text')
 
 const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.paragraphs)
+const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.paragraphs)
 </script>
 
 <template>
@@ -34,7 +36,7 @@ const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.para
             </p>
             <div class="dropdown-content" :class="[solidBgClass]">
               <a href="#" class="font-segoe" :class="[textClass]" @click="saveAsPdf">PDF</a>
-              <a href="#" class="font-segoe" :class="[textClass]">ePUB</a>
+              <a href="#" class="font-segoe" :class="[textClass]" @click="saveAsEpub">ePUB</a>
               <a href="#" class="font-segoe" :class="[textClass]">Mobi</a>
               <a href="#" class="font-segoe" :class="[textClass]">AZW3</a>
             </div>
