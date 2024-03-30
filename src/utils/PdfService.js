@@ -29,7 +29,7 @@ export class PdfService {
         return paragraphs.map(p => `           ${p}`)
     }
 
-    static #groupByEstimatedPage(paragraphs) /* [[], [], []] */ {
+    static #groupByEstimatedPage(paragraphs) {
         let pages = [[]]
         let currentPage = 0
         let linesOnCurrentPage = 0
