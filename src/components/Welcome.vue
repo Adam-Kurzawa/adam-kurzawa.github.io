@@ -3,7 +3,7 @@ import Panel from "./Panel.vue";
 </script>
 
 <template>
-  <Panel class="font-segoe welcome" max-width="1000px">
+  <Panel rounded="true" class="font-segoe welcome" max-width="1000px">
     Witaj na Alternacie, mojej skromnej stronie. Nazywam się Adam Kurzawa
     i zapraszam Cię do spędzenia kilku chwil pośród tekstów mojego autorstwa. Odnajdziesz tutaj opowiadania sci-fi,
     różnotematyczne artykuły na blogu oraz prologi z książek. Jeśli doceniasz moją twórczość, możesz

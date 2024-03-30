@@ -1,9 +1,21 @@
 <script setup>
-const props = defineProps(['maxWidth'])
+import { computed } from 'vue';
+
+const props = defineProps(['maxWidth', 'rounded'])
+
+const style = computed(() => {
+  const maxWidth = props.maxWidth ? { 'max-width': props.maxWidth } : {}
+  const borderRadius = props.rounded === 'true' ? { 'border-radius': '0.5rem' } : {}
+  
+  return {
+    ...maxWidth,
+    ...borderRadius
+  }
+})
 </script>
 
 <template>
-  <div class="white-panel" :style="props.maxWidth ? { 'max-width': props.maxWidth } : {}">
+  <div class="white-panel" :style="style">
     <slot></slot>
   </div>
 </template>
@@ -15,7 +27,6 @@ const props = defineProps(['maxWidth'])
   padding-right: 4rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  border-radius: 0.5rem;
   background-color: rgba(255, 255, 255, 1.0);
 }
 

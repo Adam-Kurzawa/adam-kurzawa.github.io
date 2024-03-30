@@ -20,7 +20,7 @@ const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.p
 
 <template>
   <main>
-    <Panel class="float" :class="[semitransparentBgClass]">
+    <Panel rounded="false" class="float" :class="[semitransparentBgClass]">
       <div class="settings">
         <div class="small-controls">
           <div class="btn-group dropdown">
@@ -63,7 +63,7 @@ const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.p
         </div>
       </div>
     </Panel>
-    <Panel class="transition" :class="[solidBgClass]">
+    <Panel rounded="true" class="transition" :class="[solidBgClass]">
       <div class="title" :class="[textClass]">{{ props.story.title }}</div>
       <div
         v-for="paragraph in props.story.paragraphs"

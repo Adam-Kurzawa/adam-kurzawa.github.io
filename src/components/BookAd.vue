@@ -4,7 +4,7 @@ import Panel from './Panel.vue'
 
 <template>
   <div class="ad">
-    <Panel max-width="750px">
+    <Panel max-width="750px" rounded="true">
       <div class="h1 font-josefin">Alternata</div>
       <div class="h2 font-josefin">7 historii z alternatywnych światów</div>
       <div class="h3 font-segoe">Nordycka space opera, słowiańskie demony cyberprzestrzeni, pismo starsze niż Wszechświat, objawienie religijne na innej planecie... Debiutancki zbiór opowiadań przeniesie Was w świat skrzywionych rzeczywistości. Odwiedzicie przyszłość bliską i bardzo daleką. Zmienicie losy Ziemi, człowieka i całego Układu Słonecznego. Zdecydujecie o losach marsjańskich kolonii oraz całego Chrześcijaństwa.</div>
