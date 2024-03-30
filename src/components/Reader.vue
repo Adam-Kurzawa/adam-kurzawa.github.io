@@ -1,16 +1,19 @@
 <script setup>
 import { computed, ref } from "vue";
 import Panel from "./Panel.vue";
+import { PdfService } from "@/utils/PdfService.js";
 
-const props = defineProps(["story"]);
+const props = defineProps(['story']);
 
 const darkMode = ref(true);
 const fontSize = ref(1.25);
-const fontFamily = ref("Times New Roman");
+const fontFamily = ref('Times New Roman');
 
 const semitransparentBgClass = computed(() => darkMode.value ? 'dark-mode-semitransparent-bg' : 'light-mode-semitransparent-bg')
 const solidBgClass = computed(() => darkMode.value ? 'dark-mode-bg' : 'light-mode-bg')
 const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode-text')
+
+const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.paragraphs)
 </script>
 
 <template>
@@ -30,7 +33,7 @@ const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode
               Pobierz
             </p>
             <div class="dropdown-content" :class="[solidBgClass]">
-              <a href="#" class="font-segoe" :class="[textClass]">PDF</a>
+              <a href="#" class="font-segoe" :class="[textClass]" @click="saveAsPdf">PDF</a>
               <a href="#" class="font-segoe" :class="[textClass]">ePUB</a>
               <a href="#" class="font-segoe" :class="[textClass]">Mobi</a>
               <a href="#" class="font-segoe" :class="[textClass]">AZW3</a>

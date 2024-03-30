@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-import Reader from "../components/Reader.vue";
+import Reader from "@/components/Reader.vue";
 
 const route = useRoute()
 const language = route.params.lang

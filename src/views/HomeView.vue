@@ -1,6 +1,6 @@
 <script setup>
 import Welcome from "@/components/Welcome.vue";
-import BookAd from "../components/BookAd.vue";
+import BookAd from "@/components/BookAd.vue";
 </script>
 
 <template>
