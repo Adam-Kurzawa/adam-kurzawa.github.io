@@ -27,7 +27,7 @@ window.addEventListener('scroll', makeBackgroundSolid)
         <RouterLink to="/" class="navlink">Opowiadania</RouterLink>
         <RouterLink to="/" class="navlink">Książki</RouterLink>
         <RouterLink to="/" class="navlink">Blog</RouterLink>
-        <RouterLink to="/" class="navlink">O mnie</RouterLink>
+        <RouterLink :to="{ name: 'about', params: { lang: 'pl' } }" class="navlink">O mnie</RouterLink>
         <RouterLink to="/" class="navlink">ENG</RouterLink>
       </span>
     </span>
@@ -46,7 +46,7 @@ window.addEventListener('scroll', makeBackgroundSolid)
           <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'egzorcyzmy_emily_os' } }" class="navlink">Wszystkie</RouterLink></li>
         </Submenu>
         <RouterLink to="/" class="navlink">Blog</RouterLink>
-        <RouterLink to="/" class="navlink">O mnie</RouterLink>
+        <RouterLink :to="{ name: 'about', params: { lang: 'pl' } }" class="navlink">O mnie</RouterLink>
         <RouterLink to="/" class="navlink">ENG</RouterLink>
       </span>
     </span>
@@ -57,7 +57,7 @@ window.addEventListener('scroll', makeBackgroundSolid)
           <li class="collapsed-link"><RouterLink to="/" class="navlink">Opowiadania</RouterLink></li>
           <li class="collapsed-link"><RouterLink to="/" class="navlink">Książki</RouterLink></li>
           <li class="collapsed-link"><RouterLink to="/" class="navlink">Blog</RouterLink></li>
-          <li class="collapsed-link"><RouterLink to="/" class="navlink">O mnie</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="{ name: 'about', params: { lang: 'pl' } }" class="navlink">O mnie</RouterLink></li>
         </Submenu>
         <RouterLink to="/" class="navlink">ENG</RouterLink>
       </span>
