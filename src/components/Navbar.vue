@@ -20,7 +20,6 @@ window.addEventListener('scroll', makeBackgroundSolid)
         <RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'powstanie_na_brillar' } }" class="navlink">Powstanie na Brillar</RouterLink>
         <RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'klątwa_imetheru' } }" class="navlink">Klątwa Imetheru</RouterLink>
         <RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'projekt_eclipse' } }" class="navlink">Projekt Eclipse</RouterLink>
-        <RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'egzorcyzmy_emily_os' } }" class="navlink">Egzorcyzmy Emily OS</RouterLink>
       </span>
       <RouterLink to="/" class="logo">Alternata</RouterLink>
       <span class="navbar-section">
@@ -38,12 +37,11 @@ window.addEventListener('scroll', makeBackgroundSolid)
           <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'powstanie_na_brillar' } }" class="navlink">Powstanie na Brillar</RouterLink></li>
           <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'klątwa_imetheru' } }" class="navlink">Klątwa Imetheru</RouterLink></li>
           <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'projekt_eclipse' } }" class="navlink">Projekt Eclipse</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'egzorcyzmy_emily_os' } }" class="navlink">Egzorcyzmy Emily OS</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'egzorcyzmy_emily_os' } }" class="navlink">Wszystkie</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'powstanie_na_brillar' } }" class="navlink">Wszystkie</RouterLink></li>
         </Submenu>
         <Submenu label="Ksiazki" id="menu-books-medium">
-          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'egzorcyzmy_emily_os' } }" class="navlink">Karmazynowe gwiazdy</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'egzorcyzmy_emily_os' } }" class="navlink">Wszystkie</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'powstanie_na_brillar' } }" class="navlink">Karmazynowe gwiazdy</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'powstanie_na_brillar' } }" class="navlink">Wszystkie</RouterLink></li>
         </Submenu>
         <RouterLink to="/" class="navlink">Blog</RouterLink>
         <RouterLink :to="{ name: 'about', params: { lang: 'pl' } }" class="navlink">O mnie</RouterLink>

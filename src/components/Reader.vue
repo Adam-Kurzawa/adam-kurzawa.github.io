@@ -3,19 +3,28 @@ import { computed, ref } from "vue";
 import Panel from "./Panel.vue";
 import { PdfService } from "@/utils/PdfService.js";
 import { EpubService } from "@/utils/EpubService.js";
+import { useRoute, useRouter } from "vue-router";
 
-const props = defineProps(['story']);
+const props = defineProps(['story', 'chapter']);
+
+const router = useRouter()
+const route = useRoute()
 
 const darkMode = ref(true);
 const fontSize = ref(1.25);
 const fontFamily = ref('Times New Roman');
 
+const paragraphs = computed(() => props.story.chapters[props.chapter - 1])
+
 const semitransparentBgClass = computed(() => darkMode.value ? 'dark-mode-semitransparent-bg' : 'light-mode-semitransparent-bg')
 const solidBgClass = computed(() => darkMode.value ? 'dark-mode-bg' : 'light-mode-bg')
 const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode-text')
 
-const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.paragraphs)
-const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.paragraphs)
+const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.chapters)
+const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters)
+
+const previousPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.max(1, props.chapter - 1) } })
+const nextPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.min(props.story.chapters.length, props.chapter + 1) } })
 </script>
 
 <template>
@@ -66,12 +75,16 @@ const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.p
     <Panel rounded="true" class="transition" :class="[solidBgClass]">
       <div class="title" :class="[textClass]">{{ props.story.title }}</div>
       <div
-        v-for="paragraph in props.story.paragraphs"
+        v-for="paragraph in paragraphs"
         class="paragraph"
         :class="[textClass]"
         :style="{ 'font-size': `${fontSize}rem`, 'font-family': fontFamily }"
       >
         {{ paragraph }}
+      </div>
+      <div class="btn-group page-buttons">
+        <button :disabled="props.chapter === 1" :class="[textClass]" @click="previousPage">Poprzednia strona</button>
+        <button :disabled="props.chapter === props.story.chapters.length":class="[textClass]" @click="nextPage">Następna strona</button>
       </div>
     </Panel>
   </main>
@@ -88,7 +101,7 @@ const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.p
   position: absolute;
   border: 1px #e69b54 solid;
   border-radius: 0.5rem;
-  top: -8.9rem;
+  top: -3.5rem;
   min-width: 160px;
   z-index: 1;
 }
@@ -151,6 +164,15 @@ const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.p
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.btn-group button:disabled {
+  color: gray !important;
+}
+
+.btn-group button:disabled:hover {
+  color: gray !important;
+  background-color: darkgray !important;
+}
+
 .btn-group p {
   transition: font-size 1s ease;
   border: 1px solid #e69b54;
@@ -196,6 +218,13 @@ const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.p
 
 .btn-group button:hover {
   background-color: #e69b54;
+}
+
+.page-buttons {
+  margin-top: 2rem;
+  display: grid !important;
+  grid-template-columns: 50% 50% !important;
+  width: 100% !important;
 }
 
 .float {

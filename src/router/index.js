@@ -17,7 +17,7 @@ const router = createRouter({
       component: AboutView
     },
     {
-      path: '/:lang/:title',
+      path: '/:lang/:title/:chapter?',
       name: 'reader',
       component: ReaderView
     }
