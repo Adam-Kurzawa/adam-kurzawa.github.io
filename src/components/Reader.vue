@@ -37,8 +37,8 @@ const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.p
             <div class="dropdown-content" :class="[solidBgClass]">
               <a href="#" class="font-segoe" :class="[textClass]" @click="saveAsPdf">PDF</a>
               <a href="#" class="font-segoe" :class="[textClass]" @click="saveAsEpub">ePUB</a>
-              <a href="#" class="font-segoe" :class="[textClass]">Mobi</a>
-              <a href="#" class="font-segoe" :class="[textClass]">AZW3</a>
+              <!-- <a href="#" class="font-segoe" :class="[textClass]">Mobi</a> -->
+              <!-- <a href="#" class="font-segoe" :class="[textClass]">AZW3</a> -->
             </div>
           </div>
           <div class="btn-group">
