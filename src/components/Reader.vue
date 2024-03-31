@@ -83,8 +83,8 @@ const nextPage = () => router.push({ name: 'reader', params: { lang: route.param
         {{ paragraph }}
       </div>
       <div class="btn-group page-buttons">
-        <button :disabled="props.chapter === 1" :class="[textClass]" @click="previousPage">Poprzednia strona</button>
-        <button :disabled="props.chapter === props.story.chapters.length":class="[textClass]" @click="nextPage">Następna strona</button>
+        <button :disabled="props.chapter === 1" :class="[textClass]" @click="previousPage">Poprzednia scena</button>
+        <button :disabled="props.chapter === props.story.chapters.length":class="[textClass]" @click="nextPage">Następna scena</button>
       </div>
     </Panel>
   </main>
