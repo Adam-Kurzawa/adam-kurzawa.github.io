@@ -18,8 +18,6 @@ export class EpubService {
         
         jepub.generate('blob')
             .then(epub => {
-                console.log(epub)
-                console.log(epub.type)
                 const blob = new Blob([ epub ], { type: epub.type })
                 saveAs(blob, `${title}.epub`);
             })
