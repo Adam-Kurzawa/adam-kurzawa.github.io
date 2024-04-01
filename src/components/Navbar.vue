@@ -1,7 +1,14 @@
 <script setup>
 import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import Submenu from './Submenu.vue';
+import { computed } from 'vue';
+
+const route = useRoute()
+const router = useRouter()
+const { t, locale } = useI18n({ useScope: 'global' })
+const otherLanguage = ref(locale.value === 'pl' ? 'ENG' : 'PL')
 
 const scrollThreshold = 100
 const isScrolled = ref(false)
@@ -11,53 +18,76 @@ const makeBackgroundSolid = (event) => {
 }
 
 window.addEventListener('scroll', makeBackgroundSolid)
+
+const changeLanguage = () => {
+  if(locale.value === 'pl') {
+    otherLanguage.value = 'PL'
+    locale.value = 'en'
+  } else {
+    otherLanguage.value = 'ENG'
+    locale.value = 'pl'
+  }
+
+  if(route.name !== 'home') {
+    router.push({ name: route.name, params: { ...route.params, lang: locale.value }})
+  }
+}
+
+const readerLink = (title) => computed(() => {
+  return { name: 'reader', params: { lang: locale.value, title: title } }
+})
+
+const homeLink = computed(() => {
+  return { name: 'home', query: { lang: locale.value } }
+})
+
+const localizedLink = (view) => computed(() => {
+  return { name: view, params: { lang: locale.value } }
+})
 </script>
 
 <template>
   <nav class="navbar" :class="[isScrolled ? 'navbar-solid' : 'navbar-gradient']">
     <span class="navbar-full">
       <span class="navbar-section">
-        <RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'powstanie_na_brillar' } }" class="navlink">Powstanie na Brillar</RouterLink>
-        <RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'klątwa_imetheru' } }" class="navlink">Klątwa Imetheru</RouterLink>
-        <RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'projekt_eclipse' } }" class="navlink">Projekt Eclipse</RouterLink>
+        <RouterLink :to="readerLink('powstanie_na_brillar')" class="navlink">{{ t("navbar.powstanie_na_brillar") }}</RouterLink>
+        <RouterLink :to="readerLink('klatwa_imetheru')" class="navlink">{{ t("navbar.klątwa_imetheru") }}</RouterLink>
+        <RouterLink :to="readerLink('projekt_eclipse')" class="navlink">{{ t("navbar.projekt_eclipse") }}</RouterLink>
       </span>
       <RouterLink to="/" class="logo">Alternata</RouterLink>
       <span class="navbar-section">
-        <RouterLink to="/" class="navlink">Opowiadania</RouterLink>
-        <RouterLink to="/" class="navlink">Książki</RouterLink>
-        <RouterLink to="/" class="navlink">Blog</RouterLink>
-        <RouterLink :to="{ name: 'about', params: { lang: 'pl' } }" class="navlink">O mnie</RouterLink>
-        <RouterLink to="/" class="navlink">ENG</RouterLink>
+        <RouterLink :to="localizedLink('stories')" class="navlink">{{ t("navbar.stories") }}</RouterLink>
+        <RouterLink :to="localizedLink('books')" class="navlink">{{ t("navbar.books") }}</RouterLink>
+        <RouterLink :to="localizedLink('blog')" class="navlink">{{ t("navbar.blog") }}</RouterLink>
+        <RouterLink :to="localizedLink('about')" class="navlink">{{ t("navbar.about") }}</RouterLink>
+        <a href="#" class="navlink" @click="changeLanguage">{{ otherLanguage }}</a>
       </span>
     </span>
     <span class="navbar-medium">
       <RouterLink to="/" class="logo">Alternata</RouterLink>
       <span class="navbar-section">
-        <Submenu label="Opowiadania" id="menu-stories-medium">
-          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'powstanie_na_brillar' } }" class="navlink">Powstanie na Brillar</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'klątwa_imetheru' } }" class="navlink">Klątwa Imetheru</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'projekt_eclipse' } }" class="navlink">Projekt Eclipse</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'powstanie_na_brillar' } }" class="navlink">Wszystkie</RouterLink></li>
+        <Submenu :label="t('navbar.stories')" id="menu-stories-medium">
+          <li class="collapsed-link"><RouterLink :to="readerLink('powstanie_na_brillar')" class="navlink">{{ t("navbar.powstanie_na_brillar") }}</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="readerLink('klatwa_imetheru')" class="navlink">{{ t("navbar.klątwa_imetheru") }}</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="readerLink('projekt_eclipse')" class="navlink">{{ t("navbar.projekt_eclipse") }}</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="localizedLink('stories')" class="navlink">{{ t("navbar.stories") }}</RouterLink></li>
         </Submenu>
-        <Submenu label="Ksiazki" id="menu-books-medium">
-          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'powstanie_na_brillar' } }" class="navlink">Karmazynowe gwiazdy</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="{ name: 'reader', params: { lang: 'pl', title: 'powstanie_na_brillar' } }" class="navlink">Wszystkie</RouterLink></li>
-        </Submenu>
-        <RouterLink to="/" class="navlink">Blog</RouterLink>
-        <RouterLink :to="{ name: 'about', params: { lang: 'pl' } }" class="navlink">O mnie</RouterLink>
-        <RouterLink to="/" class="navlink">ENG</RouterLink>
+        <RouterLink :to="localizedLink('books')" class="navlink">{{ t("navbar.books") }}</RouterLink>
+        <RouterLink :to="localizedLink('blog')" class="navlink">{{ t("navbar.blog") }}</RouterLink>
+        <RouterLink :to="localizedLink('about')" class="navlink">{{ t("navbar.about") }}</RouterLink>
+        <a href="#" class="navlink" @click="changeLanguage">{{ otherLanguage }}</a>
       </span>
     </span>
     <span class="navbar-minimal">
       <RouterLink to="/" class="logo">Alternata</RouterLink>
       <span class="navbar-section">
         <Submenu id="menu-overflow-minimal" right="true">
-          <li class="collapsed-link"><RouterLink to="/" class="navlink">Opowiadania</RouterLink></li>
-          <li class="collapsed-link"><RouterLink to="/" class="navlink">Książki</RouterLink></li>
-          <li class="collapsed-link"><RouterLink to="/" class="navlink">Blog</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="{ name: 'about', params: { lang: 'pl' } }" class="navlink">O mnie</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="localizedLink('stories')" class="navlink">{{ t("navbar.stories") }}</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="localizedLink('books')" class="navlink">{{ t("navbar.books") }}</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="localizedLink('blog')" class="navlink">{{ t("navbar.blog") }}</RouterLink></li>
+          <li class="collapsed-link"><RouterLink :to="localizedLink('about')" class="navlink">{{ t("navbar.about") }}</RouterLink></li>
         </Submenu>
-        <RouterLink to="/" class="navlink">ENG</RouterLink>
+        <a href="#" class="navlink" @click="changeLanguage">{{ otherLanguage }}</a>
       </span>
     </span>
   </nav>

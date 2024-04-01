@@ -1,13 +1,14 @@
 <script setup>
 import Panel from "./Panel.vue";
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 </script>
 
 <template>
   <Panel rounded="true" class="font-segoe welcome" max-width="1000px">
-    Witaj na Alternacie, mojej skromnej stronie. Nazywam się Adam Kurzawa
-    i zapraszam Cię do spędzenia kilku chwil pośród tekstów mojego autorstwa. Odnajdziesz tutaj opowiadania sci-fi,
-    różnotematyczne artykuły na blogu oraz prologi z książek. Jeśli doceniasz moją twórczość, możesz
-    <a class="buycoffee font-madimi" href="https://buycoffee.to/"><img src="@/assets/buycoffee.png" /> postawić mi kawę</a>.
+    {{ t("welcome.text") }}
+    <a class="buycoffee font-madimi" href="https://buycoffee.to/"><img src="@/assets/buycoffee.png" /> {{ t("welcome.buycoffee") }}</a>.
   </Panel>
 </template>
 

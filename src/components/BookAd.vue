@@ -1,27 +1,30 @@
 <script setup>
 import Panel from './Panel.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
 
 <template>
   <div class="ad">
     <Panel max-width="750px" rounded="true">
       <div class="h1 font-josefin">Alternata</div>
-      <div class="h2 font-josefin">7 historii z alternatywnych światów</div>
-      <div class="h3 font-segoe">Nordycka space opera, słowiańskie demony cyberprzestrzeni, pismo starsze niż Wszechświat, objawienie religijne na innej planecie... Debiutancki zbiór opowiadań przeniesie Was w świat skrzywionych rzeczywistości. Odwiedzicie przyszłość bliską i bardzo daleką. Zmienicie losy Ziemi, człowieka i całego Układu Słonecznego. Zdecydujecie o losach marsjańskich kolonii oraz całego Chrześcijaństwa.</div>
-      <div class="h3 font-segoe">Zapraszam do lektury!</div>
+      <div class="h2 font-josefin">{{ t("alternata-ad.h2") }}</div>
+      <div class="h3 font-segoe">{{ t("alternata-ad.h3_0") }}</div>
+      <div class="h3 font-segoe">{{ t("alternata-ad.h3_1") }}</div>
       <div class="h3 font-segoe">
-        Zawiera opowiadania:
+        {{ t("alternata-ad.h3_2") }}
         <ul class="stories font-josefin">
-          <li>W drodze do Walhalii</li>
-          <li>Krzyk pośród Laniakei</li>
-          <li>Nowa baśń</li>
-          <li>Słowa Wszechświata</li>
-          <li>Przesilenie marsjańskie</li>
-          <li>Gwiazda czasu</li>
-          <li>Konflikt objawień</li>
+          <li>{{ t("alternata-ad.title_0") }}</li>
+          <li>{{ t("alternata-ad.title_1") }}</li>
+          <li>{{ t("alternata-ad.title_2") }}</li>
+          <li>{{ t("alternata-ad.title_3") }}</li>
+          <li>{{ t("alternata-ad.title_4") }}</li>
+          <li>{{ t("alternata-ad.title_5") }}</li>
+          <li>{{ t("alternata-ad.title_6") }}</li>
         </ul>
       </div>
-      <div class="h4 font-josefin">Premiera marzec 2025</div>
+      <div class="h4 font-josefin">{{ t("alternata-ad.h4") }}</div>
     </Panel>
     <img src="@/assets/Alternata - mock książki.png" class="book" />
   </div>

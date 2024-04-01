@@ -4,11 +4,13 @@ import Panel from "./Panel.vue";
 import { PdfService } from "@/utils/PdfService.js";
 import { EpubService } from "@/utils/EpubService.js";
 import { useRoute, useRouter } from "vue-router";
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps(['story', 'chapter']);
 
 const router = useRouter()
 const route = useRoute()
+const { t } = useI18n()
 
 const darkMode = ref(true);
 const fontSize = ref(1.25);
@@ -41,7 +43,7 @@ const nextPage = () => router.push({ name: 'reader', params: { lang: route.param
                 border-right: 1px #e69b54 solid;
               "
             >
-              Pobierz
+              {{ t("reader.download") }}
             </p>
             <div class="dropdown-content" :class="[solidBgClass]">
               <a href="#" class="font-segoe" :class="[textClass]" @click="saveAsPdf">PDF</a>
@@ -51,20 +53,20 @@ const nextPage = () => router.push({ name: 'reader', params: { lang: route.param
             </div>
           </div>
           <div class="btn-group">
-            <p :class="[textClass]">Motyw</p>
+            <p :class="[textClass]">{{ t("reader.theme") }}</p>
             <button @click="() => { darkMode = !darkMode; }" :class="[textClass]">
-              {{ darkMode ? "Jasny" : "Ciemny" }}
+              {{ darkMode ? t("reader.light") : t("reader.dark") }}
             </button>
           </div>
         </div>
         <div class="btn-group">
-          <p :class="[textClass]">Rozmiar tekstu</p>
+          <p :class="[textClass]">{{ t("reader.fontSize") }}</p>
           <button @click="() => { fontSize = fontSize + 0.25; }" :class="[textClass]">+</button>
           <button @click="() => { fontSize = 1.25; }" :class="[textClass]">100%</button>
           <button @click="() => { fontSize = fontSize - 0.25; }" :class="[textClass]">-</button>
         </div>
         <div class="btn-group">
-          <p :class="[textClass]">Czcionka</p>
+          <p :class="[textClass]">{{ t("reader.font") }}</p>
           <button @click="() => { fontFamily = 'Times New Roman'; }" :class="[textClass]">Times</button>
           <button @click="() => { fontFamily = 'Georgia'; }" :class="[textClass]">Georgia</button>
           <button @click="() => { fontFamily = 'Arial'; }" :class="[textClass]">Arial</button>
@@ -83,8 +85,8 @@ const nextPage = () => router.push({ name: 'reader', params: { lang: route.param
         {{ paragraph }}
       </div>
       <div class="btn-group page-buttons">
-        <button :disabled="props.chapter === 1" :class="[textClass]" @click="previousPage">Poprzednia scena</button>
-        <button :disabled="props.chapter === props.story.chapters.length":class="[textClass]" @click="nextPage">Następna scena</button>
+        <button :disabled="props.chapter === 1" :class="[textClass]" @click="previousPage">{{ t("reader.previousChapter") }}</button>
+        <button :disabled="props.chapter === props.story.chapters.length":class="[textClass]" @click="nextPage">{{ t("reader.nextChapter") }}</button>
       </div>
     </Panel>
   </main>
