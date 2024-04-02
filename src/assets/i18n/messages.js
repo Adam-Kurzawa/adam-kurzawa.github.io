@@ -35,7 +35,8 @@ export const messages = {
             "fontSize": "Rozmiar tekstu",
             "font": "Czcionka",
             "previousChapter": "Poprzednia scena",
-            "nextChapter": "Następna scena"
+            "nextChapter": "Następna scena",
+            "epub-chapter": "Scena"
         }
     },
     "en": {
@@ -74,7 +75,8 @@ export const messages = {
             "fontSize": "Font size",
             "font": "Font",
             "previousChapter": "Previous chapter",
-            "nextChapter": "Next chapter"
+            "nextChapter": "Next chapter",
+            "epub-chapter": "Chapter"
         }
     }
 }

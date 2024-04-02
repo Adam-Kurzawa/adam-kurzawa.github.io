@@ -23,7 +23,7 @@ const solidBgClass = computed(() => darkMode.value ? 'dark-mode-bg' : 'light-mod
 const textClass = computed(() => darkMode.value ? 'dark-mode-text' : 'light-mode-text')
 
 const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.chapters)
-const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters)
+const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"))
 
 const previousPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.max(1, props.chapter - 1) } })
 const nextPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.min(props.story.chapters.length, props.chapter + 1) } })
