@@ -75,10 +75,4 @@ input:checked~.menu-content {
   margin-top: 0.75rem;
   width: 1.5rem;
 }
-
-/*
-input:checked +label {
-    background-image: url(close.png);
-}
-*/
 </style>
