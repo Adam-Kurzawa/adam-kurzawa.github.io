@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { RouterLink, useRoute, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import Submenu from './Submenu.vue';
@@ -9,9 +9,18 @@ const route = useRoute()
 const router = useRouter()
 const { t, locale } = useI18n({ useScope: 'global' })
 const otherLanguage = ref(locale.value === 'pl' ? 'ENG' : 'PL')
+const otherLanguageFlag = ref()
 
 const scrollThreshold = 100
 const isScrolled = ref(false)
+
+watch(otherLanguage, async (newLanguage, oldLanguage) => {
+  import(`@/assets/${newLanguage}.png`)
+    .then(module => otherLanguageFlag.value = module.default)
+})
+
+import(`@/assets/${otherLanguage.value}.png`)
+    .then(module => otherLanguageFlag.value = module.default)
 
 const makeBackgroundSolid = (event) => {
   isScrolled.value = window.scrollY > scrollThreshold
@@ -60,7 +69,7 @@ const localizedLink = (view) => computed(() => {
         <RouterLink :to="localizedLink('books')" class="navlink">{{ t("navbar.books") }}</RouterLink>
         <RouterLink :to="localizedLink('blog')" class="navlink">{{ t("navbar.blog") }}</RouterLink>
         <RouterLink :to="localizedLink('about')" class="navlink">{{ t("navbar.about") }}</RouterLink>
-        <a href="#" class="navlink" @click="changeLanguage">{{ otherLanguage }}</a>
+        <a href="#" class="language-changer" @click="changeLanguage"><img class="language-flag" :src="otherLanguageFlag"/>{{ otherLanguage }}</a>
       </span>
     </span>
     <span class="navbar-medium">
@@ -75,7 +84,7 @@ const localizedLink = (view) => computed(() => {
         <RouterLink :to="localizedLink('books')" class="navlink">{{ t("navbar.books") }}</RouterLink>
         <RouterLink :to="localizedLink('blog')" class="navlink">{{ t("navbar.blog") }}</RouterLink>
         <RouterLink :to="localizedLink('about')" class="navlink">{{ t("navbar.about") }}</RouterLink>
-        <a href="#" class="navlink" @click="changeLanguage">{{ otherLanguage }}</a>
+        <a href="#" class="language-changer" @click="changeLanguage"><img class="language-flag" :src="otherLanguageFlag"/>{{ otherLanguage }}</a>
       </span>
     </span>
     <span class="navbar-minimal">
@@ -87,7 +96,7 @@ const localizedLink = (view) => computed(() => {
           <li class="collapsed-link"><RouterLink :to="localizedLink('blog')" class="navlink">{{ t("navbar.blog") }}</RouterLink></li>
           <li class="collapsed-link"><RouterLink :to="localizedLink('about')" class="navlink">{{ t("navbar.about") }}</RouterLink></li>
         </Submenu>
-        <a href="#" class="navlink" @click="changeLanguage">{{ otherLanguage }}</a>
+        <a href="#" class="language-changer" @click="changeLanguage"><img class="language-flag" :src="otherLanguageFlag"/>{{ otherLanguage }}</a>
       </span>
     </span>
   </nav>
@@ -134,6 +143,27 @@ const localizedLink = (view) => computed(() => {
   margin-top: 1rem;
 }
 
+.language-changer {
+  border: 1px solid #e69b54;
+  border-radius: 0.5rem;
+  background-color: rgb(30, 54, 54);
+  color: white;
+  text-decoration: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  display: flex;
+  margin-top: 0.25rem;
+  gap: 0.5rem;
+}
+
+.language-flag {
+  max-width: 2rem;
+}
+
 /* Sizing */
 /* Full size */
 .navbar-full {
@@ -171,6 +201,7 @@ const localizedLink = (view) => computed(() => {
 
   .navbar-section {
     justify-content: right;
+    margin-bottom: 0;
   }
 }
 
@@ -186,7 +217,7 @@ const localizedLink = (view) => computed(() => {
 
   .navbar-minimal {
     display: grid;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 60% 40%;
     align-items: end;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -194,6 +225,7 @@ const localizedLink = (view) => computed(() => {
 
   .navbar-section {
     justify-content: right;
+    margin-bottom: 0;
   }
 }
 

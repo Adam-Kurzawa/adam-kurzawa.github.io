@@ -72,7 +72,7 @@ input:checked~.menu-content {
 }
 
 .hamburger {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   width: 1.5rem;
 }
 

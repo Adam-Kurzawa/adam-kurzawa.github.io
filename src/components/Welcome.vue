@@ -30,4 +30,10 @@ const { t } = useI18n()
   color: black;
   text-decoration: none;
 }
+
+@media screen and (max-width: 1024px) {
+  .welcome {
+    margin-top: 1rem;
+  }
+}
 </style>
