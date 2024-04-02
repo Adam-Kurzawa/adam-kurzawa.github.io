@@ -137,6 +137,7 @@ const localizedLink = (view) => computed(() => {
   font-weight: 300 !important;
   font-style: normal !important;
   font-size: 2rem;
+  margin-top: 0.25rem;
 }
 
 .collapsed-link {
@@ -169,7 +170,6 @@ const localizedLink = (view) => computed(() => {
 .navbar-full {
   display: grid;
   grid-template-columns: 45% 10% 45%;
-  align-items: end;
   justify-items: center;
 }
 
