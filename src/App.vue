@@ -17,8 +17,8 @@ import Navbar from './components/Navbar.vue';
   transition: padding 0.5s ease;
   margin-top: 10rem;
   margin-bottom: 5rem;
-  padding-left: 20rem;
-  padding-right: 20rem;
+  padding-left: 20%;
+  padding-right: 20%;
   display: flex;
   justify-content: center;
 }

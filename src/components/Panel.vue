@@ -1,14 +1,12 @@
 <script setup>
 import { computed } from 'vue';
 
-const props = defineProps(['maxWidth', 'rounded'])
+const props = defineProps(['rounded'])
 
 const style = computed(() => {
-  const maxWidth = props.maxWidth ? { 'max-width': props.maxWidth } : {}
   const borderRadius = props.rounded === 'true' ? { 'border-radius': '0.5rem' } : {}
   
   return {
-    ...maxWidth,
     ...borderRadius
   }
 })
@@ -41,6 +39,12 @@ const style = computed(() => {
   .white-panel {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .white-panel {
+    border-radius: 0 !important;
   }
 }
 </style>

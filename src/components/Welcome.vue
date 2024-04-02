@@ -6,7 +6,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <Panel rounded="true" class="font-segoe welcome" max-width="1000px">
+  <Panel rounded="true" class="font-segoe welcome">
     {{ t("welcome.text") }}
     <a class="buycoffee font-madimi" href="https://buycoffee.to/"><img src="@/assets/buycoffee.png" /> {{ t("welcome.buycoffee") }}</a>.
   </Panel>
