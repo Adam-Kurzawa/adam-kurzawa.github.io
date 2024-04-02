@@ -19,6 +19,8 @@ import Navbar from './components/Navbar.vue';
   margin-bottom: 5rem;
   padding-left: 20rem;
   padding-right: 20rem;
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (max-width: 1920px) {

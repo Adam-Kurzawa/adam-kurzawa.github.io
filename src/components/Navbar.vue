@@ -233,5 +233,9 @@ const localizedLink = (view) => computed(() => {
   .navbar-section {
     gap: 1.5rem;
   }
+
+  .language-flag {
+    display: none;
+  }
 }
 </style>
