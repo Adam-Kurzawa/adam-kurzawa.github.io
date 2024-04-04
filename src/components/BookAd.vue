@@ -1,8 +1,8 @@
 <script setup>
+import { useTranslation } from '@/utils/hooks';
 import Panel from './Panel.vue'
-import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n()
+const t = useTranslation()
 </script>
 
 <template>

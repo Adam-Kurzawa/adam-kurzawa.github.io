@@ -1,22 +1,18 @@
 <script setup>
-import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { useI18n } from 'vue-i18n';
 import Reader from "@/components/Reader.vue";
+import { useAsset, useLocale } from '@/utils/hooks';
 
-const { locale } = useI18n({ useScope: 'global' })
+const locale = useLocale()
 const route = useRoute()
 
 const language = route.params.lang
 const title = route.params.title
 const chapter = route.params.chapter ? Number(route.params.chapter) : 1
 
-const story = ref()
+const story = useAsset(import(`@/assets/stories/${title}_${language}.json`))
 
 locale.value = language
-
-import(`@/assets/stories/${title}_${language}.json`)
-  .then(module => story.value = module.default)
 </script>
 
 <template>

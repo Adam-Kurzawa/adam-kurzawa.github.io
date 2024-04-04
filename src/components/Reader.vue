@@ -4,13 +4,13 @@ import Panel from "./Panel.vue";
 import { PdfService } from "@/utils/PdfService.js";
 import { EpubService } from "@/utils/EpubService.js";
 import { useRoute, useRouter } from "vue-router";
-import { useI18n } from 'vue-i18n'
+import { useTranslation } from "@/utils/hooks";
 
 const props = defineProps(['story', 'chapter']);
 
 const router = useRouter()
 const route = useRoute()
-const { t } = useI18n()
+const t = useTranslation()
 
 const darkMode = ref(true);
 const fontSize = ref(1.25);

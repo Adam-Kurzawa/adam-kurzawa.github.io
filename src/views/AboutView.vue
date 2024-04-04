@@ -1,8 +1,9 @@
 <script setup>
 import { useRoute } from 'vue-router';
-import { useI18n } from 'vue-i18n';
+import PersonalInfo from "@/components/PersonalInfo.vue";
+import { useLocale } from '@/utils/hooks';
 
-const { locale } = useI18n({ useScope: 'global' })
+const locale = useLocale()
 const route = useRoute()
 
 const language = route.params.lang
@@ -12,6 +13,6 @@ locale.value = language
 
 <template>
   <main>
-    Test
+    <PersonalInfo />
   </main>
 </template>

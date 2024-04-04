@@ -1,8 +1,9 @@
 <script setup>
 import { useRoute } from 'vue-router';
-import { useI18n } from 'vue-i18n';
+import BlogEntry from "@/components/BlogEntry.vue";
+import { useLocale } from '@/utils/hooks';
 
-const { locale } = useI18n({ useScope: 'global' })
+const locale = useLocale()
 const route = useRoute()
 
 const language = route.params.lang
@@ -11,7 +12,24 @@ locale.value = language
 </script>
 
 <template>
-  <main>
-    Test
+  <main class="entries">
+    <BlogEntry />
+    <BlogEntry />
+    <BlogEntry />
+    <BlogEntry />
+    <BlogEntry />
+    <BlogEntry />
+    <BlogEntry />
+    <BlogEntry />
   </main>
 </template>
+
+<style scoped>
+.entries {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+</style>

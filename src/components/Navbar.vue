@@ -1,13 +1,15 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { RouterLink, useRoute, useRouter } from 'vue-router';
-import { useI18n } from 'vue-i18n';
 import Submenu from './Submenu.vue';
 import { computed } from 'vue';
+import { useLocale, useTranslation } from '@/utils/hooks';
 
 const route = useRoute()
 const router = useRouter()
-const { t, locale } = useI18n({ useScope: 'global' })
+const t = useTranslation()
+const locale = useLocale()
+
 const otherLanguage = ref(locale.value === 'pl' ? 'ENG' : 'PL')
 const otherLanguageFlag = ref()
 
