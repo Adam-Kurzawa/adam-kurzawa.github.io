@@ -30,7 +30,10 @@ const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.chap
 const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"))
 
 const previousPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.max(1, props.chapter - 1) } })
+const previousPageDisabled = computed(() => props.chapter === 1)
+
 const nextPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.min(props.story.chapters.length, props.chapter + 1) } })
+const nextPageDisabled = computed(() => props.chapter === props.story.chapters.length)
 </script>
 
 <template>
@@ -90,9 +93,9 @@ const nextPage = () => router.push({ name: 'reader', params: { lang: route.param
       >
         {{ paragraph }}
       </div>
-      <div class="btn-group page-buttons">
-        <button :disabled="props.chapter === 1" :class="[textClass]" @click="previousPage">{{ t("reader.previousChapter") }}</button>
-        <button :disabled="props.chapter === props.story.chapters.length":class="[textClass]" @click="nextPage">{{ t("reader.nextChapter") }}</button>
+      <div v-if="!previousPageDisabled || !nextPageDisabled" class="btn-group page-buttons">
+        <button :disabled="previousPageDisabled" :class="[textClass]" @click="previousPage">{{ t("reader.previousChapter") }}</button>
+        <button :disabled="nextPageDisabled":class="[textClass]" @click="nextPage">{{ t("reader.nextChapter") }}</button>
       </div>
     </Panel>
   </main>
