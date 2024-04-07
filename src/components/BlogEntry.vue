@@ -1,22 +1,29 @@
 <script setup>
-import { useTranslation } from "@/utils/hooks";
+import { useAsset, useLocale } from "@/utils/hooks";
+import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
 
-const t = useTranslation()
+const props = defineProps(['title'])
+
+const router = useRouter()
+const locale = useLocale()
+
+const imageSrc = useAsset(import(`@/assets/blog/covers/${props.title}.jpg`))
+const article = useAsset(import(`@/assets/blog/${props.title}_${locale.value}.json`))
+
+const title = computed(() => article.value.title)
+const description = computed(() => article.value.description)
+
+const openReader = () => {
+    router.push({ name: 'reader', params: { lang: locale.value, title: props.title }, query: { type: 'blog' } })
+}
 </script>
 
 <template>
-  <div class="entry">
-    <img src="@/assets/ENG.png" class="image" />
-    <div class="title font-josefin">Coruscant - miasto nie do życia</div>
-    <div class="stub font-segoe">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-      fermentum nunc nulla, ac fermentum purus interdum vel. Donec at leo
-      aliquam diam viverra vestibulum. Aenean iaculis sem sed mauris tincidunt,
-      nec euismod nunc malesuada. Mauris ac egestas massa, at auctor orci.
-      Nullam ante turpis, luctus quis aliquam a, vehicula vitae diam.
-      Pellentesque malesuada gravida libero vitae egestas. Nam nec nisi viverra,
-      tincidunt urna vel, faucibus lorem.
-    </div>
+  <div class="entry" @click="openReader">
+    <img :src="imageSrc" class="image" />
+    <div v-if="article" class="title font-josefin">{{ title }}</div>
+    <div v-if="article" class="stub font-segoe">{{ description }}</div>
   </div>
 </template>
 

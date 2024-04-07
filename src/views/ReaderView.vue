@@ -9,8 +9,9 @@ const route = useRoute()
 const language = route.params.lang
 const title = route.params.title
 const chapter = route.params.chapter ? Number(route.params.chapter) : 1
+const type = route?.query?.type ?? 'stories'
 
-const story = useAsset(import(`@/assets/stories/${title}_${language}.json`))
+const story = useAsset(import(`@/assets/${type}/${title}_${language}.json`))
 
 locale.value = language
 </script>

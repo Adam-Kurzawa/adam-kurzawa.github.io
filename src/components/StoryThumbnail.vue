@@ -1,18 +1,26 @@
 <script setup>
 import { useAsset, useLocale } from "@/utils/hooks";
 import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
 
 const props = defineProps(['title'])
 
+const router = useRouter()
 const locale = useLocale()
+
 const imageSrc = useAsset(import(`@/assets/stories/covers/${props.title}.jpg`))
 const story = useAsset(import(`@/assets/stories/${props.title}_${locale.value}.json`))
+
 const title = computed(() => story.value.title)
 const description = computed(() => story.value.description)
+
+const openReader = () => {
+  router.push({ name: 'reader', params: { lang: locale.value, title: props.title } })
+}
 </script>
 
 <template>
-  <div class="entry">
+  <div class="entry" @click="openReader">
     <img :src="imageSrc" class="image" />
     <div v-if="story" class="description">
       <div class="title font-josefin">{{ title }}</div>
