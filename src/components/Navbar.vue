@@ -40,7 +40,10 @@ const changeLanguage = () => {
   }
 
   if(route.name !== 'home') {
-    router.push({ name: route.name, params: { ...route.params, lang: locale.value }})
+    if(route.query)
+      router.push({ name: route.name, params: { ...route.params, lang: locale.value }, query: { ...route.query } })
+    else
+      router.push({ name: route.name, params: { ...route.params, lang: locale.value } })
   }
 }
 
