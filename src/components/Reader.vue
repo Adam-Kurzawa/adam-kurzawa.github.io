@@ -84,7 +84,7 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
     <Panel rounded="true" class="transition" :class="[solidBgClass]">
       <div class="stats font-segoe">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</div>
       <div class="title" :class="[textClass]">{{ props.story.title }}</div>
-      <div class="scene" :class="[textClass]">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
+      <div v-if="!previousPageDisabled || !nextPageDisabled" class="scene" :class="[textClass]">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
       <div
         v-for="paragraph in paragraphs"
         class="paragraph"
