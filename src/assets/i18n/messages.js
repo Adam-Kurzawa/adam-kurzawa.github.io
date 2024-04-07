@@ -36,7 +36,8 @@ export const messages = {
             "font": "Czcionka",
             "previousChapter": "Poprzednia scena",
             "nextChapter": "Następna scena",
-            "epub-chapter": "Scena"
+            "epub-chapter": "Scena",
+            "signs": "znaków"
         }
     },
     "en": {
@@ -76,7 +77,8 @@ export const messages = {
             "font": "Font",
             "previousChapter": "Previous chapter",
             "nextChapter": "Next chapter",
-            "epub-chapter": "Chapter"
+            "epub-chapter": "Chapter",
+            "signs": "characters"
         }
     }
 }

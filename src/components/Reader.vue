@@ -17,6 +17,10 @@ const fontSize = ref(1.25);
 const fontFamily = ref('Times New Roman');
 
 const paragraphs = computed(() => props.story.chapters[props.chapter - 1])
+const charactersCount = computed(() => props.story.chapters.reduce(
+  (accumulator, chapter) => accumulator + chapter.reduce((intermediate, paragraph) => intermediate + paragraph.length, 0),
+  0,
+))
 
 const semitransparentBgClass = computed(() => darkMode.value ? 'dark-mode-semitransparent-bg' : 'light-mode-semitransparent-bg')
 const solidBgClass = computed(() => darkMode.value ? 'dark-mode-bg' : 'light-mode-bg')
@@ -75,7 +79,9 @@ const nextPage = () => router.push({ name: 'reader', params: { lang: route.param
       </div>
     </Panel>
     <Panel rounded="true" class="transition" :class="[solidBgClass]">
+      <div class="stats font-segoe">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</div>
       <div class="title" :class="[textClass]">{{ props.story.title }}</div>
+      <div class="scene" :class="[textClass]">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
       <div
         v-for="paragraph in paragraphs"
         class="paragraph"
@@ -253,7 +259,23 @@ const nextPage = () => router.push({ name: 'reader', params: { lang: route.param
   font-family: "Yeseva One", serif;
   font-size: 2rem;
   text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stats {
+  font-size: 0.80rem;
+  text-align: center;
+  letter-spacing: 0.15rem;
+  color: grey;
   margin-top: 2rem;
+}
+
+.scene {
+  transition: color 1s ease;
+  font-family: "Yeseva One", serif;
+  text-align: center;
+  font-size: 1.25rem;
   margin-bottom: 2rem;
 }
 

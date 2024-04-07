@@ -6,9 +6,7 @@ import { useLocale } from '@/utils/hooks';
 const locale = useLocale()
 const route = useRoute()
 
-const language = route.params.lang
-
-locale.value = language
+locale.value = route.params.lang
 </script>
 
 <template>

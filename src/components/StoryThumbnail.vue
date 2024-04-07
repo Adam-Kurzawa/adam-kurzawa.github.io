@@ -8,6 +8,7 @@ const locale = useLocale()
 const imageSrc = useAsset(import(`@/assets/stories/covers/${props.title}.jpg`))
 const story = useAsset(import(`@/assets/stories/${props.title}_${locale.value}.json`))
 const title = computed(() => story.value.title)
+const description = computed(() => story.value.description)
 </script>
 
 <template>
@@ -15,15 +16,7 @@ const title = computed(() => story.value.title)
     <img :src="imageSrc" class="image" />
     <div v-if="story" class="description">
       <div class="title font-josefin">{{ title }}</div>
-      <div class="stub font-segoe">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        fermentum nunc nulla, ac fermentum purus interdum vel. Donec at leo
-        aliquam diam viverra vestibulum. Aenean iaculis sem sed mauris tincidunt,
-        nec euismod nunc malesuada. Mauris ac egestas massa, at auctor orci.
-        Nullam ante turpis, luctus quis aliquam a, vehicula vitae diam.
-        Pellentesque malesuada gravida libero vitae egestas. Nam nec nisi viverra,
-        tincidunt urna vel, faucibus lorem.
-      </div>
+      <div class="stub font-segoe">{{ description }}</div>
     </div>
   </div>
 </template>
