@@ -1,5 +1,6 @@
 export const messages = {
     "pl": {
+        "work-in-progress": "Strona w budowie",
         "navbar": {
             "powstanie_na_brillar": "Powstanie na Brillar",
             "klątwa_imetheru": "Klątwa Imetheru",
@@ -41,6 +42,7 @@ export const messages = {
         }
     },
     "en": {
+        "work-in-progress": "This section is still under construction",
         "navbar": {
             "powstanie_na_brillar": "Brillar Uprising",
             "klątwa_imetheru": "Curse of Imetheru",
