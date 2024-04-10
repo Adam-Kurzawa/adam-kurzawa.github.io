@@ -1,6 +1,5 @@
 import docx4js from "docx4js"
 import * as fs from 'fs';
-import readline from 'node:readline';
 
 const sourceFilePath = "C:\\test.docx"
 const resultFilePath = `${sourceFilePath.slice(0, -4)}json`
@@ -42,6 +41,10 @@ const collectNonEmptyParagraphs = (type, props, children) => {
 
 docx.render(collectNonEmptyParagraphs)
 
+const year = 2023
+const description = ''
+const title = sourceFilePath.split('\\').at(-1).slice(0, -5)
+
 const scenes = []
 let currentScene = []
 
@@ -54,7 +57,12 @@ paragraphs.forEach(paragraph => {
     }
 })
 
-const json = JSON.stringify(scenes)
+const json = JSON.stringify({
+    title: title,
+    description: description,
+    year: year,
+    chapters: scenes
+})
 
 const onSavingResult = (e) => {
     if (e && e !== null)
