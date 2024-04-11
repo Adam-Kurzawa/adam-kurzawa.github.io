@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "vite",
     "errorpage": "cd ./dist && del 404.html && del temp && copyfiles index.html ./temp && cd ./temp && renamer index.html --replace 404.html && copyfiles 404.html .. && cd .. && del temp && cd ..",
-    "build": "vite build && npm run errorpage",
-    "preview": "npm run build && vite preview",
     "addcname": "copyfiles CNAME ./dist",
+    "build": "vite build && npm run errorpage && npm run addcname",
+    "preview": "npm run build && vite preview",
     "predeploy": "npm run build",
-    "deploy": "npm run addcname && gh-pages -d dist"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@intlify/unplugin-vue-i18n": "^4.0.0",
