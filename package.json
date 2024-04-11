@@ -8,8 +8,9 @@
     "errorpage": "cd ./dist && del 404.html && del temp && copyfiles index.html ./temp && cd ./temp && renamer index.html --replace 404.html && copyfiles 404.html .. && cd .. && del temp && cd ..",
     "build": "vite build && npm run errorpage",
     "preview": "npm run build && vite preview",
+    "addcname": "copyfiles CNAME ./dist",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "addcname && gh-pages -d dist"
   },
   "dependencies": {
     "@intlify/unplugin-vue-i18n": "^4.0.0",
