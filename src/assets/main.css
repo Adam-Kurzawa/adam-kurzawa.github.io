@@ -19,7 +19,7 @@ body {
   color: lightgreen;
 }
 
-.router-link-active {
+.router-link-active.navlink {
   color: lightgreen;
 }
 

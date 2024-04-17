@@ -31,4 +31,10 @@ const articles = ref(
   flex-wrap: wrap;
   gap: 2rem;
 }
+
+@media screen and (max-width: 1024px) {
+  .entries {
+    margin-top: 2rem;
+  }
+}
 </style>

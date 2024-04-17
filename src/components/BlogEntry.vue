@@ -75,4 +75,21 @@ const openReader = () => {
 .entry:hover .stub {
   color: white;
 }
+
+@media screen and (max-width: 640px) {
+  .entry {
+    border-radius: 0;
+    justify-content: center;
+    align-content: center;
+    max-width: none;
+    height: auto;
+    width: auto;
+  }
+
+  .image {
+    border-radius: 0;
+    width: 100%;
+    height: auto;
+  }
+}
 </style>
