@@ -95,7 +95,7 @@ const localizedLink = (view) => computed(() => {
     <span class="navbar-minimal">
       <RouterLink to="/" class="logo">Alternata</RouterLink>
       <span class="navbar-section">
-        <Submenu id="menu-overflow-minimal" right="true">
+        <Submenu id="menu-overflow-minimal">
           <li class="collapsed-link"><RouterLink :to="localizedLink('stories')" class="navlink">{{ t("navbar.stories") }}</RouterLink></li>
           <li class="collapsed-link"><RouterLink :to="localizedLink('books')" class="navlink">{{ t("navbar.books") }}</RouterLink></li>
           <li class="collapsed-link"><RouterLink :to="localizedLink('blog')" class="navlink">{{ t("navbar.blog") }}</RouterLink></li>
@@ -136,6 +136,7 @@ const localizedLink = (view) => computed(() => {
 }
 
 .logo {
+  transition: color 0.5s ease;
   color: white;
   text-decoration: none;
   font-family: 'Yeseva One' !important;
@@ -145,11 +146,16 @@ const localizedLink = (view) => computed(() => {
   margin-top: 0.25rem;
 }
 
+.logo:hover {
+  color: lightgreen;
+}
+
 .collapsed-link {
   margin-top: 1rem;
 }
 
 .language-changer {
+  transition: background 1s ease;
   border: 1px solid #e69b54;
   border-radius: 0.5rem;
   background-color: rgb(30, 54, 54);
@@ -164,6 +170,10 @@ const localizedLink = (view) => computed(() => {
   display: flex;
   margin-top: 0.25rem;
   gap: 0.5rem;
+}
+
+.language-changer:hover {
+  background-color: #e69b54;
 }
 
 .language-flag {

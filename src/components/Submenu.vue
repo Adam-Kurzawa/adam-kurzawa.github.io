@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const props = defineProps(['label', 'id', 'right'])
+const props = defineProps(['label', 'id'])
 
 const selected = ref(false)
 
@@ -19,7 +19,7 @@ const deselectOnLeave = () => {
     <input class="hidden-checkbox" type="checkbox" :id="props.id" v-model="selected">
     <label class="navlink" v-if="props.label" :for="props.id" @mouseenter="selectOnHover">{{ props.label }}</label>
     <label v-if="!props.label" :for="props.id" @mouseenter="selectOnHover"><img class="hamburger" src="@/assets/hamburger.png" /></label>
-    <div class="menu-content" :class="[ props.right ? 'to-right' : '' ]">
+    <div class="menu-content">
       <ul>
         <slot></slot>
       </ul>
