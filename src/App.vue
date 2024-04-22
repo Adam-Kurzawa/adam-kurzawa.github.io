@@ -1,6 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router';
 import Navbar from './components/Navbar.vue';
+import Copyrights from './components/Copyrights.vue';
 </script>
 
 <template>
@@ -10,6 +11,9 @@ import Navbar from './components/Navbar.vue';
   <div class="content">
     <RouterView :key="$route.fullPath"/>  
   </div>
+  <footer>
+    <Copyrights />
+  </footer>
 </template>
 
 <style scoped>

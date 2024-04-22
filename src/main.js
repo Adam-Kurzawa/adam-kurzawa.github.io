@@ -25,5 +25,5 @@ const gtag = {
 const app = createApp(App)
 app.use(i18n)
 app.use(router)
-app.use(VueGtag, gtag)
+// app.use(VueGtag, gtag)
 app.mount('#app')
