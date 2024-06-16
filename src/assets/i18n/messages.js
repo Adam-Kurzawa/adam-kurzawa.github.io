@@ -38,7 +38,12 @@ export const messages = {
             "previousChapter": "Poprzednia scena",
             "nextChapter": "Następna scena",
             "epub-chapter": "Scena",
-            "signs": "znaków"
+            "signs": "znaków",
+            "theEnd": "Koniec"
+        },
+        "copyrights": {
+            "arr": "Wszelkie prawa zastrzeżone. Strona i jej zawartość są własnością Adama Kurzawy i objęte pełnią prawami autorskimi. Nieautoryzowane rozpowszechnianie w jakimkolwiek celu jest ściśle zabronione.",
+            "cookies": "Strona wykorzystuje Google Analytics do zbierania danych na temat ilości wizyt i krajów pochodzenia adresu IP. Wszystkie dane są przetwarzane przez Google i usługę Google Analytics. Ta strona nie zbiera ani nie przechowuje danych w inny sposób."
         }
     },
     "en": {
@@ -80,7 +85,12 @@ export const messages = {
             "previousChapter": "Previous chapter",
             "nextChapter": "Next chapter",
             "epub-chapter": "Chapter",
-            "signs": "characters"
+            "signs": "characters",
+            "theEnd": "The end"
+        },
+        "copyrights": {
+            "arr": "All rights reserved. This webpage and its content are owned by Adam Kurzawa and protected by author's copyrights. Unauthorized use is strictly prohibited.",
+            "cookies": "Strona wykorzystuje Google Analytics do zbierania danych na temat ilości wizyt i krajów pochodzenia adresu IP. Wszystkie dane są przetwarzane przez Google i usługę Google Analytics. Ta strona nie zbiera ani nie przechowuje danych w inny sposób."
         }
     }
 }

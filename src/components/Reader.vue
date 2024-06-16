@@ -93,6 +93,7 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
       >
         {{ paragraph }}
       </div>
+      <div v-if="nextPageDisabled" class="title" :class="[textClass]">{{ t("reader.theEnd") }}</div>
       <div v-if="!previousPageDisabled || !nextPageDisabled" class="btn-group page-buttons">
         <button :disabled="previousPageDisabled" :class="[textClass]" @click="previousPage">{{ t("reader.previousChapter") }}</button>
         <button :disabled="nextPageDisabled":class="[textClass]" @click="nextPage">{{ t("reader.nextChapter") }}</button>
@@ -244,6 +245,7 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
   bottom: 0;
   left: 0;
   width: 100%;
+  z-index: 100;
   backdrop-filter: blur(10px);
 }
 

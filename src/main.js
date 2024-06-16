@@ -14,6 +14,8 @@ const i18n = createI18n({
 })
 
 const gtag = {
+    bootstrap: false,
+    // enabled: false
     config: {
         id: "G-6Z9LBMVFVM",
         params: {
@@ -25,5 +27,5 @@ const gtag = {
 const app = createApp(App)
 app.use(i18n)
 app.use(router)
-// app.use(VueGtag, gtag)
+app.use(VueGtag, gtag)
 app.mount('#app')

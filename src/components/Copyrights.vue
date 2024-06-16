@@ -8,9 +8,10 @@ const t = useTranslation();
 <template>
   <Panel class="footer" rounded="true">
     <div class="copyrights font-segoe">
-      &copy; Wszelkie prawa zastrzeżone. Strona i jej zawartość są własnością
-      Adama Kurzawy i objęte pełnią prawami autorskimi. Nieautoryzowane
-      rozpowszechnianie w jakimkolwiek celu jest ściśle zabronione.
+      &copy; {{ t('copyrights.arr') }}
+    </div>
+    <div class="copyrights analytics font-segoe">
+      &copy; {{ t('copyrights.cookies') }}
     </div>
   </Panel>
 </template>
@@ -22,7 +23,7 @@ const t = useTranslation();
   color: white;
   margin-left: 20%;
   margin-right: 20%;
-  margin-bottom: 2rem;
+  margin-bottom: 8rem;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
@@ -34,7 +35,7 @@ const t = useTranslation();
 }
 
 .analytics {
-    font-size: 0.85rem;
+  font-size: 0.85rem;
 }
 
 @media screen and (max-width: 1024px) {

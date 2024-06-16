@@ -1,7 +1,7 @@
 import docx4js from "docx4js"
 import * as fs from 'fs';
 
-const sourceFilePath = "C:\\test.docx"
+const sourceFilePath = "C:\\Users\\Adam\\OneDrive\\Projekty\\Euro 2224\\Euro 2224.docx"
 const resultFilePath = `${sourceFilePath.slice(0, -4)}json`
 const docx = await docx4js.docx.load(sourceFilePath)
 const paragraphs = []
@@ -41,7 +41,7 @@ const collectNonEmptyParagraphs = (type, props, children) => {
 
 docx.render(collectNonEmptyParagraphs)
 
-const year = 2023
+const year = 2024
 const description = ''
 const title = sourceFilePath.split('\\').at(-1).slice(0, -5)
 
