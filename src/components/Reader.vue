@@ -52,10 +52,9 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
           <button @click="() => { darkMode = 'sepia'; }" :class="[textClass]">{{ t("reader.sepia") }}</button>
           <button @click="() => { darkMode = 'dark'; }" :class="[textClass]">{{ t("reader.dark") }}</button>
         </div>
-        <div class="btn-group">
-          <p :class="[textClass]">{{ t("reader.font") }}</p>
-          <span :class="[textClass]">{{ fontSize * 10 }}</span>
-          <select :class="[textClass]" v-model="fontFamily">
+        <div class="btn-group font-settings">
+          <p class="font-settings-a" :class="[textClass]">{{ t("reader.font") }}</p>
+          <select class="font-settings-b" :class="[textClass]" v-model="fontFamily">
             <option :class="[solidBgClass]" style="font-family: 'Times New Roman';">Times New Roman</option>
             <option :class="[solidBgClass]" style="font-family: Georgia;">Georgia</option>
             <option :class="[solidBgClass]" style="font-family: Arial;">Arial</option>
@@ -65,9 +64,10 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
             <option :class="[solidBgClass]" style="font-family: 'Yeseva One';">Yeseva One</option>
             <option :class="[solidBgClass]" style="font-family: 'Madimi One';">Madimi One</option>
           </select>
-          <button @click="() => { fontSize = fontSize + 0.25; }" :class="[textClass]">+</button>
-          <button @click="() => { fontSize = 1.25; }" :class="[textClass]">100%</button>
-          <button @click="() => { fontSize = fontSize - 0.25; }" :class="[textClass]">-</button>
+          <span class="font-settings-c" :class="[textClass]">{{ fontSize * 10 }}</span>
+          <button class="font-settings-d" @click="() => { fontSize = fontSize + 0.25; }" :class="[textClass]">+</button>
+          <button class="font-settings-e" @click="() => { fontSize = 1.25; }" :class="[textClass]">100%</button>
+          <button class="font-settings-f" @click="() => { fontSize = fontSize - 0.25; }" :class="[textClass]">-</button>
         </div>
       </div>
     </Panel>
@@ -321,6 +321,60 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
   .float {
     padding-bottom: 1rem !important;
     padding-top: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .font-settings {
+    display: grid !important;
+    grid-template-areas: 
+      "a b b b"
+      "c d e f" !important; 
+  }
+
+  .font-settings :first-child {
+    border-top-left-radius: 0.5rem !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom: none;
+  }
+
+  .font-settings :nth-child(2) {
+    border-top-right-radius: 0.5rem !important;
+    border-right: 1px solid #e69b54 !important;
+    border-bottom: none;
+  }
+
+  .font-settings :nth-child(3) {
+    border-bottom-left-radius: 0.5rem !important;
+  }
+  
+  .font-settings :last-child {
+    border-bottom-right-radius: 0.5rem !important;
+    border-top-right-radius: 0 !important;
+  }
+
+  .font-settings-a {
+    grid-area: a;
+  }
+
+  .font-settings-b {
+    grid-area: b;
+  }
+
+  .font-settings-c {
+    grid-area: c;
+  }
+
+  .font-settings-d {
+    grid-area: d;
+  }
+
+  .font-settings-e {
+    grid-area: e;
+  }
+
+  .font-settings-f {
+    grid-area: f;
   }
 }
 </style>
