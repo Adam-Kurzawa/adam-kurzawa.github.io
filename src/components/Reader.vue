@@ -8,8 +8,6 @@ import { useTranslation } from '@/utils/hooks'
 
 const props = defineProps(['story', 'chapter'])
 
-//const $cookies = inject('$cookies')
-
 const router = useRouter()
 const route = useRoute()
 const t = useTranslation()
@@ -44,8 +42,10 @@ const setFontFamily = (event) => {
   fontFamily.value = font
 }
 
-const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.chapters)
+// const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.chapters)
 const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"))
+const saveAsMobi = () => {}
+const sendToKindle = () => {}
 
 const previousPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.max(1, props.chapter - 1) } })
 const previousPageDisabled = computed(() => props.chapter === 1)
@@ -60,9 +60,9 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
       <div class="settings">
         <div class="btn-group">
           <p :class="[textClass]">{{ t("reader.download") }}</p>
-          <button href="#" class="font-segoe" :class="[textClass]" @click="saveAsPdf">MOBI</button>
+          <button href="#" class="font-segoe" :class="[textClass]" @click="saveAsMobi">MOBI</button>
           <button href="#" class="font-segoe" :class="[textClass]" @click="saveAsEpub">ePUB</button>
-          <button href="#" class="font-segoe" :class="[textClass]" @click="saveAsEpub">{{ t("reader.sendToKindle") }}</button>
+          <button href="#" class="font-segoe" :class="[textClass]" @click="sendToKindle">{{ t("reader.sendToKindle") }}</button>
         </div>
         <div class="btn-group">
           <p :class="[textClass]">{{ t("reader.theme") }}</p>
@@ -230,6 +230,10 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 
 .btn-group button:hover {
   background-color: #e69b54;
+}
+
+.btn-group button:active {
+  background-color: #f58e2d;
 }
 
 .page-buttons {

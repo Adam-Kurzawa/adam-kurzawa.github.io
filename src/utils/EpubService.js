@@ -7,7 +7,7 @@ export class EpubService {
         let currentChapter = 1
 
         jepub.init({
-            i18n: 'en',
+            i18n: 'en', // Only accepted language
             title: title,
             author: 'Adam Kurzawa',
             publisher: 'Adam Kurzawa',

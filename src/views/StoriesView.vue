@@ -20,9 +20,6 @@ const stories = ref(
 <template>
   <main class="entries">
     <StoryThumbnail v-for="story in stories" :title="story"/>
-    <!-- Kokainowy baron -->
-    <!-- Innoziemiec -->
-    <!-- Nowy dżihad -->
   </main>
 </template>
 
