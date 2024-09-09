@@ -1,20 +1,22 @@
 <script setup>
-import { computed, ref } from "vue";
-import Panel from "./Panel.vue";
-import { PdfService } from "@/utils/PdfService.js";
-import { EpubService } from "@/utils/EpubService.js";
-import { useRoute, useRouter } from "vue-router";
-import { useTranslation } from "@/utils/hooks";
+import { computed, ref } from 'vue'
+import Panel from './Panel.vue'
+import { PdfService } from '@/utils/PdfService.js'
+import { EpubService } from '@/utils/EpubService.js'
+import { useRoute, useRouter } from 'vue-router'
+import { useTranslation } from '@/utils/hooks'
 
-const props = defineProps(['story', 'chapter']);
+const props = defineProps(['story', 'chapter'])
+
+//const $cookies = inject('$cookies')
 
 const router = useRouter()
 const route = useRoute()
 const t = useTranslation()
 
-const darkMode = ref('dark');
-const fontSize = ref(1.25);
-const fontFamily = ref('Times New Roman');
+const theme = ref($cookies.get('theme') ?? 'dark')
+const fontSize = ref($cookies.get('font-size') ?? 1.25)
+const fontFamily = ref($cookies.get('font-family') ?? 'Times New Roman')
 
 const paragraphs = computed(() => props.story.chapters[props.chapter - 1])
 const charactersCount = computed(() => props.story.chapters.reduce(
@@ -22,9 +24,25 @@ const charactersCount = computed(() => props.story.chapters.reduce(
   0,
 ))
 
-const semitransparentBgClass = computed(() => `${darkMode.value}-mode-semitransparent-bg`)
-const solidBgClass = computed(() => `${darkMode.value}-mode-bg`)
-const textClass = computed(() => `${darkMode.value}-mode-text`)
+const semitransparentBgClass = computed(() => `${theme.value}-mode-semitransparent-bg`)
+const solidBgClass = computed(() => `${theme.value}-mode-bg`)
+const textClass = computed(() => `${theme.value}-mode-text`)
+
+const setTheme = (t) => {
+  $cookies.set('theme', t)
+  theme.value = t
+}
+
+const setFontSize = (size) => {
+  $cookies.set('font-size', size)
+  fontSize.value = size 
+}
+
+const setFontFamily = (event) => {
+  const font = event.target.value
+  $cookies.set('font-family', font)
+  fontFamily.value = font
+}
 
 const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.chapters)
 const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"))
@@ -48,13 +66,13 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
         </div>
         <div class="btn-group">
           <p :class="[textClass]">{{ t("reader.theme") }}</p>
-          <button @click="() => { darkMode = 'light'; }" :class="[textClass]">{{ t("reader.light") }}</button>
-          <button @click="() => { darkMode = 'sepia'; }" :class="[textClass]">{{ t("reader.sepia") }}</button>
-          <button @click="() => { darkMode = 'dark'; }" :class="[textClass]">{{ t("reader.dark") }}</button>
+          <button @click="() => setTheme('light')" :class="[textClass]">{{ t("reader.light") }}</button>
+          <button @click="() => setTheme('sepia')" :class="[textClass]">{{ t("reader.sepia") }}</button>
+          <button @click="() => setTheme('dark')" :class="[textClass]">{{ t("reader.dark") }}</button>
         </div>
         <div class="btn-group font-settings">
           <p class="font-settings-a" :class="[textClass]">{{ t("reader.font") }}</p>
-          <select class="font-settings-b" :class="[textClass]" v-model="fontFamily">
+          <select class="font-settings-b" :class="[textClass]" v-model="fontFamily" @change="(event) => setFontFamily(event)">
             <option :class="[solidBgClass]" style="font-family: 'Times New Roman';">Times New Roman</option>
             <option :class="[solidBgClass]" style="font-family: Georgia;">Georgia</option>
             <option :class="[solidBgClass]" style="font-family: Arial;">Arial</option>
@@ -65,9 +83,9 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
             <option :class="[solidBgClass]" style="font-family: 'Madimi One';">Madimi One</option>
           </select>
           <span class="font-settings-c" :class="[textClass]">{{ fontSize * 10 }}</span>
-          <button class="font-settings-d" @click="() => { fontSize = fontSize + 0.25; }" :class="[textClass]">+</button>
-          <button class="font-settings-e" @click="() => { fontSize = 1.25; }" :class="[textClass]">100%</button>
-          <button class="font-settings-f" @click="() => { fontSize = fontSize - 0.25; }" :class="[textClass]">-</button>
+          <button class="font-settings-d" @click="() => setFontSize(fontSize + 0.25)" :class="[textClass]">+</button>
+          <button class="font-settings-e" @click="() => setFontSize(1.25)" :class="[textClass]">100%</button>
+          <button class="font-settings-f" @click="() => setFontSize(fontSize - 0.25)" :class="[textClass]">-</button>
         </div>
       </div>
     </Panel>
