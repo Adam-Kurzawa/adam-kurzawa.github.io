@@ -12,7 +12,9 @@ export const messages = {
         },
         "welcome": {
             "text": "Witaj na Alternacie, mojej skromnej stronie. Nazywam się Adam Kurzawa i zapraszam Cię do spędzenia kilku chwil pośród tekstów mojego autorstwa. Odnajdziesz tutaj opowiadania sci-fi, różnotematyczne artykuły na blogu oraz prologi z książek. Jeśli doceniasz moją twórczość, możesz",
-            "buycoffee": "postawić mi kawę"
+            "text2": "lub",
+            "buycoffee": "postawić mi kawę",
+            "patronite": "zostać moim patronem"
         },
         "alternata-ad": {
             "h2": "7 historii z alternatywnych światów",
@@ -26,7 +28,7 @@ export const messages = {
             "title_4": "Przesilenie marsjańskie",
             "title_5": "Gwiazda czasu",
             "title_6": "Konflikt objawień",
-            "h4": "Premiera marzec 2025"
+            "h4": "Premiera marzec 2026"
         },
         "reader": {
             "download": "Pobierz",
@@ -61,7 +63,9 @@ export const messages = {
         },
         "welcome": {
             "text": "Welcome to Alternata, my personal website. My name is Adam Kurzawa and I invite you to spend some time among the texts authored by me. Here you will find science fiction stories, various thematic articles on the blog, and book prologues. If you appreciate my work, you can",
-            "buycoffee": "buy me a coffee"
+            "text2": "or",
+            "buycoffee": "buy me a coffee",
+            "patronite": "become my patron"
         },
         "alternata-ad": {
             "h2": "7 stories from alternate worlds",
@@ -75,7 +79,7 @@ export const messages = {
             "title_4": "Martian Solstice",
             "title_5": "Timestar",
             "title_6": "Conflict of Revelations",
-            "h4": "In stores from March 2025"
+            "h4": "In stores from March 2026"
         },
         "reader": {
             "download": "Download",
