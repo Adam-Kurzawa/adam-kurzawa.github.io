@@ -7,7 +7,7 @@ const t = useTranslation()
 
 <template>
   <div class="ad">
-    <Panel rounded="true">
+    <Panel>
       <div class="h1 font-josefin">Alternata</div>
       <div class="h2 font-josefin">{{ t("alternata-ad.h2") }}</div>
       <div class="h3 font-segoe">{{ t("alternata-ad.h3_0") }}</div>

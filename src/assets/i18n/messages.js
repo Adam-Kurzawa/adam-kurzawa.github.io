@@ -18,7 +18,7 @@ export const messages = {
         },
         "alternata-ad": {
             "h2": "7 historii z alternatywnych światów",
-            "h3_0": "Nordycka space opera, słowiańskie demony cyberprzestrzeni, pismo starsze niż Wszechświat, objawienie religijne na innej planecie... Debiutancki zbiór opowiadań przeniesie Was w świat skrzywionych rzeczywistości. Odwiedzicie przyszłość bliską i bardzo daleką. Zmienicie losy Ziemi, człowieka i całego Układu Słonecznego. Zdecydujecie o losach marsjańskich kolonii oraz całego Chrześcijaństwa.",
+            "h3_0": "Nordycka space opera, słowiańskie demony cyberprzestrzeni, pismo starsze niż Wszechświat, objawienie religijne na innej planecie... Debiutancki zbiór opowiadań przeniesie Was w świat skrzywionych rzeczywistości. Odwiedzicie przyszłość bliską i bardzo daleką. Zmienicie przyszłość Ziemi, człowieka, a nawet Układu Słonecznego. Zdecydujecie o losach marsjańskich kolonii oraz całego Chrześcijaństwa.",
             "h3_1": "Zapraszam do lektury!",
             "h3_2": "Zawiera opowiadania:",
             "title_0": "W drodze do Walhalii",
@@ -46,7 +46,7 @@ export const messages = {
             "theEnd": "Koniec"
         },
         "copyrights": {
-            "arr": "Wszelkie prawa zastrzeżone. Strona i jej zawartość są własnością Adama Kurzawy i objęte pełnią prawami autorskimi. Nieautoryzowane rozpowszechnianie w jakimkolwiek celu jest ściśle zabronione.",
+            "arr": "Wszelkie prawa zastrzeżone. Strona i jej zawartość są własnością Adama Kurzawy i objęte pełnymi prawami autorskimi. Nieautoryzowane rozpowszechnianie w jakimkolwiek celu jest ściśle zabronione.",
             "cookies": "Strona wykorzystuje Google Analytics do zbierania danych na temat ilości wizyt i krajów pochodzenia adresu IP. Wszystkie dane są przetwarzane przez Google i usługę Google Analytics. Ta strona nie zbiera ani nie przechowuje danych w inny sposób."
         }
     },

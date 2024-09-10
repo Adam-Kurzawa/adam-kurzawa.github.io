@@ -2,7 +2,7 @@ import { saveAs } from 'file-saver';
 
 export class EpubService {
 
-    static saveAsEpub(title, chapters, chapterName) {
+    static saveAsEpub(title, chapters, chapterName, chapterTitles) {
         const jepub = new jEpub()
         let currentChapter = 1
 
@@ -16,7 +16,11 @@ export class EpubService {
         })
 
         chapters.forEach(chapter => {
-            jepub.add(`${chapterName} ${currentChapter}`, chapter)
+            if(chapterTitles)
+                jepub.add(`${chapterName} ${currentChapter} - ${chapterTitles[currentChapter - 1]}`, chapter)
+            else
+                jepub.add(`${chapterName} ${currentChapter}`, chapter)
+
             currentChapter += 1
         });
         

@@ -6,7 +6,7 @@ const t = useTranslation();
 </script>
 
 <template>
-  <Panel class="footer" rounded="true">
+  <Panel class="footer">
     <div class="copyrights font-segoe">
       &copy; {{ t('copyrights.arr') }}
     </div>
@@ -18,12 +18,10 @@ const t = useTranslation();
 
 <style scoped>
 .footer {
-  background: rgba(0, 0, 0, 0.5) !important;
-  backdrop-filter: blur(10px);
-  color: white;
+  color: darkslategray;
   margin-left: 20%;
   margin-right: 20%;
-  margin-bottom: 8rem;
+  margin-bottom: 7rem;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;

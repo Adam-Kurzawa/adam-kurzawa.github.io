@@ -19,7 +19,7 @@ import Copyrights from './components/Copyrights.vue';
 <style scoped>
 .content {
   transition: padding 0.5s ease;
-  margin-top: 10rem;
+  margin-top: 8rem;
   margin-bottom: 5rem;
   padding-left: 20%;
   padding-right: 20%;

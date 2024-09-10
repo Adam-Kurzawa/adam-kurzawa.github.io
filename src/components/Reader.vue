@@ -43,7 +43,7 @@ const setFontFamily = (event) => {
 }
 
 // const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.chapters)
-const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"))
+const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles)
 const saveAsMobi = () => {}
 const sendToKindle = () => {}
 
@@ -52,11 +52,13 @@ const previousPageDisabled = computed(() => props.chapter === 1)
 
 const nextPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.min(props.story.chapters.length, props.chapter + 1) } })
 const nextPageDisabled = computed(() => props.chapter === props.story.chapters.length)
+
+const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabled.value)
 </script>
 
 <template>
   <main>
-    <Panel rounded="false" class="float border" :class="[semitransparentBgClass]">
+    <div class="float border" :class="[semitransparentBgClass]">
       <div class="settings">
         <div class="btn-group">
           <p :class="[textClass]">{{ t("reader.download") }}</p>
@@ -88,11 +90,12 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
           <button class="font-settings-f" @click="() => setFontSize(fontSize - 0.25)" :class="[textClass]">-</button>
         </div>
       </div>
-    </Panel>
-    <Panel rounded="true" class="transition" :class="[solidBgClass]">
+    </div>
+    <Panel class="transition" :class="[solidBgClass]">
       <div class="stats font-segoe">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</div>
       <div class="title" :class="[textClass]">{{ props.story.title }}</div>
-      <div v-if="!previousPageDisabled || !nextPageDisabled" class="scene" :class="[textClass]">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
+      <div v-if="isOnePager" class="scene" :class="[textClass]">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
+      <div v-if="isOnePager && story.chapterTitles" class="chapterTitle" :class="[textClass]">{{ props.story.chapterTitles[props.chapter - 1] }}</div>
       <div
         v-for="paragraph in paragraphs"
         class="paragraph"
@@ -102,7 +105,7 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
         {{ paragraph }}
       </div>
       <div v-if="nextPageDisabled" class="title" :class="[textClass]">{{ t("reader.theEnd") }}</div>
-      <div v-if="!previousPageDisabled || !nextPageDisabled" class="btn-group page-buttons">
+      <div v-if="isOnePager" class="btn-group page-buttons">
         <button :disabled="previousPageDisabled" :class="[textClass]" @click="previousPage">{{ t("reader.previousChapter") }}</button>
         <button :disabled="nextPageDisabled":class="[textClass]" @click="nextPage">{{ t("reader.nextChapter") }}</button>
       </div>
@@ -113,6 +116,11 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 <style scoped>
 .border {
   border-top: 1px solid gray;
+  transition: padding 0.5s ease;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .dark-mode-bg {
@@ -157,7 +165,7 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 
 .btn-group button {
   transition: font-size 1s ease;
-  border: 1px solid #e69b54;
+  border: 1px solid darkgoldenrod;
   padding: 0.5rem 1rem;
   background: none;
   cursor: pointer;
@@ -177,7 +185,7 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 
 .btn-group p {
   transition: font-size 1s ease;
-  border: 1px solid #e69b54;
+  border: 1px solid darkgoldenrod;
   padding: 0.5rem 1rem;
   float: left;
   font-weight: bold;
@@ -188,7 +196,7 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 
 .btn-group span {
   transition: font-size 1s ease;
-  border: 1px solid #e69b54;
+  border: 1px solid darkgoldenrod;
   padding: 0.5rem 1rem;
   float: left;
   margin: 0;
@@ -198,7 +206,7 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 
 .btn-group select {
   transition: font-size 1s ease;
-  border: 1px solid #e69b54;
+  border: 1px solid darkgoldenrod;
   padding: 0.45rem 1rem;
   float: left;
   outline: none;
@@ -229,11 +237,11 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 }
 
 .btn-group button:hover {
-  background-color: #e69b54;
+  background-color: darkgoldenrod;
 }
 
 .btn-group button:active {
-  background-color: #f58e2d;
+  background-color: limegreen;
 }
 
 .page-buttons {
@@ -281,6 +289,14 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
   font-family: "Yeseva One", serif;
   text-align: center;
   font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.chapterTitle {
+  transition: color 1s ease;
+  font-family: "Yeseva One", serif;
+  text-align: center;
+  font-size: 1.25rem;
   margin-bottom: 2rem;
 }
 
@@ -297,6 +313,11 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 }
 
 @media screen and (max-width: 1600px) {
+  .border {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
   .btn-group button {
     font-size: 0.90rem;
   }
@@ -322,6 +343,11 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 }
 
 @media screen and (max-width: 1280px) {
+  .border {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .btn-group button {
     font-size: 0.75rem;
   }

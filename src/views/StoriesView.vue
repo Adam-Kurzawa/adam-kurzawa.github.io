@@ -2,24 +2,28 @@
 import { useRoute } from 'vue-router';
 import StoryThumbnail from "@/components/StoryThumbnail.vue";
 import { ref } from 'vue';
-import { useLocale } from '@/utils/hooks';
+import { useLocale, useTranslation } from '@/utils/hooks';
 
 const locale = useLocale()
 const route = useRoute()
+const t = useTranslation()
 
 locale.value = route.params.lang
 
 const stories = ref(
   new Set(
-    Object.keys(import.meta.glob('@/assets/stories/*.json'))
-      .map(s => s.substring(20).slice(0, -8))
+    Object.keys(import.meta.glob('@/assets/story/*.json'))
+      .map(s => s.substring(18).slice(0, -8))
   )
 )
 </script>
 
 <template>
-  <main class="entries">
-    <StoryThumbnail v-for="story in stories" :title="story"/>
+  <main class="generic-view">
+    <h1>{{ t("navbar.stories") }}</h1>
+    <div class="entries">
+      <StoryThumbnail v-for="story in stories" :title="story" type="story" />
+    </div>
   </main>
 </template>
 

@@ -1,11 +1,12 @@
 <script setup>
 import { ref } from "vue";
 import { useRoute } from 'vue-router';
-import BlogEntry from "@/components/BlogEntry.vue";
-import { useLocale } from '@/utils/hooks';
+import StoryThumbnail from "@/components/StoryThumbnail.vue";
+import { useLocale, useTranslation } from '@/utils/hooks';
 
 const locale = useLocale()
 const route = useRoute()
+const t = useTranslation()
 
 locale.value = route.params.lang
 
@@ -18,8 +19,11 @@ const articles = ref(
 </script>
 
 <template>
-  <main class="entries">
-    <BlogEntry v-for="article in articles" :title="article"/>
+  <main class="generic-view">
+    <h1>{{ t("navbar.blog") }}</h1>
+    <div class="entries">
+      <StoryThumbnail v-for="article in articles" :title="article" type="blog"/>
+    </div>
   </main>
 </template>
 

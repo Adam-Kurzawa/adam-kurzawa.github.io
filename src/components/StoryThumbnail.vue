@@ -1,35 +1,39 @@
 <script setup>
 import { useAsset, useLocale } from "@/utils/hooks";
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useRouter } from "vue-router";
 
-const props = defineProps(["title"]);
+const props = defineProps(["title", "type"]);
 
 const router = useRouter();
 const locale = useLocale();
 
-const imageSrc = useAsset(import(`@/assets/stories/covers/${props.title}.jpg`));
-const story = useAsset(
-  import(`@/assets/stories/${props.title}_${locale.value}.json`)
-);
+const imageSrc = props.type === 'story' ? 
+    useAsset(import(`@/assets/story/covers/${props.title}.jpg`)) : 
+    useAsset(import(`@/assets/blog/covers/${props.title}.jpg`));
 
-const title = computed(() => story.value.title);
-const description = computed(() => story.value.description);
+const content = props.type === 'story' ? 
+    useAsset(import(`@/assets/story/${props.title}_${locale.value}.json`)) : 
+    useAsset(import(`@/assets/blog/${props.title}_${locale.value}.json`));
+
+const title = computed(() => content.value.title)
+const description = computed(() => content.value.description)
 
 const openReader = () => {
   router.push({
     name: "reader",
     params: { lang: locale.value, title: props.title },
+    query: { type: props.type }
   });
 };
 </script>
 
 <template>
-  <div class="entry" @click="openReader">
-    <img :src="imageSrc" class="image" />
-    <div v-if="story" class="description">
+  <div class="entry" :class="`entry-for-${props.type}`" @click="openReader">
+    <img :src="imageSrc" :class="`image-for-${props.type}`" />
+    <div v-if="content" class="info">
       <div class="title font-josefin">{{ title }}</div>
-      <div class="stub font-segoe">{{ description }}</div>
+      <div class="description font-segoe">{{ description }}</div>
     </div>
   </div>
 </template>
@@ -37,29 +41,38 @@ const openReader = () => {
 <style scoped>
 .entry {
   transition: background 1s ease;
-  width: 350px;
-  max-width: 350px;
-  height: 700px;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   cursor: pointer;
-  border-radius: 0.5rem;
+  box-shadow: 0 0 2rem gainsboro;
+}
+
+.entry-for-blog {
+  max-width: 400px;
+}
+
+.entry-for-story {
+  width: 350px;
+  max-width: 350px;
+  height: 700px;
 }
 
 .entry:hover {
-  background-color: #e69b54;
+  background-color: darkgoldenrod;
 }
 
-.image {
+.image-for-blog {
+  height: 200px;
+}
+
+.image-for-story {
   width: 350px;
   height: 420px;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
 }
 
-.description {
+.info {
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -71,26 +84,26 @@ const openReader = () => {
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
-  color: #e69b54;
+  color: black;
 }
 
 .entry:hover .title {
   color: white;
 }
 
-.stub {
+.description {
   transition: color 0.5s ease;
   text-align: justify;
+  color: darkslategrey;
   font-size: 0.9rem;
 }
 
-.entry:hover .stub {
+.entry:hover .description {
   color: white;
 }
 
 @media screen and (max-width: 640px) {
   .entry {
-    border-radius: 0;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
@@ -100,7 +113,6 @@ const openReader = () => {
   }
 
   .image {
-    border-radius: 0;
     width: 100%;
     height: auto;
   }

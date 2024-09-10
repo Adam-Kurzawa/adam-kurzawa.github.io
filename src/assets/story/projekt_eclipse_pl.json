@@ -2,9 +2,20 @@
     "title": "Projekt Eclipse",
     "description": "Na przestrzeni milionów lat odkrywamy jak inżynieryjny projekt mający zbawić świat, staje się jego zgubą. Przeinwestowany cud nowoczesnych technologii czy otoczony czcią obiekt obcych? Oto Projekt Eclipse!",
     "year": 2023,
+    "chapterTitles": [
+        "UN EcoSummit ‘02",
+        "Red City",
+        "Yellowstone",
+        "Ostatni",
+        "Heretyk",
+        "Naukowiec",
+        "Archeolog",
+        "Rewolucja",
+        "Zniszczenie",
+        "Konstruktorzy"
+    ],
     "chapters": [
         [
-            "UN EcoSummit ‘02",
             "– Zebraliśmy się tu, aby świętować… – Głośniki na tarasie dziesiątego piętra siedziby głównej ONZ zawyły głosem sędziwego Azjaty, mówiącego angielszczyzną z wyraźnie wschodnim akcentem.",
             "Felicia Picardes spoglądała na ruchliwy i gwarny Nowy Jork. Wiedziała, że to kolejne przemówienie pełne pustych frazesów. UN EcoSummit roku 2102, dnia 18 kwietnia, odbywał się w sali plenarnej pełnej ambasadorów i ministrów, którzy wciąż łudzili się, że można zatrzymać planetę Ziemia w jej zmianach.",
             "Kobieta twierdziła, że nie mieli czego celebrować. Jako szefowej programu „Eclipse” nie godziło się jej mieć takich myśli. Powinna tryskać optymizmem i zarażać nadzieją. Inspirować współpracowników do walki o klimat dla siebie i przyszłych pokoleń.",
@@ -45,7 +56,6 @@
             "„A więc jest jeszcze szansa” – pomyślała Picardes."
         ],
         [
-            "Red City",
             "Znajdowali się dwa i pół kilometra pod powierzchnią. W chodniku marsjańskiej kopalni panował nadzwyczajny ruch. Taśmociągi nieustanie wywoziły gruz powstały po robotach strzałowych. Górnicy w hermetycznych pancerzach kruszyli wiertłami największe kawałki skał, zaś inni, w potężnych trzymetrowych mechach, przerzucali je na pas transportowy.",
             "– Szefie, mamy problem z sonarem. Grunt wciąż wibruje po detonacjach – zameldował radiotechnik.",
             "– Poczekajcie piętnaście minut i spróbujcie ponownie. Jeśli pomiar będzie nieudany albo okaże się, że musimy ponownie strzelać, wracamy na powierzchnię. Nie chcę mieć nas na sumieniu – zarządził Alex Picardes.",
@@ -93,7 +103,6 @@
             "– Zgadzam się – odparł Picardes natychmiast i uśmiechnął się na myśl o nowym wyzwaniu."
         ],
         [
-            "Yellowstone",
             "– Szybciej! Szybciej! – krzyczała młoda kobieta.",
             "Patricia Wheeler przejęła ręczne sterowanie nad samochodem i maksymalnie docisnęła kierownicę. Elektryczne silniki natychmiast przełożyły ten rozkaz na dodatkowe obroty kół. Wóz szarpnął do przodu i podskoczył, gdy pod podwoziem znalazło się kilku nieszczęśników. Spanikowany tłum walił pięściami w szyby i maskę.",
             "Radio trzeszczało, gubiąc co chwilę zasięg. Komunikaty przekazywała przestraszona reporterka:",
@@ -126,7 +135,6 @@
             "Patricia zdążyła jeszcze ujrzeć błysk silników podrywający maszynę w przestworza."
         ],
         [
-            "Ostatni",
             "Ponad tuzin osób zgromadziło się przed holoekranem w sali sterowania Sarkofagiem numer 32. Z głośnika dochodziły wrzaski starszego mężczyzny. Znać było, że jest pijany.",
             "– Mam dość! Mam dość! – krzyczał facet.",
             "Słowa miały już jedenaście minut. Tyle obecnie wynosił okres ich transferu z Ziemi na Marsa. Dwa razy dłużej zespół czekał na odpowiedź i wszyscy mieli nadzieję, że nie będzie ona tym ostatnim komunikatem.",
@@ -168,7 +176,6 @@
             "„Jeszcze ludzkość nie zginęła, póki my żyjemy”."
         ],
         [
-            "Heretyk",
             "– Wielki Deuje przyjmij te dary! – intonował szaman.",
             "– Oolak! Oolak! – Tłum powtarzał mantrę monotonnym tonem.",
             "Na kamiennym stole leżał olbrzymi, tłusty runuz. Włochaty zwierz posiadał krótką trąbę i długie, szerokie rogi wieńczące czubek kudłatej głowy. Silne nogi krępowały grube sznury splecione z włókien palm.",
@@ -216,7 +223,6 @@
             "Wuuen’et popatrzył na Fuuar i jego mieszkańców z rezygnacją. Pogładził wąsy na podłużnej, wielbłądziej twarzy i poprawił plecak. Oddalił się w cień drzew lasu Saa’haran i nigdy więcej w tej okolicy nie był widziany. Osiadł w odległym Keer, położonym na południu, nad brzegiem Wąskiego Morza, gdzie klimat wciąż był tak gorący, jak za czasów praojców."
         ],
         [
-            "Naukowiec",
             "„Podsumowując wszystkie powyższe fakty, jakie zgromadziłem na temat Całunu przez cztery lata jego bezpośredniej obserwacji, stwierdzam, że jest to sztuczna instalacja niezbudowana ręką arena, lecz innej cywilizacji. Dokładność ustawienia w przestrzeni kosmicznej, w punkcie równowagi między Ziemią a Kaalarusem nie jest przypadkowa. Rozmiary Całunu zostały idealnie dopasowane, aby jego półcień zasłaniał wyłącznie planetę.",
             "Rozdział 4 – Ochłodzenie klimatu",
             "Obserwacje Całunu przez astrograf o silnym przyciemnieniu, pozwoliły mi dostrzec ciemniejsze i jaśniejsze obszary na jego powierzchni. Nieregularność owych kształtów, kontrastująca z symetrią samego urządzenia, każe mi wysnuć tezę o naturalnym pochodzeniu plam. Prawdopodobnie jest to wypalenie przezroczystego materiału samego Całunu spowodowane żarem Kaalarusa.",
@@ -251,7 +257,6 @@
             "– Zabrać go do lochów! – zarządził Jaal."
         ],
         [
-            "Archeolog",
             "Aanket Wuuen dyszała ciężko z wycieńczenia. Wyładowany po brzegi plecak ciążył jej niemiłosiernie. Skóra na plecach, pod płytkami szkieletu zewnętrznego parzyła, jakby cały podskórny tłuszcz się zagotował. Gogle zaparowały, a na szaliku, którym obwiązała pysk, skroplił się jej oddech.",
             "Do tego się spociła, co na wysokości piętnastu tysięcy metrów nie było niczym dobrym. Temperatura sięgała tutaj sześćdziesięciu stopni poniżej zera. Wiał silny wiatr sprawiający, że chwiała się przy gwałtowniejszych podmuchach.",
             "Nieskazitelnie czyste niebo pozwalało jej podziwiać pozostałe szczyty Korony Ziemi, rozrzucone po całym paśmie Huuaniraat. Każdy miał powyżej dziesięciu tysięcy metrów, a pokrywający je śnieg pamiętał jeszcze czasy Konstruktorów. Na tej wysokości nie występowały opady, a wieczna zmarzlina pochodziła z okresu, gdy wypiętrzały się góry podczas kolizji kontynentów Południowego i Północnego.",
@@ -308,7 +313,6 @@
             "Profesor Wuuen mogła się tylko domyślać głębokich zmian, jakie ten artefakt zapoczątkuje w areńskich społeczeństwach."
         ],
         [
-            "Rewolucja",
             "Gmach fuuarskiego parlamentu upadł. Zdobione, kamienne wrota pękły pod naporem dziesiątek kilofów, łopat i młotów. Sceny z keerskiej historii nic dla tych arenów nie znaczyły. A była to historia pełna wojen oraz podbojów, jak również odkryć i wynalazków.",
             "Ich twarze wykrzywiała wściekłość i żądza zemsty. Nie jedli porządnie od miesięcy, niektórzy może od kilku lat. W miejsce głodu pragnęli więc krwi tych, którzy w ich mniemaniu doprowadzili do tej sytuacji.",
             "Dyiin Wuuen stał na barykadzie na schodach prowadzących do budynku parlamentu. Przez megafon wykrzykiwał hasła podjudzające lud do walki. Nie musiał tego robić. Tłum sam rwał się do linczu na lokalnym samorządzie. Musiał jednak wyglądać na wkurzonego oraz na zaangażowanego.",
@@ -337,7 +341,6 @@
             "– Zniszczymy winowajcę tej małej epoki lodowcowej. Zniszczymy Całun."
         ],
         [
-            "Zniszczenie",
             "Biirys Wuuen wpatrywał się w wielki ekran zajmujący całą ścianę kontroli lotów Keerskich Sił Kosmicznych. Obraz transmitowany z lądowiska przedstawiał pękatą rakietę stojącą na kosmodromie, spowitą kłębami pary ulatniającymi się z dysz silników. Resztę wyświetlacza zajmowały setki wskaźników i statystyk.",
             "Tutaj, w pomieszczeniu dowództwa, nie słyszeli rozgardiaszu, który panował między stanowiskami techników. Dowódcy armii w stopniach haalpardów i uraapardów patrzyli zza grubej, dźwiękoszczelnej szyby jak specjaliści przekrzykują się, ciskają do siebie dokumentami i pośpiesznie wykonują komendy kontrolerów.",
             "– Biirys, jesteś o krok od przejścia do legendy. Mógłbyś się jednak trochę rozluźnić. – Uraapard Marynarki Wojennej Keer, Laair Aaglaar, podszedł do zamyślonego wojskowego. – Jak nie wystrzelimy rakiety dzisiaj, to wystrzelimy ją za dwa dni.",
@@ -398,6 +401,61 @@
             "Daaridan podał dowódcy komunikator. Na ekranie wyświetlał się smukły, szary kształt okrętu kosmicznego lecącego nisko nad powierzchnią. Na jego boku widniał błękitny, sześciokątny symbol otoczony jakby gałęziami.",
             "Biirys widział już coś takiego na obrazie odnalezionym przez swojego przodka, Aanket Wuuen.",
             "– Konstruktorzy wrócili…"
+        ],
+        [
+            "Mark Picardes-Robins wpatrywał się w satelitarny obraz Ziemi i nie mógł pozbyć się dziwnego, niepokojącego uczucia. Każdy kształt na planecie wydawał się znajomy. Poznawał fiordy północnej Europy, zaokrąglone wybrzeże zachodniej Afryki i rozciągniętą na wschód Azję.",
+            "Jednocześnie każdy z nich różnił się od tego, co oglądał przez całe życie. Zamiast Morza Śródziemnego pięły się góry niemal dwa razy wyższe od Himalajów, powstałe na skutek zderzenia Afryki ze Starym Kontynentem. Czarny Ląd już na dobre rozerwały Wielkie Rowy, a nowy subkontynent dryfował ku Oceanowi Indyjskiemu. Dawny Londyn znajdował za kołem podbiegunowym, a wybrzeża Portugalii celowały w miejsce, gdzie ongiś dryfowała Grenlandia. Ameryka Południowa stała się środkową, zaś Północna przywędrowała na zachód, niemal zderzając się z Azją. Za nimi pospieszała Antarktyda. Tylko poczciwa Australia pozostała mniej więcej na swojej dawnej pozycji.",
+            "– Aż robi się niedobrze – powiedziała do niego Kassandra Wheeler, uśmiechając się czule. – Jakby ktoś poprzestawiał wszystkie meble w domu.",
+            "– Problem w tym, że to już nie nasz dom. Podebrano nam akt własności – odparł Mark.",
+            "Od czterech lat nadzorowali program wybudzeń ludzi z Sarkofagów na Marsie. Wszystko toczyło się powoli, lecz pomyślnie. Do nadzorcy hali numer 32 i jego partnerki dołączali kolejni specjaliści.",
+            "Serwitorzy generacji, której nie mogli zliczyć, posłusznie im służyli, uruchamiając siewy hydroponiczne i hodowle mięsa. Przez miliony lat SI stworzyła udoskonalone wersje tych robotów, wyposażone w więcej manipulatorów. Niektóre były wielkie, wyspecjalizowane do konstrukcji, inne zaś małe i zwinne, idealne do precyzyjnych napraw.",
+            "Przez mijające milenia, SI posłało dziesiątki tysięcy dronów w tunele wykopane przez ludzi w marsjańskiej ziemi. Maszyny szukały surowców potrzebnych do napraw. Kopały na pełną skalę, idąc wiele kilometrów w głąb, tak nisko, jak człowiek nie odważyłby się zejść. Mars w rejonie Doliny Marinerów przypomniał olbrzymie mrowisko, niemal niewidoczne z góry, lecz potężne pod powierzchnią.",
+            "Mark był pod wrażeniem doskonałości, z jaką komputery opiekowały się Sarkofagami i ich pasażerami. Wszystko działało i czekało na ich przebudzenie. Oni mieli się tylko skupić na odbudowie cywilizacji.",
+            "Czekały również niemiłe niespodzianki. Pierwsza z nich strzeliła w Picardes-Robinsa jak bicz, gdy ledwo co wyczołgał się z kapsuły hibernacyjnej. Dowiedział się, że aż dziewiętnaście Sarkofagów wyłączyło się i nikt nie przeżył.",
+            "Przerażał go fakt, że przez kolejne tysiąclecia, wybudzane ekipy nie uznały Ziemi za nadającą się do zamieszkania. Eksploratorzy powracali do snu, aż zawiodła maszyneria najwcześniej zbudowanych hal.",
+            "– Ostatni będą pierwszymi – rzekł wtedy do siebie Mark, czując pewien biblijny majestat tych słów.",
+            "Gdy wybudziła się Kassandra, ujrzeli Ziemię. Idąc spać, nie przypuszczali, że planeta nie będzie już należeć do nich. Spodziewali się dzikiej, odnowionej fauny, nie cywilizacji technicznej. To skomplikowało rzeczy. Do pełnego wybudzenia wszystkich załóg potrzebowali globu zdatnego do zamieszkania, a nie takiego, zajętego przez…",
+            "„No właśnie kogo?” – zastanawiał się Mark.",
+            "– Kim oni są? Obcymi? Swoimi? Jak mamy ich traktować? – pytała Wheeler.",
+            "Kolejne posiedzenia w mesie, przy kubku wyhodowanej w hydroponice herbaty, nie przynosiły odpowiedzi. Mogli jedynie obserwować nowych mieszkańców Ziemi.",
+            "Niestety, z planetą również nie było najlepiej. Życie odrodziło się w pełni, lecz wciąż walczyło z rozchwianym klimatem. Kassandra prowadziła liczne obserwacje i modelowała pogodę Niebieskiej Planety.",
+            "– Wszystko wskazuje na to, że Ziemia wchodzi w okres zlodowacenia. Czapa północna prawdopodobnie zostanie zablokowana przez… – Kobieta wskazała dawne Bałkany. – …przez Góry… Śródziemne… Być może zejdzie od wschodu aż na Półwysep Arabski. Już teraz połowa Europy jest skuta lodem, który rozszerza się kilka metrów rocznie.",
+            "– Raz za gorąco, raz za zimno. Co jest z tą planetą? – pytał ironicznie Mark, nie było mu do śmiechu.",
+            "– To nie koniec – zapewniła ponuro Kassandra. – Na południu nie jest lepiej. Zlodowacenie wolniej rozwija się na oceanie, ale dotarło już do przylądka Horn.",
+            "– A gdziekolwiek da się mieszkać?",
+            "– Tak. Sahara jest bujnym lasem, Australia przypomina Europę z naszych czasów. Południowa Afryka to chłodny step, ale wciąż niezamarznięty. Problem w tym, że te tereny są zamieszkane przez te opancerzone istoty.",
+            "– I co gorsze, dość wojownicze – wtrącił Mark.",
+            "Wheeler nie wiedziała, o czym mówi jej partner, więc ten pokazał jej przekaz satelitarny. Nad suchym, półpustynnym terenem wznosiły się kłęby dymu. Co chwilę pojawiały się gwałtowne kule ognia i pióropusz rozrzuconej gleby. Między zgliszczami, w dołach i rowach, przebiegały masywne, dwunożne istoty. Gdy Mark przesunął obraz, ujrzeli kolumnę pojazdów wyposażonych w długie lufy.",
+            "– Oni nie przywitają nas z otwartymi ramionami. Na całej planecie trwają jakieś wojny albo zamieszki. Pola uprawne przypominają suche wióry – stwierdził mężczyzna.",
+            "– Mark, praprzyczyną tego wszystkiego jest „Eclipse” – oznajmiła kobieta.",
+            "Kassandra pokazała zbliżenie na parasol słoneczny, które udało się wykonać kilka miesięcy temu przez nowego satelitę, jakiego SI wyniosła nad Marsa. Sfera wyglądała na poplamioną nieregularnymi płatami czerni.",
+            "– Materiał mocno pociemniał. SI przenalizowało niekompletne dane spektralne i wygląda na to, że zasłona jest po prostu brudna od kosmicznego pyłu. Szacujemy, że pochłania już siedemnaście procent światła słonecznego.",
+            "Wtedy właśnie centralny komputer podesłał nowe zdjęcia z Niebieskiej Planety, a wraz z nim drugą złą wiadomość.",
+            "To było dwa lata temu. Mark widział jak na równiku, na trawiastych równinach, powstaje poligon, na którym rozkwitają coraz większe, atomowe grzyby. Kilkadziesiąt kilometrów dalej ulokowano prymitywny kosmodrom, a pierwszą rzeczą, jaka z niego wyleciała na orbitę to koślawa, miniaturowa wersja „Eclipse”. Kolejne rakiety próbowały w nią trafić, aż jednej się udało. Atrapa parasola słonecznego zniknęła w bladożółtej eksplozji.",
+            "– Kass, musimy działać. Oni chcą zniszczyć przesłonę – powiadomił partnerkę Mark.",
+            "– Durnie – podsumowała ich Wheeler. – Słońce jest półtora procent jaśniejsze niż za naszych czasów. Dodatkowo spopielą całą roślinność. Lodowce zaczną topnieć, dojdzie do monsunów i huraganów. Podejrzewam, że nawet oni nie są przystosowani do widzenia w tak jasnych warunkach! Tylko pogorszą sytuację!",
+            "– Czy stopniowa likwidacja parasola pozwoli klimatowi się dostosować?",
+            "– Jak stopniowa? – zapytała.",
+            "– Kilka lat.",
+            "– Mało.",
+            "Mark zdał się na jej osąd. Wiedziała więcej o klimacie.",
+            "– Baterie elektromagnesu muszą być na skraju wyczerpania. Najwyraźniej nie chroni już obiektu przed wiatrem słonecznym. Gdyby tak polecieć do „Eclipse” i go wyczyścić… – zaczął główkować Picardes-Robins. – Mógłbym też zainstalować nowy moduł łączności, anteny i ogniwo zasilające. Wtedy ponownie bylibyśmy w stanie sterować parasolem.",
+            "– Jak chcesz wyczyścić taki obszar? – zaśmiała się Kassandra. – Miotłą? Odkurzaczem?",
+            "Mężczyzna wskazał przechodzącego obok serwitora. Czworonożny łazik niósł zestaw rur i kabli. Zaraz za nim podążał tuzin małych, pająkopodobnych serwisantów.",
+            "– Możemy wyprodukować profesjonalną ekipę sprzątającą, która zamieszka tam na kilka lat i zajmie się porządkami.",
+            "Przyspieszyli przygotowania do misji, gdy satelity dostarczyły pierwsze zdjęcia prawdopodobnego, ostatecznego pocisku. Rozmiarami przewyższał wszystkie prototypy i w zasadzie niewiele różnił się od Saturna V, który wyniósł ludzi na Księżyc.",
+            "Serwitorzy przygotowali wahadłowiec do lotu, uprzątnęli hangar i odgruzowali wrota. Mark i wybrany przez niego pilot kazali załadować cały potrzebny sprzęt wraz z dronami sprzątającymi.",
+            "Gdy bomba Nowoziemian wystartowała, byli już w drodze do punktu L1, gdzie przez miliony lat wisiała zasłona.",
+            "– Mark, nasza sonda zderzyła się z rakietą. Potwierdzam jej zniszczenie. – Pilot pokazał mężczyźnie film, na którym dwa jasne punkciki zamieniają się w mdłą, mało efektowną chmurę odłamków.",
+            "– Doskonale – ucieszył się Picardes-Robins.",
+            "– Rozpoczynam lot w kierunku „Eclipse”.",
+            "– Zaczekaj! – zawołał Mark.",
+            "Pilot spojrzał na niego wyczekująco.",
+            "– Jeśli chcemy wrócić na Ziemię, musimy negocjować z tymi istotami. Dać im coś w zamian – powiedział dowódca misji.",
+            "– Na przykład?",
+            "– Rozwiązać ich problemy. Niech dowiedzą się, że naprawimy „Eclipse”. Powiemy im, dlaczego to robimy, czemu ich metoda była zła i co z tego wszystkiego będą mieć. Zagrozimy, że zniszczymy każdą z ich rakiet, jeśli spróbują ponownie. Na sam koniec przedstawimy naszą cenę za pomoc.",
+            "– Sprytne, ale i okrutne na swój sposób. Miliony na powierzchni głodują – argumentował pilot.",
+            "– To nasza jedyna opcja na powrót do domu. Leć na Ziemię."
         ]
     ]
 }

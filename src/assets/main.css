@@ -1,14 +1,13 @@
 @import "./base.css";
 
 body {
-  background-image: url(wood3.jpg);
-  background-size: 100%;
+  background-color: white;
   margin: 0 !important;
 }
 
 .navlink {
   transition: color 0.5s ease;
-  color: white;
+  color: black;
   text-decoration: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: lighter;
@@ -16,11 +15,32 @@ body {
 }
 
 .navlink:hover {
-  color: lightgreen;
+  color: darkgoldenrod;
 }
 
 .router-link-active.navlink {
-  color: lightgreen;
+  color: darkgoldenrod;
+}
+
+h1 {
+  color: black;
+  text-decoration: none;
+  font-family: 'Yeseva One' !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 1024px) {
+  h1 {
+    text-align: center;
+  }
+}
+
+.generic-view {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .font-segoe {

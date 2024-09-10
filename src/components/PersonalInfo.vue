@@ -6,9 +6,8 @@ const t = useTranslation()
 </script>
 
 <template>
-  <Panel class="ad" rounded="true">
+  <Panel class="ad">
     <div>
-      <div class="h1 font-josefin">O mnie</div>
       <div class="font-segoe">Lorem ipsum dolor et sadorem vitinius sandis. Et cetore pan vardis que mono.</div>
       <div class="font-segoe">Kontakt</div>
       <div class="font-segoe">zzz.xxx@gmail.com</div>
@@ -26,14 +25,5 @@ const t = useTranslation()
   justify-content: center;
   align-content: center;
   gap: 2rem;
-}
-
-.h1 {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 4rem;
-  color: #e69b54;
-  text-align: center;
-  text-transform: uppercase;
 }
 </style>

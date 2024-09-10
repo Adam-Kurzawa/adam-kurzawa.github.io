@@ -6,7 +6,7 @@ const t = useTranslation();
 </script>
 
 <template>
-  <Panel rounded="true" class="font-segoe welcome">
+  <Panel class="font-segoe welcome">
     {{ t("welcome.text") }}
     <a class="buycoffee font-madimi" target="_blank" href="https://buycoffee.to/"><img src="@/assets/buycoffee.png" /> {{ t("welcome.buycoffee") }}</a>
     {{ t("welcome.text2") }}

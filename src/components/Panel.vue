@@ -1,19 +1,9 @@
 <script setup>
-import { computed } from 'vue';
-
 const props = defineProps(['rounded'])
-
-const style = computed(() => {
-  const borderRadius = props.rounded === 'true' ? { 'border-radius': '0.5rem' } : {}
-  
-  return {
-    ...borderRadius
-  }
-})
 </script>
 
 <template>
-  <div class="white-panel" :style="style">
+  <div class="white-panel">
     <slot></slot>
   </div>
 </template>
@@ -26,6 +16,7 @@ const style = computed(() => {
   padding-top: 2rem;
   padding-bottom: 2rem;
   background-color: rgba(255, 255, 255, 1.0);
+  box-shadow: 0 0 2rem gainsboro;
 }
 
 @media screen and (max-width: 1600px) {
@@ -39,12 +30,6 @@ const style = computed(() => {
   .white-panel {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .white-panel {
-    border-radius: 0 !important;
   }
 }
 </style>

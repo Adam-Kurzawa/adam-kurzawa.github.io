@@ -13,7 +13,7 @@ const locale = useLocale()
 const otherLanguage = ref(locale.value === 'pl' ? 'ENG' : 'PL')
 const otherLanguageFlag = ref()
 
-const scrollThreshold = 100
+const scrollThreshold = 50
 const isScrolled = ref(false)
 
 watch(otherLanguage, async (newLanguage, oldLanguage) => {
@@ -110,12 +110,15 @@ const localizedLink = (view) => computed(() => {
 <style scoped>
 /* Navbar background and gradient related stuff */
 .navbar-gradient {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+  /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%); */
+  background-color: white;
 }
 
 .navbar-solid {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
+  /* background: rgba(0, 0, 0, 0.5); */
+  background-color: white;
+  border-bottom: 1px solid gainsboro;
+  /* backdrop-filter: blur(10px); */
 }
 
 .navbar {
@@ -138,7 +141,7 @@ const localizedLink = (view) => computed(() => {
 
 .logo {
   transition: color 0.5s ease;
-  color: white;
+  color: black;
   text-decoration: none;
   font-family: 'Yeseva One' !important;
   font-weight: 300 !important;
@@ -148,7 +151,7 @@ const localizedLink = (view) => computed(() => {
 }
 
 .logo:hover {
-  color: lightgreen;
+  color: darkgoldenrod;
 }
 
 .collapsed-link {
@@ -157,7 +160,7 @@ const localizedLink = (view) => computed(() => {
 
 .language-changer {
   transition: background 1s ease;
-  color: white;
+  color: black;
   text-decoration: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: lighter;
@@ -171,7 +174,7 @@ const localizedLink = (view) => computed(() => {
 }
 
 .language-changer:hover {
-  color: lightgreen;
+  color: limegreen;
 }
 
 .language-flag {

@@ -1,7 +1,8 @@
 {
     "title": "Euro 2224",
-    "description": "Recorded commentary of the opening match of the first football tournament outside Earth. Both language and football lapses in one story.",
+    "description": "Zapis komentarza meczu otwarcia pierwszego turnieju futbolowego poza Ziemią. Lapsusy językowe i piłkarskie kiksy w jednym.",
     "year": 2024,
+    "chapterTitles": null,
     "chapters": [
         [
             "WS: Witamy Ziemię! Witamy Marsa! Dziś rozpoczynamy wielkie sportowe święto! Święto futbolu, które będzie nam towarzyszyć przez kilka najbliższych tygodni. Najlepsze drużyny Starego Kontynentu po raz sześćdziesiąty siódmy zawalczą o tytuł mistrzowski. Witamy widzów kanału pierwszego Holowizji Polskiej. Witamy z wypełnionej po brzegi Red Bull Mars Areny w habitacie Liberta. Mecz otwarcia komentują dla państwa…",
@@ -28,7 +29,8 @@
             "MS: Serbowie dziwnie spięci. Bardzo sztywno idą, bardzo powoli.",
             "WS: Boją się odlecieć! Włosi żwawo, długimi susami przechodzą na środek murawy.",
             "MS: Czy już tutaj widać różne podejście do przygotowania fizycznego do tego turnieju? Przecieki z kadry Italii mówiły, że chcą oni wykorzystać atuty niskiej grawitacji. Postawić na szybkość, łatwość biegu, dalekie piłki. Niska grawitacja to ułatwia.",
-            "WS: Serbowie zaś są znani z fizycznej gry. Przepychanki, zastawianie się ciałem, stałe fragmenty. Wydaje się, że nie chcą porzucić tego stylu, stąd ta sztywność. Jakby skupienie się na swoim ciężarze.MS: Dość ciężko grać ciałem, kiedy ważysz pięć razy mniej niż na Ziemi! Nie wiem czy ten aspekt nie zostanie zniwelowany.",
+            "WS: Serbowie zaś są znani z fizycznej gry. Przepychanki, zastawianie się ciałem, stałe fragmenty. Wydaje się, że nie chcą porzucić tego stylu, stąd ta sztywność. Jakby skupienie się na swoim ciężarze.",
+            "MS: Dość ciężko grać ciałem, kiedy ważysz pięć razy mniej niż na Ziemi! Nie wiem czy ten aspekt nie zostanie zniwelowany.",
             "WS: Coś w tym może być, ale wszystko zweryfikuje boisko i najbliższe dziewięćdziesiąt minut. "
         ],
         [
@@ -69,7 +71,8 @@
             "MS: Włosi protestują! Selekcjoner podbiega do sędziego. Widzimy jakieś tarcia między zawodnikami obu drużyn. ",
             "WS: Na pewno będzie protest do UEFA po meczu.",
             "MS: Zasady IFAB dopuszczają pewne korekty w przepisach gry po decyzji systemu i sędziego, ale tutaj jest jawne działanie przeciwko regulacjom piłki nożnej. ",
-            "WS: Nie wiem, czy taki rzut można uznać za ducha gry.MS: Sędzia ma zawsze decydujący głos. Mamy bramkę!",
+            "WS: Nie wiem, czy taki rzut można uznać za ducha gry.",
+            "MS: Sędzia ma zawsze decydujący głos. Mamy bramkę!",
             "WS: Włosi protestują głośno u sędziego. Chyba posypią się kartki.",
             "MS: Oby nie doszło do rękoczynów. Ależ teraz wzrośnie temperatura tego spotkania!"
         ],
@@ -128,7 +131,8 @@
             "MS: Szybko zaczynają Serbowie. Garabić do Subotića. Subotić przerzutem na drugą stronę boiska do Rukina. Rukin do Fito. Fito. Rukin. Wraca Subotić.",
             "WS: Ależ błyskawicznie przemieszczają się zawodnicy Italii długimi susami. Spójrzcie państwo! Manzarro już wrócił pod pole karne asekurować obrońców. Serbowie lekko spowolnili. Derlak szuka kolegów. Komu zagrać.",
             "MS: Serbowie są dość ociężali w porównaniu do Azzurrich. Poza Rabatićem nie chcą podejmować pojedynków jeden na jeden.",
-            "WS: Przeszli w atak pozycyjny. Mladko. Derlak. Przerzut do Subotića, ten wycofuje do środkowego pomocnika. MS: Ależ tam wypatrzył swoich! Tarinowić lekkim muśnięciem dośrodkowuje w pole karne, do Milinovića. Milinović! Składa się!",
+            "WS: Przeszli w atak pozycyjny. Mladko. Derlak. Przerzut do Subotića, ten wycofuje do środkowego pomocnika.",
+            "MS: Ależ tam wypatrzył swoich! Tarinowić lekkim muśnięciem dośrodkowuje w pole karne, do Milinovića. Milinović! Składa się!",
             "WS: Ojojoj! Nieładnie to wyglądało! ",
             "MS: Faul! Sędzia wskazuje na jedenasty metr!",
             "WS: Milinović wciąż leży na murawie chwytając się za kark! ",
