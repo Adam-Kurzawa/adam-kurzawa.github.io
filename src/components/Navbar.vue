@@ -125,6 +125,7 @@ const localizedLink = (view) => computed(() => {
   width: 100%;
   padding-top: 1.5rem;
   padding-bottom: 2rem;
+  z-index: 100;
 }
 
 .navbar-section {
