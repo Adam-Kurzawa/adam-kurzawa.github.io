@@ -157,9 +157,6 @@ const localizedLink = (view) => computed(() => {
 
 .language-changer {
   transition: background 1s ease;
-  border: 1px solid #e69b54;
-  border-radius: 0.5rem;
-  background-color: rgb(30, 54, 54);
   color: white;
   text-decoration: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -174,11 +171,12 @@ const localizedLink = (view) => computed(() => {
 }
 
 .language-changer:hover {
-  background-color: #e69b54;
+  color: lightgreen;
 }
 
 .language-flag {
   max-width: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 /* Sizing */
