@@ -97,15 +97,12 @@ const openReader = () => {
     max-width: none;
     height: auto;
     width: auto;
-    padding-top: 1rem;
   }
 
   .image {
-    border-radius: 0.5rem;
-  }
-
-  .stub {
-    padding-bottom: 0;
+    border-radius: 0;
+    width: 100%;
+    height: auto;
   }
 }
 </style>
