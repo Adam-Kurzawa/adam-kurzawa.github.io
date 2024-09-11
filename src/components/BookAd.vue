@@ -7,11 +7,9 @@ const t = useTranslation()
 
 <template>
   <div class="ad">
-    <Panel>
       <div class="h1 font-josefin">Alternata</div>
       <div class="h2 font-josefin">{{ t("alternata-ad.h2") }}</div>
       <div class="h3 font-segoe">{{ t("alternata-ad.h3_0") }}</div>
-      <div class="h3 font-segoe">{{ t("alternata-ad.h3_1") }}</div>
       <div class="h3 font-segoe">
         {{ t("alternata-ad.h3_2") }}
         <ul class="stories font-josefin">
@@ -25,8 +23,6 @@ const t = useTranslation()
         </ul>
       </div>
       <div class="h4 font-josefin">{{ t("alternata-ad.h4") }}</div>
-    </Panel>
-    <img src="@/assets/Alternata - mock książki.png" class="book" />
   </div>
 </template>
 
@@ -34,6 +30,9 @@ const t = useTranslation()
 .ad {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  background: url('../assets/alternata_cover.jpg') no-repeat center center / cover;
+  box-shadow: 0 0 2rem gainsboro;
 }
 
 .description {
@@ -51,21 +50,22 @@ const t = useTranslation()
   font-style: normal;
   font-weight: 600;
   font-size: 1.05rem;
-  color: #e69b54;
+  color: white;
 }
 
 .h1 {
   font-style: normal;
+  padding-top: 2rem;
   font-weight: 600;
   font-size: 4rem;
-  color: #e69b54;
+  color: white;
   text-align: center;
   text-transform: uppercase;
 }
 
 .h2 {
   text-align: center;
-  color: #e69b54;
+  color: white;
   font-style: normal;
   font-weight: 200;
   font-size: 1.75rem;
@@ -74,7 +74,10 @@ const t = useTranslation()
 
 .h3 {
   margin-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   text-align: justify;
+  color: white;
 }
 
 .h4 {
@@ -86,12 +89,12 @@ const t = useTranslation()
   color: white;
   letter-spacing: 0.5rem;
   text-transform: uppercase;
-  background-color: #e69b54;
+  background-color: rgba(0, 4, 255, 0.25);
+  backdrop-filter: blur(10px);
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   padding-bottom: 1.25rem;
   padding-top: 1.5rem;
-  border-radius: 0.5rem;
 }
 
 .book {

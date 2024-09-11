@@ -1,18 +1,17 @@
 <script setup>
 import { useTranslation } from "@/utils/hooks";
-import Panel from "./Panel.vue";
 
 const t = useTranslation();
 </script>
 
 <template>
-  <Panel class="font-segoe welcome">
+  <div class="font-segoe welcome">
     {{ t("welcome.text") }}
     <a class="buycoffee font-madimi" target="_blank" href="https://buycoffee.to/"><img src="@/assets/buycoffee.png" /> {{ t("welcome.buycoffee") }}</a>
     {{ t("welcome.text2") }}
     <a class="patronite font-segoe" target="_blank" href="https://patronite.pl/"><img src="@/assets/patronite.png" /> {{ t("welcome.patronite") }}</a>
     .
-  </Panel>
+  </div>
 </template>
 
 <style scoped>
@@ -20,6 +19,12 @@ const t = useTranslation();
   text-align: center;
   font-size: 1.25rem;
   line-height: 2rem;
+  color: white;
+  font-weight: bold;
+  padding: 2rem;
+  background: url('../assets/handwriting.webp') no-repeat center center / cover;
+  box-shadow: 0 0 2rem gainsboro;
+  cursor: pointer;
 }
 
 .buycoffee {
@@ -29,6 +34,7 @@ const t = useTranslation();
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   border-radius: 0.5rem;
+  font-weight: normal;
   cursor: pointer;
   color: black;
   text-decoration: none;
@@ -52,6 +58,7 @@ const t = useTranslation();
   background-color: red;
   padding-bottom: 0.25rem;
   padding-left: 0.25rem;
+  font-weight: normal;
   padding-right: 0.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
