@@ -24,7 +24,7 @@ import WorkInProgress from "@/components/WorkInProgress.vue";
   display: grid;
   gap: 2rem;
   margin-top: 2rem;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: minmax(0, 25%) minmax(0, 25%) minmax(0, 25%) minmax(0, 25%);
   grid-template-areas:
       "a a b b"
       "a a c d"
@@ -33,7 +33,8 @@ import WorkInProgress from "@/components/WorkInProgress.vue";
 
 .temp {
   box-shadow: 0 0 2rem gainsboro;
-  background-color: beige;
+  background-color: silver;
+  padding: 2rem;
 }
 
 @media screen and (max-width: 1024px) {
