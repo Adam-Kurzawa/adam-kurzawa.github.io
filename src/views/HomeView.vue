@@ -6,15 +6,15 @@ import WorkInProgress from "@/components/WorkInProgress.vue";
 
 <template>
   <main>
+    <Welcome />
     <div class="welcome-container">
-      <Welcome style="grid-area: a;" />
-      <BookAd style="grid-area: b;" />
+      <BookAd style="grid-area: a;" />
+      <WorkInProgress class="temp" style="grid-area: b;" />
       <WorkInProgress class="temp" style="grid-area: c;" />
       <WorkInProgress class="temp" style="grid-area: d;" />
       <WorkInProgress class="temp" style="grid-area: e;" />
       <WorkInProgress class="temp" style="grid-area: f;" />
       <WorkInProgress class="temp" style="grid-area: g;" />
-      <WorkInProgress class="temp" style="grid-area: h;" />
     </div>
   </main>
 </template>
@@ -23,17 +23,17 @@ import WorkInProgress from "@/components/WorkInProgress.vue";
 .welcome-container {
   display: grid;
   gap: 2rem;
+  margin-top: 2rem;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-areas:
-      "a a a a"
-      "b b c d"
-      "e f g h";
+      "a a b b"
+      "a a c d"
+      "e f g g";
 }
 
 .temp {
   box-shadow: 0 0 2rem gainsboro;
   background-color: beige;
-  padding: 2rem;
 }
 
 @media screen and (max-width: 1024px) {

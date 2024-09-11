@@ -17,14 +17,10 @@ const t = useTranslation();
 <style scoped>
 .welcome {
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
+  font-weight: lighter;
   line-height: 2rem;
-  color: white;
-  font-weight: bold;
   padding: 2rem;
-  background: url('../assets/handwriting.webp') no-repeat center center / cover;
-  box-shadow: 0 0 2rem gainsboro;
-  cursor: pointer;
 }
 
 .buycoffee {
