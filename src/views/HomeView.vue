@@ -33,6 +33,7 @@ import WorkInProgress from "@/components/WorkInProgress.vue";
 .temp {
   box-shadow: 0 0 2rem gainsboro;
   background-color: beige;
+  padding: 2rem;
 }
 
 @media screen and (max-width: 1024px) {
