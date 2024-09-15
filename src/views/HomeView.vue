@@ -7,8 +7,9 @@ import WorkInProgress from "@/components/WorkInProgress.vue";
 <template>
   <main>
     <Welcome />
+    <BookAd />
     <div class="welcome-container">
-      <BookAd style="grid-area: a;" />
+      <WorkInProgress class="temp" style="grid-area: a;" />
       <WorkInProgress class="temp" style="grid-area: b;" />
       <WorkInProgress class="temp" style="grid-area: c;" />
       <WorkInProgress class="temp" style="grid-area: d;" />
