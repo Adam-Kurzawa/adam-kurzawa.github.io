@@ -17,6 +17,7 @@ const props = defineProps(['rounded'])
   padding-bottom: 2rem;
   background-color: rgba(255, 255, 255, 1.0);
   box-shadow: 0 0 2rem gainsboro;
+  border-radius: 0.5rem;
 }
 
 @media screen and (max-width: 1600px) {

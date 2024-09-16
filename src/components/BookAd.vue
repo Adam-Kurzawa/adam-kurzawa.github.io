@@ -35,6 +35,7 @@ const t = useTranslation();
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  border-radius: 0.5rem;
 }
 
 .ad-middle {

@@ -309,7 +309,7 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
 
 .transition {
   transition: background 1s ease;
-  margin-bottom: 10rem;
+  margin-bottom: 4rem;
 }
 
 @media screen and (max-width: 1600px) {

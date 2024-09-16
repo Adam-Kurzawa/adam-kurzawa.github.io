@@ -1,41 +1,65 @@
 <script setup>
 import Welcome from "@/components/Welcome.vue";
 import BookAd from "@/components/BookAd.vue";
-import WorkInProgress from "@/components/WorkInProgress.vue";
+import HomeTile from "@/components/HomeTile.vue";
+import { useTranslation } from "@/utils/hooks";
+
+const t = useTranslation();
 </script>
 
 <template>
-  <main>
+  <main class="welcome-container">
     <Welcome />
     <BookAd />
-    <div class="welcome-container">
-      <WorkInProgress class="temp" style="grid-area: a;" />
-      <WorkInProgress class="temp" style="grid-area: b;" />
-      <WorkInProgress class="temp" style="grid-area: c;" />
-      <WorkInProgress class="temp" style="grid-area: d;" />
-      <WorkInProgress class="temp" style="grid-area: e;" />
-      <WorkInProgress class="temp" style="grid-area: f;" />
-      <WorkInProgress class="temp" style="grid-area: g;" />
+    <div>
+      <h2>Inne opowiadania antologii</h2>
+      <div class="cols-3">
+        <HomeTile
+          :title="t('alternata-ad.title_1')"
+          subtitle="Laboris dolore pariatur laborum duis occaecat eu reprehenderit excepteur aliquip non anim exercitation reprehenderit."
+          cover="alternata_cover"
+        />
+        <HomeTile
+          :title="t('alternata-ad.title_2')"
+          subtitle="Culpa sint non dolor magna incididunt id dolor do pariatur sint do proident."
+          cover="alternata_cover"
+        />
+        <HomeTile
+          :title="t('alternata-ad.title_3')"
+          subtitle="Fugiat elit aliqua officia proident aliquip do otinis est amarne equis."
+          cover="alternata_cover"
+        />
+        <HomeTile
+          :title="t('alternata-ad.title_4')"
+          subtitle="Do commodo duis magna incididunt nostrud officia aliquip officia proident aliquip."
+          cover="alternata_cover"
+        />
+        <HomeTile
+          :title="t('alternata-ad.title_5')"
+          subtitle="Enim velit aliqua reprehenderit ullamco eiusmod laborum ullamco occaecat amet ex enim deserunt commodo anim."
+          cover="alternata_cover"
+        />
+        <HomeTile
+          :title="t('alternata-ad.title_6')"
+          subtitle="Enim ea adipisicing labore do occaecat laboris reprehenderit laborum ex officia sit adipisicing tempor laborum."
+          cover="alternata_cover"
+        />
+      </div>
     </div>
   </main>
 </template>
 
 <style scoped>
-.welcome-container {
+.cols-3 {
   display: grid;
+  grid-template-columns: minmax(0, 33%) minmax(0, 34%) minmax(0, 33%);
   gap: 2rem;
-  margin-top: 2rem;
-  grid-template-columns: minmax(0, 25%) minmax(0, 25%) minmax(0, 25%) minmax(0, 25%);
-  grid-template-areas:
-      "a a b b"
-      "a a c d"
-      "e f g g";
 }
 
-.temp {
-  box-shadow: 0 0 2rem gainsboro;
-  background-color: silver;
-  padding: 2rem;
+.welcome-container {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 1024px) {

@@ -1,27 +1,24 @@
 <script setup>
 import { useTranslation } from "@/utils/hooks";
-import Panel from "./Panel.vue";
 
 const t = useTranslation();
 </script>
 
 <template>
-  <Panel class="footer">
-    <div class="copyrights font-segoe">
-      &copy; {{ t('copyrights.arr') }}
-    </div>
+  <div class="footer">
+    <div class="copyrights font-segoe">&copy; {{ t("copyrights.arr") }}</div>
     <div class="copyrights analytics font-segoe">
-      &copy; {{ t('copyrights.cookies') }}
+      &copy; {{ t("copyrights.cookies") }}
     </div>
-  </Panel>
+  </div>
 </template>
 
 <style scoped>
 .footer {
   color: darkslategray;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-bottom: 7rem;
+  background-color: gainsboro;
+  padding: 2rem;
+  padding-bottom: 4rem;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
