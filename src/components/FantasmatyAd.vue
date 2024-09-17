@@ -7,13 +7,16 @@ const t = useTranslation();
 <template>
   <div class="ad">
     <div class="ad-left">
-      <div class="h1 font-yeseva">Antologia "Alternata"</div>
+      <div class="h1 font-yeseva">Antologia "Fantasmaty VI"</div>
       <div class="font-segoe">Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua.</div>
-      <span class="ad-button font-segoe">Premiera marzec 2026</span>
+      <div class="ad-links">
+        <span class="ad-button font-segoe">Pobierz</span>
+        <span class="ad-link font-segoe">Strona wydawcy ↦</span>
+      </div>
     </div>
     <img src="../assets/alternata_mock.png" class="ad-middle" />
     <div class="ad-right">
-      <div class="h2 font-yeseva">Fragment "W drodze do Walhalli"</div>
+      <div class="h2 font-yeseva">Fragment "Egzorcyzmy Emily OS"</div>
       <div class="font-segoe">Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et.</div>
       <span class="ad-link font-segoe">Przeczytaj fragment ↦</span>
     </div>
@@ -70,6 +73,13 @@ const t = useTranslation();
 
 .ad-button:hover {
   background-color: darkgoldenrod;
+}
+
+.ad-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
 }
 
 .ad-link {

@@ -3,6 +3,7 @@ import Welcome from "@/components/Welcome.vue";
 import BookAd from "@/components/BookAd.vue";
 import HomeTile from "@/components/HomeTile.vue";
 import { useTranslation } from "@/utils/hooks";
+import FantasmatyAd from "@/components/FantasmatyAd.vue";
 
 const t = useTranslation();
 </script>
@@ -46,6 +47,7 @@ const t = useTranslation();
         />
       </div>
     </div>
+    <FantasmatyAd />
   </main>
 </template>
 
@@ -54,6 +56,7 @@ const t = useTranslation();
   display: grid;
   grid-template-columns: minmax(0, 33%) minmax(0, 34%) minmax(0, 33%);
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .welcome-container {
@@ -62,12 +65,25 @@ const t = useTranslation();
   flex-direction: column;
 }
 
+@media screen and (max-width: 1600px) {
+  .cols-3 {
+    grid-template-columns: minmax(0, 50%) minmax(0, 50%);
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .welcome-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-bottom: 2rem;
+  }
+
+  .cols-3 {
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>
