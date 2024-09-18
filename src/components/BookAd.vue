@@ -63,7 +63,7 @@ const t = useTranslation();
   width: fit-content;
   color: white;
   background-color: darkslategray;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: lighter;
   cursor: pointer;
 }
