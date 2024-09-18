@@ -27,10 +27,17 @@ import Copyrights from './components/Copyrights.vue';
   justify-content: center;
 }
 
+@media screen and (max-width: 2300px) {
+  .content {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
 @media screen and (max-width: 1920px) {
   .content {
-    padding-left: 12rem;
-    padding-right: 12rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
   }
 }
 

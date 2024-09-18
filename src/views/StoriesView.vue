@@ -33,8 +33,9 @@ const stories = ref(
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 2rem;
-}
+  margin-top: 6rem;
+  gap: 8rem;
+} 
 
 @media screen and (max-width: 1024px) {
   .entries {

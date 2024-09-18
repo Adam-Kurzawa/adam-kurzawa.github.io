@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from "vue";
 import { useRoute } from 'vue-router';
-import StoryThumbnail from "@/components/StoryThumbnail.vue";
 import { useLocale, useTranslation } from '@/utils/hooks';
+import BlogThumbnail from "@/components/BlogThumbnail.vue";
 
 const locale = useLocale()
 const route = useRoute()
@@ -22,7 +22,7 @@ const articles = ref(
   <main class="generic-view">
     <h1>{{ t("navbar.blog") }}</h1>
     <div class="entries">
-      <StoryThumbnail v-for="article in articles" :title="article" type="blog"/>
+      <BlogThumbnail v-for="article in articles" :title="article" type="blog"/>
     </div>
   </main>
 </template>
