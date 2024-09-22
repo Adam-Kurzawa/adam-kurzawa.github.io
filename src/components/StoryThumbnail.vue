@@ -162,6 +162,10 @@ const openReader = () => {
   border-color: darkgoldenrod;
 }
 
+.story-thumbnail-icon-button:hover .story-thumbnail-icon-button-icon {
+  filter: invert(47%) sepia(100%) saturate(411%) hue-rotate(5deg) brightness(94%) contrast(94%);
+}
+
 .story-thumbnail-tag {
   cursor: pointer;
 }
@@ -202,7 +206,7 @@ const openReader = () => {
 .story-thumbnail-bottom-up {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: space-between;
   padding-bottom: 2rem;
   margin-left: 18rem;
