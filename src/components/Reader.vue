@@ -5,14 +5,15 @@ import { PdfService } from '@/utils/PdfService.js'
 import { EpubService } from '@/utils/EpubService.js'
 import { useRoute, useRouter } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
+import { useThemeStore } from '@/stores/theme'
 
 const props = defineProps(['story', 'chapter'])
 
 const router = useRouter()
 const route = useRoute()
 const t = useTranslation()
+const themeStore = useThemeStore()
 
-const theme = ref($cookies.get('theme') ?? 'dark')
 const fontSize = ref($cookies.get('font-size') ?? 1.25)
 const fontFamily = ref($cookies.get('font-family') ?? 'Times New Roman')
 
@@ -22,14 +23,9 @@ const charactersCount = computed(() => props.story.chapters.reduce(
   0,
 ))
 
-const semitransparentBgClass = computed(() => `${theme.value}-mode-semitransparent-bg`)
-const solidBgClass = computed(() => `${theme.value}-mode-bg`)
-const textClass = computed(() => `${theme.value}-mode-text`)
-
-const setTheme = (t) => {
-  $cookies.set('theme', t)
-  theme.value = t
-}
+const semitransparentBgClass = computed(() => `${themeStore.currentTheme}-mode-semitransparent-bg`)
+const solidBgClass = computed(() => `${themeStore.currentTheme}-mode-bg`)
+const textClass = computed(() => `${themeStore.currentTheme}-mode-text`)
 
 const setFontSize = (size) => {
   $cookies.set('font-size', size)
@@ -65,12 +61,6 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
           <button href="#" class="font-segoe" :class="[textClass]" @click="saveAsMobi">MOBI</button>
           <button href="#" class="font-segoe" :class="[textClass]" @click="saveAsEpub">ePUB</button>
           <button href="#" class="font-segoe" :class="[textClass]" @click="sendToKindle">{{ t("reader.sendToKindle") }}</button>
-        </div>
-        <div class="btn-group">
-          <p :class="[textClass]">{{ t("reader.theme") }}</p>
-          <button @click="() => setTheme('light')" :class="[textClass]">{{ t("reader.light") }}</button>
-          <button @click="() => setTheme('sepia')" :class="[textClass]">{{ t("reader.sepia") }}</button>
-          <button @click="() => setTheme('dark')" :class="[textClass]">{{ t("reader.dark") }}</button>
         </div>
         <div class="btn-group font-settings">
           <p class="font-settings-a" :class="[textClass]">{{ t("reader.font") }}</p>

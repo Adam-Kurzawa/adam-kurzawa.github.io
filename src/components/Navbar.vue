@@ -4,6 +4,7 @@ import { RouterLink, useRoute, useRouter } from 'vue-router';
 import Submenu from './Submenu.vue';
 import { computed } from 'vue';
 import { useLocale, useTranslation } from '@/utils/hooks';
+import ThemeButton from './ThemeButton.vue';
 
 const route = useRoute()
 const router = useRouter()
@@ -67,13 +68,14 @@ const localizedLink = (view) => computed(() => {
         <RouterLink :to="readerLink('powstanie_na_brillar')" class="navlink">{{ t("navbar.powstanie_na_brillar") }}</RouterLink>
         <RouterLink :to="readerLink('klatwa_imetheru')" class="navlink">{{ t("navbar.klątwa_imetheru") }}</RouterLink>
         <RouterLink :to="readerLink('projekt_eclipse')" class="navlink">{{ t("navbar.projekt_eclipse") }}</RouterLink>
+        <RouterLink :to="localizedLink('stories')" class="navlink">{{ t("navbar.stories") }}</RouterLink>
       </span>
       <RouterLink to="/" class="logo">Alternata</RouterLink>
       <span class="navbar-section">
-        <RouterLink :to="localizedLink('stories')" class="navlink">{{ t("navbar.stories") }}</RouterLink>
         <RouterLink :to="localizedLink('books')" class="navlink">{{ t("navbar.books") }}</RouterLink>
         <RouterLink :to="localizedLink('blog')" class="navlink">{{ t("navbar.blog") }}</RouterLink>
         <RouterLink :to="localizedLink('about')" class="navlink">{{ t("navbar.about") }}</RouterLink>
+        <ThemeButton class="theme-toggle" />
         <a href="#" class="language-changer" @click="changeLanguage"><img class="language-flag" :src="otherLanguageFlag"/>{{ otherLanguage }}</a>
       </span>
     </span>
@@ -89,18 +91,20 @@ const localizedLink = (view) => computed(() => {
         <RouterLink :to="localizedLink('books')" class="navlink">{{ t("navbar.books") }}</RouterLink>
         <RouterLink :to="localizedLink('blog')" class="navlink">{{ t("navbar.blog") }}</RouterLink>
         <RouterLink :to="localizedLink('about')" class="navlink">{{ t("navbar.about") }}</RouterLink>
+        <ThemeButton class="theme-toggle" />
         <a href="#" class="language-changer" @click="changeLanguage"><img class="language-flag" :src="otherLanguageFlag"/>{{ otherLanguage }}</a>
       </span>
     </span>
     <span class="navbar-minimal">
       <RouterLink to="/" class="logo">Alternata</RouterLink>
-      <span class="navbar-section">
+      <span class="navbar-section-minimal">
         <Submenu id="menu-overflow-minimal">
           <li class="collapsed-link"><RouterLink :to="localizedLink('stories')" class="navlink">{{ t("navbar.stories") }}</RouterLink></li>
           <li class="collapsed-link"><RouterLink :to="localizedLink('books')" class="navlink">{{ t("navbar.books") }}</RouterLink></li>
           <li class="collapsed-link"><RouterLink :to="localizedLink('blog')" class="navlink">{{ t("navbar.blog") }}</RouterLink></li>
           <li class="collapsed-link"><RouterLink :to="localizedLink('about')" class="navlink">{{ t("navbar.about") }}</RouterLink></li>
         </Submenu>
+        <ThemeButton class="theme-toggle" />
         <a href="#" class="language-changer" @click="changeLanguage"><img class="language-flag" :src="otherLanguageFlag"/>{{ otherLanguage }}</a>
       </span>
     </span>
@@ -121,6 +125,10 @@ const localizedLink = (view) => computed(() => {
   /* backdrop-filter: blur(10px); */
 }
 
+.theme-toggle {
+  margin-top: 0.25rem;
+}
+
 .navbar {
   transition: background 1s ease;
   position: fixed;
@@ -136,6 +144,13 @@ const localizedLink = (view) => computed(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
+  margin-bottom: 0.35rem;
+}
+
+.navbar-section-minimal {
+  transition: gap 1s ease;
+  display: flex;
+  gap: 1rem;
   margin-bottom: 0.35rem;
 }
 
