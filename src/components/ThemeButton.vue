@@ -7,7 +7,7 @@ const currentTheme = computed(() => themeStore.currentTheme)
 </script>
 
 <template>
-    <div class="theme-button" @click="themeStore.toggle">
+    <div class="theme-button" :class="themeStore.secondaryBackgroundColor" @click="themeStore.toggle">
         <div class="theme-button-icon-wrapper" :class="{ 'theme-button-icon-wrapper-selected': currentTheme == 'light' }">
             <img class="theme-button-icon" :class="{ 'theme-button-icon-selected': currentTheme == 'light' }" src="../assets/light.svg" />
         </div>
@@ -23,7 +23,6 @@ const currentTheme = computed(() => themeStore.currentTheme)
 <style scoped>
 .theme-button {
     border-radius: 0.5rem;
-    background-color: gainsboro;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

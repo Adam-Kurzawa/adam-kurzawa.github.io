@@ -1,0 +1,51 @@
+.primary-background-color-light {
+    background-color: white !important;
+}
+
+.secondary-background-color-light {
+    background-color: gainsboro !important;
+}
+
+.shadow-color-light {
+    box-shadow: 11px 35px 27px -10px rgba(66, 68, 90, 1);
+}
+
+.border-color-light {
+    border-color: gainsboro;
+}
+
+.primary-color-light {
+    color: darkgoldenrod;
+}
+
+.secondary-color-light {
+    color: sandybrown;
+}
+
+.trinary-color-light {
+    color: darkolivegreen;
+}
+
+.primary-text-color-light {
+    color: black;
+}
+
+.secondary-text-color-light {
+    color: darkslategray;
+}
+
+.primary-link-color-light {
+    color: sandybrown;
+}
+
+.secondary-link-color-light {
+    color: darkslategray;
+}
+
+.button-fill-color-light {
+    background-color: darkslategray;
+}
+
+.button-text-color-light {
+    color: white;
+}

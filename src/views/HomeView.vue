@@ -1,11 +1,12 @@
 <script setup>
-import Welcome from "@/components/Welcome.vue";
-import BookAd from "@/components/BookAd.vue";
-import HomeTile from "@/components/HomeTile.vue";
-import { useTranslation } from "@/utils/hooks";
-import FantasmatyAd from "@/components/FantasmatyAd.vue";
+import Welcome from '@/components/Welcome.vue'
+import BookAd from '@/components/BookAd.vue'
+import HomeTile from '@/components/HomeTile.vue'
+import { useTranslation } from '@/utils/hooks'
+import FantazmatyAd from '@/components/FantazmatyAd.vue'
+import H2 from '@/components/H2.vue'
 
-const t = useTranslation();
+const t = useTranslation()
 </script>
 
 <template>
@@ -13,7 +14,7 @@ const t = useTranslation();
     <Welcome />
     <BookAd />
     <div>
-      <h2>Inne opowiadania antologii</h2>
+      <H2 text="Inne opowiadania antologii" colorful="true" />
       <div class="cols-3">
         <HomeTile
           :title="t('alternata-ad.title_1')"
@@ -47,7 +48,7 @@ const t = useTranslation();
         />
       </div>
     </div>
-    <FantasmatyAd />
+    <FantazmatyAd />
   </main>
 </template>
 

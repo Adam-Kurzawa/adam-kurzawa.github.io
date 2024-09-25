@@ -1,42 +1,58 @@
 <script setup>
-import { useAsset, useLocale } from "@/utils/hooks";
-import { computed } from "vue";
-import { useRouter } from "vue-router";
+import { useThemeStore } from '@/stores/theme'
+import { useAsset, useLocale } from '@/utils/hooks'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import TextButton from './TextButton.vue'
+import H1 from './H1.vue'
+import SecondaryText from './SecondaryText.vue'
 
-const props = defineProps(["title"]);
+const props = defineProps([ 'title' ]);
 
-const router = useRouter();
-const locale = useLocale();
+const router = useRouter()
+const locale = useLocale()
+const themeStore = useThemeStore()
 
 const imageSrc = useAsset(import(`@/assets/story/covers/${props.title}.jpg`));
-const content = useAsset(
-  import(`@/assets/story/${props.title}_${locale.value}.json`)
-);
+const content = useAsset(import(`@/assets/story/${props.title}_${locale.value}.json`));
 
 const title = computed(() => content.value.title);
 const description = computed(() => content.value.description);
 const year = computed(() => content.value.year);
 const chapters = computed(() => content.value.chapters.length);
-const genre = computed(() => "sci-fi");
-const tags = computed(() => ["#sci-fi", "#space-opera", "#military", "#action"]);
-const fragment = computed(() => content.value.chapters[0][0]);
+const genre = computed(() => 'sci-fi');
+const tags = computed(() => [ '#sci-fi', '#space-opera', '#military', '#action' ]);
+
+const fragment = computed(() => {
+  const firstChapter = content.value.chapters[0]
+  let result = ''
+  let line = 0
+  
+  do {
+    result += firstChapter[line]
+    result += '\n\t'
+    line += 1
+  } while (result.length < 300);
+
+  return result
+});
 
 const openReader = () => {
   router.push({
-    name: "reader",
+    name: 'reader',
     params: { lang: locale.value, title: props.title },
-    query: { type: "story" },
+    query: { type: 'story' },
   });
 };
 </script>
 
 <template>
   <div class="story-thumbnail" v-if="content">
-    <div class="story-thumbnail-title font-yeseva">{{ title }}</div>
-    <img class="story-thumbnail-cover" :src="imageSrc" />
-    <div class="story-thumbnail-bottom">
+    <H1 class="story-thumbnail-title" :text="title" />
+    <img class="story-thumbnail-cover" :class="themeStore.shadowColor" :src="imageSrc" />
+    <div class="story-thumbnail-bottom" :class="themeStore.secondaryBackgroundColor">
       <div class="story-thumbnail-bottom-up">
-        <div class="story-thumbnail-button font-segoe" @click="openReader">Przeczytaj</div>
+        <TextButton text="Przeczytaj" :action="openReader" />
         <div class="story-thumbnail-bottom-up-right">
           <button class="story-thumbnail-icon-button">
             <img class="story-thumbnail-icon-button-icon font-segoe" src="../assets/download.svg" />
@@ -59,31 +75,31 @@ const openReader = () => {
       <div class="story-thumbnail-bottom-bottom">
         <div class="story-thumbnail-bottom-bottom-left">
           <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin">Opis</div>
-            <div class="font-segoe">{{ description }}</div>
+            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Opis</div>
+            <SecondaryText class="story-thumbnail-description" :text="description" />
           </div>
           <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin">Fragment</div>
-            <div class="story-thumbnail-fragment font-segoe">{{ fragment }}..</div>
+            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Fragment</div>
+            <SecondaryText class="story-thumbnail-description story-thumbnail-fragment" :text="fragment" />
           </div>
         </div>
         <div class="story-thumbnail-bottom-bottom-right">
           <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin">Rok wydania</div>
-            <div class="story-thumbnail-value font-segoe">{{ year }}</div>
+            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Rok wydania</div>
+            <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ year }}</div>
           </div>
           <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin">Rozdziały</div>
-            <div class="story-thumbnail-value font-segoe">{{ chapters }}</div>
+            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Rozdziały</div>
+            <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ chapters }}</div>
           </div>
           <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin">Gatunek</div>
-            <div class="story-thumbnail-value font-segoe">{{ genre }}</div>
+            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Gatunek</div>
+            <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ genre }}</div>
           </div>
           <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin">Tagi</div>
+            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Tagi</div>
             <div class="story-thumbnail-tags">
-              <span class="story-thumbnail-tag font-segoe" v-for="tag in tags">{{ tag }}</span>
+              <span class="story-thumbnail-tag font-segoe" :class="themeStore.secondaryTextColor" v-for="tag in tags">{{ tag }}</span>
             </div>
           </div>
         </div>
@@ -106,17 +122,20 @@ const openReader = () => {
   top: -4rem;
   left: 4rem;
   height: auto;
-  box-shadow: 11px 35px 27px -10px rgba(66, 68, 90, 1);
 }
 
 .story-thumbnail-label {
-  color: darkslategrey;
   font-weight: bold;
+}
+
+.story-thumbnail-description {
+  text-align: justify;
 }
 
 .story-thumbnail-fragment {
   font-style: italic;
   text-indent: 2rem;
+  white-space: pre-wrap;
 }
 
 .story-thumbnail-tuple {
@@ -133,7 +152,7 @@ const openReader = () => {
 }
 
 .story-thumbnail-icon-button-icon {
-  width: 1.25rem;
+  width: 1rem;
   height: auto;
   filter: invert(28%) sepia(8%) saturate(1633%) hue-rotate(131deg) brightness(93%) contrast(92%);
 }
@@ -195,7 +214,6 @@ const openReader = () => {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  background-color: gainsboro;
   padding-left: 4rem;
   padding-right: 4rem;
   padding-top: 2rem;
@@ -210,7 +228,6 @@ const openReader = () => {
   justify-content: space-between;
   padding-bottom: 2rem;
   margin-left: 18rem;
-  border-bottom: 1px solid darkslategray;
 }
 
 .story-thumbnail-bottom-up-right {
@@ -229,7 +246,7 @@ const openReader = () => {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding-top: 2rem;
+  padding-top: 3rem;
 }
 
 .story-thumbnail-bottom-bottom-right {
@@ -239,7 +256,6 @@ const openReader = () => {
 }
 
 .story-thumbnail-title {
-  font-size: 2rem;
   padding-left: 22rem;
 }
 </style>

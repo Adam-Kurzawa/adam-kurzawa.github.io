@@ -1,13 +1,12 @@
 <script setup>
 import { computed, ref } from 'vue'
 import Panel from './Panel.vue'
-import { PdfService } from '@/utils/PdfService.js'
 import { EpubService } from '@/utils/EpubService.js'
 import { useRoute, useRouter } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
 import { useThemeStore } from '@/stores/theme'
 
-const props = defineProps(['story', 'chapter'])
+const props = defineProps([ 'story', 'chapter' ])
 
 const router = useRouter()
 const route = useRoute()
@@ -24,8 +23,6 @@ const charactersCount = computed(() => props.story.chapters.reduce(
 ))
 
 const semitransparentBgClass = computed(() => `${themeStore.currentTheme}-mode-semitransparent-bg`)
-const solidBgClass = computed(() => `${themeStore.currentTheme}-mode-bg`)
-const textClass = computed(() => `${themeStore.currentTheme}-mode-text`)
 
 const setFontSize = (size) => {
   $cookies.set('font-size', size)
@@ -38,7 +35,6 @@ const setFontFamily = (event) => {
   fontFamily.value = font
 }
 
-// const saveAsPdf = () => PdfService.saveAsPdf(props.story.title, props.story.chapters)
 const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles)
 const saveAsMobi = () => {}
 const sendToKindle = () => {}
@@ -54,50 +50,50 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
 
 <template>
   <main>
-    <div class="float border" :class="[semitransparentBgClass]">
+    <div class="float border" :class="[semitransparentBgClass, themeStore.borderColor]">
       <div class="settings">
         <div class="btn-group">
-          <p :class="[textClass]">{{ t("reader.download") }}</p>
-          <button href="#" class="font-segoe" :class="[textClass]" @click="saveAsMobi">MOBI</button>
-          <button href="#" class="font-segoe" :class="[textClass]" @click="saveAsEpub">ePUB</button>
-          <button href="#" class="font-segoe" :class="[textClass]" @click="sendToKindle">{{ t("reader.sendToKindle") }}</button>
+          <p :class="themeStore.primaryTextColor">{{ t("reader.download") }}</p>
+          <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="saveAsMobi">MOBI</button>
+          <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="saveAsEpub">ePUB</button>
+          <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="sendToKindle">{{ t("reader.sendToKindle") }}</button>
         </div>
         <div class="btn-group font-settings">
-          <p class="font-settings-a" :class="[textClass]">{{ t("reader.font") }}</p>
-          <select class="font-settings-b" :class="[textClass]" v-model="fontFamily" @change="(event) => setFontFamily(event)">
-            <option :class="[solidBgClass]" style="font-family: 'Times New Roman';">Times New Roman</option>
-            <option :class="[solidBgClass]" style="font-family: Georgia;">Georgia</option>
-            <option :class="[solidBgClass]" style="font-family: Arial;">Arial</option>
-            <option :class="[solidBgClass]" style="font-family: Verdana;">Verdana</option>
-            <option :class="[solidBgClass]" style="font-family: 'Segoe UI';">Segoe UI</option>
-            <option :class="[solidBgClass]" style="font-family: 'Josefin Sans';">Josefin Sans</option>
-            <option :class="[solidBgClass]" style="font-family: 'Yeseva One';">Yeseva One</option>
-            <option :class="[solidBgClass]" style="font-family: 'Madimi One';">Madimi One</option>
+          <p class="font-settings-a" :class="themeStore.primaryTextColor">{{ t("reader.font") }}</p>
+          <select class="font-settings-b" :class="themeStore.primaryTextColor" v-model="fontFamily" @change="(event) => setFontFamily(event)">
+            <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Times New Roman';">Times New Roman</option>
+            <option :class="themeStore.primaryBackgroundColor" style="font-family: Georgia;">Georgia</option>
+            <option :class="themeStore.primaryBackgroundColor" style="font-family: Arial;">Arial</option>
+            <option :class="themeStore.primaryBackgroundColor" style="font-family: Verdana;">Verdana</option>
+            <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Segoe UI';">Segoe UI</option>
+            <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Josefin Sans';">Josefin Sans</option>
+            <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Yeseva One';">Yeseva One</option>
+            <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Madimi One';">Madimi One</option>
           </select>
-          <span class="font-settings-c" :class="[textClass]">{{ fontSize * 10 }}</span>
-          <button class="font-settings-d" @click="() => setFontSize(fontSize + 0.25)" :class="[textClass]">+</button>
-          <button class="font-settings-e" @click="() => setFontSize(1.25)" :class="[textClass]">100%</button>
-          <button class="font-settings-f" @click="() => setFontSize(fontSize - 0.25)" :class="[textClass]">-</button>
+          <span class="font-settings-c" :class="themeStore.primaryTextColor">{{ fontSize * 10 }}</span>
+          <button class="font-settings-d" @click="() => setFontSize(fontSize + 0.25)" :class="themeStore.primaryTextColor">+</button>
+          <button class="font-settings-e" @click="() => setFontSize(1.25)" :class="themeStore.primaryTextColor">100%</button>
+          <button class="font-settings-f" @click="() => setFontSize(fontSize - 0.25)" :class="themeStore.primaryTextColor">-</button>
         </div>
       </div>
     </div>
-    <Panel class="transition" :class="[solidBgClass]">
-      <div class="stats font-segoe">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</div>
-      <div class="title" :class="[textClass]">{{ props.story.title }}</div>
-      <div v-if="isOnePager" class="scene" :class="[textClass]">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
-      <div v-if="isOnePager && story.chapterTitles" class="chapterTitle" :class="[textClass]">{{ props.story.chapterTitles[props.chapter - 1] }}</div>
+    <Panel class="transition" :class="themeStore.primaryBackgroundColor">
+      <div class="stats font-segoe" :class="themeStore.secondaryTextColor">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</div>
+      <div class="title" :class="themeStore.primaryTextColor">{{ props.story.title }}</div>
+      <div v-if="isOnePager" class="scene" :class="themeStore.primaryTextColor">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
+      <div v-if="isOnePager && story.chapterTitles" class="chapterTitle" :class="themeStore.primaryTextColor">{{ props.story.chapterTitles[props.chapter - 1] }}</div>
       <div
         v-for="paragraph in paragraphs"
         class="paragraph"
-        :class="[textClass]"
+        :class="themeStore.primaryTextColor"
         :style="{ 'font-size': `${fontSize}rem`, 'font-family': fontFamily }"
       >
         {{ paragraph }}
       </div>
-      <div v-if="nextPageDisabled" class="title" :class="[textClass]">{{ t("reader.theEnd") }}</div>
+      <div v-if="nextPageDisabled" class="title" :class="themeStore.primaryTextColor">{{ t("reader.theEnd") }}</div>
       <div v-if="isOnePager" class="btn-group page-buttons">
-        <button :disabled="previousPageDisabled" :class="[textClass]" @click="previousPage">{{ t("reader.previousChapter") }}</button>
-        <button :disabled="nextPageDisabled":class="[textClass]" @click="nextPage">{{ t("reader.nextChapter") }}</button>
+        <button :disabled="previousPageDisabled" :class="themeStore.primaryTextColor" @click="previousPage">{{ t("reader.previousChapter") }}</button>
+        <button :disabled="nextPageDisabled":class="themeStore.primaryTextColor" @click="nextPage">{{ t("reader.nextChapter") }}</button>
       </div>
     </Panel>
   </main>
@@ -105,24 +101,13 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
 
 <style scoped>
 .border {
-  border-top: 1px solid gray;
+  border-top-width: 1px;
+  border-top-style: solid;
   transition: padding 0.5s ease;
   padding-left: 4rem;
   padding-right: 4rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-
-.dark-mode-bg {
-  background-color: rgb(30, 54, 54);
-}
-
-.light-mode-bg {
-  background-color: white;
-}
-
-.sepia-mode-bg {
-  background-color: rgb(236, 228, 202);
 }
 
 .dark-mode-semitransparent-bg {
@@ -135,18 +120,6 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
 
 .sepia-mode-semitransparent-bg {
   background-color: rgba(236, 228, 202, 0.65);
-}
-
-.dark-mode-text {
-  color: white;
-}
-
-.light-mode-text {
-  color: black;
-}
-
-.sepia-mode-text {
-  color: black;
 }
 
 .btn-group {
@@ -270,7 +243,6 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
   font-size: 0.80rem;
   text-align: center;
   letter-spacing: 0.15rem;
-  color: grey;
   margin-top: 2rem;
 }
 

@@ -1,14 +1,17 @@
 <script setup>
-import { RouterView } from 'vue-router';
-import Navbar from './components/Navbar.vue';
-import Copyrights from './components/Copyrights.vue';
+import { RouterView, useRoute } from 'vue-router'
+import Navbar from './components/Navbar.vue'
+import Copyrights from './components/Copyrights.vue'
+import { useThemeStore } from './stores/theme'
+
+const themeStore = useThemeStore()
 </script>
 
 <template>
   <header>
     <Navbar />
   </header>
-  <div class="content">
+  <div class="content" :class="themeStore.primaryBackgroundColor">
     <RouterView :key="$route.fullPath"/>  
   </div>
   <footer>
@@ -18,9 +21,9 @@ import Copyrights from './components/Copyrights.vue';
 
 <style scoped>
 .content {
-  transition: padding 0.5s ease;
-  margin-top: 8rem;
-  margin-bottom: 5rem;
+  transition: padding 0.5s ease, background-color 0.5s ease;
+  padding-top: 10rem;
+  padding-bottom: 5rem;
   padding-left: 20%;
   padding-right: 20%;
   display: flex;

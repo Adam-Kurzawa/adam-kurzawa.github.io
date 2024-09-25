@@ -1,0 +1,51 @@
+.primary-background-color-dark {
+    background-color: rgb(30, 54, 54) !important;
+}
+
+.secondary-background-color-dark {
+    background-color: #9d8888 !important;
+}
+
+.shadow-color-dark {
+    box-shadow: 11px 35px 27px -10px rgba(66, 68, 90, 1);
+}
+
+.border-color-dark {
+    border-color: gainsboro;
+}
+
+.primary-color-dark {
+    color: gold;
+}
+
+.secondary-color-dark {
+    color: goldenrod;
+}
+
+.trinary-color-dark {
+    color: darkolivegreen;
+}
+
+.primary-text-color-dark {
+    color: white;
+}
+
+.secondary-text-color-dark {
+    color: lightgray;
+}
+
+.primary-link-color-dark {
+    color: rgb(143, 143, 143);
+}
+
+.secondary-link-color-dark {
+    color: rgb(143, 143, 143);
+}
+
+.button-fill-color-dark {
+    background-color: darkslategray;
+}
+
+.button-text-color-dark {
+    color: white;
+}

@@ -1,9 +1,11 @@
 <script setup>
-const props = defineProps(['rounded'])
+import { useThemeStore } from '@/stores/theme'
+
+const themeStore = useThemeStore()
 </script>
 
 <template>
-  <div class="white-panel">
+  <div class="white-panel" :class="themeStore.borderColor">
     <slot></slot>
   </div>
 </template>
@@ -15,8 +17,8 @@ const props = defineProps(['rounded'])
   padding-right: 4rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  background-color: rgba(255, 255, 255, 1.0);
-  box-shadow: 0 0 2rem gainsboro;
+  border-width: 1px;
+  border-style: solid;
   border-radius: 0.5rem;
 }
 

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const props = defineProps(['label', 'id'])
 
@@ -15,11 +15,11 @@ const deselectOnLeave = () => {
 </script>
 
 <template>
-  <div class="collapsible-menu" @mouseleave="deselectOnLeave">
-    <input class="hidden-checkbox" type="checkbox" :id="props.id" v-model="selected">
+  <div class="submenu" @mouseleave="deselectOnLeave">
+    <input class="submenu-hidden-checkbox" type="checkbox" :id="props.id" v-model="selected">
     <label class="navlink" v-if="props.label" :for="props.id" @mouseenter="selectOnHover">{{ props.label }}</label>
-    <label v-if="!props.label" :for="props.id" @mouseenter="selectOnHover"><img class="hamburger" src="@/assets/hamburger.png" /></label>
-    <div class="menu-content">
+    <label v-if="!props.label" :for="props.id" @mouseenter="selectOnHover"><img class="submenu-hamburger" src="@/assets/hamburger.png" /></label>
+    <div class="submenu-content">
       <ul>
         <slot></slot>
       </ul>
@@ -29,11 +29,10 @@ const deselectOnLeave = () => {
 
 <style scoped>
 /* Collapsable menu */
-.menu-content {
+.submenu-content {
   position: absolute;
   padding-left: 1rem;
   padding-right: 1rem;
-
   max-height: 0;
   overflow: hidden;
 }
@@ -42,27 +41,27 @@ const deselectOnLeave = () => {
   right: 2rem;
 }
 
-.collapsible-menu ul {
+.submenu ul {
   list-style-type: none;
   padding: 0;
 }
 
-.collapsible-menu a {
+.submenu a {
   display: block;
   padding: 10px;
   text-decoration: none;
 }
 
-.collapsible-menu label {
+.submenu label {
   display: block;
   cursor: pointer;
 }
 
-.hidden-checkbox {
+.submenu-hidden-checkbox {
   display: none;
 }
 
-input:checked~.menu-content {
+input:checked~.submenu-content {
   max-height: fit-content;
   height: fit-content;
   z-index: 1;
@@ -71,7 +70,7 @@ input:checked~.menu-content {
   border-radius: 0.5rem;
 }
 
-.hamburger {
+.submenu-hamburger {
   margin-top: 0.75rem;
   width: 1.5rem;
 }

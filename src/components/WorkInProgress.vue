@@ -1,25 +1,24 @@
 <script setup>
-import { useTranslation } from '@/utils/hooks';
-import Panel from "./Panel.vue";
+import { useTranslation } from '@/utils/hooks'
 
 const t = useTranslation()
 </script>
 
 <template>
-  <div class="flex">
-    <img src="@/assets/wip.png" class="roadblock" />
-    <div class="wip font-segoe">{{ t('work-in-progress') }}</div>
+  <div class="work-in-progress">
+    <img src="@/assets/wip.png" class="work-in-progress-roadblock" />
+    <div class="work-in-progress-text font-segoe">{{ t('work-in-progress') }}</div>
   </div>
 </template>
 
 <style scoped>
-.flex {
+.work-in-progress {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 
-.wip {
+.work-in-progress-text {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
@@ -28,7 +27,7 @@ const t = useTranslation()
   align-self: center;
 }
 
-.roadblock {
+.work-in-progress-roadblock {
   height: auto;
   width: 15rem;
   align-self: center;

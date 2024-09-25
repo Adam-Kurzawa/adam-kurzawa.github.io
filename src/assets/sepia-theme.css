@@ -1,0 +1,51 @@
+.primary-background-color-sepia {
+    background-color: rgb(236, 228, 202) !important;
+}
+
+.secondary-background-color-sepia {
+    background-color: #c1b1b1 !important;
+}
+
+.shadow-color-sepia {
+    box-shadow: 11px 35px 27px -10px rgba(66, 68, 90, 1);
+}
+
+.border-color-sepia {
+    border-color: gainsboro;
+}
+
+.primary-color-sepia {
+    color: gold;
+}
+
+.secondary-color-sepia {
+    color: goldenrod;
+}
+
+.trinary-color-sepia {
+    color: darkolivegreen;
+}
+
+.primary-text-color-sepia {
+    color: black;
+}
+
+.secondary-text-color-sepia {
+    color: darkslategray;
+}
+
+.primary-link-color-sepia {
+    color: darkslategray;
+}
+
+.secondary-link-color-sepia {
+    color: darkslategray;
+}
+
+.button-fill-color-sepia {
+    background-color: darkslategray;
+}
+
+.button-text-color-sepia {
+    color: white;
+}

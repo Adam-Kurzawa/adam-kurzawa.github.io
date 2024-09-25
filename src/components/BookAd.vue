@@ -1,21 +1,28 @@
 <script setup>
-import { useTranslation } from "@/utils/hooks";
+import { useThemeStore } from '@/stores/theme'
+import { useTranslation } from '@/utils/hooks'
+import LinkButton from './LinkButton.vue'
+import TextButton from './TextButton.vue'
+import H1 from './H1.vue'
+import H3 from './H3.vue'
+import SecondaryText from './SecondaryText.vue'
 
-const t = useTranslation();
+const t = useTranslation()
+const themeStore = useThemeStore()
 </script>
 
 <template>
   <div class="ad">
-    <div class="ad-left">
-      <div class="h1 font-yeseva">Antologia "Alternata"</div>
-      <div class="font-segoe">Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua.</div>
-      <span class="ad-button font-segoe">Premiera marzec 2026</span>
+    <div class="ad-left" :class="themeStore.secondaryBackgroundColor">
+      <H1 text="Antologia Alternata" colorful="true" />
+      <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua." />
+      <TextButton text="Premiera marzec 2026" />
     </div>
     <img src="../assets/alternata_mock.png" class="ad-middle" />
     <div class="ad-right">
-      <div class="h2 font-yeseva">Fragment "W drodze do Walhalli"</div>
-      <div class="font-segoe">Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et.</div>
-      <span class="ad-link font-segoe">Przeczytaj fragment ↦</span>
+      <H3 text="Fragment W drodze do Walhalli" />
+      <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et." />
+      <LinkButton text="Przeczytaj fragment" />
     </div>
   </div>
 </template>
@@ -28,7 +35,6 @@ const t = useTranslation();
 }
 
 .ad-left {
-  background-color: gainsboro;
   padding: 2rem;
   padding-right: 12rem;
   display: flex;
@@ -54,6 +60,10 @@ const t = useTranslation();
   gap: 2rem;
 }
 
+.ad-description {
+  text-align: justify;
+}
+
 .ad-button {
   border-radius: 0.5rem;
   padding-left: 2rem;
@@ -73,7 +83,6 @@ const t = useTranslation();
 }
 
 .ad-link {
-  color: darkslategray;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
@@ -81,15 +90,6 @@ const t = useTranslation();
 
 .ad-link:hover {
   color: darkgoldenrod;
-}
-
-.h1 {
-  font-size: 2rem;
-}
-
-.h2 {
-  font-size: 1.75rem;
-  font-weight: lighter;
 }
 
 @media screen and (max-width: 1024px) {

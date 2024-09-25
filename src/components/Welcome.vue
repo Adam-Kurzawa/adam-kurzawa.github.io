@@ -1,15 +1,17 @@
 <script setup>
-import { useTranslation } from "@/utils/hooks";
+import { useThemeStore } from '@/stores/theme'
+import { useTranslation } from '@/utils/hooks'
 
-const t = useTranslation();
+const t = useTranslation()
+const themeStore = useThemeStore()
 </script>
 
 <template>
-  <div class="font-segoe welcome">
+  <div class="font-segoe welcome" :class="themeStore.primaryTextColor">
     {{ t("welcome.text") }}
-    <a class="buycoffee font-madimi" target="_blank" href="https://buycoffee.to/"><img src="@/assets/buycoffee.png" /> {{ t("welcome.buycoffee") }}</a>
+    <a class="welcome-buycoffee font-madimi" target="_blank" href="https://buycoffee.to/"><img src="@/assets/buycoffee.png" /> {{ t("welcome.buycoffee") }}</a>
     {{ t("welcome.text2") }}
-    <a class="patronite font-segoe" target="_blank" href="https://patronite.pl/"><img src="@/assets/patronite.png" /> {{ t("welcome.patronite") }}</a>
+    <a class="welcome-patronite font-segoe" target="_blank" href="https://patronite.pl/"><img src="@/assets/patronite.png" /> {{ t("welcome.patronite") }}</a>
     .
   </div>
 </template>
@@ -21,9 +23,10 @@ const t = useTranslation();
   font-weight: lighter;
   line-height: 2rem;
   padding: 2rem;
+  transition: color 0.5s ease;
 }
 
-.buycoffee {
+.welcome-buycoffee {
   text-wrap: nowrap;
   background-color: lightblue;
   padding-bottom: 0.25rem;
@@ -36,22 +39,22 @@ const t = useTranslation();
   text-decoration: none;
 }
 
-.buycoffee img {
+.welcome-buycoffee img {
   position: relative;
   top: 0.2rem;
 }
 
-.buycoffee:hover {
+.welcome-buycoffee:hover {
   background-color: rgb(107, 199, 230);
 }
 
-.buycoffee:active {
+.welcome-buycoffee:active {
   background-color: rgb(61, 187, 230);
 }
 
-.patronite {
+.welcome-patronite {
   text-wrap: nowrap;
-  background-color: red;
+  background-color: #ff5e5e;
   padding-bottom: 0.25rem;
   padding-left: 0.25rem;
   font-weight: normal;
@@ -62,19 +65,19 @@ const t = useTranslation();
   text-decoration: none;
 }
 
-.patronite img {
-  width: 2rem;
-  max-width: 2rem;
+.welcome-patronite img {
+  width: 1.75rem;
+  max-width: 1.75rem;
   position: relative;
   top: 0.25rem;
 }
 
-.patronite:hover {
-  background-color: rgb(192, 0, 0);
+.welcome-patronite:hover {
+  background-color: rgb(255, 73, 73);
 }
 
-.patronite:active {
-  background-color: rgb(129, 0, 0);
+.welcome-patronite:active {
+  background-color: rgb(233, 46, 46);
 }
 
 @media screen and (max-width: 1024px) {

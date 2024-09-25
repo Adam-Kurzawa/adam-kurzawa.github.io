@@ -1,22 +1,20 @@
 <script setup>
-import { useTranslation } from "@/utils/hooks";
+import { useThemeStore } from '@/stores/theme'
+import { useTranslation } from '@/utils/hooks'
 
-const t = useTranslation();
+const t = useTranslation()
+const themeStore = useThemeStore()
 </script>
 
 <template>
-  <div class="footer">
+  <div class="footer" :class="[themeStore.secondaryBackgroundColor, themeStore.primaryTextColor]">
     <div class="copyrights font-segoe">&copy; {{ t("copyrights.arr") }}</div>
-    <div class="copyrights analytics font-segoe">
-      &copy; {{ t("copyrights.cookies") }}
-    </div>
+    <div class="copyrights analytics font-segoe">&copy; {{ t("copyrights.cookies") }}</div>
   </div>
 </template>
 
 <style scoped>
 .footer {
-  color: darkslategray;
-  background-color: gainsboro;
   padding: 2rem;
   padding-bottom: 4rem;
   display: flex;

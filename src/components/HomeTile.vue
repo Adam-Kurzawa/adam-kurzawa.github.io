@@ -1,7 +1,10 @@
 <script setup>
-import { useAsset } from "@/utils/hooks";
+import { useAsset } from '@/utils/hooks'
+import LinkButton from './LinkButton.vue'
+import H3 from './H3.vue'
+import SecondaryText from './SecondaryText.vue';
 
-const props = defineProps(["title", "subtitle", "cover"]);
+const props = defineProps([ 'title', 'subtitle', 'cover' ]);
 
 const cover = useAsset(import(`@/assets/${props.cover}.jpg`));
 </script>
@@ -10,10 +13,10 @@ const cover = useAsset(import(`@/assets/${props.cover}.jpg`));
   <div class="tile">
     <img :src="cover" class="tile-cover" />
     <div class="tile-texts">
-        <div class="tile-title font-yeseva">{{ props.title }}</div>
-        <div class="font-segoe">{{ props.subtitle }}</div>
+        <H3 :text="props.title" />
+        <SecondaryText class="tile-subtitle":text="props.subtitle" />
     </div>
-    <div class="tile-link font-segoe">Przeczytaj fragment ↦</div>
+    <LinkButton text="Przeczytaj fragment" />
   </div>
 </template>
 
@@ -23,7 +26,6 @@ const cover = useAsset(import(`@/assets/${props.cover}.jpg`));
   flex-direction: column;
   gap: 1rem;
   position: relative;
-  background-color: gainsboro;
   padding: 2rem;
   padding-left: 6rem;
   margin-left: 4rem;
@@ -47,8 +49,12 @@ const cover = useAsset(import(`@/assets/${props.cover}.jpg`));
 }
 
 .tile-title {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: lighter;
+}
+
+.tile-subtitle {
+  text-align: justify;
 }
 
 .tile-link {

@@ -1,8 +1,9 @@
 <script setup>
-import { useRoute } from 'vue-router';
-import StoryThumbnail from "@/components/StoryThumbnail.vue";
-import { ref } from 'vue';
-import { useLocale, useTranslation } from '@/utils/hooks';
+import { useRoute } from 'vue-router'
+import StoryThumbnail from '@/components/StoryThumbnail.vue'
+import H1 from '@/components/H1.vue'
+import { ref } from 'vue'
+import { useLocale, useTranslation } from '@/utils/hooks'
 
 const locale = useLocale()
 const route = useRoute()
@@ -20,7 +21,11 @@ const stories = ref(
 
 <template>
   <main class="generic-view">
-    <h1>{{ t("navbar.stories") }}</h1>
+    <div class="fooo">
+      <H1 class="zi" :text="t('navbar.stories')" colorful="true" />
+      <div class="line"></div>
+      <img class="ggg" src="../assets/full_symbol.svg" />
+    </div>
     <div class="entries">
       <StoryThumbnail v-for="story in stories" :title="story" type="story" />
     </div>
@@ -28,6 +33,32 @@ const stories = ref(
 </template>
 
 <style scoped>
+.zi {
+  z-index: 100;
+}
+.line {
+  width: 100%;
+  border-bottom: 1px solid #b8860b;
+  position: absolute;
+  opacity: 0.15;
+}
+.ggg {
+  width: 10rem;
+  opacity: 0.15;
+  position: absolute;
+  filter: invert(48%) sepia(85%) saturate(490%) hue-rotate(5deg) brightness(93%) contrast(91%);
+}
+.fooo {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  gap: 4rem;
+}
 .entries {
   justify-content: center;
   display: flex;

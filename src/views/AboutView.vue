@@ -1,7 +1,8 @@
 <script setup>
-import { useRoute } from 'vue-router';
-import PersonalInfo from "@/components/PersonalInfo.vue";
-import { useLocale, useTranslation } from '@/utils/hooks';
+import { useRoute } from 'vue-router'
+import H1 from '@/components/H1.vue'
+import WorkInProgress from '@/components/WorkInProgress.vue'
+import { useLocale, useTranslation } from '@/utils/hooks'
 
 const locale = useLocale()
 const route = useRoute()
@@ -12,7 +13,7 @@ locale.value = route.params.lang
 
 <template>
   <main class="generic-view">
-    <h1>{{ t("navbar.about") }}</h1>
-    <PersonalInfo />
+    <H1 :text="t('navbar.about')" colorful="true" />
+    <WorkInProgress />
   </main>
 </template>

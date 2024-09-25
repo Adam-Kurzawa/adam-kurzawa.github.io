@@ -1,7 +1,7 @@
 <script setup>
-import { useRoute } from 'vue-router';
-import Reader from "@/components/Reader.vue";
-import { useAsset, useLocale } from '@/utils/hooks';
+import { useRoute } from 'vue-router'
+import Reader from '@/components/Reader.vue'
+import { useAsset, useLocale } from '@/utils/hooks'
 
 const locale = useLocale()
 const route = useRoute()
