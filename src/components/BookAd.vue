@@ -4,7 +4,9 @@ import { useTranslation } from '@/utils/hooks'
 import LinkButton from './LinkButton.vue'
 import TextButton from './TextButton.vue'
 import H1 from './H1.vue'
+import H2 from './H2.vue'
 import H3 from './H3.vue'
+import HomeTile from './HomeTile.vue'
 import SecondaryText from './SecondaryText.vue'
 
 const t = useTranslation()
@@ -12,10 +14,11 @@ const themeStore = useThemeStore()
 </script>
 
 <template>
-  <div class="ad">
+  <div>
+    <div class="ad">
     <div class="ad-left" :class="themeStore.secondaryBackgroundColor">
       <H1 text="Antologia Alternata" colorful="true" />
-      <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua." />
+      <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua." />
       <TextButton text="Premiera marzec 2026" />
     </div>
     <img src="../assets/alternata_mock.png" class="ad-middle" />
@@ -25,6 +28,42 @@ const themeStore = useThemeStore()
       <LinkButton text="Przeczytaj fragment" />
     </div>
   </div>
+  <div class="others">
+      <H2 text="Pozostałe opowiadania antologii" colorful="true" />
+      <div class="cols-3">
+        <HomeTile
+          :title="t('alternata-ad.title_1')"
+          subtitle="Laboris dolore pariatur laborum duis occaecat eu reprehenderit excepteur aliquip non anim exercitation reprehenderit."
+          cover="laniakea"
+        />
+        <HomeTile
+          :title="t('alternata-ad.title_2')"
+          subtitle="Culpa sint non dolor magna incididunt id dolor do pariatur sint do proident."
+          cover="nowa_baśń"
+        />
+        <HomeTile
+          :title="t('alternata-ad.title_3')"
+          subtitle="Fugiat elit aliqua officia proident aliquip do otinis est amarne equis."
+          cover="pismo"
+        />
+        <HomeTile
+          :title="t('alternata-ad.title_4')"
+          subtitle="Do commodo duis magna incididunt nostrud officia aliquip officia proident aliquip."
+          cover="solstice"
+        />
+        <HomeTile
+          :title="t('alternata-ad.title_5')"
+          subtitle="Enim velit aliqua reprehenderit ullamco eiusmod laborum ullamco occaecat amet ex enim deserunt commodo anim."
+          cover="alternata_cover"
+        />
+        <HomeTile
+          :title="t('alternata-ad.title_6')"
+          subtitle="Enim ea adipisicing labore do occaecat laboris reprehenderit laborum ex officia sit adipisicing tempor laborum."
+          cover="alternata_cover"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -32,6 +71,10 @@ const themeStore = useThemeStore()
   display: grid;
   grid-template-columns: 60% 40%;
   position: relative;
+}
+
+.others {
+  padding: 2rem;
 }
 
 .ad-left {
@@ -92,6 +135,18 @@ const themeStore = useThemeStore()
   color: darkgoldenrod;
 }
 
+.cols-3 {
+  display: grid;
+  grid-template-columns: minmax(0, 33%) minmax(0, 34%) minmax(0, 33%);
+  gap: 2rem;
+}
+
+@media screen and (max-width: 1600px) {
+  .cols-3 {
+    grid-template-columns: minmax(0, 50%) minmax(0, 50%);
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .ad {
     display: flex;
@@ -109,6 +164,11 @@ const themeStore = useThemeStore()
   .ad-right {
     padding-right: 2rem;
     padding-left: 2rem;
+  }
+
+  .cols-3 {
+    display: flex;
+    flex-direction: column;
   }
 
 }

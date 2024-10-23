@@ -11,7 +11,7 @@ const t = useTranslation()
 const locale = useLocale()
 const themeStore = useThemeStore()
 
-const scrollThreshold = 50
+const scrollThreshold = 30
 const isScrolled = ref(false)
 
 const makeBackgroundSolid = (event) => {

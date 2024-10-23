@@ -4,6 +4,7 @@ import Panel from './Panel.vue'
 import { EpubService } from '@/utils/EpubService.js'
 import { useRoute, useRouter } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
+import { countCharacters } from '@/utils/functions'
 import { useThemeStore } from '@/stores/theme'
 
 const props = defineProps([ 'story', 'chapter' ])
@@ -17,10 +18,7 @@ const fontSize = ref($cookies.get('font-size') ?? 1.25)
 const fontFamily = ref($cookies.get('font-family') ?? 'Times New Roman')
 
 const paragraphs = computed(() => props.story.chapters[props.chapter - 1])
-const charactersCount = computed(() => props.story.chapters.reduce(
-  (accumulator, chapter) => accumulator + chapter.reduce((intermediate, paragraph) => intermediate + paragraph.length, 0),
-  0,
-))
+const charactersCount = computed(() => countCharacters(props.story.chapters))
 
 const semitransparentBgClass = computed(() => `${themeStore.currentTheme}-mode-semitransparent-bg`)
 

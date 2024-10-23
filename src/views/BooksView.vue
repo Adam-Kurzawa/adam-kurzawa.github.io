@@ -2,7 +2,7 @@
 import { useRoute } from 'vue-router'
 import { useLocale, useTranslation } from '@/utils/hooks'
 import WorkInProgress from '@/components/WorkInProgress.vue'
-import H1 from '@/components/H1.vue'
+import H0 from '@/components/H0.vue'
 
 const locale = useLocale()
 const route = useRoute()
@@ -13,7 +13,7 @@ locale.value = route.params.lang
 
 <template>
   <main class="generic-view">
-    <H1 :text="t('navbar.books')" colorful="true" />
+    <H0 :text="t('navbar.books')" />
     <WorkInProgress />
   </main>
 </template>

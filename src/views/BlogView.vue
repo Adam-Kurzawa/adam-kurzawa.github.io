@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useLocale, useTranslation } from '@/utils/hooks'
 import BlogThumbnail from '@/components/BlogThumbnail.vue'
-import H1 from '@/components/H1.vue'
+import H0 from '@/components/H0.vue'
 
 const locale = useLocale()
 const route = useRoute()
@@ -21,7 +21,7 @@ const articles = ref(
 
 <template>
   <main class="generic-view">
-    <H1 :text="t('navbar.blog')" colorful="true" />
+    <H0 :text="t('navbar.blog')" />
     <div class="entries">
       <BlogThumbnail v-for="article in articles" :title="article" type="blog"/>
     </div>

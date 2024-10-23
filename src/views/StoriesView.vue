@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import StoryThumbnail from '@/components/StoryThumbnail.vue'
-import H1 from '@/components/H1.vue'
+import H0 from '@/components/H0.vue'
 import { ref } from 'vue'
 import { useLocale, useTranslation } from '@/utils/hooks'
 
@@ -21,11 +21,7 @@ const stories = ref(
 
 <template>
   <main class="generic-view">
-    <div class="fooo">
-      <H1 class="zi" :text="t('navbar.stories')" colorful="true" />
-      <div class="line"></div>
-      <img class="ggg" src="../assets/full_symbol.svg" />
-    </div>
+    <H0 :text="t('navbar.stories')" />
     <div class="entries">
       <StoryThumbnail v-for="story in stories" :title="story" type="story" />
     </div>

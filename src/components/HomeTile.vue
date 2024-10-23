@@ -3,14 +3,21 @@ import { useAsset } from '@/utils/hooks'
 import LinkButton from './LinkButton.vue'
 import H3 from './H3.vue'
 import SecondaryText from './SecondaryText.vue';
+import { ref } from 'vue';
+import { useThemeStore } from '@/stores/theme';
 
 const props = defineProps([ 'title', 'subtitle', 'cover' ]);
 
 const cover = useAsset(import(`@/assets/${props.cover}.jpg`));
+const themeStore = useThemeStore()
+
+const isMouseHovered = ref(false)
+const onMouseHover = () => { isMouseHovered.value = true }
+const onMouseLeave = () => { isMouseHovered.value = false }
 </script>
 
 <template>
-  <div class="tile">
+  <div class="tile " :class="[ isMouseHovered ? themeStore.secondaryBackgroundColor : '' ]" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
     <img :src="cover" class="tile-cover" />
     <div class="tile-texts">
         <H3 :text="props.title" />
@@ -31,12 +38,13 @@ const cover = useAsset(import(`@/assets/${props.cover}.jpg`));
   margin-left: 4rem;
   justify-content: space-between;
   border-radius: 0.5rem;
+  transition: background 1s ease;
 }
 
 .tile-texts {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .tile-cover {

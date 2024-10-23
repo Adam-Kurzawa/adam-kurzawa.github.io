@@ -6,6 +6,7 @@ import { useRouter } from 'vue-router'
 import TextButton from './TextButton.vue'
 import H1 from './H1.vue'
 import SecondaryText from './SecondaryText.vue'
+import { countCharacters } from '@/utils/functions'
 
 const props = defineProps([ 'title' ]);
 
@@ -22,6 +23,7 @@ const year = computed(() => content.value.year);
 const chapters = computed(() => content.value.chapters.length);
 const genre = computed(() => 'sci-fi');
 const tags = computed(() => [ '#sci-fi', '#space-opera', '#military', '#action' ]);
+const charactersCount = computed(() => countCharacters(content.value.chapters))
 
 const fragment = computed(() => {
   const firstChapter = content.value.chapters[0]
@@ -74,7 +76,7 @@ const openReader = () => {
       </div>
       <div class="story-thumbnail-bottom-bottom">
         <div class="story-thumbnail-bottom-bottom-left">
-          <div class="story-thumbnail-tuple">
+          <div class="story-thumbnail-tuple story-thumbnail-bottom-bottom-left-description">
             <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Opis</div>
             <SecondaryText class="story-thumbnail-description" :text="description" />
           </div>
@@ -89,8 +91,8 @@ const openReader = () => {
             <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ year }}</div>
           </div>
           <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Rozdziały</div>
-            <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ chapters }}</div>
+            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Długość</div>
+            <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ charactersCount }} znaków, {{ chapters }} rozdziałów</div>
           </div>
           <div class="story-thumbnail-tuple">
             <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Gatunek</div>
@@ -176,6 +178,10 @@ const openReader = () => {
   align-items: center;
 }
 
+.story-thumbnail-bottom-bottom-left-description {
+  padding-left: 18rem;
+}
+
 .story-thumbnail-icon-button:hover {
   color: darkgoldenrod;
   border-color: darkgoldenrod;
@@ -246,7 +252,6 @@ const openReader = () => {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding-top: 3rem;
 }
 
 .story-thumbnail-bottom-bottom-right {
