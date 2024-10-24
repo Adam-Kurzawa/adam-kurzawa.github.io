@@ -3,6 +3,7 @@ import Welcome from '@/components/Welcome.vue'
 import BookAd from '@/components/BookAd.vue'
 import { useTranslation } from '@/utils/hooks'
 import FantazmatyAd from '@/components/FantazmatyAd.vue'
+import OpowiesciSiakaAd from '@/components/OpowiesciSiakaAd.vue';
 
 const t = useTranslation()
 </script>
@@ -13,7 +14,7 @@ const t = useTranslation()
     <BookAd />
     <div class="tempppp">
       <FantazmatyAd />
-      <div>Youtube Bukowe Widziadło</div>
+      <OpowiesciSiakaAd />
     </div>
   </main>
 </template>

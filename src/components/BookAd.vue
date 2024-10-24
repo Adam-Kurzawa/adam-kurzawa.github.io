@@ -1,13 +1,13 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme'
 import { useTranslation } from '@/utils/hooks'
-import LinkButton from './LinkButton.vue'
-import TextButton from './TextButton.vue'
-import H1 from './H1.vue'
-import H2 from './H2.vue'
-import H3 from './H3.vue'
+import LinkButton from './buttons/LinkButton.vue'
+import TextButton from './buttons/TextButton.vue'
+import H1 from './headers/H1.vue'
+import H2 from './headers/H2.vue'
+import H3 from './headers/H3.vue'
 import HomeTile from './HomeTile.vue'
-import SecondaryText from './SecondaryText.vue'
+import SecondaryText from './texts/SecondaryText.vue'
 
 const t = useTranslation()
 const themeStore = useThemeStore()

@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useLocale, useTranslation } from '@/utils/hooks'
 import BlogThumbnail from '@/components/BlogThumbnail.vue'
-import H0 from '@/components/H0.vue'
+import H0 from '@/components/headers/H0.vue'
 
 const locale = useLocale()
 const route = useRoute()

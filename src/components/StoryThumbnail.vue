@@ -3,10 +3,11 @@ import { useThemeStore } from '@/stores/theme'
 import { useAsset, useLocale } from '@/utils/hooks'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import TextButton from './TextButton.vue'
-import H1 from './H1.vue'
-import SecondaryText from './SecondaryText.vue'
+import TextButton from './buttons/TextButton.vue'
+import H1 from './headers/H1.vue'
+import SecondaryText from './texts/SecondaryText.vue'
 import { countCharacters } from '@/utils/functions'
+import IconButton from './buttons/IconButton.vue'
 
 const props = defineProps([ 'title' ]);
 
@@ -56,22 +57,10 @@ const openReader = () => {
       <div class="story-thumbnail-bottom-up">
         <TextButton text="Przeczytaj" :action="openReader" />
         <div class="story-thumbnail-bottom-up-right">
-          <button class="story-thumbnail-icon-button">
-            <img class="story-thumbnail-icon-button-icon font-segoe" src="../assets/download.svg" />
-            <span class="story-thumbnail-icon-button-label font-segoe">Pobierz ePUB</span>
-          </button>          
-          <button class="story-thumbnail-icon-button">
-            <img class="story-thumbnail-icon-button-icon font-segoe" src="../assets/download.svg" />
-            <span class="story-thumbnail-icon-button-label font-segoe">Pobierz mobi</span>
-          </button>       
-          <button class="story-thumbnail-icon-button">
-            <img class="story-thumbnail-icon-button-icon font-segoe" src="../assets/send.svg" />
-            <span class="story-thumbnail-icon-button-label font-segoe">Wyślij do Kindle</span>
-          </button>       
-          <button class="story-thumbnail-icon-button">
-            <img class="story-thumbnail-icon-button-icon" src="../assets/share.svg" />
-            <span class="story-thumbnail-icon-button-label font-segoe">Udostępnij</span>
-          </button>
+          <IconButton text="Pobierz ePUB" image="download.svg" />
+          <IconButton text="Pobierz mobi" image="download.svg" />
+          <IconButton text="Wyślij do Kindle" image="send.svg" />
+          <IconButton text="Udostępnij" image="share.svg" />
         </div>
       </div>
       <div class="story-thumbnail-bottom-bottom">

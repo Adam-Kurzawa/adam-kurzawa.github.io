@@ -1,8 +1,8 @@
 <script setup>
 import { useAsset } from '@/utils/hooks'
-import LinkButton from './LinkButton.vue'
-import H3 from './H3.vue'
-import SecondaryText from './SecondaryText.vue';
+import LinkButton from './buttons/LinkButton.vue'
+import H3 from './headers/H3.vue'
+import SecondaryText from './texts/SecondaryText.vue';
 import { ref } from 'vue';
 import { useThemeStore } from '@/stores/theme';
 

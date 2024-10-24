@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from 'vue-router'
-import H0 from '@/components/H0.vue'
+import H0 from '@/components/headers/H0.vue'
 import WorkInProgress from '@/components/WorkInProgress.vue'
 import { useLocale, useTranslation } from '@/utils/hooks'
 

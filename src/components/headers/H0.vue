@@ -1,5 +1,5 @@
 <script setup>
-import H1 from '@/components/H1.vue'
+import H1 from '@/components/headers/H1.vue'
 
 const props = defineProps([ 'text' ])
 </script>
@@ -8,7 +8,7 @@ const props = defineProps([ 'text' ])
   <div class="h0">
     <H1 class="h0-text" :text="props.text" colorful="true" />
     <div class="h0-separators"></div>
-    <img class="h0-background" src="../assets/full_symbol.svg" />
+    <img class="h0-background" src="../../assets/full_symbol.svg" />
   </div>
 </template>
 
