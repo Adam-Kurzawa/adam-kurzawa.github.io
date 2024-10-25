@@ -1,7 +1,9 @@
 <script setup>
+import { useThemeStore } from '@/stores/theme';
 import { ref } from 'vue'
 
 const props = defineProps(['label', 'id'])
+const themeStore = useThemeStore()
 
 const selected = ref(false)
 
@@ -19,7 +21,7 @@ const deselectOnLeave = () => {
     <input class="submenu-hidden-checkbox" type="checkbox" :id="props.id" v-model="selected">
     <label class="navlink" v-if="props.label" :for="props.id" @mouseenter="selectOnHover">{{ props.label }}</label>
     <label v-if="!props.label" :for="props.id" @mouseenter="selectOnHover"><img class="submenu-hamburger" src="@/assets/hamburger.png" /></label>
-    <div class="submenu-content">
+    <div class="submenu-content" :class="themeStore.primaryBackgroundColor">
       <ul>
         <slot></slot>
       </ul>
