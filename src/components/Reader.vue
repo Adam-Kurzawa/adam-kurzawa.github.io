@@ -110,9 +110,21 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
         {{ paragraph }}
       </div>
       <div v-if="nextPageDisabled" class="title" :class="themeStore.primaryTextColor">{{ t("reader.theEnd") }}</div>
-      <div v-if="hasMultiplePages" class="btn-group page-buttons">
-        <button :disabled="previousPageDisabled" :class="themeStore.primaryTextColor" @click="previousPage">{{ t("reader.previousChapter") }}</button>
-        <button :disabled="nextPageDisabled":class="themeStore.primaryTextColor" @click="nextPage">{{ t("reader.nextChapter") }}</button>
+      <div class="bottom-chapter-pager" v-if="hasMultiplePages">
+        <div class="prev-chapter" :class="[themeStore.secondaryTextColor, previousPageDisabled ? 'transparent' : '', isHoveredPreviousChapter ? themeStore.primaryLinkColor : '']">
+          <div class="arrow">←</div>
+          <div class="scene-and-title navigable" :class="[story.chapterTitles && story.chapterTitles[props.chapter - 2] ? 'gapped' : '']" @mouseenter="onHoverPreviousChapter" @mouseleave="onUnhoverPreviousChapter" @click="previousPage">
+            <div class="prev-scene">{{ t("reader.epub-chapter") }} {{ props.chapter - 1 }}</div>
+            <div v-if="story.chapterTitles" class="prev-chapterTitle">{{ props.story.chapterTitles[props.chapter - 2] }}</div>
+          </div>
+        </div>
+        <div class="next-chapter" :class="[themeStore.secondaryTextColor, nextPageDisabled ? 'transparent' : '', isHoveredNextChapter ? themeStore.primaryLinkColor : '']">
+          <div class="arrow">→</div>
+          <div class="scene-and-title navigable" :class="[story.chapterTitles && story.chapterTitles[props.chapter] ? 'gapped' : '']" @mouseenter="onHoverNextChapter" @mouseleave="onUnhoverNextChapter" @click="nextPage">
+            <div class="next-scene">{{ t("reader.epub-chapter") }} {{ props.chapter + 1 }}</div>
+            <div v-if="story.chapterTitles" class="next-chapterTitle">{{ props.story.chapterTitles[props.chapter] }}</div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -149,6 +161,12 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 .scene-and-title {
   display: flex;
   flex-direction: column;
+}
+
+.bottom-chapter-pager {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 50%) minmax(0, 50%);
 }
 
 .chapter-pager {
