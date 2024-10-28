@@ -23,7 +23,7 @@ const openReader = () => {
   router.push({
     name: "reader",
     params: { lang: locale.value, title: props.title },
-    query: { type: props.type }
+    query: { type: 'blog' }
   });
 };
 </script>

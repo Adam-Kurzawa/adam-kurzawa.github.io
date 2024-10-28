@@ -1,6 +1,5 @@
 <script setup>
 import { computed, ref } from 'vue'
-import Panel from './Panel.vue'
 import { EpubService } from '@/utils/EpubService.js'
 import { useRoute, useRouter } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
@@ -43,7 +42,16 @@ const previousPageDisabled = computed(() => props.chapter === 1)
 const nextPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.min(props.story.chapters.length, props.chapter + 1) } })
 const nextPageDisabled = computed(() => props.chapter === props.story.chapters.length)
 
-const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabled.value)
+const hasMultiplePages = computed(() => !previousPageDisabled.value || !nextPageDisabled.value)
+
+const isHoveredPreviousChapter = ref(false)
+const isHoveredNextChapter = ref(false)
+
+const onHoverPreviousChapter = () => { isHoveredPreviousChapter.value = true }
+const onUnhoverPreviousChapter = () => { isHoveredPreviousChapter.value = false }
+
+const onHoverNextChapter = () => { isHoveredNextChapter.value = true }
+const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 </script>
 
 <template>
@@ -75,29 +83,94 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
         </div>
       </div>
     </div>
-    <Panel class="transition" :class="themeStore.primaryBackgroundColor">
+    <div class="white-panel transition" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
       <div class="stats font-segoe" :class="themeStore.secondaryTextColor">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</div>
       <div class="title" :class="themeStore.primaryTextColor">{{ props.story.title }}</div>
-      <div v-if="isOnePager" class="scene" :class="themeStore.primaryTextColor">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
-      <div v-if="isOnePager && story.chapterTitles" class="chapterTitle" :class="themeStore.primaryTextColor">{{ props.story.chapterTitles[props.chapter - 1] }}</div>
-      <div
-        v-for="paragraph in paragraphs"
-        class="paragraph"
-        :class="themeStore.primaryTextColor"
-        :style="{ 'font-size': `${fontSize}rem`, 'font-family': fontFamily }"
-      >
+      <div class="chapter-pager" v-if="hasMultiplePages">
+        <div class="prev-chapter" :class="[themeStore.secondaryTextColor, previousPageDisabled ? 'transparent' : '', isHoveredPreviousChapter ? themeStore.primaryLinkColor : '']">
+          <div class="arrow">←</div>
+          <div class="scene-and-title navigable" :class="[story.chapterTitles && story.chapterTitles[props.chapter - 2] ? 'gapped' : '']" @mouseenter="onHoverPreviousChapter" @mouseleave="onUnhoverPreviousChapter" @click="previousPage">
+            <div class="prev-scene">{{ t("reader.epub-chapter") }} {{ props.chapter - 1 }}</div>
+            <div v-if="story.chapterTitles" class="prev-chapterTitle">{{ props.story.chapterTitles[props.chapter - 2] }}</div>
+          </div>
+        </div>
+        <div class="scene-and-title" :class="[story.chapterTitles ? 'gapped' : '']">
+          <div class="scene">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
+          <div v-if="story.chapterTitles" class="chapterTitle">{{ props.story.chapterTitles[props.chapter - 1] }}</div>
+        </div>
+        <div class="next-chapter" :class="[themeStore.secondaryTextColor, nextPageDisabled ? 'transparent' : '', isHoveredNextChapter ? themeStore.primaryLinkColor : '']">
+          <div class="arrow">→</div>
+          <div class="scene-and-title navigable" :class="[story.chapterTitles && story.chapterTitles[props.chapter] ? 'gapped' : '']" @mouseenter="onHoverNextChapter" @mouseleave="onUnhoverNextChapter" @click="nextPage">
+            <div class="next-scene">{{ t("reader.epub-chapter") }} {{ props.chapter + 1 }}</div>
+            <div v-if="story.chapterTitles" class="next-chapterTitle">{{ props.story.chapterTitles[props.chapter] }}</div>
+          </div>
+        </div>
+      </div>
+      <div v-for="paragraph in paragraphs" class="paragraph" :class="themeStore.primaryTextColor" :style="{ 'font-size': `${fontSize}rem`, 'font-family': fontFamily }">
         {{ paragraph }}
       </div>
       <div v-if="nextPageDisabled" class="title" :class="themeStore.primaryTextColor">{{ t("reader.theEnd") }}</div>
-      <div v-if="isOnePager" class="btn-group page-buttons">
+      <div v-if="hasMultiplePages" class="btn-group page-buttons">
         <button :disabled="previousPageDisabled" :class="themeStore.primaryTextColor" @click="previousPage">{{ t("reader.previousChapter") }}</button>
         <button :disabled="nextPageDisabled":class="themeStore.primaryTextColor" @click="nextPage">{{ t("reader.nextChapter") }}</button>
       </div>
-    </Panel>
+    </div>
   </main>
 </template>
 
 <style scoped>
+.white-panel {
+  transition: padding 0.5s ease;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 0.5rem;
+}
+
+.arrow {
+  font-size: 1.25rem;
+}
+
+.navigable {
+  cursor: pointer;
+}
+
+.transparent {
+  color: transparent !important;
+}
+
+.gapped {
+  gap: 0.5rem;
+}
+
+.scene-and-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.chapter-pager {
+  display: grid;
+  grid-template-columns: minmax(0, 33%) minmax(0, 34%) minmax(0, 33%);
+  margin-bottom: 1.5rem;
+}
+
+.prev-chapter {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.next-chapter {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+  align-items: center;
+}
+
 .border {
   border-top-width: 1px;
   border-top-style: solid;
@@ -244,12 +317,37 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
   margin-top: 2rem;
 }
 
+.next-scene {
+  transition: color 1s ease;
+  font-family: "Yeseva One", serif;
+  font-size: 1rem;
+  text-align: right;
+}
+
+.prev-scene {
+  transition: color 1s ease;
+  font-family: "Yeseva One", serif;
+  font-size: 1rem;
+}
+
 .scene {
   transition: color 1s ease;
   font-family: "Yeseva One", serif;
   text-align: center;
   font-size: 1.25rem;
-  margin-bottom: 1rem;
+}
+
+.next-chapterTitle {
+  transition: color 1s ease;
+  font-family: "Yeseva One", serif;
+  font-size: 1rem;
+  text-align: right;
+}
+
+.prev-chapterTitle {
+  transition: color 1s ease;
+  font-family: "Yeseva One", serif;
+  font-size: 1rem;
 }
 
 .chapterTitle {
@@ -257,7 +355,6 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
   font-family: "Yeseva One", serif;
   text-align: center;
   font-size: 1.25rem;
-  margin-bottom: 2rem;
 }
 
 .paragraph {
@@ -274,6 +371,11 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
 
 @media screen and (max-width: 1600px) {
   .border {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .white-panel {
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -304,6 +406,11 @@ const isOnePager = computed(() => !previousPageDisabled.value || !nextPageDisabl
 
 @media screen and (max-width: 1280px) {
   .border {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .white-panel {
     padding-left: 1rem;
     padding-right: 1rem;
   }
