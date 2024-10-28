@@ -19,7 +19,7 @@ const deselectOnLeave = () => {
 <template>
   <div class="submenu" @mouseleave="deselectOnLeave">
     <input class="submenu-hidden-checkbox" type="checkbox" :id="props.id" v-model="selected">
-    <label class="navlink" v-if="props.label" :for="props.id" @mouseenter="selectOnHover">{{ props.label }}</label>
+    <label class="navlink" :class="themeStore.primaryTextColor" v-if="props.label" :for="props.id" @mouseenter="selectOnHover">{{ props.label }}</label>
     <label v-if="!props.label" :for="props.id" @mouseenter="selectOnHover"><img class="submenu-hamburger" src="@/assets/hamburger.png" /></label>
     <div class="submenu-content" :class="themeStore.primaryBackgroundColor">
       <ul>

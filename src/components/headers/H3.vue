@@ -16,7 +16,7 @@ const themeStore = useThemeStore()
   font-family: 'Yeseva One' !important;
   font-weight: 300 !important;
   font-style: normal !important;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin: 0;
   transition: color 0.5s ease;
 }
