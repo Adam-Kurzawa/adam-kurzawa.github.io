@@ -54,30 +54,28 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 <template>
   <main>
     <div class="floating-bar" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
-      <div class="settings">
-        <div class="btn-group">
-          <p :class="themeStore.primaryTextColor">{{ t("reader.download") }}</p>
-          <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="saveAsMobi">MOBI</button>
-          <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="saveAsEpub">ePUB</button>
-          <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="sendToKindle">{{ t("reader.sendToKindle") }}</button>
-        </div>
-        <div class="btn-group font-settings">
-          <p class="font-settings-a" :class="themeStore.primaryTextColor">{{ t("reader.font") }}</p>
-          <select class="font-settings-b" :class="themeStore.primaryTextColor" v-model="fontFamily" @change="(event) => setFontFamily(event)">
-            <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Times New Roman';">Times New Roman</option>
-            <option :class="themeStore.primaryBackgroundColor" style="font-family: Georgia;">Georgia</option>
-            <option :class="themeStore.primaryBackgroundColor" style="font-family: Arial;">Arial</option>
-            <option :class="themeStore.primaryBackgroundColor" style="font-family: Verdana;">Verdana</option>
-            <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Segoe UI';">Segoe UI</option>
-            <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Josefin Sans';">Josefin Sans</option>
-            <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Yeseva One';">Yeseva One</option>
-            <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Madimi One';">Madimi One</option>
-          </select>
-          <span class="font-settings-c" :class="themeStore.primaryTextColor">{{ fontSize * 10 }}</span>
-          <button class="font-settings-d" @click="() => setFontSize(fontSize + 0.25)" :class="themeStore.primaryTextColor">+</button>
-          <button class="font-settings-e" @click="() => setFontSize(1.25)" :class="themeStore.primaryTextColor">100%</button>
-          <button class="font-settings-f" @click="() => setFontSize(fontSize - 0.25)" :class="themeStore.primaryTextColor">-</button>
-        </div>
+      <div class="btn-group">
+        <p :class="themeStore.primaryTextColor">{{ t("reader.download") }}</p>
+        <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="saveAsMobi">MOBI</button>
+        <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="saveAsEpub">ePUB</button>
+        <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="sendToKindle">{{ t("reader.sendToKindle") }}</button>
+      </div>
+      <div class="btn-group font-settings">
+        <p class="font-settings-a" :class="themeStore.primaryTextColor">{{ t("reader.font") }}</p>
+        <select class="font-settings-b" :class="themeStore.primaryTextColor" v-model="fontFamily" @change="(event) => setFontFamily(event)">
+          <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Times New Roman';">Times New Roman</option>
+          <option :class="themeStore.primaryBackgroundColor" style="font-family: Georgia;">Georgia</option>
+          <option :class="themeStore.primaryBackgroundColor" style="font-family: Arial;">Arial</option>
+          <option :class="themeStore.primaryBackgroundColor" style="font-family: Verdana;">Verdana</option>
+          <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Segoe UI';">Segoe UI</option>
+          <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Josefin Sans';">Josefin Sans</option>
+          <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Yeseva One';">Yeseva One</option>
+          <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Madimi One';">Madimi One</option>
+        </select>
+        <span class="font-settings-c" :class="themeStore.primaryTextColor">{{ fontSize * 10 }}</span>
+        <button class="font-settings-d" @click="() => setFontSize(fontSize + 0.25)" :class="themeStore.primaryTextColor">+</button>
+        <button class="font-settings-e" @click="() => setFontSize(1.25)" :class="themeStore.primaryTextColor">100%</button>
+        <button class="font-settings-f" @click="() => setFontSize(fontSize - 0.25)" :class="themeStore.primaryTextColor">-</button>
       </div>
     </div>
     <div class="white-panel" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
@@ -189,6 +187,9 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 }
 
 .floating-bar {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
   transition: background 0.5s ease;
   position: fixed;
   top: 5.5rem;
@@ -296,12 +297,6 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   width: 100% !important;
 }
 
-.settings {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-}
-
 .title {
   transition: color 1s ease;
   font-family: "Yeseva One", serif;
@@ -394,7 +389,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 }
 
 @media screen and (max-width: 1440px) {
-  .settings {
+  .floating-bar {
     gap: 1rem;
     flex-wrap: wrap;
   }
