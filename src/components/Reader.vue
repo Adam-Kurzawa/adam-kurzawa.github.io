@@ -19,8 +19,6 @@ const fontFamily = ref($cookies.get('font-family') ?? 'Times New Roman')
 const paragraphs = computed(() => props.story.chapters[props.chapter - 1])
 const charactersCount = computed(() => countCharacters(props.story.chapters))
 
-const semitransparentBgClass = computed(() => `${themeStore.currentTheme}-mode-semitransparent-bg`)
-
 const setFontSize = (size) => {
   $cookies.set('font-size', size)
   fontSize.value = size 
@@ -45,18 +43,17 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 const hasMultiplePages = computed(() => !previousPageDisabled.value || !nextPageDisabled.value)
 
 const isHoveredPreviousChapter = ref(false)
-const isHoveredNextChapter = ref(false)
-
 const onHoverPreviousChapter = () => { isHoveredPreviousChapter.value = true }
 const onUnhoverPreviousChapter = () => { isHoveredPreviousChapter.value = false }
 
+const isHoveredNextChapter = ref(false)
 const onHoverNextChapter = () => { isHoveredNextChapter.value = true }
 const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 </script>
 
 <template>
   <main>
-    <div class="float border" :class="[semitransparentBgClass, themeStore.borderColor]">
+    <div class="floating-bar" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
       <div class="settings">
         <div class="btn-group">
           <p :class="themeStore.primaryTextColor">{{ t("reader.download") }}</p>
@@ -83,7 +80,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
         </div>
       </div>
     </div>
-    <div class="white-panel transition" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
+    <div class="white-panel" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
       <div class="stats font-segoe" :class="themeStore.secondaryTextColor">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</div>
       <div class="title" :class="themeStore.primaryTextColor">{{ props.story.title }}</div>
       <div class="chapter-pager" v-if="hasMultiplePages">
@@ -94,7 +91,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
             <div v-if="story.chapterTitles" class="prev-chapterTitle">{{ props.story.chapterTitles[props.chapter - 2] }}</div>
           </div>
         </div>
-        <div class="scene-and-title" :class="[story.chapterTitles ? 'gapped' : '']">
+        <div class="scene-and-title" :class="[themeStore.primaryTextColor, story.chapterTitles ? 'gapped' : '']">
           <div class="scene">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
           <div v-if="story.chapterTitles" class="chapterTitle">{{ props.story.chapterTitles[props.chapter - 1] }}</div>
         </div>
@@ -132,7 +129,8 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 
 <style scoped>
 .white-panel {
-  transition: padding 0.5s ease;
+  transition: padding 0.5s ease, background 0.5s ease;
+  margin-bottom: 4rem;
   padding-left: 4rem;
   padding-right: 4rem;
   padding-top: 2rem;
@@ -140,6 +138,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   border-width: 1px;
   border-style: solid;
   border-radius: 0.5rem;
+  margin-top: 1rem;
 }
 
 .arrow {
@@ -189,26 +188,20 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   align-items: center;
 }
 
-.border {
-  border-top-width: 1px;
-  border-top-style: solid;
+.floating-bar {
+  transition: background 0.5s ease;
+  position: fixed;
+  top: 5.5rem;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
   transition: padding 0.5s ease;
   padding-left: 4rem;
   padding-right: 4rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-.dark-mode-semitransparent-bg {
-  background-color: rgba(30, 54, 54, 0.65);
-}
-
-.light-mode-semitransparent-bg {
-  background-color: rgba(255, 255, 255, 0.65);
-}
-
-.sepia-mode-semitransparent-bg {
-  background-color: rgba(236, 228, 202, 0.65);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .btn-group {
@@ -303,16 +296,6 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   width: 100% !important;
 }
 
-.float {
-  transition: background 1s ease;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  backdrop-filter: blur(10px);
-}
-
 .settings {
   display: flex;
   gap: 2rem;
@@ -382,13 +365,8 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   text-indent: 2rem;
 }
 
-.transition {
-  transition: background 1s ease;
-  margin-bottom: 4rem;
-}
-
 @media screen and (max-width: 1600px) {
-  .border {
+  .floating-bar {
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -423,7 +401,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 }
 
 @media screen and (max-width: 1280px) {
-  .border {
+  .floating-bar {
     padding-left: 1rem;
     padding-right: 1rem;
   }
@@ -447,13 +425,6 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   
   .btn-group span {
     font-size: 0.75rem;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .float {
-    padding-bottom: 1rem !important;
-    padding-top: 1rem !important;
   }
 }
 
