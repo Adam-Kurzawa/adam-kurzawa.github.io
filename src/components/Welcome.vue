@@ -37,6 +37,7 @@ const themeStore = useThemeStore()
   cursor: pointer;
   color: black;
   text-decoration: none;
+  transition: all 0.5s ease;
 }
 
 .welcome-buycoffee img {
@@ -63,6 +64,7 @@ const themeStore = useThemeStore()
   cursor: pointer;
   color: white;
   text-decoration: none;
+  transition: all 0.5s ease;
 }
 
 .welcome-patronite img {

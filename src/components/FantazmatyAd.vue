@@ -6,21 +6,24 @@ import TextButton from './buttons/TextButton.vue'
 import SecondaryText from './texts/SecondaryText.vue'
 import H1 from './headers/H1.vue'
 import H3 from './headers/H3.vue'
+import { computed } from 'vue'
 
 const t = useTranslation()
 const themeStore = useThemeStore()
+
+const backgroundColor = computed(() => `ad-background-${themeStore.currentTheme}`)
 </script>
 
 <template>
-    <div class="ad-content" :class="themeStore.secondaryBackgroundColor">
+    <div class="ad-content" :class="backgroundColor">
       <div class="ad-flex ad-spacer">
         <div class="ad-flex">
           <H1 text="Antologia Fantazmaty VI" colorful="true" />
           <LinkButton text="Strona wydawcy" url="https://fantazmaty.pl/czytaj/antologie/#fantazmaty-3" />
         </div>
         <div class="ad-flex">
-          <H3 text="Fragment Egzorcyzmy Emily OS" />
-          <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et." />
+          <H3 text="Fragment Egzorcyzmy Emily OS" class="gainsboro" />
+          <SecondaryText class="ad-description gainsboro" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et." />
           <LinkButton text="Przeczytaj fragment" />
         </div>
       </div>
@@ -29,6 +32,22 @@ const themeStore = useThemeStore()
 </template>
 
 <style scoped>
+.ad-background-light {
+  background: rgb(82, 0, 71);
+}
+
+.ad-background-sepia {
+  background: rgb(83, 7, 73);
+}
+
+.ad-background-dark {
+  background: rgb(41, 16, 37);
+}
+
+.gainsboro {
+  color: gainsboro !important;
+}
+
 .ad-content {
   display: grid;
   grid-template-columns: auto 15rem;

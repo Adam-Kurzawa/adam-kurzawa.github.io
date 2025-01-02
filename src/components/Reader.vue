@@ -190,7 +190,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   display: flex;
   gap: 2rem;
   justify-content: center;
-  transition: background 0.5s ease;
+  transition: background 0.5s ease, padding 0.5s ease;
   position: fixed;
   top: 5.5rem;
   left: 0;
@@ -198,7 +198,6 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   z-index: 100;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  transition: padding 0.5s ease;
   padding-left: 4rem;
   padding-right: 4rem;
   padding-top: 1rem;

@@ -38,7 +38,7 @@ const onMouseLeave = () => { isMouseHovered.value = false }
   margin-left: 4rem;
   justify-content: space-between;
   border-radius: 0.5rem;
-  transition: background 1s ease;
+  transition: background 0.5s ease;
 }
 
 .tile-texts {

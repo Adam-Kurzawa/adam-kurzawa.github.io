@@ -7,7 +7,7 @@ const themeStore = useThemeStore()
 </script>
 
 <template>
-  <a class="link-button font-segoe" :class="themeStore.primaryLinkColor" :href="props.url" target="_blank">{{ props.text }} ↦</a>
+  <a class="link-button font-segoe" :class="themeStore.primaryLinkColor" :href="props.url" target="_blank">{{ props.text }} ➤</a>
 </template>
 
 <style scoped>

@@ -16,19 +16,19 @@ const themeStore = useThemeStore()
 <template>
   <div>
     <div class="ad">
-    <div class="ad-left" :class="themeStore.secondaryBackgroundColor">
-      <H1 text="Antologia Alternata" colorful="true" />
-      <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua." />
-      <TextButton text="Premiera marzec 2026" />
+      <div class="ad-left" :class="themeStore.secondaryBackgroundColor">
+        <H1 text="Antologia Alternata" colorful="true" />
+        <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua." />
+        <TextButton text="Premiera marzec 2026" />
+      </div>
+      <img src="../assets/alternata_mock.png" class="ad-middle" />
+      <div class="ad-right">
+        <H3 text="Fragment W drodze do Walhalli" />
+        <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et." />
+        <LinkButton text="Przeczytaj fragment" />
+      </div>
     </div>
-    <img src="../assets/alternata_mock.png" class="ad-middle" />
-    <div class="ad-right">
-      <H3 text="Fragment W drodze do Walhalli" />
-      <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et." />
-      <LinkButton text="Przeczytaj fragment" />
-    </div>
-  </div>
-  <div class="others">
+    <div class="others">
       <H2 text="Pozostałe opowiadania antologii" colorful="true" />
       <div class="cols-3">
         <HomeTile
@@ -136,9 +136,10 @@ const themeStore = useThemeStore()
 }
 
 .cols-3 {
+  margin-top: 0.5rem;
   display: grid;
   grid-template-columns: minmax(0, 33%) minmax(0, 34%) minmax(0, 33%);
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 @media screen and (max-width: 1600px) {
