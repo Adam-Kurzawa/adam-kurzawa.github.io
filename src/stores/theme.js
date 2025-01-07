@@ -10,6 +10,7 @@ export const useThemeStore = defineStore('theme', {
         currentTheme: (state) => state.theme,
         primaryBackgroundColor: (state) => `primary-background-color-${state.theme}`, // kolor tła strony
         secondaryBackgroundColor: (state) => `secondary-background-color-${state.theme}`, // kolor tła wyróżnionych elementów
+        onHoverBackgroundColor: (state) => `on-hover-background-color-${state.theme}`,
         shadowColor: (state) => `shadow-color-${state.theme}`, // kolor padających cieni
         borderColor: (state) => `border-color-${state.theme}`, // kolor obwódek navbara/bottom-bara
         primaryColor: (state) => `primary-color-${state.theme}`, // H1

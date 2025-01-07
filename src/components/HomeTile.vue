@@ -17,7 +17,7 @@ const onMouseLeave = () => { isMouseHovered.value = false }
 </script>
 
 <template>
-  <div class="tile " :class="[ isMouseHovered ? themeStore.secondaryBackgroundColor : '' ]" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
+  <div class="tile " :class="[ isMouseHovered ? themeStore.onHoverBackgroundColor : '' ]" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
     <img :src="cover" class="tile-cover" />
     <div class="tile-texts">
         <H3 :text="props.title" />

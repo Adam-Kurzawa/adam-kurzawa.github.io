@@ -8,21 +8,30 @@ import H2 from './headers/H2.vue'
 import H3 from './headers/H3.vue'
 import HomeTile from './HomeTile.vue'
 import SecondaryText from './texts/SecondaryText.vue'
+import { ref } from 'vue'
 
 const t = useTranslation()
 const themeStore = useThemeStore()
+
+const isMouseHovered = ref(false)
+const onMouseHover = () => { isMouseHovered.value = true }
+const onMouseLeave = () => { isMouseHovered.value = false }
+
+const isMouseHoveredOnLeft = ref(false)
+const onMouseHoverLeft = () => { isMouseHoveredOnLeft.value = true }
+const onMouseLeaveLeft = () => { isMouseHoveredOnLeft.value = false }
 </script>
 
 <template>
   <div>
     <div class="ad">
-      <div class="ad-left" :class="themeStore.secondaryBackgroundColor">
+      <div class="ad-left" :class="[ themeStore.secondaryBackgroundColor, isMouseHoveredOnLeft ? themeStore.onHoverBackgroundColor : '' ]" @mouseenter="onMouseHoverLeft" @mouseleave="onMouseLeaveLeft">
         <H1 text="Antologia Alternata" colorful="true" />
         <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua." />
         <TextButton text="Premiera marzec 2026" />
       </div>
       <img src="../assets/alternata_mock.png" class="ad-middle" />
-      <div class="ad-right">
+      <div class="ad-right" :class="[ isMouseHovered ? themeStore.onHoverBackgroundColor : '' ]" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
         <H3 text="Fragment W drodze do Walhalli" />
         <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et." />
         <LinkButton text="Przeczytaj fragment" />
@@ -84,6 +93,7 @@ const themeStore = useThemeStore()
   flex-direction: column;
   gap: 2rem;
   border-radius: 0.5rem;
+  transition: background 0.5s ease;
 }
 
 .ad-middle {
@@ -97,10 +107,13 @@ const themeStore = useThemeStore()
 
 .ad-right {
   padding: 2rem;
-  padding-left: 12rem;
+  padding-left: 10rem;
+  margin-left: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  border-radius: 0.5rem;
+  transition: background 0.5s ease;
 }
 
 .ad-description {

@@ -3,7 +3,11 @@
 }
 
 .secondary-background-color-sepia {
-    background-color: #c1b1b1 !important;
+    background-color: #9ea88c !important;
+}
+
+.on-hover-background-color-sepia {
+    background-color: rgb(190, 154, 154) !important;
 }
 
 .shadow-color-sepia {

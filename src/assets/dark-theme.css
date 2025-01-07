@@ -3,7 +3,11 @@
 }
 
 .secondary-background-color-dark {
-    background-color: #9d8888 !important;
+    background-color: #816b6b !important;
+}
+
+.on-hover-background-color-dark {
+    background-color: rgb(20, 36, 36) !important;
 }
 
 .shadow-color-dark {

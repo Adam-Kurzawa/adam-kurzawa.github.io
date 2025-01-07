@@ -2,20 +2,25 @@
 import { useThemeStore } from '@/stores/theme'
 import { useTranslation } from '@/utils/hooks'
 import LinkButton from './buttons/LinkButton.vue'
-import TextButton from './buttons/TextButton.vue'
 import SecondaryText from './texts/SecondaryText.vue'
 import H1 from './headers/H1.vue'
 import H3 from './headers/H3.vue'
 import { computed } from 'vue'
+import { ref } from 'vue';
 
 const t = useTranslation()
 const themeStore = useThemeStore()
 
 const backgroundColor = computed(() => `ad-background-${themeStore.currentTheme}`)
+const onHoverBackgroundColor = computed(() => `ad-background-on-hover-${themeStore.currentTheme}`)
+
+const isMouseHovered = ref(false)
+const onMouseHover = () => { isMouseHovered.value = true }
+const onMouseLeave = () => { isMouseHovered.value = false }
 </script>
 
 <template>
-    <div class="ad-content" :class="backgroundColor">
+    <div class="ad-content" :class="[ backgroundColor, isMouseHovered ? onHoverBackgroundColor : '' ]" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
       <div class="ad-flex ad-spacer">
         <div class="ad-flex">
           <H1 text="Antologia Fantazmaty VI" colorful="true" />
@@ -48,12 +53,25 @@ const backgroundColor = computed(() => `ad-background-${themeStore.currentTheme}
   color: gainsboro !important;
 }
 
+.ad-background-on-hover-light {
+  background: rgb(49, 0, 43);
+}
+
+.ad-background-on-hover-sepia {
+  background: rgb(44, 3, 39);
+}
+
+.ad-background-on-hover-dark {
+  background: rgb(53, 2, 46);
+}
+
 .ad-content {
   display: grid;
   grid-template-columns: auto 15rem;
   gap: 2rem;
   border-radius: 0.5rem;
   padding: 2rem;
+  transition: background 0.5s ease;
 }
 
 .ad-spacer {

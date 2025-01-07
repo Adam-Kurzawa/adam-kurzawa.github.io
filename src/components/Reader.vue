@@ -141,6 +141,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 
 .arrow {
   font-size: 1.25rem;
+  transition: color 0.5s ease;
 }
 
 .navigable {

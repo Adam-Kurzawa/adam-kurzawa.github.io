@@ -1,12 +1,16 @@
 <script setup>
 import H1 from './headers/H1.vue'
-import H3 from './headers/H3.vue'
 import LinkButton from './buttons/LinkButton.vue';
 import SecondaryText from './texts/SecondaryText.vue';
+import { ref } from 'vue';
+
+const isMouseHovered = ref(false)
+const onMouseHover = () => { isMouseHovered.value = true }
+const onMouseLeave = () => { isMouseHovered.value = false }
 </script>
 
 <template>
-    <div class="ad">
+    <div class="ad" :class="[ isMouseHovered ? 'ad-on-hover' : '' ]" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
         <H1 text="Bukowe Widziadło" colorful="true" class="white" />
         <SecondaryText text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et." class="gainsboro" />
         <LinkButton text="Przeczytaj fragment" class="white white-link" />
@@ -28,6 +32,14 @@ import SecondaryText from './texts/SecondaryText.vue';
     border-radius: 0.5rem;
     padding: 2rem;
     background: rgba(0, 0, 0, 0.25) url('@/assets/bukowe_widziadlo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+    transition: background 0.5s ease;
+}
+
+.ad-on-hover {
+    background: rgba(0, 0, 0, 0.45) url('@/assets/bukowe_widziadlo.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: darken;

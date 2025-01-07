@@ -1,7 +1,7 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme'
 import { useAsset, useLocale } from '@/utils/hooks'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import TextButton from './buttons/TextButton.vue'
 import H1 from './headers/H1.vue'
@@ -22,23 +22,12 @@ const title = computed(() => content.value.title);
 const description = computed(() => content.value.description);
 const year = computed(() => content.value.year);
 const chapters = computed(() => content.value.chapters.length);
-const genre = computed(() => 'sci-fi');
 const tags = computed(() => [ '#sci-fi', '#space-opera', '#military', '#action' ]);
 const charactersCount = computed(() => countCharacters(content.value.chapters))
 
-const fragment = computed(() => {
-  const firstChapter = content.value.chapters[0]
-  let result = ''
-  let line = 0
-  
-  do {
-    result += firstChapter[line]
-    result += '\n\t'
-    line += 1
-  } while (result.length < 300);
-
-  return result
-});
+const isMouseHovered = ref(false)
+const onMouseHover = () => { isMouseHovered.value = true }
+const onMouseLeave = () => { isMouseHovered.value = false }
 
 const openReader = () => {
   router.push({
@@ -50,10 +39,16 @@ const openReader = () => {
 </script>
 
 <template>
-  <div class="story-thumbnail" v-if="content">
-    <H1 class="story-thumbnail-title" :text="title" />
+  <div class="story-thumbnail" v-if="content" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
+    <div class="story-thumbnail-header">
+      <H1 :text="title" v-if="!isMouseHovered" />
+      <H1 :text="title" colorful="true" v-if="isMouseHovered" />
+      <div class="story-thumbnail-tags">
+        <span class="story-thumbnail-tag font-segoe" :class="themeStore.secondaryTextColor" v-for="tag in tags">{{ tag }}</span>
+      </div>
+    </div>
     <img class="story-thumbnail-cover" :class="themeStore.shadowColor" :src="imageSrc" />
-    <div class="story-thumbnail-bottom" :class="themeStore.secondaryBackgroundColor">
+    <div class="story-thumbnail-bottom" :class="[ isMouseHovered ? themeStore.onHoverBackgroundColor : themeStore.secondaryBackgroundColor ]">
       <div class="story-thumbnail-bottom-up">
         <TextButton text="Przeczytaj" :action="openReader" />
         <div class="story-thumbnail-bottom-up-right">
@@ -64,15 +59,9 @@ const openReader = () => {
         </div>
       </div>
       <div class="story-thumbnail-bottom-bottom">
-        <div class="story-thumbnail-bottom-bottom-left">
-          <div class="story-thumbnail-tuple story-thumbnail-bottom-bottom-left-description">
-            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Opis</div>
-            <SecondaryText class="story-thumbnail-description" :text="description" />
-          </div>
-          <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Fragment</div>
-            <SecondaryText class="story-thumbnail-description story-thumbnail-fragment" :text="fragment" />
-          </div>
+        <div class="story-thumbnail-tuple story-thumbnail-bottom-bottom-left-description">
+          <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Opis</div>
+          <SecondaryText class="story-thumbnail-description" :text="description" />
         </div>
         <div class="story-thumbnail-bottom-bottom-right">
           <div class="story-thumbnail-tuple">
@@ -82,16 +71,6 @@ const openReader = () => {
           <div class="story-thumbnail-tuple">
             <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Długość</div>
             <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ charactersCount }} znaków, {{ chapters }} rozdziałów</div>
-          </div>
-          <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Gatunek</div>
-            <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ genre }}</div>
-          </div>
-          <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Tagi</div>
-            <div class="story-thumbnail-tags">
-              <span class="story-thumbnail-tag font-segoe" :class="themeStore.secondaryTextColor" v-for="tag in tags">{{ tag }}</span>
-            </div>
           </div>
         </div>
       </div>
@@ -110,7 +89,7 @@ const openReader = () => {
 .story-thumbnail-cover {
   position: absolute;
   width: 14rem;
-  top: -4rem;
+  top: -1rem;
   left: 4rem;
   height: auto;
 }
@@ -208,12 +187,13 @@ const openReader = () => {
 .story-thumbnail-bottom {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   padding-left: 4rem;
-  padding-right: 4rem;
+  padding-right: 2rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
   border-radius: 0.5rem;
+  transition: background 0.5s ease;
 }
 
 .story-thumbnail-bottom-up {
@@ -237,19 +217,16 @@ const openReader = () => {
   gap: 4rem;
 }
 
-.story-thumbnail-bottom-bottom-left {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
 .story-thumbnail-bottom-bottom-right {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.story-thumbnail-title {
+.story-thumbnail-header {
   padding-left: 22rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 </style>
