@@ -19,6 +19,7 @@ const themeStore = useThemeStore()
   width: fit-content;
   font-weight: lighter;
   cursor: pointer;
+  align-content: center;
 }
 
 .text-button:hover {

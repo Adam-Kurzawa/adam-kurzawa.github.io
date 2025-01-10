@@ -5,6 +5,8 @@ import { useRoute, useRouter } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
 import { countCharacters } from '@/utils/functions'
 import { useThemeStore } from '@/stores/theme'
+import H3 from './headers/H3.vue'
+import TextButton from './buttons/TextButton.vue'
 
 const props = defineProps([ 'story', 'chapter' ])
 
@@ -49,10 +51,85 @@ const onUnhoverPreviousChapter = () => { isHoveredPreviousChapter.value = false 
 const isHoveredNextChapter = ref(false)
 const onHoverNextChapter = () => { isHoveredNextChapter.value = true }
 const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
+
+const comments = ref([
+  {
+    name: "Carlos95",
+    text: "W komentarzach więcej serduszek niż na 14. lutego. Słusznie się należą - wspaniałe opowiadanie."
+  },
+  {
+    name: "Smithy",
+    text: "Bardzo fajne opowiadanie. Uwielbiam klimaty demoniczne i odniesienia do starych wierzeń. Jak zwykle świetnie spędziłem czas. Tutaj nie da się nudzić. Pozdrawiam serdecznie tak autora jak i lektora. Wielka łapa w górę 🙂🙂👍"
+  },
+  {
+    name: "JanKowal",
+    text: "Zaczynam dzień z Siakiem!!! Nawet to, że zaczynam pracę mnie nie wkurza kiedy słucham tego głosu ❤❤"
+  },
+  {
+    name: "Stanooo",
+    text: "Bardzo fajne opowiadanie. \"Trzyma się\" w klimatach mojego ulubionego Fila Domonofila ;). Zdarza się, że nie za bardzo podchodzą mi czyjeś opowieści na Twoim kanale, ale ta fajnie się tu wpisuje. Jest ciekawa, tempo akcji może trochę na skróty, ale duży plus dla autora za fabułę. Lektorstwo, jak zwykle ubogaca opowieść. Bardzo dziękuję śląc serdeczne życzenia Autorowi Siakowi i gronu słuchaczy."
+  },
+  {
+    name: "MyszkaMiki",
+    text: "Świetne! 👏dla autora i dla Siaka. Złoty medal za przeczytane różnymi głosami, jak zwykle ten głos działa jak magnes👍🤘"
+  },
+  {
+    name: "Stachu",
+    text: "Aaaale dobre  to jest!!! O ile z innymi autorami najczęściej nie mam chemii, tak z panem Adamem sugeruję nawiązać stałą współpracę bo to materiał na cały serial!!!!"
+  },
+  {
+    name: "Bekas",
+    text: "Egzorcysta za niecałe trzysta 😂 A teraz na poważnie już po odsłuchu: Super opowiadanie. Nie wiem czy autor zdaje sobie sprawę, że chcący lub nie stworzył właśnie podwaliny pod zajebistą serie opowiadań na wzór Demonofila. Można fantastycznie wykorzystać dalej postać ksiedza Piotra i stworzyć całe uniwersum jego przygód. Trzymaj się tego, bo warto. Myślę, że istniała by nawet możliwośc żeby Karol w którymś momencie spotkał się z księdzem Piotrem. W końcu koledzy po fachu poniekąd 😉"
+  }
+])
+
+const areCommentsVisible = ref(false)
+const closeComments = () => { areCommentsVisible.value = false }
+const showComments = () => { areCommentsVisible.value = true }
+
+const commentInputName = ref('')
+const commentInputText = ref('')
+const addComment = () => { 
+  const newComment = {
+    name: commentInputName.value,
+    text: commentInputText.value
+  }
+
+  comments.value = [ ...comments.value, newComment ]
+  commentInputName.value = ''
+  commentInputText.value = ''
+}
+
+const commentsOverlayBackground = computed(() => `comments-overlay-${themeStore.currentTheme}`)
+const commentInputNamePlaceholderColor = computed(() => `comment-input-name-${themeStore.currentTheme}`)
+const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${themeStore.currentTheme}`)
 </script>
 
 <template>
-  <main>
+  <div>
+    <div class="comments-overlay" :class="[ areCommentsVisible ? 'comments-visible' : 'comments-hidden', commentsOverlayBackground ]">
+      <div></div>
+      <div class="comments" :class="[ themeStore.borderColor, themeStore.primaryBackgroundColor ]">
+        <div class="comments-title-bar">
+          <button class="close-comments" @click="closeComments">x</button>
+          <H3 class="comments-title" text="Komentarze" />
+          <div></div>
+        </div>
+        <div class="comments-list">
+          <div class="comment font-segoe" :class="[ themeStore.secondaryBackgroundColor, themeStore.primaryTextColor ]" v-for="comment in comments">
+            <div class="comment-name">{{ comment.name }}</div>
+            <div class="font-segoe">{{ comment.text }}</div>
+          </div>
+        </div>
+        <div class="comment-input" :class="themeStore.secondaryBackgroundColor">
+          <input class="comment-input-name font-segoe" v-model="commentInputName" placeholder="Pseudonim komentującego..." :class="[ themeStore.primaryTextColor, commentInputNamePlaceholderColor ]" type="text" />
+          <div class="comment-input-bottom-line">
+            <textarea class="comment-input-text font-segoe" v-model="commentInputText" placeholder="Tekst komentarza..." :class="[ themeStore.primaryTextColor, commentInputTextPlaceholderColor ]" />
+            <TextButton text="Dodaj" :action="addComment" />
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="floating-bar" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
       <div class="btn-group">
         <p :class="themeStore.primaryTextColor">{{ t("reader.download") }}</p>
@@ -76,6 +153,9 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
         <button class="font-settings-d" @click="() => setFontSize(fontSize + 0.25)" :class="themeStore.primaryTextColor">+</button>
         <button class="font-settings-e" @click="() => setFontSize(1.25)" :class="themeStore.primaryTextColor">100%</button>
         <button class="font-settings-f" @click="() => setFontSize(fontSize - 0.25)" :class="themeStore.primaryTextColor">-</button>
+      </div>
+      <div class="btn-group">
+        <p @click="showComments">Komentarze</p>
       </div>
     </div>
     <div class="white-panel" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
@@ -122,10 +202,143 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <style scoped>
+.comments-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  z-index: 200;
+}
+
+.comments-overlay-light {
+  background-color: rgba(256, 256, 256, 0.65);
+}
+
+.comments-overlay-sepia {
+  background-color: rgba(236, 228, 202, 0.65);
+}
+
+.comments-overlay-dark {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.comments-visible {
+  visibility: visible;
+} 
+
+.comments-hidden {
+  visibility: hidden;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  border-width: 1px;
+  border-style: solid;
+  height: calc(100vh - 4.1rem);
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  gap: 0.5rem;
+}
+
+.comment {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.comment-name {
+  font-weight: bold;
+  margin-bottom: 0.15rem;
+}
+
+.comments-title-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.close-comments {
+  font-size: 2rem;
+  background-color: transparent;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.comments-title {
+  justify-self: center;
+  margin-top: 0.65rem;
+}
+
+.comment-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: 0.5rem;
+}
+
+.comment-input-bottom-line {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0;
+}
+
+.comment-input-name {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 0.85rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.comment-input-text-light::placeholder,
+.comment-input-name-light::placeholder {
+  color: slategray;
+}
+
+.comment-input-text-sepia::placeholder,
+.comment-input-name-sepia::placeholder {
+  color: darkslategray;
+}
+
+.comment-input-text-dark::placeholder,
+.comment-input-name-dark::placeholder {
+  color: lightgray;
+}
+
+.comment-input-text {
+  padding: 0.5rem;
+  flex: 1;
+  min-height: 3rem;
+  height: 3rem;
+  max-height: 3rem;
+  font-size: 0.85rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  resize: none;
+}
+
 .white-panel {
   transition: padding 0.5s ease, background 0.5s ease;
   margin-bottom: 4rem;
@@ -361,6 +574,10 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 }
 
 @media screen and (max-width: 1600px) {
+  .comments-overlay {
+    grid-template-columns: 45% 55%;
+  }
+
   .floating-bar {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -389,6 +606,10 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 }
 
 @media screen and (max-width: 1440px) {
+  .comments-overlay {
+    grid-template-columns: 40% 60%;
+  }
+
   .floating-bar {
     gap: 1rem;
     flex-wrap: wrap;
@@ -396,6 +617,10 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 }
 
 @media screen and (max-width: 1280px) {
+  .comments-overlay {
+    grid-template-columns: 30% 70%;
+  }
+
   .floating-bar {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -420,6 +645,18 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   
   .btn-group span {
     font-size: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .comments-overlay {
+    grid-template-columns: 0% 100%;
+  }
+
+  .comments {
+    padding: 2rem;
+    border: none;
+    border-radius: 0;
   }
 }
 
