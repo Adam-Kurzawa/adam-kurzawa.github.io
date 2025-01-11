@@ -7,6 +7,8 @@ import { countCharacters } from '@/utils/functions'
 import { useThemeStore } from '@/stores/theme'
 import H3 from './headers/H3.vue'
 import TextButton from './buttons/TextButton.vue'
+import { useFirestore, useCollection } from 'vuefire'
+import { collection, addDoc } from 'firebase/firestore'
 
 const props = defineProps([ 'story', 'chapter' ])
 
@@ -14,6 +16,7 @@ const router = useRouter()
 const route = useRoute()
 const t = useTranslation()
 const themeStore = useThemeStore()
+const firestore = useFirestore()
 
 const fontSize = ref($cookies.get('font-size') ?? 1.25)
 const fontFamily = ref($cookies.get('font-family') ?? 'Times New Roman')
@@ -52,36 +55,8 @@ const isHoveredNextChapter = ref(false)
 const onHoverNextChapter = () => { isHoveredNextChapter.value = true }
 const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 
-const comments = ref([
-  {
-    name: "Carlos95",
-    text: "W komentarzach więcej serduszek niż na 14. lutego. Słusznie się należą - wspaniałe opowiadanie."
-  },
-  {
-    name: "Smithy",
-    text: "Bardzo fajne opowiadanie. Uwielbiam klimaty demoniczne i odniesienia do starych wierzeń. Jak zwykle świetnie spędziłem czas. Tutaj nie da się nudzić. Pozdrawiam serdecznie tak autora jak i lektora. Wielka łapa w górę 🙂🙂👍"
-  },
-  {
-    name: "JanKowal",
-    text: "Zaczynam dzień z Siakiem!!! Nawet to, że zaczynam pracę mnie nie wkurza kiedy słucham tego głosu ❤❤"
-  },
-  {
-    name: "Stanooo",
-    text: "Bardzo fajne opowiadanie. \"Trzyma się\" w klimatach mojego ulubionego Fila Domonofila ;). Zdarza się, że nie za bardzo podchodzą mi czyjeś opowieści na Twoim kanale, ale ta fajnie się tu wpisuje. Jest ciekawa, tempo akcji może trochę na skróty, ale duży plus dla autora za fabułę. Lektorstwo, jak zwykle ubogaca opowieść. Bardzo dziękuję śląc serdeczne życzenia Autorowi Siakowi i gronu słuchaczy."
-  },
-  {
-    name: "MyszkaMiki",
-    text: "Świetne! 👏dla autora i dla Siaka. Złoty medal za przeczytane różnymi głosami, jak zwykle ten głos działa jak magnes👍🤘"
-  },
-  {
-    name: "Stachu",
-    text: "Aaaale dobre  to jest!!! O ile z innymi autorami najczęściej nie mam chemii, tak z panem Adamem sugeruję nawiązać stałą współpracę bo to materiał na cały serial!!!!"
-  },
-  {
-    name: "Bekas",
-    text: "Egzorcysta za niecałe trzysta 😂 A teraz na poważnie już po odsłuchu: Super opowiadanie. Nie wiem czy autor zdaje sobie sprawę, że chcący lub nie stworzył właśnie podwaliny pod zajebistą serie opowiadań na wzór Demonofila. Można fantastycznie wykorzystać dalej postać ksiedza Piotra i stworzyć całe uniwersum jego przygód. Trzymaj się tego, bo warto. Myślę, że istniała by nawet możliwośc żeby Karol w którymś momencie spotkał się z księdzem Piotrem. W końcu koledzy po fachu poniekąd 😉"
-  }
-])
+const commentsFirestoreCollection = collection(firestore, `${route.params.title}_${route.params.lang}_comments`)
+const comments = useCollection(commentsFirestoreCollection)
 
 const areCommentsVisible = ref(false)
 const closeComments = () => { areCommentsVisible.value = false }
@@ -95,9 +70,13 @@ const addComment = () => {
     text: commentInputText.value
   }
 
-  comments.value = [ ...comments.value, newComment ]
-  commentInputName.value = ''
-  commentInputText.value = ''
+  try {
+    addDoc(commentsFirestoreCollection, newComment)
+    commentInputName.value = ''
+    commentInputText.value = ''
+  } catch (e) {
+    console.error('Cannot add a comment: ', e);
+  }
 }
 
 const commentsOverlayBackground = computed(() => `comments-overlay-${themeStore.currentTheme}`)
@@ -115,11 +94,14 @@ const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${th
           <H3 class="comments-title" text="Komentarze" />
           <div></div>
         </div>
-        <div class="comments-list">
+        <div class="comments-list" v-if="comments.length !== 0">
           <div class="comment font-segoe" :class="[ themeStore.secondaryBackgroundColor, themeStore.primaryTextColor ]" v-for="comment in comments">
             <div class="comment-name">{{ comment.name }}</div>
             <div class="font-segoe">{{ comment.text }}</div>
           </div>
+        </div>
+        <div class="font-segoe" :class="themeStore.primaryTextColor" v-if="comments.length === 0">
+          Brak komentarzy
         </div>
         <div class="comment-input" :class="themeStore.secondaryBackgroundColor">
           <input class="comment-input-name font-segoe" v-model="commentInputName" placeholder="Pseudonim komentującego..." :class="[ themeStore.primaryTextColor, commentInputNamePlaceholderColor ]" type="text" />

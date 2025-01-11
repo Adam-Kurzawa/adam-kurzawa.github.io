@@ -8,6 +8,8 @@ import VueCookies from 'vue-cookies'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
 import{ messages } from '@/assets/i18n/messages.js'
+import { VueFire } from 'vuefire'
+import { firebaseApp } from './firebase'
 
 const i18n = createI18n({
     legacy: false,
@@ -21,7 +23,7 @@ const gtag = {
     bootstrap: false,
     enabled: true,
     config: {
-        id: 'G-6Z9LBMVFVMc',
+        id: import.meta.env.VITE_GTAG_ID,
         params: {
             anonymize_ip: true
         }
@@ -38,4 +40,5 @@ app.use(router)
 app.use(pinia)
 app.use(VueGtag, gtag)
 app.use(VueCookies, cookies)
+app.use(VueFire, { firebaseApp })
 app.mount('#app')
