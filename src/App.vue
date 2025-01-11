@@ -1,10 +1,14 @@
 <script setup>
-import { RouterView, useRoute } from 'vue-router'
+import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue'
 import Copyrights from './components/Copyrights.vue'
 import { useThemeStore } from './stores/theme'
+import { ref } from 'vue'
+import WorkInProgress from './components/WorkInProgress.vue'
 
 const themeStore = useThemeStore()
+
+const hideContent = ref(import.meta.env.VITE_HIDE_CONTENT === 'true')
 </script>
 
 <template>
@@ -12,7 +16,8 @@ const themeStore = useThemeStore()
     <Navbar />
   </header>
   <div class="content" :class="themeStore.primaryBackgroundColor">
-    <RouterView :key="$route.fullPath"/>  
+    <WorkInProgress v-if="hideContent" />
+    <RouterView v-else :key="$route.fullPath"/>  
   </div>
   <footer>
     <Copyrights />
