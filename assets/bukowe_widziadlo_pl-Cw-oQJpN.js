@@ -1,0 +1,1 @@
+const o="Bukowe Widziadło",t="W Bieszczadach dochodzi do makabrycznych zbrodni. Zabójca podszywa się pod prastarą, bieszczadzką zjawę. Policja prosi o pomoc zgryźliwego egzorcystę.",e=2024,c=null,a=[["Test"]],s={title:o,description:t,year:2024,chapterTitles:null,chapters:a};export{c as chapterTitles,a as chapters,s as default,t as description,o as title,e as year};
