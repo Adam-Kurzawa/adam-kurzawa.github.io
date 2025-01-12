@@ -10,6 +10,8 @@ import { createPinia } from 'pinia'
 import{ messages } from '@/assets/i18n/messages.js'
 import { VueFire } from 'vuefire'
 import { firebaseApp } from './firebase'
+import ToastPlugin from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-bootstrap.css'
 
 const i18n = createI18n({
     legacy: false,
@@ -40,5 +42,6 @@ app.use(router)
 app.use(pinia)
 app.use(VueGtag, gtag)
 app.use(VueCookies, cookies)
+app.use(ToastPlugin)
 app.use(VueFire, { firebaseApp })
 app.mount('#app')

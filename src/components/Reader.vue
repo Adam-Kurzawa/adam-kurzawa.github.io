@@ -9,6 +9,8 @@ import H3 from './headers/H3.vue'
 import TextButton from './buttons/TextButton.vue'
 import { useFirestore, useCollection } from 'vuefire'
 import { collection, addDoc } from 'firebase/firestore'
+import { MathTcha } from '@/utils/MathTcha'
+import {useToast} from 'vue-toast-notification';
 
 const props = defineProps([ 'story', 'chapter' ])
 
@@ -17,6 +19,7 @@ const route = useRoute()
 const t = useTranslation()
 const themeStore = useThemeStore()
 const firestore = useFirestore()
+const toast = useToast()
 
 const fontSize = ref($cookies.get('font-size') ?? 1.25)
 const fontFamily = ref($cookies.get('font-family') ?? 'Times New Roman')
@@ -64,22 +67,41 @@ const showComments = () => { areCommentsVisible.value = true }
 
 const commentInputName = ref('')
 const commentInputText = ref('')
-const addComment = () => { 
-  const newComment = {
-    name: commentInputName.value,
-    text: commentInputText.value
-  }
+const mathTcha = ref(MathTcha.generateTest())
+const mathTchaResponse = ref('')
 
-  try {
-    addDoc(commentsFirestoreCollection, newComment)
-    commentInputName.value = ''
-    commentInputText.value = ''
-  } catch (e) {
-    console.error('Cannot add a comment: ', e);
+const addComment = () => { 
+  const name = commentInputName.value.trim()
+  const text = commentInputText.value.trim()
+  const testResponse = parseInt(mathTchaResponse.value)
+
+  if(name.length === 0) 
+    toast.warning("Wprowadzono pusty pseudonim", { position: 'top' })
+  else if(text.length === 0)
+    toast.warning("Wprowadzono pusty tekst", { position: 'top' })
+  else if(testResponse !== mathTcha.value.result)
+    toast.error("Zła odpowiedź na pytanie testowe", { position: 'top' })
+  else {
+    try {
+      const newComment = {
+        name: name,
+        text: text
+      }
+
+      addDoc(commentsFirestoreCollection, newComment)
+      toast.success("Dodano komentarz", { position: 'top' })
+      mathTcha.value = MathTcha.generateTest()
+      mathTchaResponse.value = ''
+      commentInputName.value = ''
+      commentInputText.value = ''
+    } catch (e) {
+      toast.error('Wystąpił błąd', { position: 'top' });
+    }
   }
 }
 
 const commentsOverlayBackground = computed(() => `comments-overlay-${themeStore.currentTheme}`)
+const commentInputMathTchaPlaceholderColor = computed(() => `comment-input-math-tcha-${themeStore.currentTheme}`)
 const commentInputNamePlaceholderColor = computed(() => `comment-input-name-${themeStore.currentTheme}`)
 const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${themeStore.currentTheme}`)
 </script>
@@ -104,10 +126,14 @@ const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${th
           Brak komentarzy
         </div>
         <div class="comment-input" :class="themeStore.secondaryBackgroundColor">
+          <div class="comment-input-math-tcha-section">
+            <div class="comment-input-math-tcha-question font-segoe" :class="[ themeStore.primaryTextColor ]">Ile wynosi suma liczb {{ mathTcha.values.join(', ') }}?</div>
+            <input class="comment-input-math-tcha font-segoe" v-model="mathTchaResponse" placeholder="Odpowiedź..." :class="[ themeStore.primaryTextColor, commentInputMathTchaPlaceholderColor ]" type="number" />
+          </div>
           <input class="comment-input-name font-segoe" v-model="commentInputName" placeholder="Pseudonim komentującego..." :class="[ themeStore.primaryTextColor, commentInputNamePlaceholderColor ]" type="text" />
           <div class="comment-input-bottom-line">
             <textarea class="comment-input-text font-segoe" v-model="commentInputText" placeholder="Tekst komentarza..." :class="[ themeStore.primaryTextColor, commentInputTextPlaceholderColor ]" />
-            <TextButton text="Dodaj" :action="addComment" />
+            <TextButton text="Dodaj" :action="addComment" :disabled="commentInputName.trim().length === 0 || commentInputText.trim().length === 0" />
           </div>
         </div>
       </div>
@@ -282,26 +308,55 @@ const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${th
   gap: 0;
 }
 
+.comment-input-math-tcha-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.comment-input-math-tcha-question {
+  padding: 0.5rem;
+  border: none;
+  font-size: 0.85rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.comment-input-math-tcha::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+.comment-input-math-tcha {
+  padding: 0.5rem;
+  border: none;
+  font-size: 0.85rem;
+  outline: none;
+  background-color: transparent;
+  flex: 1;
+}
+
 .comment-input-name {
   padding: 0.5rem;
   border: none;
-  border-radius: 0.5rem;
   font-weight: bold;
   font-size: 0.85rem;
   outline: none;
   background-color: transparent;
 }
 
+.comment-input-math-tcha-light::placeholder,
 .comment-input-text-light::placeholder,
 .comment-input-name-light::placeholder {
   color: slategray;
 }
 
+.comment-input-math-tcha-sepia::placeholder,
 .comment-input-text-sepia::placeholder,
 .comment-input-name-sepia::placeholder {
   color: darkslategray;
 }
 
+.comment-input-math-tcha-dark::placeholder,
 .comment-input-text-dark::placeholder,
 .comment-input-name-dark::placeholder {
   color: lightgray;
@@ -314,7 +369,6 @@ const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${th
   height: 3rem;
   max-height: 3rem;
   font-size: 0.85rem;
-  border-radius: 0.5rem;
   outline: none;
   border: none;
   background-color: transparent;
