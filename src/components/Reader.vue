@@ -447,7 +447,7 @@ const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${th
   border-bottom-style: solid;
   padding-left: 4rem;
   padding-right: 4rem;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   padding-bottom: 1rem;
 }
 
