@@ -49,32 +49,23 @@ const localizedLink = (view) => computed(() => {
     </span>
     <span class="navbar-medium">
       <RouterLink to="/" class="logo" :class="themeStore.primaryTextColor">Alternata</RouterLink>
-      <span class="navbar-section">
-        <Submenu :label="t('navbar.stories')" id="menu-stories-medium">
-          <li class="collapsed-link"><RouterLink :to="readerLink('powstanie_na_brillar')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.powstanie_na_brillar") }}</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="readerLink('klatwa_imetheru')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.klątwa_imetheru") }}</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="readerLink('projekt_eclipse')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.projekt_eclipse") }}</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="localizedLink('stories')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.stories") }}</RouterLink></li>
-        </Submenu>
-        <RouterLink :to="localizedLink('books')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.books") }}</RouterLink>
-        <RouterLink :to="localizedLink('blog')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.blog") }}</RouterLink>
-        <RouterLink :to="localizedLink('about')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.about") }}</RouterLink>
-        <ThemeButton class="theme-toggle" />
-        <LanguageButton />
-      </span>
+      <RouterLink :to="localizedLink('stories')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.stories") }}</RouterLink>
+      <RouterLink :to="localizedLink('books')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.books") }}</RouterLink>
+      <RouterLink :to="localizedLink('blog')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.blog") }}</RouterLink>
+      <RouterLink :to="localizedLink('about')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.about") }}</RouterLink>
+      <ThemeButton class="theme-toggle" />
+      <LanguageButton />
     </span>
     <span class="navbar-minimal">
+      <Submenu id="menu-overflow-minimal">
+        <li class="collapsed-link"><RouterLink :to="localizedLink('stories')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.stories") }}</RouterLink></li>
+        <li class="collapsed-link"><RouterLink :to="localizedLink('books')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.books") }}</RouterLink></li>
+        <li class="collapsed-link"><RouterLink :to="localizedLink('blog')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.blog") }}</RouterLink></li>
+        <li class="collapsed-link"><RouterLink :to="localizedLink('about')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.about") }}</RouterLink></li>
+      </Submenu>
       <RouterLink to="/" class="logo" :class="themeStore.primaryTextColor">Alternata</RouterLink>
-      <span class="navbar-section-minimal">
-        <Submenu id="menu-overflow-minimal">
-          <li class="collapsed-link"><RouterLink :to="localizedLink('stories')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.stories") }}</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="localizedLink('books')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.books") }}</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="localizedLink('blog')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.blog") }}</RouterLink></li>
-          <li class="collapsed-link"><RouterLink :to="localizedLink('about')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.about") }}</RouterLink></li>
-        </Submenu>
-        <ThemeButton class="theme-toggle" />
-        <LanguageButton />
-      </span>
+      <ThemeButton class="theme-toggle" />
+      <LanguageButton />
     </span>
   </nav>
 </template>
@@ -103,13 +94,6 @@ const localizedLink = (view) => computed(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
-  margin-bottom: 0.35rem;
-}
-
-.navbar-section-minimal {
-  transition: gap 1s ease;
-  display: flex;
-  gap: 1rem;
   margin-bottom: 0.35rem;
 }
 
@@ -154,20 +138,21 @@ const localizedLink = (view) => computed(() => {
   }
 
   .navbar-medium {
-    display: grid;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 3rem;
     grid-template-columns: 25% 75%;
-    align-items: end;
     padding-left: 2rem;
     padding-right: 2rem;
   }
 
-  .navbar-minimal {
-    display: none;
+  .logo {
+    flex: 1;
   }
 
-  .navbar-section {
-    justify-content: right;
-    margin-bottom: 0;
+  .navbar-minimal {
+    display: none;
   }
 }
 
@@ -182,22 +167,16 @@ const localizedLink = (view) => computed(() => {
   }
 
   .navbar-minimal {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    align-items: end;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 2rem;
     padding-left: 2rem;
     padding-right: 2rem;
   }
 
-  .navbar-section {
-    justify-content: right;
-    margin-bottom: 0;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .navbar-section {
-    gap: 1.5rem;
+  .logo {
+    flex: 1;
   }
 }
 </style>

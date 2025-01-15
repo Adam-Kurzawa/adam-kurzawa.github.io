@@ -39,8 +39,6 @@ const changeLanguage = () => {
   font-weight: lighter;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  padding-right: 1rem;
-  padding-left: 1rem;
   display: flex;
   margin-top: 0.25rem;
   gap: 0.5rem;

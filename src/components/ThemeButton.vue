@@ -9,10 +9,10 @@ const currentTheme = computed(() => themeStore.currentTheme)
 <template>
     <div class="theme-button" :class="themeStore.secondaryBackgroundColor" @click="themeStore.toggle">
         <div class="theme-button-icon-wrapper" :class="{ 'theme-button-icon-wrapper-selected': currentTheme == 'light' }">
-            <img class="theme-button-icon" :class="{ 'theme-button-icon-selected': currentTheme == 'light' }" src="../assets/light.svg" />
+            <img class="theme-button-icon" :class="{ 'theme-button-icon-selected': currentTheme == 'light', 'theme-button-icon-dark': currentTheme == 'dark' }" src="../assets/light.svg" />
         </div>
         <div class="theme-button-icon-wrapper" :class="{ 'theme-button-icon-wrapper-selected': currentTheme == 'sepia' }">
-            <img class="theme-button-icon" :class="{ 'theme-button-icon-selected': currentTheme == 'sepia' }" src="../assets/sepia.svg" />
+            <img class="theme-button-icon" :class="{ 'theme-button-icon-selected': currentTheme == 'sepia', 'theme-button-icon-dark': currentTheme == 'dark'  }" src="../assets/sepia.svg" />
         </div>
         <div class="theme-button-icon-wrapper" :class="{ 'theme-button-icon-wrapper-selected': currentTheme == 'dark' }">
             <img class="theme-button-icon" :class="{ 'theme-button-icon-selected': currentTheme == 'dark' }" src="../assets/dark.svg" />
@@ -55,6 +55,10 @@ const currentTheme = computed(() => themeStore.currentTheme)
 }
 
 .theme-button-icon-selected {
+    filter: invert(100%) sepia(1%) saturate(0%) hue-rotate(214deg) brightness(102%) contrast(100%);
+}
+
+.theme-button-icon-dark {
     filter: invert(100%) sepia(1%) saturate(0%) hue-rotate(214deg) brightness(102%) contrast(100%);
 }
 </style>

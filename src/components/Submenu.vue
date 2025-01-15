@@ -20,7 +20,7 @@ const deselectOnLeave = () => {
   <div class="submenu" @mouseleave="deselectOnLeave">
     <input class="submenu-hidden-checkbox" type="checkbox" :id="props.id" v-model="selected">
     <label class="navlink" :class="themeStore.primaryTextColor" v-if="props.label" :for="props.id" @mouseenter="selectOnHover">{{ props.label }}</label>
-    <label v-if="!props.label" :for="props.id" @mouseenter="selectOnHover"><img class="submenu-hamburger" src="@/assets/hamburger.png" /></label>
+    <label v-if="!props.label" :for="props.id" @mouseenter="selectOnHover"><img class="submenu-hamburger" :class="{ 'submenu-hamburger-dark': themeStore.currentTheme == 'dark' }" src="@/assets/hamburger.png" /></label>
     <div class="submenu-content" :class="themeStore.primaryBackgroundColor">
       <ul>
         <slot></slot>
@@ -73,7 +73,11 @@ input:checked~.submenu-content {
 }
 
 .submenu-hamburger {
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   width: 1.5rem;
+}
+
+.submenu-hamburger-dark {
+  filter: invert(100%) sepia(1%) saturate(0%) hue-rotate(214deg) brightness(102%) contrast(100%);
 }
 </style>
