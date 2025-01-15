@@ -11,6 +11,7 @@ import { useFirestore, useCollection } from 'vuefire'
 import { collection, addDoc } from 'firebase/firestore'
 import { MathTcha } from '@/utils/MathTcha'
 import {useToast} from 'vue-toast-notification';
+import ButtonGroup from './buttons/ButtonGroup.vue'
 
 const props = defineProps([ 'story', 'chapter' ])
 
@@ -139,15 +140,13 @@ const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${th
       </div>
     </div>
     <div class="floating-bar" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
-      <div class="btn-group">
-        <p :class="themeStore.primaryTextColor">{{ t("reader.download") }}</p>
+      <ButtonGroup :title="t('reader.download')">
         <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="saveAsMobi">MOBI</button>
         <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="saveAsEpub">ePUB</button>
         <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="sendToKindle">{{ t("reader.sendToKindle") }}</button>
-      </div>
-      <div class="btn-group font-settings">
-        <p class="font-settings-a" :class="themeStore.primaryTextColor">{{ t("reader.font") }}</p>
-        <select class="font-settings-b" :class="themeStore.primaryTextColor" v-model="fontFamily" @change="(event) => setFontFamily(event)">
+      </ButtonGroup>
+      <ButtonGroup>
+        <select :class="themeStore.primaryTextColor" v-model="fontFamily" @change="(event) => setFontFamily(event)">
           <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Times New Roman';">Times New Roman</option>
           <option :class="themeStore.primaryBackgroundColor" style="font-family: Georgia;">Georgia</option>
           <option :class="themeStore.primaryBackgroundColor" style="font-family: Arial;">Arial</option>
@@ -157,14 +156,12 @@ const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${th
           <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Yeseva One';">Yeseva One</option>
           <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Madimi One';">Madimi One</option>
         </select>
-        <span class="font-settings-c" :class="themeStore.primaryTextColor">{{ fontSize * 10 }}</span>
-        <button class="font-settings-d" @click="() => setFontSize(fontSize + 0.25)" :class="themeStore.primaryTextColor">+</button>
-        <button class="font-settings-e" @click="() => setFontSize(1.25)" :class="themeStore.primaryTextColor">100%</button>
-        <button class="font-settings-f" @click="() => setFontSize(fontSize - 0.25)" :class="themeStore.primaryTextColor">-</button>
-      </div>
-      <div class="btn-group">
-        <p @click="showComments">Komentarze</p>
-      </div>
+        <span :class="themeStore.primaryTextColor">{{ fontSize * 10 }}</span>
+        <button @click="() => setFontSize(fontSize + 0.25)" :class="themeStore.primaryTextColor">+</button>
+        <button @click="() => setFontSize(1.25)" :class="themeStore.primaryTextColor">100%</button>
+        <button @click="() => setFontSize(fontSize - 0.25)" :class="themeStore.primaryTextColor">-</button>
+      </ButtonGroup>
+      <TextButton text="Komentarze" :action="showComments" />
     </div>
     <div class="white-panel" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
       <div class="stats font-segoe" :class="themeStore.secondaryTextColor">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</div>
@@ -454,91 +451,6 @@ const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${th
   padding-bottom: 1rem;
 }
 
-.btn-group {
-  width: fit-content;
-}
-
-.btn-group button {
-  transition: font-size 1s ease;
-  border: 1px solid darkgoldenrod;
-  padding: 0.5rem 1rem;
-  background: none;
-  cursor: pointer;
-  float: left;
-  font-size: 1rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.btn-group button:disabled {
-  color: gray !important;
-}
-
-.btn-group button:disabled:hover {
-  color: gray !important;
-  background-color: darkgray !important;
-}
-
-.btn-group p {
-  transition: font-size 1s ease;
-  border: 1px solid darkgoldenrod;
-  padding: 0.5rem 1rem;
-  float: left;
-  font-weight: bold;
-  margin: 0;
-  font-size: 1rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.btn-group span {
-  transition: font-size 1s ease;
-  border: 1px solid darkgoldenrod;
-  padding: 0.5rem 1rem;
-  float: left;
-  margin: 0;
-  font-size: 1rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.btn-group select {
-  transition: font-size 1s ease;
-  border: 1px solid darkgoldenrod;
-  padding: 0.45rem 1rem;
-  float: left;
-  outline: none;
-  margin: 0;
-  background: none;
-  font-size: 1rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.btn-group :first-child {
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-}
-
-.btn-group :last-child {
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-}
-
-.btn-group :not(:last-child) {
-  border-right: none;
-}
-
-.btn-group:after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.btn-group button:hover {
-  background-color: darkgoldenrod;
-}
-
-.btn-group button:active {
-  background-color: limegreen;
-}
-
 .page-buttons {
   margin-top: 2rem;
   display: grid !important;
@@ -623,22 +535,6 @@ const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${th
     padding-left: 2rem;
     padding-right: 2rem;
   }
-
-  .btn-group button {
-    font-size: 0.90rem;
-  }
-
-  .btn-group p {
-    font-size: 0.90rem;
-  }
-
-  .btn-group select {
-    font-size: 0.90rem;
-  }
-  
-  .btn-group span {
-    font-size: 0.90rem;
-  }
 }
 
 @media screen and (max-width: 1440px) {
@@ -665,22 +561,6 @@ const commentInputTextPlaceholderColor = computed(() => `comment-input-text-${th
   .white-panel {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  .btn-group button {
-    font-size: 0.75rem;
-  }
-
-  .btn-group p {
-    font-size: 0.75rem;
-  }
-
-  .btn-group select {
-    font-size: 0.75rem;
-  }
-  
-  .btn-group span {
-    font-size: 0.75rem;
   }
 }
 

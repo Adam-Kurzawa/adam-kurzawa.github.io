@@ -8,7 +8,7 @@ const themeStore = useThemeStore()
 <template>
     <button 
         class="text-button font-segoe"
-        :class="[themeStore.buttonFillColor, themeStore.buttonTextColor]" 
+        :class="[ themeStore.buttonFillColor, themeStore.buttonTextColor ]" 
         @click="props.action"
         :disabled="props.disabled ? props.disabled : false"
     >{{ props.text }}</button>
