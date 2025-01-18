@@ -1,6 +1,6 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme'
-import { useTranslation } from '@/utils/hooks'
+import { useInnerWidth, useTranslation } from '@/utils/hooks'
 import LinkButton from './buttons/LinkButton.vue'
 import TextButton from './buttons/TextButton.vue'
 import H1 from './headers/H1.vue'
@@ -12,6 +12,7 @@ import { ref } from 'vue'
 
 const t = useTranslation()
 const themeStore = useThemeStore()
+const siteWidth = useInnerWidth()
 
 const isMouseHovered = ref(false)
 const onMouseHover = () => { isMouseHovered.value = true }
@@ -31,7 +32,7 @@ const onMouseLeaveLeft = () => { isMouseHoveredOnLeft.value = false }
         <TextButton text="Premiera marzec 2026" />
       </div>
       <img src="../assets/alternata_mock.png" class="ad-middle" />
-      <div class="ad-right" :class="[ isMouseHovered ? themeStore.onHoverBackgroundColor : '' ]" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
+      <div v-if="siteWidth > 1024" class="ad-right" :class="[ isMouseHovered ? themeStore.onHoverBackgroundColor : '' ]" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
         <H3 text="Fragment W drodze do Walhalli" />
         <SecondaryText class="ad-description" text="Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et." />
         <LinkButton text="Przeczytaj fragment" />
@@ -41,8 +42,14 @@ const onMouseLeaveLeft = () => { isMouseHoveredOnLeft.value = false }
       <H2 text="Pozostałe opowiadania antologii" colorful="true" />
       <div class="cols-3">
         <HomeTile
+          v-if="siteWidth <= 1024"
+          title="W drodze do Walhalli"
+          subtitle="Laboris dolore pariatur laborum duis occaecat eu reprehenderit excepteur."
+          cover="laniakea"
+        />
+        <HomeTile
           :title="t('alternata-ad.title_1')"
-          subtitle="Laboris dolore pariatur laborum duis occaecat eu reprehenderit excepteur aliquip non anim exercitation reprehenderit."
+          subtitle="Laboris dolore pariatur laborum duis occaecat eu reprehenderit excepteur."
           cover="laniakea"
         />
         <HomeTile
@@ -169,6 +176,7 @@ const onMouseLeaveLeft = () => { isMouseHoveredOnLeft.value = false }
 
   .ad-left {
     padding-right: 24rem;
+    border-radius: 0;
   }
 
   .ad-middle {
@@ -183,6 +191,7 @@ const onMouseLeaveLeft = () => { isMouseHoveredOnLeft.value = false }
   .cols-3 {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
   }
 
 }

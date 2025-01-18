@@ -124,9 +124,8 @@ const onMouseLeave = () => { isMouseHovered.value = false }
 }
 
 @media screen and (max-width: 1024px) {
-  .ad {
-    display: flex;
-    flex-direction: column;
+  .ad-content {
+      border-radius: 0;
   }
 
   .ad-middle {

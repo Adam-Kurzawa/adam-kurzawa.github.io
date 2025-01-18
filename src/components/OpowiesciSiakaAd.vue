@@ -99,4 +99,10 @@ const onMouseLeave = () => { isMouseHovered.value = false }
     height: auto;
     transition: all 0.5s ease;
 }
+
+@media screen and (max-width: 1280px) {
+    .ad {
+        border-radius: 0;
+    }
+}
 </style>

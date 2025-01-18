@@ -65,7 +65,6 @@ const hideContent = ref(import.meta.env.VITE_HIDE_CONTENT === 'true')
 
 @media screen and (max-width: 1024px) {
   .content {
-    margin-top: 5rem;
     padding-left: 0;
     padding-right: 0;
   }

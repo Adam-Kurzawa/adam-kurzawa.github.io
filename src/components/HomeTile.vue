@@ -17,42 +17,46 @@ const onMouseLeave = () => { isMouseHovered.value = false }
 </script>
 
 <template>
-  <div class="tile " :class="[ isMouseHovered ? themeStore.onHoverBackgroundColor : '' ]" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
+  <div class="tile">
     <img :src="cover" class="tile-cover" />
-    <div class="tile-texts">
+    <div class="tile-texts" :class="[ isMouseHovered ? themeStore.onHoverBackgroundColor : '' ]" @mouseenter="onMouseHover" @mouseleave="onMouseLeave">
         <H3 :text="props.title" />
         <SecondaryText class="tile-subtitle":text="props.subtitle" />
-    </div>
-    <LinkButton text="Przeczytaj fragment" />
+        <LinkButton text="Przeczytaj fragment" />
+      </div>
   </div>
 </template>
 
 <style scoped>
 .tile {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
   position: relative;
-  padding: 2rem;
-  padding-left: 6rem;
-  margin-left: 4rem;
-  justify-content: space-between;
   border-radius: 0.5rem;
   transition: background 0.5s ease;
 }
 
 .tile-texts {
+  transition: all 0.5s ease;
+  border-radius: 0.5rem;
+  padding-top: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  flex: 1;
 }
 
 .tile-cover {
-  position: absolute;
+  min-width: 8rem;
   width: 8rem;
+  max-width: 8rem;
+  min-height: 11rem;
   height: 11rem;
-  left: -4rem;
-  top: calc(50% - 5.5rem);
+  max-height: 11rem;
   box-shadow: 11px 35px 27px -10px rgba(66, 68, 90, 1);
 }
 
@@ -74,5 +78,11 @@ const onMouseLeave = () => { isMouseHovered.value = false }
 
 .tile-link:hover {
   color: darkgoldenrod;
+}
+
+@media screen and (max-width: 1024px) {
+  .tile-texts {
+    justify-content: center;
+  }
 }
 </style>

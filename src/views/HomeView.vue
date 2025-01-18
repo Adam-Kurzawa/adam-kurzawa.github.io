@@ -12,7 +12,7 @@ const t = useTranslation()
   <main class="welcome-container">
     <Welcome />
     <BookAd />
-    <div class="tempppp">
+    <div class="bottom-ads">
       <FantazmatyAd />
       <OpowiesciSiakaAd />
     </div>
@@ -26,9 +26,17 @@ const t = useTranslation()
   flex-direction: column;
 }
 
-.tempppp {
+.bottom-ads {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 2rem;
+}
+
+@media screen and (max-width: 1280px) {
+  .bottom-ads {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
 </style>
