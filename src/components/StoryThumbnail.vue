@@ -49,29 +49,22 @@ const openReader = () => {
     </div>
     <img class="story-thumbnail-cover" :class="themeStore.shadowColor" :src="imageSrc" />
     <div class="story-thumbnail-bottom" :class="[ isMouseHovered ? themeStore.onHoverBackgroundColor : themeStore.secondaryBackgroundColor ]">
-      <div class="story-thumbnail-bottom-up">
-        <TextButton text="Przeczytaj" :action="openReader" />
-        <div class="story-thumbnail-bottom-up-right">
-          <IconButton text="Pobierz ePUB" image="download.svg" />
-          <IconButton text="Pobierz mobi" image="download.svg" />
-          <IconButton text="Wyślij do Kindle" image="send.svg" />
-          <IconButton text="Udostępnij" image="share.svg" />
-        </div>
-      </div>
       <div class="story-thumbnail-bottom-bottom">
-        <div class="story-thumbnail-tuple story-thumbnail-bottom-bottom-left-description">
+        <TextButton text="Przeczytaj" :action="openReader" />
+        <div class="story-thumbnail-tuple">
           <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Opis</div>
           <SecondaryText class="story-thumbnail-description" :text="description" />
         </div>
-        <div class="story-thumbnail-bottom-bottom-right">
-          <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Rok wydania</div>
-            <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ year }}</div>
-          </div>
-          <div class="story-thumbnail-tuple">
-            <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Długość</div>
-            <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ charactersCount }} znaków, {{ chapters }} rozdziałów</div>
-          </div>
+      </div>
+      <div class="story-thumbnail-bottom-bottom-right">
+        <div class="story-thumbnail-tuple">
+          <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Rok wydania</div>
+          <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ year }}</div>
+        </div>
+        <div class="story-thumbnail-tuple">
+          <div class="story-thumbnail-label font-josefin" :class="themeStore.secondaryTextColor">Długość</div>
+          <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ charactersCount }} znaków</div>
+          <div class="story-thumbnail-value font-segoe" :class="themeStore.secondaryTextColor">{{ chapters }} rozdziałów</div>
         </div>
       </div>
     </div>
@@ -96,6 +89,11 @@ const openReader = () => {
 
 .story-thumbnail-label {
   font-weight: bold;
+  white-space: nowrap;
+}
+
+.story-thumbnail-value {
+  white-space: nowrap;
 }
 
 .story-thumbnail-description {
@@ -146,10 +144,6 @@ const openReader = () => {
   align-items: center;
 }
 
-.story-thumbnail-bottom-bottom-left-description {
-  padding-left: 18rem;
-}
-
 .story-thumbnail-icon-button:hover {
   color: darkgoldenrod;
   border-color: darkgoldenrod;
@@ -186,23 +180,15 @@ const openReader = () => {
 
 .story-thumbnail-bottom {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding-left: 4rem;
-  padding-right: 2rem;
+  flex-direction: row;
+  gap: 4rem;
+  padding-left: 22rem;
+  padding-right: 4rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
   border-radius: 0.5rem;
   transition: background 0.5s ease;
-}
-
-.story-thumbnail-bottom-up {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  justify-content: space-between;
-  padding-bottom: 2rem;
-  margin-left: 18rem;
+  min-height: 12rem;
 }
 
 .story-thumbnail-bottom-up-right {
@@ -212,9 +198,9 @@ const openReader = () => {
 }
 
 .story-thumbnail-bottom-bottom {
-  display: grid;
-  grid-template-columns: 70% 30%;
-  gap: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .story-thumbnail-bottom-bottom-right {
@@ -228,5 +214,32 @@ const openReader = () => {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+@media screen and (max-width: 1280px) {
+  .story-thumbnail-cover {
+    left: 2rem;
+  }
+
+  .story-thumbnail-header {
+    padding-left: 20rem;
+  }
+
+  .story-thumbnail-bottom {
+    gap: 3rem;
+    padding-right: 3rem;
+    padding-left: 20rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .story-thumbnail-header {
+    padding-left: 19rem;
+  }
+
+  .story-thumbnail-bottom {
+    border-radius: 0;
+    padding-left: 19rem;
+  }
 }
 </style>

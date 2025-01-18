@@ -25,12 +25,6 @@ body {
   color: darkgoldenrod;
 }
 
-@media screen and (max-width: 1024px) {
-  h1 {
-    text-align: center;
-  }
-}
-
 .generic-view {
   display: flex;
   flex-direction: column;

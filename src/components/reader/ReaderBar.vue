@@ -11,7 +11,8 @@ const t = useTranslation()
 const themeStore = useThemeStore()
 
 const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles)
-const sendToKindle = () => {}
+const sendToKindle = () => { console.log("Sent to Kindle!") }
+const share = () => { console.log("Shared!") }
 </script>
 
 <template>
@@ -19,6 +20,7 @@ const sendToKindle = () => {}
     <ButtonGroup>
       <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="saveAsEpub">Pobierz ePUB</button>
       <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="sendToKindle">{{ t("reader.sendToKindle") }}</button>
+      <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="share">Udostępnij</button>
     </ButtonGroup>
     <ButtonGroup>
       <select :class="themeStore.primaryTextColor" v-model="props.fontFamily" @change="(event) => $emit('set-font-family', event)">
