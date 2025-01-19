@@ -22,7 +22,7 @@ const title = computed(() => content.value.title);
 const description = computed(() => content.value.description);
 const year = computed(() => content.value.year);
 const chapters = computed(() => content.value.chapters.length);
-const tags = computed(() => [ '#sci-fi', '#space-opera', '#military', '#action' ]);
+const tags = computed(() => content.value.tags);
 const charactersCount = computed(() => countCharacters(content.value.chapters))
 
 const isMouseHovered = ref(false)
@@ -44,7 +44,7 @@ const openReader = () => {
       <H1 :text="title" v-if="!isMouseHovered" />
       <H1 :text="title" colorful="true" v-if="isMouseHovered" />
       <div class="story-thumbnail-tags">
-        <span class="story-thumbnail-tag font-segoe" :class="themeStore.secondaryTextColor" v-for="tag in tags">{{ tag }}</span>
+        <span class="story-thumbnail-tag font-segoe" :class="themeStore.secondaryTextColor" v-for="tag in tags">#{{ tag }}</span>
       </div>
     </div>
     <img class="story-thumbnail-cover" :class="themeStore.shadowColor" :src="imageSrc" />

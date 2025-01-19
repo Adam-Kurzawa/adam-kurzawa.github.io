@@ -61,6 +61,8 @@ const json = JSON.stringify({
     title: title,
     description: description,
     year: year,
+    tags: [],
+    chapterTitles: null,
     chapters: scenes
 })
 

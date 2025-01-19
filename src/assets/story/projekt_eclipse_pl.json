@@ -2,6 +2,7 @@
     "title": "Projekt Eclipse",
     "description": "Na przestrzeni milionów lat odkrywamy jak inżynieryjny projekt mający zbawić świat, staje się jego zgubą. Przeinwestowany cud nowoczesnych technologii czy otoczony czcią obiekt obcych? Oto Projekt Eclipse!",
     "year": 2023,
+    "tags": [ "sci-fi", "przyszłość", "ziemia", "klimat", "mars" ],
     "chapterTitles": [
         "UN EcoSummit ‘02",
         "Red City",
