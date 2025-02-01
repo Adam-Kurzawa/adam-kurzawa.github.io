@@ -11,9 +11,9 @@ const currentTheme = computed(() => themeStore.currentTheme)
         <div class="theme-button-icon-wrapper" :class="{ 'theme-button-icon-wrapper-selected': currentTheme == 'light' }">
             <img class="theme-button-icon" :class="{ 'theme-button-icon-selected': currentTheme == 'light', 'theme-button-icon-dark': currentTheme == 'dark' }" src="../assets/light.svg" />
         </div>
-        <div class="theme-button-icon-wrapper" :class="{ 'theme-button-icon-wrapper-selected': currentTheme == 'sepia' }">
+        <!--<div class="theme-button-icon-wrapper" :class="{ 'theme-button-icon-wrapper-selected': currentTheme == 'sepia' }">
             <img class="theme-button-icon" :class="{ 'theme-button-icon-selected': currentTheme == 'sepia', 'theme-button-icon-dark': currentTheme == 'dark'  }" src="../assets/sepia.svg" />
-        </div>
+        </div>-->
         <div class="theme-button-icon-wrapper" :class="{ 'theme-button-icon-wrapper-selected': currentTheme == 'dark' }">
             <img class="theme-button-icon" :class="{ 'theme-button-icon-selected': currentTheme == 'dark' }" src="../assets/dark.svg" />
         </div>

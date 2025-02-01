@@ -12,7 +12,8 @@ const themeStore = useThemeStore()
 
 <style scoped>
 .link-button {
-  font-size: 1rem;
+  font-size: 0.90rem;
+  letter-spacing: 0.025rem;
   font-weight: bold;
   cursor: pointer;
   transition: color 0.5s ease;

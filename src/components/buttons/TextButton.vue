@@ -18,9 +18,9 @@ const themeStore = useThemeStore()
 .text-button {
   border-radius: 0.5rem;
   border: none;
-  font-size: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  font-size: 0.85rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   width: fit-content;

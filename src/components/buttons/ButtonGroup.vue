@@ -41,7 +41,7 @@ const btnGroupChild = computed(() => `btn-group-child-${themeStore.currentTheme}
   align-content: center;
   text-align: center;
   font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif !important;
-  font-size: 1rem;
+  font-size: 0.85rem;
   transition: all 0.5s ease;
 }
 

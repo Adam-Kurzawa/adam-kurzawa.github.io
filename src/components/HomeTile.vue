@@ -67,17 +67,11 @@ const onMouseLeave = () => { isMouseHovered.value = false }
 
 .tile-subtitle {
   text-align: justify;
+  flex: 1;
 }
 
-.tile-link {
-  color: darkslategray;
-  font-size: 1rem;
-  font-weight: bold;
+.tile-texts:hover {
   cursor: pointer;
-}
-
-.tile-link:hover {
-  color: darkgoldenrod;
 }
 
 @media screen and (max-width: 1024px) {

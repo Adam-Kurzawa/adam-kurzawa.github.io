@@ -26,9 +26,10 @@ export const useThemeStore = defineStore('theme', {
     actions: {
         toggle() {
             if (this.theme == 'light')
-                this.theme = 'sepia'
-            else if (this.theme == 'sepia')
                 this.theme = 'dark'
+            //    this.theme = 'sepia'
+            //else if (this.theme == 'sepia')
+            //    this.theme = 'dark'
             else
                 this.theme = 'light'
         }
