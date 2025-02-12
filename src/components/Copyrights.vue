@@ -1,15 +1,13 @@
 <script setup>
-import { useThemeStore } from '@/stores/theme'
 import { useTranslation } from '@/utils/hooks'
 
 const t = useTranslation()
-const themeStore = useThemeStore()
 </script>
 
 <template>
-  <div class="footer" :class="[themeStore.secondaryBackgroundColor, themeStore.primaryTextColor]">
-    <div class="copyrights font-segoe">&copy; {{ t("copyrights.arr") }}</div>
-    <div class="copyrights analytics font-segoe">&copy; {{ t("copyrights.cookies") }}</div>
+  <div class="footer">
+    <a-typography-text>&copy; {{ t("copyrights.arr") }}</a-typography-text>
+    <a-typography-text>&copy; {{ t("copyrights.cookies") }}</a-typography-text>
   </div>
 </template>
 
@@ -21,14 +19,7 @@ const themeStore = useThemeStore()
   flex-wrap: nowrap;
   flex-direction: column;
   gap: 1rem;
-}
-
-.copyrights {
   text-align: center;
-}
-
-.analytics {
-  font-size: 0.85rem;
 }
 
 @media screen and (max-width: 1024px) {

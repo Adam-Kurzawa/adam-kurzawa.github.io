@@ -5,6 +5,7 @@ import AboutView from '@/views/AboutView.vue'
 import BlogView from '@/views/BlogView.vue'
 import BooksView from '@/views/BooksView.vue'
 import StoriesView from '@/views/StoriesView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,7 +21,7 @@ const router = createRouter({
       component: AboutView
     },
     {
-      path: '/:lang/stories',
+      path: '/:lang/stories', // ?series='xxx'
       name: 'stories',
       component: StoriesView
     },
@@ -38,6 +39,10 @@ const router = createRouter({
       path: '/:lang/:title/:chapter?',
       name: 'reader',
       component: ReaderView
+    },
+    { path: '/:pathMatch(.*)*', 
+      name: 'not-found', 
+      component: NotFoundView 
     }
   ]
 })

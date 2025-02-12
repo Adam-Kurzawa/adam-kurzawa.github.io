@@ -14,8 +14,7 @@ const setFontSize = (size) => {
   fontSize.value = size 
 }
 
-const setFontFamily = (event) => {
-  const font = event.target.value
+const setFontFamily = (font) => {
   $cookies.set('font-family', font)
   fontFamily.value = font
 }
@@ -31,6 +30,7 @@ const showComments = () => { areCommentsVisible.value = true }
                     @close-comments="closeComments"
     />
     <ReaderBar :story="props.story" 
+               :chapter="props.chapter"
                :font-size="fontSize"
                :font-family="fontFamily"
                @set-font-family="setFontFamily"

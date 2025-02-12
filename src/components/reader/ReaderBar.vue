@@ -1,53 +1,127 @@
 <script setup>
+import { h, onMounted, ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { EpubService } from '@/utils/EpubService.js'
 import { useTranslation } from '@/utils/hooks'
-import { useThemeStore } from '@/stores/theme'
-import TextButton from '@/components/buttons/TextButton.vue'
-import ButtonGroup from '@/components/buttons/ButtonGroup.vue'
+import { ShareAltOutlined, OrderedListOutlined, SendOutlined, DownloadOutlined, BookOutlined, BookTwoTone } from '@ant-design/icons-vue'
+import { theme } from 'ant-design-vue'
 
-const props = defineProps([ 'fontSize', 'fontFamily', 'story' ])
+const props = defineProps([ 'fontSize', 'fontFamily', 'story', 'chapter' ])
+
+const { useToken } = theme
+const { token } = useToken()
 
 const t = useTranslation()
-const themeStore = useThemeStore()
+const router = useRouter()
+const route = useRoute()
+
+const chapterTitles = computed(() => {
+  const titles = props.story.chapterTitles
+
+  if(titles && titles !== null)
+    return titles;
+  else 
+    return Array.apply(null, Array(props.story.chapters.length))
+      .map((el, index) => `${t("reader.epub-chapter")} ${index + 1}`)
+})
+
+const isBookmarked = ref()
+const bookmarkTooltipVisible = ref(false)
+const menuChapterVisible = ref(false)
+
+const hideBookmarkTooltip = () => {
+  bookmarkTooltipVisible.value = false
+}
+
+const showBookmarkTooltip = () => {
+  bookmarkTooltipVisible.value = true
+  setTimeout(hideBookmarkTooltip, 5_000)
+}
+
+const bookmarkProgress = () => {
+  if(isBookmarked.value) {
+    $cookies.remove(`${props.story.title} scroll`)
+    $cookies.remove(`${props.story.title} chapter`)
+    isBookmarked.value = false
+    showBookmarkTooltip()
+  } else {
+    const appHeight = document.querySelector('#app').clientHeight
+    const scrollPosition = window.scrollY
+    const progress = scrollPosition / appHeight
+    $cookies.set(`${props.story.title} scroll`, progress)
+    $cookies.set(`${props.story.title} chapter`, props.chapter)
+    isBookmarked.value = true
+    showBookmarkTooltip()
+  }
+}
+
+onMounted(() => {
+  const cookieValue = $cookies.get(`${props.story.title} scroll`)
+  const chapterCookie = parseInt($cookies.get(`${props.story.title} chapter`) ?? '-1')
+  isBookmarked.value = cookieValue !== undefined && cookieValue !== null
+
+  if(chapterCookie === props.chapter) {
+    const progress = parseFloat(cookieValue ?? '0')
+    const appHeight = document.querySelector('#app').clientHeight
+    const viewportHeight = window.innerHeight
+    const scrollY = Math.min(appHeight - viewportHeight, appHeight * progress)
+    window.scroll(window.scrollX, scrollY)
+  }
+})
 
 const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles)
 const sendToKindle = () => { console.log("Sent to Kindle!") }
 const share = () => { console.log("Shared!") }
+const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: chapterNumber } })
 </script>
 
 <template>
-  <div class="floating-bar" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
-    <ButtonGroup>
-      <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="saveAsEpub">Pobierz ePUB</button>
-      <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="sendToKindle">{{ t("reader.sendToKindle") }}</button>
-      <button href="#" class="font-segoe" :class="themeStore.primaryTextColor" @click="share">Udostępnij</button>
-    </ButtonGroup>
-    <ButtonGroup>
-      <select :class="themeStore.primaryTextColor" v-model="props.fontFamily" @change="(event) => $emit('set-font-family', event)">
-        <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Times New Roman';">Times New Roman</option>
-        <option :class="themeStore.primaryBackgroundColor" style="font-family: Georgia;">Georgia</option>
-        <option :class="themeStore.primaryBackgroundColor" style="font-family: Arial;">Arial</option>
-        <option :class="themeStore.primaryBackgroundColor" style="font-family: Verdana;">Verdana</option>
-        <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Segoe UI';">Segoe UI</option>
-        <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Josefin Sans';">Josefin Sans</option>
-        <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Yeseva One';">Yeseva One</option>
-        <option :class="themeStore.primaryBackgroundColor" style="font-family: 'Madimi One';">Madimi One</option>
-      </select>
-    </ButtonGroup>
-    <ButtonGroup>
-      <span :class="themeStore.primaryTextColor">{{ props.fontSize * 10 }}</span>
-      <button @click="$emit('increase-font-size')" :class="themeStore.primaryTextColor">+</button>
-      <button @click="$emit('default-font-size')" :class="themeStore.primaryTextColor">100%</button>
-      <button @click="$emit('decrease-font-size')" :class="themeStore.primaryTextColor">-</button>
-    </ButtonGroup>
-    <TextButton text="Komentarze" :action="() => $emit('show-comments')" />
-  </div>
+	<div class="floating-bar" :style="{ borderBottomColor: token.colorBorderSecondary, backgroundColor: token.colorBgContainer }">
+    <a-popover v-model:open="menuChapterVisible" :title="t('reader.bar.chapters-menu-title')" trigger="click">
+      <template #content>
+        <a-timeline :style="{ marginTop: '2rem' }">
+          <a-timeline-item v-for="(chapterTitle, index) in chapterTitles">
+            <a-button type="link" :style="{ padding: '0', marginTop: '-1rem' }" @click="() => jumpToChapter(index + 1)">{{ chapterTitle }}</a-button>
+          </a-timeline-item>
+        </a-timeline>
+      </template>
+      <a-button :icon="h(OrderedListOutlined)"></a-button>
+    </a-popover>
+    <a-tooltip v-if="isBookmarked" placement="bottom" :open="bookmarkTooltipVisible" :title="t('reader.bar.bookmarked')">
+      <a-button :icon="h(BookTwoTone)" @click="bookmarkProgress"></a-button>
+    </a-tooltip>
+    <a-tooltip v-else placement="bottom" :open="bookmarkTooltipVisible" :title="t('reader.bar.unbookmarked')">
+      <a-button :icon="h(BookOutlined)" @click="bookmarkProgress"></a-button>
+    </a-tooltip>
+		<a-button-group>
+    <a-button :icon="h(DownloadOutlined)" @click="saveAsEpub">{{ t('reader.bar.download-epub') }}</a-button>
+			<a-button :icon="h(SendOutlined)" @click="sendToKindle">{{ t('reader.bar.send-to-kindle') }}</a-button>
+			<a-button :icon="h(ShareAltOutlined)" @click="share">{{ t('reader.bar.share') }}</a-button>
+		</a-button-group>
+		<a-select v-model:value="props.fontFamily" style="width: 10rem" @change="(value) => $emit('set-font-family', value)">
+			<a-select-option value="Times New Roman" :style="{ fontFamily: 'Times New Roman' }">Times New Roman</a-select-option>
+			<a-select-option value="Georgia" :style="{ fontFamily: 'Georgia' }">Georgia</a-select-option>
+			<a-select-option value="Arial" :style="{ fontFamily: 'Arial' }">Arial</a-select-option>
+			<a-select-option value="Verdana" :style="{ fontFamily: 'Verdana' }">Verdana</a-select-option>
+			<a-select-option value="Segoe UI" :style="{ fontFamily: 'Segoe UI' }">Segoe UI</a-select-option>
+			<a-select-option value="Josefin Sans" :style="{ fontFamily: 'Josefin Sans' }">Josefin Sans</a-select-option>
+			<a-select-option value="Yeseva One" :style="{ fontFamily: 'Yeseva One' }">Yeseva One</a-select-option>
+			<a-select-option value="Madimi One" :style="{ fontFamily: 'Madimi One' }">Madimi One</a-select-option>
+		</a-select>
+		<a-button-group>
+			<a-button disabled>{{ props.fontSize * 10 }}</a-button>
+			<a-button @click="$emit('increase-font-size')">+</a-button>
+			<a-button @click="$emit('default-font-size')">100%</a-button>
+			<a-button @click="$emit('decrease-font-size')">-</a-button>
+		</a-button-group>
+		<a-button type="primary" @click="$emit('show-comments')">{{ t('reader.comments.header') }}</a-button>
+	</div>
 </template>
 
 <style scoped>
 .floating-bar {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: center;
   transition: background 0.5s ease, padding 0.5s ease;
   position: fixed;

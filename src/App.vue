@@ -12,16 +12,18 @@ const hideContent = ref(import.meta.env.VITE_HIDE_CONTENT === 'true')
 </script>
 
 <template>
-  <header>
-    <Navbar />
-  </header>
-  <div class="content" :class="themeStore.primaryBackgroundColor">
-    <WorkInProgress v-if="hideContent" />
-    <RouterView v-else :key="$route.fullPath"/>  
-  </div>
-  <footer>
-    <Copyrights />
-  </footer>
+  <a-config-provider :theme="{ algorithm: themeStore.themeAlgorithm }">
+    <header>
+      <Navbar />
+    </header>
+    <div class="content" :class="themeStore.primaryBackgroundColor">
+      <WorkInProgress v-if="hideContent" />
+      <RouterView v-else :key="$route.fullPath"/>  
+    </div>
+    <footer>
+      <Copyrights />
+    </footer>
+  </a-config-provider>
 </template>
 
 <style scoped>
@@ -29,17 +31,10 @@ const hideContent = ref(import.meta.env.VITE_HIDE_CONTENT === 'true')
   transition: padding 0.5s ease, background-color 0.5s ease;
   padding-top: 10rem;
   padding-bottom: 5rem;
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 15%;
+  padding-right: 15%;
   display: flex;
   justify-content: center;
-}
-
-@media screen and (max-width: 2300px) {
-  .content {
-    padding-left: 10%;
-    padding-right: 10%;
-  }
 }
 
 @media screen and (max-width: 1920px) {

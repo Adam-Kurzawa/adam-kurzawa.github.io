@@ -1,5 +1,64 @@
 export const messages = {
     "pl": {
+        "page-not-found": "Coś jest nie tegez... Strona o podanym adresie nie istnieje!",
+        "alternata-card": {
+            "title": "Antologia \"Alternata\"",
+            "subtitle": "Siedem opowiadań z innych światów",
+            "text": "Nordycka space opera, słowiańskie demony cyberprzestrzeni, pismo starsze niż Wszechświat, objawienie religijne na innej planecie... Debiutancki zbiór opowiadań przeniesie Was w świat skrzywionych rzeczywistości. Odwiedzicie przyszłość bliską i bardzo daleką. Zmienicie przyszłość Ziemi, człowieka, a nawet Układu Słonecznego. Zdecydujecie o losach marsjańskich kolonii oraz całego Chrześcijaństwa.",
+            "launch": "Premiera maj 2027",
+            "read-more": "Przeczytaj fragment",
+            "stories": {
+                "walhalla": {
+                    "title": "W drodze do Walhalli",
+                    "description": "Nordycka space opera. Współcześni wikingowie i tajemniczy mistycy w nierównej walce przeciwko Asgardowi. Walka, honor i przeznaczenie prowadzą ich ku Walhalli, lecz innej niż się spodziewają."
+                },
+                "laniakea": {
+                    "title": "Krzyk pośród Laniakei",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                },
+                "slavic": {
+                    "title": "Nowa baśń",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                },
+                "script": {
+                    "title": "Słowa Wszechświata",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                },
+                "solstice": {
+                    "title": "Ares VI",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                },
+                "timestar": {
+                    "title": "Gwiazda czasu",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                },
+                "revelations": {
+                    "title": "Konflikt objawień",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                }
+            }
+        },
+        "story-card": {
+            "read": "Czytaj",
+            "series-column": "Seria",
+            "year-column": "Rok wydania",
+            "chapters-column": "Ilość rozdziałów",
+            "characters-column": "Ilość znaków"
+        },
+        "fantazmaty-card": {
+            "title": "Antologia \"Fantazmaty V\"",
+            "story-title": "Egzorcyzmy Emily OS",
+            "description": "Lorem ipsum",
+            "publisher": "Strona wydawcy",
+            "read": "Przeczytaj fragment"
+        },
+        "siak-card": {
+            "title": "Bukowe Widziadło",
+            "description": "Lorem ipsum",
+            "read": "Przeczytaj opowiadanie",
+            "listen": "Posłuchaj audiobooka"
+        },
+
         "work-in-progress": "Strona w budowie",
         "navbar": {
             "powstanie_na_brillar": "Powstanie na Brillar",
@@ -25,7 +84,7 @@ export const messages = {
             "title_1": "Krzyk pośród Laniakei",
             "title_2": "Nowa baśń",
             "title_3": "Słowa Wszechświata",
-            "title_4": "Przesilenie marsjańskie",
+            "title_4": "Ares VI",
             "title_5": "Gwiazda czasu",
             "title_6": "Konflikt objawień",
             "h4": "Premiera marzec 2026"
@@ -43,7 +102,33 @@ export const messages = {
             "nextChapter": "Następna scena",
             "epub-chapter": "Scena",
             "signs": "znaków",
-            "theEnd": "Koniec"
+            "theEnd": "Koniec",
+
+
+
+            "comments": {
+                "header": "Komentarze",
+                "empty-comments": "Brak komentarzy",
+                "amount-singular": "komentarz",
+                "amount-plural": "komentarze",
+                "new-comment-math-tcha-placeholder": "Odpowiedź na pytanie...",
+                "new-comment-name-placeholder": "Twój pseudonim...",
+                "new-comment-text-placeholder": "Tekst komentarza...",
+                "new-comment-submit": "Opublikuj",
+                'new-comment-math-tcha-prompt': "Ile wynosi suma liczb",
+                'new-comment-empty-content': "Pusta wartość!",
+                'new-comment-wrong-answer': "Zła odpowiedź!",
+                'new-comment-added': "Dodano komentarz",
+                'new-comment-rejected': "Wystąpił błąd"
+            },
+            "bar": {
+                "send-to-kindle": "Wyśli na Kindle",
+                "share": "Udostępnij",
+                "download-epub": "Pobierz EPUB",
+                "bookmarked": "Zapisano postęp czytania",
+                "unbookmarked": "Usunięto zakładkę",
+                "chapters-menu-title": "Rozdziały"
+            }
         },
         "copyrights": {
             "arr": "Wszelkie prawa zastrzeżone. Strona i jej zawartość są własnością Adama Kurzawy i objęte pełnymi prawami autorskimi. Nieautoryzowane rozpowszechnianie w jakimkolwiek celu jest ściśle zabronione.",
@@ -51,6 +136,65 @@ export const messages = {
         }
     },
     "en": {
+        "page-not-found": "Something ain't right... The page you are looking for doesn't exists!",
+        "alternata-card": {
+            "title": "\"Alternata\" The Anthology",
+            "subtitle": "Seven stories from another worlds",
+            "text": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua.",
+            "launch": "To be released on May 2027",
+            "read-more": "Read fragment",
+            "stories": {
+                "walhalla": {
+                    "title": "To Valhalla",
+                    "description": "A Nordic space opera. Modern Vikings and mysterious mystics in an uneven battle against Asgard. Battle, honor, and destiny lead them toward Valhalla—but one unlike they expected."
+                },
+                "laniakea": {
+                    "title": "Scream Amidst the Laniakea",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                },
+                "slavic": {
+                    "title": "A Modern Tale",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                },
+                "script": {
+                    "title": "Script of the Universe",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                },
+                "solstice": {
+                    "title": "Ares VI",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                },
+                "timestar": {
+                    "title": "Timestar",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                },
+                "revelations": {
+                    "title": "Conflict of Revelations",
+                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                }
+            }
+        },
+        "story-card": {
+            "read": "Start reading",
+            "series-column": "Series",
+            "year-column": "Publication year",
+            "chapters-column": "Chapters",
+            "characters-column": "Characters"
+        },
+        "fantazmaty-card": {
+            "title": "Anthology \"Fantazmaty V\"",
+            "story-title": "The Exorcisms of Emily OS",
+            "description": "Lorem ipsum",
+            "publisher": "Publisher's website",
+            "read": "Start reading"
+        },
+        "siak-card": {
+            "title": "Beech Phantom",
+            "description": "Lorem ipsum",
+            "read": "Start reading",
+            "listen": "Listen to audiobook"
+        },
+
         "work-in-progress": "This section is still under construction",
         "navbar": {
             "powstanie_na_brillar": "Brillar Uprising",
@@ -94,7 +238,36 @@ export const messages = {
             "nextChapter": "Next chapter",
             "epub-chapter": "Chapter",
             "signs": "characters",
-            "theEnd": "The end"
+            "theEnd": "The end",
+
+
+
+            "comments": {
+                "header": "Comments",
+                "empty-comments": "No comments yet",
+                "amount-singular": "comment",
+                "amount-plural": "comments",
+                "new-comment-math-tcha-placeholder": "Your answer to the math riddle...",
+                "new-comment-name-placeholder": "Your name...",
+                "new-comment-text-placeholder": "Comment content...",
+                "new-comment-submit": "Send",
+                'new-comment-math-tcha-prompt': "How much is a sum of following numbers: ",
+                'new-comment-empty-content': "Empty value!",
+                'new-comment-wrong-answer': "Wrong answer!"
+            },
+            "bar": {
+                "send-to-kindle": "Send to Kindle",
+                "share": "Share",
+                "download-epub": "Download EPUB",
+                "bookmarked": "Saved reading progress",
+                "unbookmarked": "Bookmark removed",
+                "chapters-menu-title": "Chapters"
+            }
+
+
+
+
+
         },
         "copyrights": {
             "arr": "All rights reserved. This webpage and its content are owned by Adam Kurzawa and protected by author's copyrights. Unauthorized use is strictly prohibited.",

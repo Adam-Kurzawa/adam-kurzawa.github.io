@@ -1,20 +1,20 @@
 <script setup>
-import Welcome from '@/components/Welcome.vue'
-import BookAd from '@/components/BookAd.vue'
 import { useTranslation } from '@/utils/hooks'
-import FantazmatyAd from '@/components/FantazmatyAd.vue'
-import OpowiesciSiakaAd from '@/components/OpowiesciSiakaAd.vue';
+import FantazmatyCard from '@/components/FantazmatyCard.vue'
+import BukoweCard from '@/components/BukoweCard.vue'
+import AlternataCard from '@/components/AlternataCard.vue'
+import WelcomeCard from '@/components/WelcomeCard.vue'
 
 const t = useTranslation()
 </script>
 
 <template>
   <main class="welcome-container">
-    <Welcome />
-    <BookAd />
+    <WelcomeCard />
+    <AlternataCard />
     <div class="bottom-ads">
-      <FantazmatyAd />
-      <OpowiesciSiakaAd />
+      <FantazmatyCard />
+      <BukoweCard />
     </div>
   </main>
 </template>
@@ -28,7 +28,7 @@ const t = useTranslation()
 
 .bottom-ads {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: repeat(2, minmax(0, 50%));
   gap: 2rem;
 }
 

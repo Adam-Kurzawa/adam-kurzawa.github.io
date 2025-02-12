@@ -2,9 +2,7 @@
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useLocale, useTranslation } from '@/utils/hooks'
-import BlogThumbnail from '@/components/BlogThumbnail.vue'
-import H0 from '@/components/headers/H0.vue'
-import H2 from '@/components/headers/H2.vue'
+import BlogCard from '@/components/BlogCard.vue'
 
 const locale = useLocale()
 const route = useRoute()
@@ -24,25 +22,30 @@ const firstEntry = computed(() => [...articles.value][0])
 
 <template>
   <main class="generic-view">
-    <H0 :text="t('navbar.blog')" />
-    <H2 class="mt-1" text="Najnowsze wpisy" />
+    <a-typography-title class="h3" :level="3">Najnowsze wpisy</a-typography-title>
     <div class="spotlight">
-      <BlogThumbnail :title="firstEntry" variant="vertical"/>
+      <BlogCard :title="firstEntry" variant="vertical"/>
       <div class="spotlight-right">
-        <BlogThumbnail :title="firstEntry" variant="horizontal"/>
-        <BlogThumbnail :title="firstEntry" variant="horizontal"/>
-        <BlogThumbnail :title="firstEntry" variant="horizontal"/>
+        <BlogCard :title="firstEntry" variant="horizontal"/>
+        <BlogCard :title="firstEntry" variant="horizontal"/>
+        <BlogCard :title="firstEntry" variant="horizontal"/>
       </div>
     </div>
-    <H2 class="mt-1" text="Wszystkie wpisy" />
+    <a-typography-title class="h3" :level="3">Wszystkie wpisy</a-typography-title>
     <div class="entries">
-      <BlogThumbnail v-for="article in articles" :title="article" variant="vertical"/>
-      <BlogThumbnail v-for="article in articles" :title="article" variant="vertical"/>
+      <BlogCard v-for="article in articles" :title="article" variant="vertical"/>
+      <BlogCard v-for="article in articles" :title="article" variant="vertical"/>
     </div>
   </main>
 </template>
 
 <style scoped>
+.h3 {
+    font-family: 'Yeseva One';
+    font-weight: 100;
+    margin-top: 0.75rem;
+}
+
 .entries {
   display: grid;
   grid-template-columns: minmax(0, 33%) minmax(0, 34%) minmax(0, 33%);

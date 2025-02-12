@@ -1,35 +1,19 @@
 <script setup>
-import { useTranslation } from '@/utils/hooks'
+import { useAsset, useTranslation } from '@/utils/hooks'
 
 const t = useTranslation()
+const image = useAsset(import('@/assets/roadblock.png'))
 </script>
 
 <template>
-  <div class="work-in-progress">
-    <img src="@/assets/wip.png" class="work-in-progress-roadblock" />
-    <div class="work-in-progress-text font-segoe">{{ t('work-in-progress') }}</div>
-  </div>
+	<a-result :title="t('work-in-progress')">
+		<template #icon>
+			<img :src="image" :style="{ height: '15rem' }" />
+		</template>
+	</a-result>
+	<!--<a-empty :image="image" :image-style="{ height: '10rem' }">
+		<template #description>
+			<a-typography-title type="warning">{{ t('work-in-progress') }}</a-typography-title>
+		</template>
+	</a-empty>-->
 </template>
-
-<style scoped>
-.work-in-progress {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
-.work-in-progress-text {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  color: gray;
-  margin-top: 2rem;
-  align-self: center;
-}
-
-.work-in-progress-roadblock {
-  height: auto;
-  width: 15rem;
-  align-self: center;
-}
-</style>

@@ -8,16 +8,24 @@ const route = useRoute()
 
 const language = route.params.lang
 const title = route.params.title
-const chapter = route.params.chapter ? Number(route.params.chapter) : 1
 const type = route?.query?.type ?? 'story'
 
 const story = useAsset(import(`@/assets/${type}/${title}_${language}.json`))
+
+const resolveChapter = () => {
+  const routedChapter = route.params.chapter
+
+  if(routedChapter)
+    return Number(routedChapter)
+  else
+    return parseInt($cookies.get(`${story.value.title} chapter`) ?? '1')
+}
 
 locale.value = language
 </script>
 
 <template>
   <main>
-    <Reader v-if="story" :story="story" :chapter="chapter" />
+    <Reader v-if="story" :story="story" :chapter="resolveChapter()" />
   </main>
 </template>

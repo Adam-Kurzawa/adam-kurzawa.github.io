@@ -18,17 +18,21 @@ body {
 }
 
 .navlink:hover {
-  color: darkgoldenrod;
+  color: #3c89e8;
 }
 
 .router-link-active.navlink {
-  color: darkgoldenrod;
+  color: #1668dc;
 }
 
 .generic-view {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.ant-timeline-item-last {
+  padding: 0 !important;
 }
 
 .font-segoe {
@@ -47,20 +51,6 @@ body {
   font-family: "Madimi One";
 }
 
-.v-toast__item {
-  border-radius: 0.5rem !important;
-  opacity: 1 !important;
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
-}
-
-.v-toast__text {
-  font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif !important;
-  font-weight: bold !important;
-  font-size: 0.85rem;
-}
-
-.v-toast__item--error {
+.ant-input-textarea-show-count::after {
+  content: none !important;
 }

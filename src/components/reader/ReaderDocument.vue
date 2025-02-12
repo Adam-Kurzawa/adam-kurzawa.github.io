@@ -4,8 +4,12 @@ import { useRoute, useRouter } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
 import { countCharacters } from '@/utils/functions'
 import { useThemeStore } from '@/stores/theme'
+import { theme } from 'ant-design-vue'
 
 const props = defineProps([ 'story', 'chapter', 'fontSize', 'fontFamily' ])
+
+const { useToken } = theme
+const { token } = useToken()
 
 const router = useRouter()
 const route = useRoute()
@@ -33,9 +37,9 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 </script>
 
 <template>
-  <div class="white-panel" :class="[themeStore.primaryBackgroundColor, themeStore.borderColor]">
-    <div class="stats font-segoe" :class="themeStore.secondaryTextColor">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</div>
-    <div class="title" :class="themeStore.primaryTextColor">{{ props.story.title }}</div>
+  <div class="white-panel" :style="{ borderColor: token.colorBorderSecondary }">
+    <a-typography-text type="secondary" class="stats">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</a-typography-text>
+    <a-typography-title :style="{ fontFamily: 'Yeseva One', fontWeight: '100' }" class="title">{{ props.story.title }}</a-typography-title>
     <div class="chapter-pager" v-if="hasMultiplePages">
       <div class="prev-chapter" :class="[themeStore.secondaryTextColor, previousPageDisabled ? 'transparent' : '', isHoveredPreviousChapter ? themeStore.primaryLinkColor : '']">
         <div class="arrow">←</div>
@@ -158,10 +162,9 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 }
 
 .stats {
-  font-size: 0.80rem;
+  display: block;
+  width: 100%;
   text-align: center;
-  letter-spacing: 0.15rem;
-  margin-top: 2rem;
 }
 
 .next-scene {
