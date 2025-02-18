@@ -66,12 +66,38 @@ const stories = ref([
 <style scoped>
 .stories {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-auto-rows: 14rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-areas:
         "ad ad walhalla"
         "laniakea slavic script"
         "solstice timestar revelations";
     gap: 1rem;
+}
+
+@media screen and (max-width: 1920px) {
+  .stories {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+        "ad walhalla"
+        "laniakea slavic"
+        "script solstice"
+        "timestar revelations";
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .stories {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "ad"
+        "walhalla"
+        "laniakea"
+        "slavic"
+        "script"
+        "solstice"
+        "timestar"
+        "revelations";
+  }
 }
 </style>

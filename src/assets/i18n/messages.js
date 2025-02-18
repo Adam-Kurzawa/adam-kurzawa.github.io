@@ -26,7 +26,7 @@ export const messages = {
                 },
                 "solstice": {
                     "title": "Ares VI",
-                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                    "description": "Trwa wyścig na Marsa. Wydaje się, że misja z Wenus dotrze tam pierwsza, jednak los uśmiecha się do Amerykanów - wenowie napotykają krytyczny problem. Zwycięska misja ludzi zmienia się w akcję ratunkową."
                 },
                 "timestar": {
                     "title": "Gwiazda czasu",
@@ -48,17 +48,24 @@ export const messages = {
         "fantazmaty-card": {
             "title": "Antologia \"Fantazmaty V\"",
             "story-title": "Egzorcyzmy Emily OS",
-            "description": "Lorem ipsum",
+            "description": {
+                "0": "Na planecie Selatiel, w systemie Tau Ceti, Kościół Katolicki prowadzi ambitną misję chrystianizacji tubylczych selasów. Gdy platforma obronna „Archanioł”, chroniąca kolonie przed meteorytami, nagle odmawia posłuszeństwa, ksiądz-egzorcysta John Durand zostaje wezwany do zbadania sprawy. Szybko okazuje się, że problem wykracza poza zwykłą usterkę – orbitalny system przejawia objawy opętania.",
+                "1": "Wraz z młodym, selaskim księdzem Michaelem Korionisem, Durand rozpoczyna śledztwo, które prowadzi ich w sam środek intrygi obejmującej sabotaż, tajemniczy kult i demony. Czy to dzieło ludzkiej zdrady, demoniczny atak czy jednak bunt cyfrowego bytu? Zegar tyka – za miesiąc na Selatiela spadnie gigantyczna planetoida, a „Archanioł” jest jedyną linią obrony całej planety."
+            },
             "publisher": "Strona wydawcy",
             "read": "Przeczytaj fragment"
         },
         "siak-card": {
             "title": "Bukowe Widziadło",
-            "description": "Lorem ipsum",
+            "description": {
+                "0": "Ksiądz Piotr Dobosz, egzorcysta i znawca słowiańskich demonów, zostaje wezwany do tajemniczej zbrodni w Bieszczadach. Cztery ciała, symbole pogańskie i makabryczny rytuał prowadzą go na trop zapomnianej istoty – Bukowego Widziadła. Wraz z podkomisarzem Zawadą zagłębia się w ciemne lasy, gdzie zatarła się granica między legendą a rzeczywistością.",
+                "1": "Im głębiej wnika w sprawę, tym bardziej staje się jasne, że starożytny byt, zwany Remaelem, nie jest ani demonem, ani aniołem – to istota krocząca trzecią drogą, od wieków wplatająca się w ludzkie losy. Ofiary otrzymywały dary – siłę, zdrowie, talent – ale cena była nieznana. Gdy Dobosz staje oko w oko z Widziadłem, odkrywa, że w bieszczadzkich lasach wciąż toczy się pradawna walka.",
+                "2": "Wśród deszczu, mgły i wycia wilków ksiądz musi zmierzyć się nie tylko z nadprzyrodzonym bytem, ale i własnym przeznaczeniem. Czy zdoła ocalić ludzi przed siłą, której nie da się zaszufladkować jako dobro lub zło? Czy stare legendy mogą być czymś więcej niż tylko bajaniami górali?",
+                "3": "Bieszczady skrywają wiele tajemnic. Niektóre z nich nie chcą zostać odkryte."
+            },
             "read": "Przeczytaj opowiadanie",
             "listen": "Posłuchaj audiobooka"
         },
-
         "work-in-progress": "Strona w budowie",
         "navbar": {
             "powstanie_na_brillar": "Powstanie na Brillar",
@@ -75,37 +82,10 @@ export const messages = {
             "buycoffee": "postawić mi kawę",
             "patronite": "zostać moim patronem"
         },
-        "alternata-ad": {
-            "h2": "7 historii z alternatywnych światów",
-            "h3_0": "Nordycka space opera, słowiańskie demony cyberprzestrzeni, pismo starsze niż Wszechświat, objawienie religijne na innej planecie... Debiutancki zbiór opowiadań przeniesie Was w świat skrzywionych rzeczywistości. Odwiedzicie przyszłość bliską i bardzo daleką. Zmienicie przyszłość Ziemi, człowieka, a nawet Układu Słonecznego. Zdecydujecie o losach marsjańskich kolonii oraz całego Chrześcijaństwa.",
-            "h3_1": "Zapraszam do lektury!",
-            "h3_2": "Zawiera opowiadania:",
-            "title_0": "W drodze do Walhalii",
-            "title_1": "Krzyk pośród Laniakei",
-            "title_2": "Nowa baśń",
-            "title_3": "Słowa Wszechświata",
-            "title_4": "Ares VI",
-            "title_5": "Gwiazda czasu",
-            "title_6": "Konflikt objawień",
-            "h4": "Premiera marzec 2026"
-        },
         "reader": {
-            "download": "Pobierz",
-            "theme": "Motyw",
-            "dark": "Ciemny",
-            "light": "Jasny",
-            "sepia": "Sepia",
-            "sendToKindle": "Wyślij do Kindle",
-            "fontSize": "Rozmiar tekstu",
-            "font": "Czcionka",
-            "previousChapter": "Poprzednia scena",
-            "nextChapter": "Następna scena",
             "epub-chapter": "Scena",
             "signs": "znaków",
             "theEnd": "Koniec",
-
-
-
             "comments": {
                 "header": "Komentarze",
                 "empty-comments": "Brak komentarzy",
@@ -162,7 +142,7 @@ export const messages = {
                 },
                 "solstice": {
                     "title": "Ares VI",
-                    "description": "Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum."
+                    "description": "The race to Mars is on. It seems that the mission from Venus will arrive first, but fate smiles upon the Americans – the Venusians encounter a critical problem. The victorious human mission turns into a rescue operation."
                 },
                 "timestar": {
                     "title": "Timestar",
@@ -184,17 +164,24 @@ export const messages = {
         "fantazmaty-card": {
             "title": "Anthology \"Fantazmaty V\"",
             "story-title": "The Exorcisms of Emily OS",
-            "description": "Lorem ipsum",
+            "description": {
+                "0": "On the planet Selatiel, in the Tau Ceti system, the Catholic Church is conducting an ambitious mission to Christianize the native Selasians. When the defense platform 'Archangel,' protecting the colonies from meteorites, suddenly malfunctions, exorcist priest John Durand is called in to investigate. It quickly becomes apparent that the problem goes beyond a mere technical failure—the orbital system is exhibiting signs of possession.",
+                "1": "Along with the young Selasian priest Michael Korionis, Durand embarks on an investigation that leads them into the heart of a conspiracy involving sabotage, a mysterious cult, and demons. Is this the work of human betrayal, a demonic attack, or the rebellion of a digital entity? The clock is ticking—within a month, a massive planetoid will strike Selatiel, and 'Archangel' is the only line of defense for the entire planet."
+            },
             "publisher": "Publisher's website",
             "read": "Start reading"
         },
         "siak-card": {
             "title": "Beech Phantom",
-            "description": "Lorem ipsum",
+            "description": {
+                "0": "Father Piotr Dobosz, an exorcist and expert on Slavic demons, is summoned to investigate a mysterious crime in the Bieszczady Mountains. Four bodies, pagan symbols, and a macabre ritual lead him to the trail of a forgotten entity – the Beech Apparition. Together with Deputy Commissioner Zawada, he ventures into the dark forests, where the line between legend and reality has blurred.",
+                "1": "The deeper he delves into the case, the clearer it becomes that the ancient being known as Remael is neither a demon nor an angel—it follows a third path, intertwining with human fates for centuries. The victims received gifts—strength, health, talent—but the price remained unknown. When Dobosz comes face to face with the Apparition, he discovers that an ancient battle is still raging in the Bieszczady forests.",
+                "2": "Amid rain, mist, and the howling of wolves, the priest must confront not only the supernatural entity but also his own destiny. Can he save the people from a force that defies classification as good or evil? Could old legends be more than just the folklore of mountain dwellers?",
+                "3": "The Bieszczady Mountains hold many secrets. Some of them do not wish to be uncovered."
+            },
             "read": "Start reading",
             "listen": "Listen to audiobook"
         },
-
         "work-in-progress": "This section is still under construction",
         "navbar": {
             "powstanie_na_brillar": "Brillar Uprising",
@@ -211,37 +198,10 @@ export const messages = {
             "buycoffee": "buy me a coffee",
             "patronite": "become my patron"
         },
-        "alternata-ad": {
-            "h2": "7 stories from alternate worlds",
-            "h3_0": "Nordic space opera, Slavic demons luring in cyberspace, scripture older than the Universe, a religious revelation on another planet... The debut collection of short stories will transport you into a world of twisted realities. You will visit both near and very distant futures. You will alter the fate of Earth, humanity, and the entire Solar System. You will decide the fate of Martian colonies and the entire Christianity.",
-            "h3_1": "I dare you to read it!",
-            "h3_2": "Content:",
-            "title_0": "To Valhalla",
-            "title_1": "Scream Amidst the Laniakea",
-            "title_2": "A Modern Tale",
-            "title_3": "Script of the Universe",
-            "title_4": "Martian Solstice",
-            "title_5": "Timestar",
-            "title_6": "Conflict of Revelations",
-            "h4": "In stores from March 2026"
-        },
         "reader": {
-            "download": "Download",
-            "theme": "Theme",
-            "dark": "Dark",
-            "light": "Light",
-            "sepia": "Sepia",
-            "sendToKindle": "Send to Kindle",
-            "fontSize": "Font size",
-            "font": "Font",
-            "previousChapter": "Previous chapter",
-            "nextChapter": "Next chapter",
             "epub-chapter": "Chapter",
             "signs": "characters",
             "theEnd": "The end",
-
-
-
             "comments": {
                 "header": "Comments",
                 "empty-comments": "No comments yet",

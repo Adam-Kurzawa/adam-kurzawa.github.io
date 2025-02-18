@@ -11,6 +11,7 @@ const { token } = useToken()
 
 const title = ref(t('fantazmaty-card.title'))
 const storyTitle = ref(t('fantazmaty-card.story-title'))
+const descriptionParagraphs = ref([ 0, 1 ])
 </script>
 
 <template>
@@ -23,8 +24,8 @@ const storyTitle = ref(t('fantazmaty-card.story-title'))
 				<a-button :icon="h(GlobalOutlined)" href="https://fantazmaty.pl/czytaj/antologie/#fantazmaty-3">{{ t('fantazmaty-card.publisher') }}</a-button>
 			</template>
 			<div class="content">
-				<a-card :title="storyTitle" :style="{ height: '16rem', width: '100%', borderBottomRightRadius: '0', borderTopRightRadius: '0' }" :bodyStyle="{ height: 'calc(16rem - 106px)' }">
-					<p>{{ t('fantazmaty-card.description') }}</p>
+				<a-card :title="storyTitle" :style="{ height: '22rem', width: '100%', borderBottomRightRadius: '0', borderTopRightRadius: '0' }" :bodyStyle="{ height: 'calc(22rem - 106px)' }">
+					<p v-for="desc in descriptionParagraphs">{{ t(`fantazmaty-card.description.${desc}`) }}</p>
 					<template #actions>
 						<a-button type="text" size="small" :icon="h(ReadOutlined)">{{ t('fantazmaty-card.read') }}</a-button>
 					</template>
@@ -51,7 +52,7 @@ const storyTitle = ref(t('fantazmaty-card.story-title'))
 }
 
 .cover {
-	height: 16rem;
+	height: 22rem;
 	width: auto;
 	border-right: 1px solid #303030;
 	border-top: 1px solid #303030;

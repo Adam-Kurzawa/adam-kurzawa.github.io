@@ -8,6 +8,8 @@ const t = useTranslation()
 const locale = useLocale()
 
 const title = ref(t('siak-card.title'))
+
+const descriptionParagraphs = ref([ 0, 1, 2, 3 ])
 </script>
 
 <template>
@@ -22,7 +24,7 @@ const title = ref(t('siak-card.title'))
                 </a-config-provider>
 				<a-button type="primary" :icon="h(ReadOutlined)">{{ t('siak-card.read') }}</a-button>
 			</template>
-            <p>{{ t('siak-card.description') }}</p>
+            <p v-for="desc in descriptionParagraphs">{{ t(`siak-card.description.${desc}`) }}</p>
 		</a-card>
 	</a-config-provider>
 </template>

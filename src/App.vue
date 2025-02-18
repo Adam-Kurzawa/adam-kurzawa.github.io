@@ -31,8 +31,8 @@ const hideContent = ref(import.meta.env.VITE_HIDE_CONTENT === 'true')
   transition: padding 0.5s ease, background-color 0.5s ease;
   padding-top: 10rem;
   padding-bottom: 5rem;
-  padding-left: 15%;
-  padding-right: 15%;
+  padding-left: 12rem;
+  padding-right: 12rem;
   display: flex;
   justify-content: center;
 }
