@@ -1,11 +1,15 @@
 <script setup>
 import { useTranslation } from '@/utils/hooks'
+import { theme } from 'ant-design-vue'
 
 const t = useTranslation()
+
+const { useToken } = theme
+const { token } = useToken()
 </script>
 
 <template>
-  <div class="footer">
+  <div class="footer" :style="{ backgroundColor: token.colorBgContainer }">
     <a-typography-text>&copy; {{ t("copyrights.arr") }}</a-typography-text>
     <a-typography-text>&copy; {{ t("copyrights.cookies") }}</a-typography-text>
   </div>
@@ -13,6 +17,7 @@ const t = useTranslation()
 
 <style scoped>
 .footer {
+  transition: background-color 0.5s ease;
   padding: 2rem;
   padding-bottom: 4rem;
   display: flex;

@@ -105,4 +105,11 @@ const storiesLinks = ref([
   flex-wrap: nowrap;
   gap: 1rem;
 }
+
+@media screen and (max-width: 1024px) {
+	.bio {
+		flex-direction: column;
+		align-items: center;
+	}
+}
 </style>

@@ -15,4 +15,11 @@ const t = useTranslation()
     padding-left: 8rem;
     padding-right: 8rem;
 }
+
+@media screen and (max-width: 1280px) {
+    .quote {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
 </style>
