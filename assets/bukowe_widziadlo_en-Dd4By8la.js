@@ -1,1 +1,0 @@
-const e="Beech Phantom",t="W Bieszczadach dochodzi do makabrycznych zbrodni. Zabójca podszywa się pod prastarą, bieszczadzką zjawę. Policja prosi o pomoc zgryźliwego egzorcystę.",a=2024,c=null,o=[["Test"]],s={title:e,description:t,year:2024,chapterTitles:null,chapters:o};export{c as chapterTitles,o as chapters,s as default,t as description,e as title,a as year};
