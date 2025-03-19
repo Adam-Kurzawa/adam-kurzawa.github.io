@@ -201,4 +201,15 @@ const localizedLink = (view) => computed(() => {
     flex: 1;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .navbar-minimal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
 </style>

@@ -10,8 +10,9 @@ const fontSize = ref(parseFloat($cookies.get('font-size') ?? '1.25'))
 const fontFamily = ref($cookies.get('font-family') ?? 'Times New Roman')
 
 const setFontSize = (size) => {
-  $cookies.set('font-size', size)
-  fontSize.value = size 
+  const normalizedSize = Math.max(0.25, size)
+  $cookies.set('font-size', normalizedSize)
+  fontSize.value = normalizedSize 
 }
 
 const setFontFamily = (font) => {

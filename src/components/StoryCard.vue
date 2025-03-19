@@ -51,7 +51,7 @@ const filterBySeries = () => {
 <template>
     <div class="story-card" v-if="content && (seriesFilter ? series === seriesFilter : true)">
         <a-image :src="imageSrc" :width="'14rem'" :style="{ borderTopLeftRadius: `${token.borderRadiusLG}px`, borderBottomLeftRadius: `${token.borderRadiusLG}px` }" />
-        <a-card :style="{ flex: '1', borderTopLeftRadius: `0`, borderBottomLeftRadius: `0` }">
+        <a-card :style="{ flex: '1', borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, maxHeight: '21rem', height: '21rem', minHeight: '21rem', overflowY: 'clip' }">
             <template #extra>
                 <a-space>
                     <a-button type="primary" :icon="h(ReadOutlined)" @click="openReader">{{ t('story-card.read') }}</a-button>
@@ -84,7 +84,7 @@ const filterBySeries = () => {
                     </div>
                     <a-typography-text :style="{ flex: '1' }">{{ description }}</a-typography-text>
                 </div>
-                <a-descriptions bordered size="small" :column="1" :style="{ minWidth: '20rem' }">
+                <a-descriptions class="table" bordered size="small" :column="1">
                     <a-descriptions-item :label="t('story-card.series-column')" v-if="series !== null">
                         <a-button type="link" size="small" @click="filterBySeries" :style="{ padding: '0', border: 'none' }">{{ series }}</a-button>
                     </a-descriptions-item>
@@ -130,6 +130,29 @@ const filterBySeries = () => {
 .tags {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+}
+
+.table {
+    min-width: 20rem;
+    width: 20rem;
+    max-width: 20rem;
+}
+
+@media screen and (max-width: 1280px) {
+    .table {
+        min-width: 14rem;
+        width: 14rem;
+        max-width: 14rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .table {
+        min-width: 14rem;
+        width: 14rem;
+        max-width: 14rem;
+    }
 }
 </style>

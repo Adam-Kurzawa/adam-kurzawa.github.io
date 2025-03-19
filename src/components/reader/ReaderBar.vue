@@ -77,6 +77,7 @@ const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: {
 
 <template>
 	<div class="floating-bar" :style="{ borderBottomColor: token.colorBorderSecondary, backgroundColor: token.colorBgContainer }">
+		<a-button type="primary" @click="$emit('show-comments')">{{ t('reader.comments.header') }}</a-button>
     <a-popover v-model:open="menuChapterVisible" :title="t('reader.bar.chapters-menu-title')" trigger="click">
       <template #content>
         <a-timeline :style="{ marginTop: '2rem' }">
@@ -109,12 +110,11 @@ const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: {
 			<a-select-option value="Madimi One" :style="{ fontFamily: 'Madimi One' }">Madimi One</a-select-option>
 		</a-select>
 		<a-button-group>
-			<a-button disabled>{{ props.fontSize * 10 }}</a-button>
+			<a-button disabled :style="{ minWidth: '3.5rem', width: '3.5rem', maxWidth: '3.5rem' }">{{ props.fontSize * 10 }}</a-button>
 			<a-button @click="$emit('increase-font-size')">+</a-button>
 			<a-button @click="$emit('default-font-size')">100%</a-button>
-			<a-button @click="$emit('decrease-font-size')">-</a-button>
+			<a-button @click="$emit('decrease-font-size')" :disabled="props.fontSize <= 0.25">-</a-button>
 		</a-button-group>
-		<a-button type="primary" @click="$emit('show-comments')">{{ t('reader.comments.header') }}</a-button>
 	</div>
 </template>
 
@@ -155,6 +155,14 @@ const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: {
   .floating-bar {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .floating-bar {
+    padding-top: 0;
+    padding-bottom: 0.5rem;
+    row-gap: 0.5rem;
   }
 }
 </style>
