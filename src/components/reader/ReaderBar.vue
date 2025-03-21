@@ -80,9 +80,11 @@ const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: {
 		<a-button type="primary" @click="$emit('show-comments')">{{ t('reader.comments.header') }}</a-button>
     <a-popover v-model:open="menuChapterVisible" :title="t('reader.bar.chapters-menu-title')" trigger="click">
       <template #content>
-        <a-timeline :style="{ marginTop: '2rem' }">
+        <a-timeline :style="{ marginLeft: '0.25rem', marginTop: '1rem' }">
           <a-timeline-item v-for="(chapterTitle, index) in chapterTitles">
-            <a-button type="link" :style="{ padding: '0', marginTop: '-1rem' }" @click="() => jumpToChapter(index + 1)">{{ chapterTitle }}</a-button>
+            <!--<a-button type="link" :style="{ padding: '0', marginTop: '-1rem' }" @click="() => jumpToChapter(index + 1)">{{ chapterTitle }}</a-button>-->
+            <a-button v-if="(index + 1) === props.chapter" type="link" :style="{ padding: '0', marginTop: '-1rem' }" @click="() => jumpToChapter(index + 1)">{{ chapterTitle }}</a-button>
+            <a-button v-else type="text" :style="{ padding: '0', marginTop: '-1rem' }" @click="() => jumpToChapter(index + 1)">{{ chapterTitle }}</a-button>
           </a-timeline-item>
         </a-timeline>
       </template>
