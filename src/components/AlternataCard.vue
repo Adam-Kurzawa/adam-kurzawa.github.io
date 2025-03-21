@@ -47,13 +47,13 @@ const stories = ref([
         <div class="stories">
             <a-card :title="t('alternata-card.subtitle')" :style="{ gridArea: 'ad' }">
                 <!-- Hack! Badge should be top level and contain a-card inside but it breaks grid! -->
-                <a-badge-ribbon :text="t('alternata-card.launch')" color="volcano" :style="{ marginTop: '-4.75rem', marginRight: '-1.5rem' }" ></a-badge-ribbon>
-                <p>{{ t('alternata-card.text') }}</p>
+                <a-badge-ribbon :text="t('alternata-card.launch')" color="volcano" :style="{ marginTop: '-4.75rem', marginRight: '-1.5rem', paddingRight: '1rem' }" ></a-badge-ribbon>
+                <p class="justify">{{ t('alternata-card.text') }}</p>
             </a-card>
             <div v-for="story in stories" :style="{ gridArea: story.key, display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }">
                 <a-image :style="{ borderTopLeftRadius: `${token.borderRadiusLG}px`, borderBottomLeftRadius: `${token.borderRadiusLG}px`, height: '100%', width: 'auto' }" :src="story.cover" />
-                <a-card :title="t(`alternata-card.stories.${story.key}.title`)" :style="{ borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, height: '14rem', width: '100%' }" :bodyStyle="{ height: 'calc(14rem - 49px - 56px - 1px)' }">
-                    <p>{{ t(`alternata-card.stories.${story.key}.description`) }}</p>
+                <a-card :title="t(`alternata-card.stories.${story.key}.title`)" :style="{ borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, height: '14rem', width: '100%' }" :bodyStyle="{ height: 'calc(14rem - 49px - 56px - 1px)', paddingTop: '0.75rem' }">
+                    <p class="justify small-spacing">{{ t(`alternata-card.stories.${story.key}.description`) }}</p>
                     <template #actions>
                         <a-button type="text" size="small" :icon="h(ReadOutlined)">{{ t('alternata-card.read-more') }}</a-button>
                     </template>
@@ -75,7 +75,11 @@ const stories = ref([
     gap: 1rem;
 }
 
-@media screen and (max-width: 1920px) {
+.small-spacing {
+    line-height: 1.15rem;
+}
+
+@media screen and (max-width: 1800px) {
   .stories {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:

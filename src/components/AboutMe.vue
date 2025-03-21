@@ -1,23 +1,64 @@
 <script setup>
 import { useAsset, useTranslation } from '@/utils/hooks'
 import { ref } from 'vue'
+import LargeButton from './LargeButton.vue'
 
 const t = useTranslation()
 const image = useAsset(import("@/assets/pismo.jpg"))
 
+const openLink = (link) => {
+	window.open(link, '_blank')
+}
+
 const storiesLinks = ref([
-  {
-    name: "Nowa Fantastyka",
-    profile: "TheEagle",
-    link: "nowafantastyka.pl/theEagle",
-    icon: useAsset(import('@/assets/nf.png'))
-  },
-  {
-    name: "Medium",
-    profile: "TheEagle",
-    link: "nowafantastyka.pl/theEagle",
-    icon: useAsset(import('@/assets/medium.svg'))
-  }
+	{
+		name: "Nowa Fantastyka",
+		profile: "@TheEagle",
+		link: "https://www.fantastyka.pl/profil/294455",
+		icon: useAsset(import('@/assets/nf.png'))
+	},
+	{
+		name: "Medium",
+		profile: "@TheEagle",
+		link: "medium.pl/theEagle",
+		icon: useAsset(import('@/assets/medium.svg'))
+	},
+	{
+		name: "Substack",
+		profile: "TheEagle",
+		link: "ss.pl/theEagle",
+		icon: useAsset(import('@/assets/substack.png'))
+	}
+])
+
+const contactLinks = ref([
+	{
+		name: "LinkedIn",
+		profile: "TheEagle",
+		link: "lin.pl/theEagle",
+		icon: useAsset(import('@/assets/linkedin.png'))
+	},
+	{
+		name: "Gmail",
+		profile: "TheEagle",
+		link: "gm.pl/theEagle",
+		icon: useAsset(import('@/assets/gmail.png'))
+	}
+])
+
+const supportLinks = ref([
+	{
+		name: "BuyCoffee",
+		profile: "TheEagle",
+		link: "bc.pl/theEagle",
+		icon: useAsset(import('@/assets/buycoffee.png'))
+	},
+	{
+		name: "Patronite",
+		profile: "TheEagle",
+		link: "p.pl/theEagle",
+		icon: useAsset(import('@/assets/patronite.png'))
+	}
 ])
 </script>
 
@@ -32,33 +73,15 @@ const storiesLinks = ref([
 				<a-typography-text>Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua.</a-typography-text>
 				<a-typography-text>Swoje opowiadania zawsze publikuję również na różnych portalach, forach i blogach.</a-typography-text>
 				<a-space>
-					<a-button v-for="link in storiesLinks" class="btn" @click="() => alert(`Redirect to ${link.link}`)" :style="{ height: '4rem' }">
-						<a-image :src="link.icon" :preview="false" width="2rem" />
-						<span class="labels">
-							<a-typography-text>{{ link.name }}</a-typography-text>
-							<a-typography-text type="secondary">@{{ link.profile }}</a-typography-text>
-						</span>
-					</a-button>
+					<LargeButton v-for="link in storiesLinks" :header="link.name" :text="link.profile" :icon="link.icon" @click="() => openLink(link.link)" />
 				</a-space>
 				<a-typography-text>Nie jestem social-mediową bestią ale możesz do mnie napisać wiadomość na jednym z portali.</a-typography-text>
 				<a-space>
-					<a-button v-for="link in storiesLinks" class="btn" @click="() => alert(`Redirect to ${link.link}`)" :style="{ height: '4rem' }">
-						<a-image :src="link.icon" :preview="false" width="2rem" />
-						<span class="labels">
-							<a-typography-text>{{ link.name }}</a-typography-text>
-							<a-typography-text type="secondary">@{{ link.profile }}</a-typography-text>
-						</span>
-					</a-button>
+					<LargeButton v-for="link in contactLinks" :header="link.name" :text="link.profile" :icon="link.icon" @click="() => console.warn(`Redirect to ${link.link}`)" />
 				</a-space>
 				<a-typography-text>Jeśli chcesz mnie wesprzeć i dać grosza na piwo, możesz to zrobić na dedykowanych portalach.</a-typography-text>
 				<a-space>
-					<a-button v-for="link in storiesLinks" class="btn" @click="() => alert(`Redirect to ${link.link}`)" :style="{ height: '4rem' }">
-						<a-image :src="link.icon" :preview="false" width="2rem" />
-						<span class="labels">
-							<a-typography-text>{{ link.name }}</a-typography-text>
-							<a-typography-text type="secondary">@{{ link.profile }}</a-typography-text>
-						</span>
-					</a-button>
+					<LargeButton v-for="link in supportLinks" :header="link.name" :text="link.profile" :icon="link.icon" @click="() => console.warn(`Redirect to ${link.link}`)" />
 				</a-space>
 			</div>
 		</a-card>

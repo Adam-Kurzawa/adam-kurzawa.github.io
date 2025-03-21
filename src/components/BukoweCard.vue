@@ -7,7 +7,7 @@ import { theme } from 'ant-design-vue'
 const t = useTranslation()
 const locale = useLocale()
 
-const title = ref(t('siak-card.title'))
+const title = ref(t('bukowe-card.title'))
 
 const descriptionParagraphs = ref([ 0, 1, 2, 3 ])
 </script>
@@ -20,11 +20,11 @@ const descriptionParagraphs = ref([ 0, 1, 2, 3 ])
 			</template>
 			<template #actions>
                 <a-config-provider v-if="locale === 'pl'" :theme="{ token: { colorPrimary: '#FF0000' } }">
-                    <a-button type="primary" :icon="h(YoutubeOutlined)">{{ t('siak-card.listen') }}</a-button>
+                    <a-button type="primary" :icon="h(YoutubeOutlined)">{{ t('bukowe-card.listen') }}</a-button>
                 </a-config-provider>
-				<a-button type="primary" :icon="h(ReadOutlined)">{{ t('siak-card.read') }}</a-button>
+				<a-button type="primary" :icon="h(ReadOutlined)">{{ t('bukowe-card.read') }}</a-button>
 			</template>
-            <p v-for="desc in descriptionParagraphs">{{ t(`siak-card.description.${desc}`) }}</p>
+            <p class="justify" v-for="desc in descriptionParagraphs">{{ t(`bukowe-card.description.${desc}`) }}</p>
 		</a-card>
 	</a-config-provider>
 </template>

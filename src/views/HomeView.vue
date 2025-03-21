@@ -1,9 +1,9 @@
 <script setup>
 import { useTranslation } from '@/utils/hooks'
-import FantazmatyCard from '@/components/FantazmatyCard.vue'
 import BukoweCard from '@/components/BukoweCard.vue'
 import AlternataCard from '@/components/AlternataCard.vue'
 import WelcomeCard from '@/components/WelcomeCard.vue'
+import EgzorcyzmyCard from '@/components/EgzorcyzmyCard.vue'
 
 const t = useTranslation()
 </script>
@@ -13,7 +13,7 @@ const t = useTranslation()
     <WelcomeCard />
     <AlternataCard />
     <div class="bottom-ads">
-      <FantazmatyCard />
+      <EgzorcyzmyCard />
       <BukoweCard />
     </div>
   </main>
@@ -32,7 +32,7 @@ const t = useTranslation()
   gap: 2rem;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1440px) {
   .bottom-ads {
     display: flex;
     flex-direction: column;

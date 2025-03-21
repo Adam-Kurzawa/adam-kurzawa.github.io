@@ -38,6 +38,10 @@ export const messages = {
                 }
             }
         },
+        "stories-view": {
+            "series": "Seria",
+            "see-all": "Zobacz wszystkie opowiadania"
+        },
         "story-card": {
             "read": "Czytaj",
             "series-column": "Seria",
@@ -45,7 +49,7 @@ export const messages = {
             "chapters-column": "Ilość rozdziałów",
             "characters-column": "Ilość znaków"
         },
-        "fantazmaty-card": {
+        "egzorcyzmy-card": {
             "title": "Antologia \"Fantazmaty V\"",
             "story-title": "Egzorcyzmy Emily OS",
             "description": {
@@ -55,7 +59,7 @@ export const messages = {
             "publisher": "Strona wydawcy",
             "read": "Przeczytaj fragment"
         },
-        "siak-card": {
+        "bukowe-card": {
             "title": "Bukowe Widziadło",
             "description": {
                 "0": "Ksiądz Piotr Dobosz, egzorcysta i znawca słowiańskich demonów, zostaje wezwany do tajemniczej zbrodni w Bieszczadach. Cztery ciała, symbole pogańskie i makabryczny rytuał prowadzą go na trop zapomnianej istoty – Bukowego Widziadła. Wraz z podkomisarzem Zawadą zagłębia się w ciemne lasy, gdzie zatarła się granica między legendą a rzeczywistością.",
@@ -102,7 +106,7 @@ export const messages = {
                 'new-comment-rejected': "Wystąpił błąd"
             },
             "bar": {
-                "send-to-kindle": "Wyśli na Kindle",
+                "send-to-kindle": "Wyślij na Kindle",
                 "share": "Udostępnij",
                 "download-epub": "Pobierz EPUB",
                 "bookmarked": "Zapisano postęp czytania",
@@ -154,6 +158,10 @@ export const messages = {
                 }
             }
         },
+        "stories-view": {
+            "series": "Series",
+            "see-all": "See all stories"
+        },
         "story-card": {
             "read": "Start reading",
             "series-column": "Series",
@@ -161,7 +169,7 @@ export const messages = {
             "chapters-column": "Chapters",
             "characters-column": "Characters"
         },
-        "fantazmaty-card": {
+        "egzorcyzmy-card": {
             "title": "Anthology \"Fantazmaty V\"",
             "story-title": "The Exorcisms of Emily OS",
             "description": {
@@ -171,7 +179,7 @@ export const messages = {
             "publisher": "Publisher's website",
             "read": "Start reading"
         },
-        "siak-card": {
+        "bukowe-card": {
             "title": "Beech Phantom",
             "description": {
                 "0": "Father Piotr Dobosz, an exorcist and expert on Slavic demons, is summoned to investigate a mysterious crime in the Bieszczady Mountains. Four bodies, pagan symbols, and a macabre ritual lead him to the trail of a forgotten entity – the Beech Apparition. Together with Deputy Commissioner Zawada, he ventures into the dark forests, where the line between legend and reality has blurred.",

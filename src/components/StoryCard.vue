@@ -82,7 +82,7 @@ const filterBySeries = () => {
                     <div class="tags">
                         <a-tag v-for="tag in tags">{{ tag }}</a-tag>
                     </div>
-                    <a-typography-text :style="{ flex: '1' }">{{ description }}</a-typography-text>
+                    <p class="justify" :style="{ flex: '1' }">{{ description }}</p>
                 </div>
                 <a-descriptions class="table" bordered size="small" :column="1">
                     <a-descriptions-item :label="t('story-card.series-column')" v-if="series !== null">
