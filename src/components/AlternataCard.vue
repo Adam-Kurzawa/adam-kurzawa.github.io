@@ -1,9 +1,12 @@
 <script setup>
 import { h, ref } from 'vue'
-import { useTranslation, useAsset } from '@/utils/hooks'
+import { useRouter } from 'vue-router'
+import { useTranslation, useAsset, useLocale } from '@/utils/hooks'
 import { ReadOutlined } from '@ant-design/icons-vue'
 import { theme } from 'ant-design-vue'
 
+const router = useRouter()
+const locale = useLocale()
 const t = useTranslation()
 
 const { useToken } = theme
@@ -11,34 +14,49 @@ const { token } = useToken()
 
 const stories = ref([
     {
-        cover: useAsset(import('@/assets/laniakea.jpg')),
+        cover: useAsset(import('@/assets/walhalla.jpg')),
+        title: 'w_drodze_do_walhalli',
         key: 'walhalla'
     },
     {
         cover: useAsset(import('@/assets/laniakea.jpg')),
+        title: 'w_drodze_do_walhalli',
         key: 'laniakea'
     },
     {
         cover: useAsset(import('@/assets/nowa_baśń.jpg')),
+        title: 'w_drodze_do_walhalli',
         key: 'slavic'
     },
     {
         cover: useAsset(import('@/assets/pismo.jpg')),
+        title: 'w_drodze_do_walhalli',
         key: 'script'
     },
     {
         cover: useAsset(import('@/assets/solstice.jpg')),
+        title: 'w_drodze_do_walhalli',
         key: 'solstice'
     },
     {
         cover: useAsset(import('@/assets/solstice.jpg')),
+        title: 'w_drodze_do_walhalli',
         key: 'timestar'
     },
     {
         cover: useAsset(import('@/assets/solstice.jpg')),
+        title: 'w_drodze_do_walhalli',
         key: 'revelations'
     }
 ])
+
+const openReader = (obj) => {
+    router.push({
+        name: 'reader',
+        params: { lang: locale.value, title: obj.title },
+        query: { type: 'fragment' },
+    })
+}
 </script>
 
 <template>
@@ -55,7 +73,7 @@ const stories = ref([
                 <a-card :title="t(`alternata-card.stories.${story.key}.title`)" :style="{ borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, height: '14rem', width: '100%' }" :bodyStyle="{ height: 'calc(14rem - 49px - 56px - 1px)', paddingTop: '0.75rem' }">
                     <p class="justify small-spacing">{{ t(`alternata-card.stories.${story.key}.description`) }}</p>
                     <template #actions>
-                        <a-button type="text" size="small" :icon="h(ReadOutlined)">{{ t('alternata-card.read-more') }}</a-button>
+                        <a-button type="text" size="small" :icon="h(ReadOutlined)" @click="() => openReader(story)">{{ t('alternata-card.read-more') }}</a-button>
                     </template>
                 </a-card>
             </div>
