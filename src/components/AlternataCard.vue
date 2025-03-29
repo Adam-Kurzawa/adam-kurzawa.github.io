@@ -44,7 +44,7 @@ const stories = ref([
         key: 'timestar'
     },
     {
-        cover: useAsset(import('@/assets/solstice.jpg')),
+        cover: useAsset(import('@/assets/revelations.jpg')),
         title: 'w_drodze_do_walhalli',
         key: 'revelations'
     }

@@ -28,6 +28,12 @@ const storiesLinks = ref([
 		profile: "TheEagle",
 		link: "ss.pl/theEagle",
 		icon: useAsset(import('@/assets/substack.png'))
+	},
+	{
+		name: "Wattpad",
+		profile: "TheEagle",
+		link: "ss.pl/theEagle",
+		icon: useAsset(import('@/assets/wattpad.png'))
 	}
 ])
 

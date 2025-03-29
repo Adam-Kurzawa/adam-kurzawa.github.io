@@ -1,5 +1,6 @@
 import { ref, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 
 export function useTranslation() {
     const { t } = useI18n()
@@ -17,10 +18,16 @@ export function useAsset(file) {
     return fileRef
 }
 
-export function useInnerWidth(){
+export function useInnerWidth() {
     const width = ref(window.innerWidth);
     const syncWidth = () => width.value = window.innerWidth;
     window.addEventListener('resize', syncWidth);
     onUnmounted(() => window.removeEventListener('resize', syncWidth));
     return width;
+}
+
+export function useUrl() {
+    const route = useRoute()
+    const url = ref(window.location.origin + route.fullPath)
+    return url
 }

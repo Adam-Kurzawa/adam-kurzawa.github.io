@@ -43,6 +43,11 @@ export const messages = {
             "see-all": "Zobacz wszystkie opowiadania"
         },
         "story-card": {
+            "send-to-kindle": "Wyślij na Kindle",
+            "send": "Wyslij plik",
+            "cancel": "Anuluj",
+            "close": "Zamknij",
+            "sending": "Trwa wysyłanie",
             "read": "Czytaj",
             "series-column": "Seria",
             "year-column": "Rok wydania",
@@ -163,6 +168,11 @@ export const messages = {
             "see-all": "See all stories"
         },
         "story-card": {
+            "send-to-kindle": "Send to Kindle",
+            "send": "Send file",
+            "sending": "Sending...",
+            "cancel": "Cancel",
+            "close": "Close",
             "read": "Start reading",
             "series-column": "Series",
             "year-column": "Publication year",
