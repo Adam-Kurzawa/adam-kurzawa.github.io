@@ -4,7 +4,6 @@ import { ref } from 'vue'
 import LargeButton from './LargeButton.vue'
 
 const t = useTranslation()
-const image = useAsset(import("@/assets/pismo.jpg"))
 
 const openLink = (link) => {
 	window.open(link, '_blank')
@@ -70,7 +69,7 @@ const supportLinks = ref([
 
 <template>
 	<div class="bio">
-		<a-image :src="image" :width="'20rem'" />
+		<a-image src="/pismo.jpg" :width="'20rem'" />
 		<a-card :style="{ flex: '1' }">
 			<template #title>
 				<a-typography-title :level="3" class="title">Adam Kurzawa</a-typography-title>

@@ -1,7 +1,7 @@
 <script setup>
 import { useTranslation } from '@/utils/hooks'
 import BukoweCard from '@/components/BukoweCard.vue'
-import AlternataCard from '@/components/AlternataCard.vue'
+import AlternataCard from '../components/AlternataCard.vue'
 import WelcomeCard from '@/components/WelcomeCard.vue'
 import EgzorcyzmyCard from '@/components/EgzorcyzmyCard.vue'
 

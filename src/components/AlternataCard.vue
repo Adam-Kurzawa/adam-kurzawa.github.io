@@ -14,37 +14,37 @@ const { token } = useToken()
 
 const stories = ref([
     {
-        cover: useAsset(import('@/assets/walhalla.jpg')),
+        cover: '/walhalla.jpg',
         title: 'w_drodze_do_walhalli',
         key: 'walhalla'
     },
     {
-        cover: useAsset(import('@/assets/laniakea.jpg')),
+        cover: '/laniakea.jpg',
         title: 'w_drodze_do_walhalli',
         key: 'laniakea'
     },
     {
-        cover: useAsset(import('@/assets/nowa_baśń.jpg')),
+        cover: '/nowa_baśń.jpg',
         title: 'w_drodze_do_walhalli',
         key: 'slavic'
     },
     {
-        cover: useAsset(import('@/assets/pismo.jpg')),
+        cover: '/pismo.jpg',
         title: 'w_drodze_do_walhalli',
         key: 'script'
     },
     {
-        cover: useAsset(import('@/assets/solstice.jpg')),
+        cover: '/solstice.jpg',
         title: 'w_drodze_do_walhalli',
         key: 'solstice'
     },
     {
-        cover: useAsset(import('@/assets/solstice.jpg')),
+        cover: '/solstice.jpg',
         title: 'w_drodze_do_walhalli',
         key: 'timestar'
     },
     {
-        cover: useAsset(import('@/assets/revelations.jpg')),
+        cover: '/revelations.jpg',
         title: 'w_drodze_do_walhalli',
         key: 'revelations'
     }

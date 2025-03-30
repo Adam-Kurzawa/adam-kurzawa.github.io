@@ -1,5 +1,5 @@
 import { saveAs } from 'file-saver'
-import { zipSync, strToU8, ZipDeflate, ZipPassThrough } from 'fflate'
+import { AlternataClient } from './AlternataClient'
 
 export class EpubService {
 
@@ -12,26 +12,7 @@ export class EpubService {
     static sendAsEpub(title, chapters, chapterName, chapterTitles, kindleMail) {
         return EpubService
             .#generateEpub(title, chapters, chapterName, chapterTitles)
-            .then(blob => {
-                const formData = new FormData()
-                formData.append("file", blob, `${title}.epub`)
-                formData.append("to", kindleMail)
-
-                return fetch("http://localhost:8080/send-email", {
-                    method: "POST",
-                    body: formData,
-                })
-            })
-            .then(response => {
-                if(response.ok) {
-                    console.log("Plik wysłany pomyślnie")
-                } else {
-                    console.error("Wystąpił błąd przy wysyłaniu: ", response.status)
-                }
-            })
-            .catch(err => {
-                console.error("Wystąpił błąd przy wysyłaniu: ", err)
-            })
+            .then(blob => AlternataClient.sendEmail(blob, title, kindleMail))
     }
 
     static #generateEpub(title, chapters, chapterName, chapterTitles) {
