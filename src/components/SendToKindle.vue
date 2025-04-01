@@ -9,7 +9,7 @@ const emit = defineEmits([ 'hide' ])
 const t = useTranslation()
 
 const sendingToKindle = ref(false)
-const showSendingConfirmation = ref(false)
+const showSendingConfirmation = ref(0)
 const sendToKindleButtonDisabled = ref(false)
 const cancelSendingButtonDisabled = ref(false)
 const okText = ref(t('story-card.send'))
@@ -25,28 +25,47 @@ const handleSendingToKindle = () => {
     const address = `${kindleAddress.value}@kindle.com`
     $cookies.set('kindle-address', kindleAddress.value)
 
-    sendToKindle(address).then(x => {
-        showSendingConfirmation.value = true
-        okText.value = t('story-card.send')
-        cancelText.value = t('story-card.close')
-        sendingToKindle.value = false
-        sendToKindleButtonDisabled.value = true
-        cancelSendingButtonDisabled.value = false
+    sendToKindle(address)
+		.then(x => {
+			showSendingConfirmation.value = 1
+			okText.value = t('story-card.send')
+			cancelText.value = t('story-card.close')
+			sendingToKindle.value = false
+			sendToKindleButtonDisabled.value = true
+			cancelSendingButtonDisabled.value = false
 
-        setTimeout(() => {
-			emit('hide')
-            sendToKindleButtonDisabled.value = false
-            showSendingConfirmation.value = false
-        }, 2000);
-    })
+			setTimeout(() => {
+				emit('hide')
+				sendToKindleButtonDisabled.value = false
+				showSendingConfirmation.value = 0
+			}, 2000);
+		})
+		.catch(e => {
+			showSendingConfirmation.value = 2
+			okText.value = t('story-card.send')
+			cancelText.value = t('story-card.close')
+			sendingToKindle.value = false
+			sendToKindleButtonDisabled.value = true
+			cancelSendingButtonDisabled.value = false
+
+			setTimeout(() => {
+				emit('hide')
+				sendToKindleButtonDisabled.value = false
+				showSendingConfirmation.value = 0
+			}, 2000);
+		})
 }
 </script>
 
 <template>
 	<a-modal v-model:open="props.visible" :title="t('story-card.send-to-kindle')" :okText="okText" :cancelText="cancelText" :ok-button-props="{ disabled: sendToKindleButtonDisabled }" :cancel-button-props="{ disabled: cancelSendingButtonDisabled }" :confirm-loading="sendingToKindle" @ok="handleSendingToKindle">
-		<div v-if="showSendingConfirmation" class="success">
+		<div v-if="showSendingConfirmation === 1" class="success">
 			<img src="/success.png" />
 			<a-typography-text strong>Wysłano plik!</a-typography-text>
+		</div>
+		<div v-else-if="showSendingConfirmation === 2" class="success">
+			<img src="/failure.png" />
+			<a-typography-text strong>Wystąpił błąd!</a-typography-text>
 		</div>
 		<div v-else>
 			<p>Aby wysłać plik na swoje urządzenie Kindle musisz:</p>
