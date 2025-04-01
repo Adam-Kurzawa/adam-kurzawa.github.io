@@ -39,7 +39,7 @@ const stories = ref([
         key: 'solstice'
     },
     {
-        cover: '/solstice.jpg',
+        cover: '/timestar.jpg',
         title: 'w_drodze_do_walhalli',
         key: 'timestar'
     },
