@@ -37,7 +37,7 @@ const localizedLink = (view) => computed(() => {
 	<nav class="navbar" :class="[ isScrolled ? 'navbar-solid' : '', themeStore.primaryBackgroundColor ]" :style="{ borderBottomColor: token.colorBorderSecondary }">
 		<span class="navbar-full">
 			<span class="navbar-section">
-				<RouterLink :to="readerLink('powstanie_na_brillar')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.powstanie_na_brillar") }}</RouterLink>
+				<RouterLink :to="readerLink('innoziemiec')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.innoziemiec") }}</RouterLink>
 				<RouterLink :to="readerLink('klatwa_imetheru')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.klątwa_imetheru") }}</RouterLink>
 				<RouterLink :to="readerLink('projekt_eclipse')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.projekt_eclipse") }}</RouterLink>
 				<RouterLink :to="localizedLink('stories')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.stories") }}</RouterLink>

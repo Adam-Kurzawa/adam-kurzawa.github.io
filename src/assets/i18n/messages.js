@@ -1,5 +1,19 @@
 export const messages = {
     "pl": {
+        "altcha": {
+            "label": "Nie jestem robotem"
+        },
+        "send-to-kindle": {
+            "button": "Wyślij na Kindle",
+            "sucess": "YEY",
+            "failure": "MEH",
+            "info": {
+                "top": "Aby wysłać plik na swoje urządzenie Kindle musisz:",
+                "a": "a) podać adres email swojej skrzynki Kindle,",
+                "b": "b) wpisać mój adres email (adam.kurzawa.70@gmail.com) jako zaufany adres na stronie Amazonu",
+                "bottom": "Więcej informacji na abc."
+            }
+        },
         "page-not-found": "Coś jest nie tegez... Strona o podanym adresie nie istnieje!",
         "alternata-card": {
             "title": "Antologia \"Alternata\"",
@@ -43,7 +57,6 @@ export const messages = {
             "see-all": "Zobacz wszystkie opowiadania"
         },
         "story-card": {
-            "send-to-kindle": "Wyślij na Kindle",
             "send": "Wyslij plik",
             "cancel": "Anuluj",
             "close": "Zamknij",
@@ -78,6 +91,7 @@ export const messages = {
         "work-in-progress": "Strona w budowie",
         "navbar": {
             "powstanie_na_brillar": "Powstanie na Brillar",
+            "innoziemiec": "Innoziemiec",
             "klątwa_imetheru": "Klątwa Imetheru",
             "projekt_eclipse": "Projekt Eclipse",
             "stories": "Opowiadania",
@@ -111,7 +125,6 @@ export const messages = {
                 'new-comment-rejected': "Wystąpił błąd"
             },
             "bar": {
-                "send-to-kindle": "Wyślij na Kindle",
                 "share": "Udostępnij",
                 "download-epub": "Pobierz EPUB",
                 "bookmarked": "Zapisano postęp czytania",
@@ -125,6 +138,20 @@ export const messages = {
         }
     },
     "en": {
+        "altcha": {
+            "label": "I am not a robot"
+        },
+        "send-to-kindle": {
+            "button": "Send to Kindle",
+            "sucess": "YEY",
+            "failure": "MEH",
+            "info": {
+                "top": "To send an ebook to your Kindle device, first you have to:",
+                "a": "a) type in your Kindle email,",
+                "b": "b) add my email (adam.kurzawa.70@gmail.com) as a trusted one on Amazon website",
+                "bottom": "More information at abc."
+            }
+        },
         "page-not-found": "Something ain't right... The page you are looking for doesn't exists!",
         "alternata-card": {
             "title": "\"Alternata\" The Anthology",
@@ -168,7 +195,6 @@ export const messages = {
             "see-all": "See all stories"
         },
         "story-card": {
-            "send-to-kindle": "Send to Kindle",
             "send": "Send file",
             "sending": "Sending...",
             "cancel": "Cancel",
@@ -203,6 +229,7 @@ export const messages = {
         "work-in-progress": "This section is still under construction",
         "navbar": {
             "powstanie_na_brillar": "Brillar Uprising",
+            "innoziemiec": "The Other-earther",
             "klątwa_imetheru": "Curse of Imetheru",
             "projekt_eclipse": "Project Eclipse",
             "stories": "Short stories",
@@ -234,18 +261,12 @@ export const messages = {
                 'new-comment-wrong-answer': "Wrong answer!"
             },
             "bar": {
-                "send-to-kindle": "Send to Kindle",
                 "share": "Share",
                 "download-epub": "Download EPUB",
                 "bookmarked": "Saved reading progress",
                 "unbookmarked": "Bookmark removed",
                 "chapters-menu-title": "Chapters"
             }
-
-
-
-
-
         },
         "copyrights": {
             "arr": "All rights reserved. This webpage and its content are owned by Adam Kurzawa and protected by author's copyrights. Unauthorized use is strictly prohibited.",

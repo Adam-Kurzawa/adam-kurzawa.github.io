@@ -116,7 +116,7 @@ const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: {
     </a-tooltip>
 		<a-button-group>
       		<a-button :icon="h(DownloadOutlined)" @click="saveAsEpub">{{ t('reader.bar.download-epub') }}</a-button>
-			<a-button :icon="h(SendOutlined)" @click="showSendToKindleModal">{{ t('reader.bar.send-to-kindle') }}</a-button>
+			<a-button :icon="h(SendOutlined)" @click="showSendToKindleModal">{{ t('send-to-kindle.button') }}</a-button>
       		<SendToKindle :story="props.story" :visible="kindleModalOpen" @hide="hideSendToKindleModal" />
 			<a-button :icon="h(ShareAltOutlined)" @click="share">{{ t('reader.bar.share') }}</a-button>
 		</a-button-group>

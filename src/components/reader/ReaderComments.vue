@@ -4,10 +4,11 @@ import { useRoute } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
 import { useFirestore, useCollection } from 'vuefire'
 import { collection, addDoc } from 'firebase/firestore'
-import { MathTcha } from '@/utils/MathTcha'
 import { message } from 'ant-design-vue'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import Altcha from '../Altcha.vue'
+import { AlternataClient } from '@/utils/AlternataClient'
 
 dayjs.extend(relativeTime);
 
@@ -21,7 +22,7 @@ const commentsFirestoreCollection = collection(firestore, `${route.params.title}
 const commentsUnsorted = useCollection(commentsFirestoreCollection)
 const comments = computed(() => commentsUnsorted.value.sort((a, b) => b.createdAt - a.createdAt))
 
-const mathTcha = ref(MathTcha.generateTest())
+const altcha = ref(null)
 
 const commentFormInitialState = {
 	name: '',
@@ -43,21 +44,12 @@ const addComment = () => {
 			createdAt: Date.now()
 		}
 
-		addDoc(commentsFirestoreCollection, newComment)
-		message.success(t('reader.comments.new-comment-added'))
+		AlternataClient.addComment(newComment, altcha.value)
+			.then(() => message.success(t('reader.comments.new-comment-added')))
+			.catch(() => message.error(t('reader.comments.new-comment-rejected')))
 	} catch (e) {
 		message.error(t('reader.comments.new-comment-rejected'))
 	}
-}
-
-const checkMathTcha = async (rule, value) => {
-	const response = parseInt(value)
-
-	if(response !== mathTcha.value.result) {
-		mathTcha.value = MathTcha.generateTest()
-		return Promise.reject(t('reader.comments.new-comment-wrong-answer'))
-	} else
-		return Promise.resolve()
 }
 
 const checkString = async (rule, value) => {
@@ -71,8 +63,11 @@ const checkString = async (rule, value) => {
 
 const newCommentValidationRules = {
 	name: [{ required: true, validator: checkString, trigger: 'change' }],
-	text: [{ required: true, validator: checkString, trigger: 'change' }],
-	test: [{ required: true, validator: checkMathTcha, trigger: 'blur' }],
+	text: [{ required: true, validator: checkString, trigger: 'change' }]
+}
+
+const onAltchaVerified = (token) => {
+	altcha.value = token
 }
 
 const onSubmit = () => {
@@ -81,7 +76,6 @@ const onSubmit = () => {
     .then(() => {
 		addComment()
 		commentFormRef.value.resetFields()
-		mathTcha.value = MathTcha.generateTest()
     })
     .catch(err => {
       console.log('error', err);
@@ -120,17 +114,17 @@ const onSubmit = () => {
 			</template>
 		</a-list>
 		<a-form ref="commentFormRef" :rules="newCommentValidationRules" layout="horizontal" :model="commentForm">
-			<a-form-item has-feedback ref="test" name="test">
-				<a-input-number v-model:value="commentForm.test" :controls="false" :addon-before="`${t('reader.comments.new-comment-math-tcha-prompt')} ${mathTcha.values.join(', ')}?`" :placeholder="t('reader.comments.new-comment-math-tcha-placeholder')" :style="{ width: '100%' }" />
-			</a-form-item>
-			<a-form-item has-feedback ref="name" name="name">
+			<a-form-item class="small-margin-bottom" has-feedback ref="name" name="name">
 				<a-input v-model:value="commentForm.name" :placeholder="t('reader.comments.new-comment-name-placeholder')" />
 			</a-form-item>
-			<a-form-item has-feedback ref="text" name="text">
+			<a-form-item class="small-margin-bottom" has-feedback ref="text" name="text">
 				<a-textarea v-model:value="commentForm.text" :rows="2" :placeholder="t('reader.comments.new-comment-text-placeholder')" />
 			</a-form-item>
-			<a-form-item>
-				<a-button type="primary" @click="onSubmit">{{ t('reader.comments.new-comment-submit') }}</a-button>
+			<a-form-item class="small-margin-bottom">
+				<Altcha @verified="onAltchaVerified" />
+			</a-form-item>
+			<a-form-item class="small-margin-bottom">
+				<a-button type="primary" :disabled="altcha === undefined || altcha === null" @click="onSubmit">{{ t('reader.comments.new-comment-submit') }}</a-button>
 			</a-form-item>
 		</a-form>
 	</a-drawer>
@@ -144,6 +138,10 @@ const onSubmit = () => {
   overflow: auto;
   gap: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.small-margin-bottom {
+	margin-bottom: 0.5rem !important;
 }
 
 .colorful-avatar {

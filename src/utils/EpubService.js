@@ -9,10 +9,10 @@ export class EpubService {
             .then(blob => saveAs(blob, `${title}.epub`))
     }
 
-    static sendAsEpub(title, chapters, chapterName, chapterTitles, kindleMail) {
+    static sendAsEpub(title, chapters, chapterName, chapterTitles, kindleMail, altchaToken) {
         return EpubService
             .#generateEpub(title, chapters, chapterName, chapterTitles)
-            .then(blob => AlternataClient.sendEmail(blob, title, kindleMail))
+            .then(blob => AlternataClient.sendEmail(blob, title, kindleMail, altchaToken))
     }
 
     static #generateEpub(title, chapters, chapterName, chapterTitles) {
