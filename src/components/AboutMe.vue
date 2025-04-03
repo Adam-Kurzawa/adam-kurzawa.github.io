@@ -14,25 +14,25 @@ const storiesLinks = ref([
 		name: "Nowa Fantastyka",
 		profile: "@TheEagle",
 		link: "https://www.fantastyka.pl/profil/294455",
-		icon: useAsset(import('@/assets/nf.png'))
+		icon: '/nf.png'
 	},
 	{
 		name: "Medium",
 		profile: "@TheEagle",
 		link: "medium.pl/theEagle",
-		icon: useAsset(import('@/assets/medium.svg'))
+		icon: '/medium.svg'
 	},
 	{
 		name: "Substack",
 		profile: "TheEagle",
 		link: "ss.pl/theEagle",
-		icon: useAsset(import('@/assets/substack.png'))
+		icon: '/substack.png'
 	},
 	{
 		name: "Wattpad",
 		profile: "TheEagle",
 		link: "ss.pl/theEagle",
-		icon: useAsset(import('@/assets/wattpad.png'))
+		icon: '/wattpad.png'
 	}
 ])
 
@@ -41,13 +41,13 @@ const contactLinks = ref([
 		name: "LinkedIn",
 		profile: "TheEagle",
 		link: "lin.pl/theEagle",
-		icon: useAsset(import('@/assets/linkedin.png'))
+		icon: '/linkedin.png'
 	},
 	{
 		name: "Gmail",
 		profile: "TheEagle",
 		link: "gm.pl/theEagle",
-		icon: useAsset(import('@/assets/gmail.png'))
+		icon: '/gmail.png'
 	}
 ])
 
@@ -56,13 +56,13 @@ const supportLinks = ref([
 		name: "BuyCoffee",
 		profile: "TheEagle",
 		link: "bc.pl/theEagle",
-		icon: useAsset(import('@/assets/buycoffee.png'))
+		icon: '/buycoffee.png'
 	},
 	{
 		name: "Patronite",
 		profile: "TheEagle",
 		link: "p.pl/theEagle",
-		icon: useAsset(import('@/assets/patronite.png'))
+		icon: '/patronite.png'
 	}
 ])
 </script>
