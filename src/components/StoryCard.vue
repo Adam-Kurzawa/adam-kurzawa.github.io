@@ -31,7 +31,7 @@ const tags = computed(() => content.value.tags)
 const series = computed(() => content.value.series)
 const charactersCount = computed(() => countCharacters(content.value.chapters))
 
-const saveAsEpub = () => EpubService.saveAsEpub(title.value, content.value.chapters, t("reader.epub-chapter"), content.value.chapterTitles)
+const saveAsEpub = () => EpubService.saveAsEpub(title.value, content.value.chapters, t("reader.epub-chapter"), content.value.chapterTitles, content.value.tags, locale.value)
 
 const share = () => { 
     navigator.share({

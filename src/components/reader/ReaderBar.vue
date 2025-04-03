@@ -2,7 +2,7 @@
 import { h, onMounted, ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { EpubService } from '@/utils/EpubService.js'
-import { useTranslation, useUrl } from '@/utils/hooks'
+import { useLocale, useTranslation, useUrl } from '@/utils/hooks'
 import { ShareAltOutlined, OrderedListOutlined, SendOutlined, DownloadOutlined, BookOutlined, BookTwoTone } from '@ant-design/icons-vue'
 import { theme } from 'ant-design-vue'
 import SendToKindle from './../SendToKindle.vue'
@@ -15,6 +15,7 @@ const { token } = useToken()
 const t = useTranslation()
 const router = useRouter()
 const route = useRoute()
+const locale = useLocale()
 const url = useUrl()
 
 const chapterTitles = computed(() => {
@@ -81,7 +82,7 @@ onMounted(() => {
 	}
 })
 
-const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles)
+const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles, props.story.tags, locale.value)
 
 const share = () => {
 	navigator.share({

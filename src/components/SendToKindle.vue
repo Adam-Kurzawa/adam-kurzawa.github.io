@@ -1,5 +1,5 @@
 <script setup>
-import { useTranslation } from '@/utils/hooks'
+import { useLocale, useTranslation } from '@/utils/hooks'
 import { computed, ref, watch } from 'vue'
 import { EpubService } from '@/utils/EpubService.js'
 import Altcha from './Altcha.vue'
@@ -8,6 +8,7 @@ const props = defineProps([ 'story', 'visible' ])
 const emit = defineEmits([ 'hide' ])
 
 const t = useTranslation()
+const locale = useLocale()
 
 const sendingToKindle = ref(false)
 const showSendingConfirmation = ref(0)
@@ -32,7 +33,7 @@ const disableSendToKindleButton = computed(() => {
 	}
 })
 
-const sendToKindle = (to) => EpubService.sendAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles, to, altcha.value)
+const sendToKindle = (to) => EpubService.sendAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles, props.story.tags, locale.value, to, altcha.value)
 
 const onAltchaVerified = (token) => {
 	altcha.value = token
