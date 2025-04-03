@@ -19,9 +19,6 @@ export class EpubService {
         const jepub = new jEpub()
         let currentChapter = 1
 
-        console.log(tags)
-        console.log(locale)
-
         jepub.init({
             i18n: locale,
             title: title,
