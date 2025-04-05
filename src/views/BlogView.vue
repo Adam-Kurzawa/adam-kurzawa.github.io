@@ -17,7 +17,11 @@ const articles = ref(
   )
 )
 
-const firstEntry = computed(() => [...articles.value][0])
+const entries = computed(() => [...articles.value])
+const firstEntry = computed(() => entries.value[0])
+const secondEntry = computed(() => entries.value[1])
+const thirdEntry = computed(() => entries.value[2])
+const otherEntries = computed(() => entries.value.slice(3))
 </script>
 
 <template>
@@ -26,15 +30,13 @@ const firstEntry = computed(() => [...articles.value][0])
     <div class="spotlight">
       <BlogCard :title="firstEntry" variant="vertical"/>
       <div class="spotlight-right">
-        <BlogCard :title="firstEntry" variant="horizontal"/>
-        <BlogCard :title="firstEntry" variant="horizontal"/>
-        <BlogCard :title="firstEntry" variant="horizontal"/>
+        <BlogCard :title="secondEntry" variant="vertical"/>
+        <BlogCard :title="thirdEntry" variant="vertical"/>
       </div>
     </div>
     <a-typography-title class="h3" :level="3">Wszystkie wpisy</a-typography-title>
     <div class="entries">
-      <BlogCard v-for="article in articles" :title="article" variant="vertical"/>
-      <BlogCard v-for="article in articles" :title="article" variant="vertical"/>
+      <BlogCard v-for="article in otherEntries" :title="article" variant="vertical"/>
     </div>
   </main>
 </template>
@@ -54,7 +56,7 @@ const firstEntry = computed(() => [...articles.value][0])
 
 .spotlight {
   display: grid;
-  grid-template-columns: minmax(0, 50%) minmax(0, 50%);
+  grid-template-columns: minmax(0, 70%) minmax(0, 30%);
   gap: 2rem;
 }
 

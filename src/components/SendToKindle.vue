@@ -92,7 +92,7 @@ const handleSendingToKindle = () => {
 			<div class="info">
 				<p>{{t('send-to-kindle.info.top')}}</p>
 				<p>{{t('send-to-kindle.info.a')}}</p>
-				<p>{{t('send-to-kindle.info.b')}}</p>
+				<p>{{t('send-to-kindle.info.b1')}} (adam.kurzawa.70@gmail.com) {{t('send-to-kindle.info.b2')}}</p>
 				<p>{{t('send-to-kindle.info.bottom')}}</p>
 			</div>
 			<a-input v-model:value="kindleAddress" :addon-after="`@${domain}`" />
@@ -106,7 +106,7 @@ const handleSendingToKindle = () => {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	gap: 1rem;
+	gap: 0.75rem;
 }
 
 .info {

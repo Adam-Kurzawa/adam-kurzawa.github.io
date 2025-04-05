@@ -29,13 +29,16 @@ const openReader = () => {
 </script>
 
 <template>
-    <a-card v-if="content" :class="[ `entry-${props.variant}` ]" @click="openReader">
+    <a-card v-if="content" :class="[ `entry-${props.variant}` ]">
         <template #cover>
-            <img v-if="props.variant === 'horizontal'" :style="{ flex: '1', borderTopRightRadius: '0', borderBottomLeftRadius: `${token.borderRadiusLG}px` }" :src="imageSrc" />
-            <img v-else :style="{ flex: '1' }" :src="imageSrc" />
+            <a-image v-if="props.variant === 'horizontal'" :width="'18rem'" :style="{ flex: '1', borderTopRightRadius: '0', borderBottomLeftRadius: `${token.borderRadiusLG}px` }" :src="imageSrc" />
+            <a-image v-else :style="{ flex: '1' }" :src="imageSrc" />
         </template>
-        <a-card-meta :title="title">
+        <a-card-meta>
             <template #description>{{ description }}</template>
+            <template #title>
+                <a-typography-title :level="4" class="ant-btn-link title" @click="openReader">{{ title }}</a-typography-title>
+            </template>
         </a-card-meta>
     </a-card>
 </template>
@@ -50,5 +53,14 @@ const openReader = () => {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+}
+
+.title {
+    font-family: 'Yeseva One';
+    font-weight: 100;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    width: fit-content;
+    text-wrap: wrap;
 }
 </style>

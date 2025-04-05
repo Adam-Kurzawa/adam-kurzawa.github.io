@@ -10,7 +10,8 @@ export const messages = {
             "info": {
                 "top": "Aby wysłać plik na swoje urządzenie Kindle musisz:",
                 "a": "a) podać adres email swojej skrzynki Kindle,",
-                "b": "b) wpisać mój adres email (adam.kurzawa.70@gmail.com) jako zaufany adres na stronie Amazonu",
+                "b1": "b) wpisać mój adres email",
+                "b2": "jako zaufany adres na stronie Amazonu",
                 "bottom": "Więcej informacji na abc."
             }
         },
@@ -148,7 +149,8 @@ export const messages = {
             "info": {
                 "top": "To send an ebook to your Kindle device, first you have to:",
                 "a": "a) type in your Kindle email,",
-                "b": "b) add my email (adam.kurzawa.70@gmail.com) as a trusted one on Amazon website",
+                "b1": "b) add my email",
+                "b2": "as a trusted one on Amazon website",
                 "bottom": "More information at abc."
             }
         },
