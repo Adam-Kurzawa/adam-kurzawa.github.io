@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "buildindex": "node index_builder.js",
+    "dev": "npm run buildindex && vite",
     "errorpage": "cd ./dist && del 404.html && del temp && copyfiles index.html ./temp && cd ./temp && renamer index.html --replace 404.html && copyfiles 404.html .. && cd .. && del temp && cd ..",
     "addcname": "copyfiles CNAME ./dist",
-    "build": "vite build && npm run errorpage && npm run addcname",
+    "build": "npm run buildindex && vite build && npm run errorpage && npm run addcname",
     "preview": "npm run build && vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"

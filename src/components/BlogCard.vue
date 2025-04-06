@@ -2,15 +2,17 @@
 import { useAsset, useLocale } from '@/utils/hooks'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { theme } from 'ant-design-vue'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/en'
+import 'dayjs/locale/pl'
 
-const props = defineProps([ 'title', 'variant' ])
+dayjs.extend(relativeTime);
+
+const props = defineProps([ 'title' ])
 
 const router = useRouter()
 const locale = useLocale()
-
-const { useToken } = theme
-const { token } = useToken()
 
 const imageSrc = useAsset(import(`@/assets/blog/covers/${props.title}.jpg`))
 const content = useAsset(import(`@/assets/blog/${props.title}_${locale.value}.json`))
@@ -31,12 +33,12 @@ const openReader = () => {
 <template>
     <a-card v-if="content" :class="[ `entry-${props.variant}` ]">
         <template #cover>
-            <a-image v-if="props.variant === 'horizontal'" :width="'18rem'" :style="{ flex: '1', borderTopRightRadius: '0', borderBottomLeftRadius: `${token.borderRadiusLG}px` }" :src="imageSrc" />
-            <a-image v-else :style="{ flex: '1' }" :src="imageSrc" />
+            <a-image :style="{ flex: '1' }" :src="imageSrc" />
         </template>
         <a-card-meta>
             <template #description>{{ description }}</template>
             <template #title>
+              <a-typography-text type="secondary">{{ dayjs(publicationDate, "DD.MM.YYYY").locale(locale).format('DD MMMM YYYY') }}</a-typography-text>
                 <a-typography-title :level="4" class="ant-btn-link title" @click="openReader">{{ title }}</a-typography-title>
             </template>
         </a-card-meta>
@@ -45,22 +47,23 @@ const openReader = () => {
 
 <style scoped>
 .entry-vertical {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .entry-horizontal {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 }
 
 .title {
-    font-family: 'Yeseva One';
-    font-weight: 100;
-    margin-top: 0.5rem;
-    cursor: pointer;
-    width: fit-content;
-    text-wrap: wrap;
+	font-family: 'Yeseva One';
+	font-weight: 100;
+	margin-top: 0.5rem !important;
+	margin-bottom: 0.5rem !important;
+	cursor: pointer;
+	width: fit-content;
+	text-wrap: wrap;
 }
 </style>

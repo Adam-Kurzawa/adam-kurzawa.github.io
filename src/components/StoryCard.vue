@@ -8,7 +8,7 @@ import { ShareAltOutlined, ReadOutlined, SendOutlined, DownloadOutlined } from '
 import { theme } from 'ant-design-vue'
 import SendToKindle from './SendToKindle.vue'
 
-const props = defineProps([ 'title', 'seriesFilter' ])
+const props = defineProps([ 'title' ])
 
 const router = useRouter()
 const locale = useLocale()
@@ -67,7 +67,7 @@ const hideSendToKindleModal = () => {
 </script>
 
 <template>
-    <div class="story-card" v-if="content && (seriesFilter ? series === seriesFilter : true)">
+    <div class="story-card" v-if="content">
         <a-image :src="imageSrc" :width="'14rem'" :style="{ borderTopLeftRadius: `${token.borderRadiusLG}px`, borderBottomLeftRadius: `${token.borderRadiusLG}px` }" />
         <a-card :style="{ flex: '1', borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, maxHeight: '21rem', height: '21rem', minHeight: '21rem', overflowY: 'clip' }">
             <template #extra>

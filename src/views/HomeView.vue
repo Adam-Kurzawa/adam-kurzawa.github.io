@@ -4,6 +4,7 @@ import BukoweCard from '@/components/BukoweCard.vue'
 import AlternataCard from '../components/AlternataCard.vue'
 import WelcomeCard from '@/components/WelcomeCard.vue'
 import EgzorcyzmyCard from '@/components/EgzorcyzmyCard.vue'
+import Spotlight from '@/components/Spotlight.vue'
 
 const t = useTranslation()
 </script>
@@ -11,7 +12,9 @@ const t = useTranslation()
 <template>
   <main class="welcome-container">
     <WelcomeCard />
+    <Spotlight />
     <AlternataCard />
+    <a-typography-title :style="{ fontFamily: 'Yeseva One', fontWeight: '100' }" class="title">Inne wydania</a-typography-title>
     <div class="bottom-ads">
       <EgzorcyzmyCard />
       <BukoweCard />

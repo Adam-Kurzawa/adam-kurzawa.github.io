@@ -101,7 +101,7 @@ export const messages = {
             "about": "O mnie"
         },
         "welcome": {
-            "text": "Witaj na Alternacie, mojej skromnej stronie. Nazywam się Adam Kurzawa i zapraszam Cię do spędzenia kilku chwil pośród tekstów mojego autorstwa. Odnajdziesz tutaj opowiadania sci-fi, różnotematyczne artykuły na blogu oraz prologi z książek. Jeśli doceniasz moją twórczość, możesz",
+            "text": "Witaj na Alternacie, mojej skromnej stronie. Nazywam się Adam Kurzawa i zapraszam Cię do spędzenia kilku chwil pośród tekstów mojego autorstwa. Odnajdziesz tutaj opowiadania sci-fi eksplorujące nie tylko przyszłość ale i alternatywne wizje rzeczywistości. Czekają na Ciebie różnotematyczne artykuły na blogu, a w przyszłości pojawią się prologi i zajawki z książek, nad którymi pracuję. Zapraszam do czytania i komentowania, gdyż Wasze opinie wiele dla mnie znaczą. Piszę z pasji traktując to jako odskocznię od naszej szarej rzeczywistości. Tworzenie działa jak swoista myślodsiewnia na wszystkie pomysły kotłujące się w mojej głowie. Jeśli moja twórczość umiliła Twój dzień, zawsze możesz",
             "text2": "lub",
             "buycoffee": "postawić mi kawę",
             "patronite": "zostać moim patronem"

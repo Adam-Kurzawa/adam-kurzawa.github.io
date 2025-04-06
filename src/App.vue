@@ -5,6 +5,7 @@ import Copyrights from './components/Copyrights.vue'
 import { useThemeStore } from './stores/theme'
 import { ref } from 'vue'
 import WorkInProgress from './components/WorkInProgress.vue'
+import AudioPlayer from './components/AudioPlayer.vue'
 
 const themeStore = useThemeStore()
 
@@ -17,6 +18,7 @@ const hideContent = ref(import.meta.env.VITE_HIDE_CONTENT === 'true')
       <Navbar />
     </header>
     <div class="content" :class="themeStore.primaryBackgroundColor">
+      <!-- <AudioPlayer /> -->
       <WorkInProgress v-if="hideContent" />
       <RouterView v-else :key="$route.fullPath"/>  
     </div>

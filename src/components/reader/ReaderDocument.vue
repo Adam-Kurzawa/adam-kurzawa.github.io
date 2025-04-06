@@ -60,7 +60,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
         </div>
       </div>
     </div>
-    <div v-for="paragraph in paragraphs" class="paragraph" :class="themeStore.primaryTextColor" :style="{ 'font-size': `${props.fontSize}rem`, 'font-family': props.fontFamily }">
+    <div v-for="(paragraph, index) in paragraphs" class="paragraph" :class="[ themeStore.primaryTextColor, index !== 0 ? 'indented' : '' ]" :style="{ 'font-size': `${props.fontSize}rem`, 'font-family': props.fontFamily }">
       {{ paragraph }}
     </div>
     <div v-if="nextPageDisabled" class="title" :class="themeStore.primaryTextColor">{{ t("reader.theEnd") }}</div>
@@ -87,8 +87,8 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 .white-panel {
   transition: padding 0.5s ease, background 0.5s ease;
   margin-bottom: 4rem;
-  padding-left: 4rem;
-  padding-right: 4rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
   border-width: 1px;
@@ -207,24 +207,27 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   font-size: 1.25rem;
 }
 
+.indented {
+  text-indent: 2rem;
+}
+
 .paragraph {
   transition: color 1s ease, font-size 1s ease;
   text-align: justify;
   margin-top: 0.5rem;
-  text-indent: 2rem;
 }
 
 @media screen and (max-width: 1600px) {
   .white-panel {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 }
 
 @media screen and (max-width: 1280px) {
   .white-panel {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
