@@ -3,13 +3,14 @@ import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue'
 import Copyrights from './components/Copyrights.vue'
 import { useThemeStore } from './stores/theme'
-import { ref } from 'vue'
+import { computed } from 'vue'
 import WorkInProgress from './components/WorkInProgress.vue'
 import AudioPlayer from './components/AudioPlayer.vue'
 
 const themeStore = useThemeStore()
 
-const hideContent = ref(import.meta.env.VITE_HIDE_CONTENT === 'true')
+const hideContent = computed(() => import.meta.env.VITE_HIDE_CONTENT === 'true')
+const showAudioPlayer = computed(() => import.meta.env.VITE_SHOW_AUDIO_PLAYER === 'true')
 </script>
 
 <template>
@@ -18,7 +19,7 @@ const hideContent = ref(import.meta.env.VITE_HIDE_CONTENT === 'true')
       <Navbar />
     </header>
     <div class="content" :class="themeStore.primaryBackgroundColor">
-      <!-- <AudioPlayer /> -->
+      <AudioPlayer v-if="showAudioPlayer" />
       <WorkInProgress v-if="hideContent" />
       <RouterView v-else :key="$route.fullPath"/>  
     </div>
