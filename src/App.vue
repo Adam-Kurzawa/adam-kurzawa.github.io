@@ -5,7 +5,7 @@ import Copyrights from './components/Copyrights.vue'
 import { useThemeStore } from './stores/theme'
 import { computed } from 'vue'
 import WorkInProgress from './components/WorkInProgress.vue'
-import AudioPlayer from './components/AudioPlayer.vue'
+import AudioPlayer from './components/player/AudioPlayer.vue'
 
 const themeStore = useThemeStore()
 

@@ -2,6 +2,10 @@
 @import "./light-theme.css";
 @import "./dark-theme.css";
 
+html {
+  overflow-y: scroll;
+}
+
 html,
 body {
   margin: 0 !important;
