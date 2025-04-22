@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useLocale, useTranslation } from '@/utils/hooks'
 import ThemeButton from './ThemeButton.vue'
@@ -22,8 +22,6 @@ const makeBackgroundSolid = (event) => {
   isScrolled.value = window.scrollY > scrollThreshold
 }
 
-window.addEventListener('scroll', makeBackgroundSolid)
-
 const readerLink = (title) => computed(() => {
   return { name: 'reader', params: { lang: locale.value, title: title } }
 })
@@ -31,6 +29,14 @@ const readerLink = (title) => computed(() => {
 const localizedLink = (view) => computed(() => {
   return { name: view, params: { lang: locale.value } }
 })
+
+onMounted(() => {
+  window.addEventListener('scroll', makeBackgroundSolid)
+})
+
+onUnmounted(() => 
+  window.removeEventListener('scroll', makeBackgroundSolid)
+)
 </script>
 
 <template>
