@@ -19,7 +19,7 @@ const showAudioPlayer = computed(() => import.meta.env.VITE_SHOW_AUDIO_PLAYER ==
       <Navbar />
     </header>
     <div class="content" :class="themeStore.primaryBackgroundColor">
-      <AudioPlayer v-if="showAudioPlayer" />
+      <AudioPlayer v-if="showAudioPlayer"/>
       <WorkInProgress v-if="hideContent" />
       <RouterView v-else :key="$route.fullPath"/>  
     </div>

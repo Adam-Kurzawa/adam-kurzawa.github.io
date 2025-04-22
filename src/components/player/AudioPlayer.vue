@@ -1,27 +1,27 @@
 <script setup>
-import { onUnmounted, ref } from 'vue';
-import AudioPlayerPlaybackControls from './AudioPlayerPlaybackControls.vue';
-import AudioPlayerMinimize from './AudioPlayerMinimize.vue';
-import AudioPlayerMaximize from './AudioPlayerMaximize.vue';
-import { useYouTube } from '../hooks/useYouTube';
-import AudioPlayerSlider from './AudioPlayerSlider.vue';
+import { computed, onUnmounted, ref, watch, watchEffect } from 'vue'
+import AudioPlayerPlaybackControls from './AudioPlayerPlaybackControls.vue'
+import AudioPlayerMinimize from './AudioPlayerMinimize.vue'
+import AudioPlayerMaximize from './AudioPlayerMaximize.vue'
+import AudioPlayerSlider from './AudioPlayerSlider.vue'
+import { useYouTube } from '../hooks/useYouTube'
+import { useAudioStore } from '@/stores/audio'
 
-const ytPlayer = useYouTube('ytplayer')
+const { youTubePlayer, state, title, duration } = useYouTube()
+const audioStore = useAudioStore()
 
-const isPlaying = ref(false)
 const isMinimized = ref(true)
-const max = ref(0)
 const progress = ref(0)
+
 let interval = null
 
 const addInterval = () => {
 	interval = setInterval(() => {
-		progress.value = ytPlayer.value.getCurrentTime()
+		progress.value = youTubePlayer.value.getCurrentTime()
 
-		if(ytPlayer.value.getPlayerState() === 0) {
+		if(youTubePlayer.value.getPlayerState() === 0) {
 			removeInterval()
 			progress.value = ytPlayer.value.getDuration()
-			isPlaying.value = false
 		}
 	}, 500)
 }
@@ -32,21 +32,18 @@ const removeInterval = () => {
 }
 
 const onPlay = () => {
-	isPlaying.value = true
-	ytPlayer.value.playVideo()
+	youTubePlayer.value.playVideo()
 	addInterval()
-	max.value = ytPlayer.value.getDuration()
-	progress.value = ytPlayer.value.getCurrentTime()
+	progress.value = youTubePlayer.value.getCurrentTime()
 }
 
 const onPause = () => {
-	isPlaying.value = false
-	ytPlayer.value.pauseVideo()
+	youTubePlayer.value.pauseVideo()
 	removeInterval()
 }
 
 const onSeekTo = (value) => {
-	ytPlayer.value.seekTo(value)
+	youTubePlayer.value.seekTo(value)
 }
 
 const onHide = () => {
@@ -60,25 +57,37 @@ const onShow = () => {
 onUnmounted(() => {
 	removeInterval()
 })
+
+audioStore.$onAction(({ args }) => {
+	youTubePlayer.value.pauseVideo()
+
+	youTubePlayer.value.cueVideoById(
+		{
+			videoId: args[0],
+			startSeconds: 0
+		}
+	)
+
+	isMinimized.value = false
+})
 </script>
 
 <template>
 	<a-card class="audioplayer" :class="[ isMinimized ? 'minimized' : 'maximized' ]">
-		<iframe id="ytplayer" width="0" height="0" class="yt" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=KFE4j8Wxj0xsZqHO?rel=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 		<div v-if="!isMinimized">
 			<div class="maximized-layout">
-				<AudioPlayerPlaybackControls :is-playing="isPlaying" @play="onPlay" @pause="onPause" />
+				<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
 				<div class="story-info">
-					<a-typography-text type="secondary">Deus Vult</a-typography-text>
-					<a-typography-text strong>Bukowe Widziadło</a-typography-text>
+					<a-typography-text type="secondary">{{ audioStore.series ?? '-' }}</a-typography-text>
+					<a-typography-text strong :ellipsis="{ expandable: false, tooltip: false, rows: 1 }" :style="{ minWidth: '10.5rem', maxWidth: '10.5rem' }">{{ title ?? '-' }}</a-typography-text>
 				</div>
 				<AudioPlayerMinimize @hide="onHide" />
 			</div>
-			<AudioPlayerSlider v-model="progress" :duration="max" @seekto="onSeekTo" />
+			<AudioPlayerSlider v-model="progress" :duration="duration" @seekto="onSeekTo" />
 		</div>
 		<div v-else class="minimized-layout">
 			<AudioPlayerMaximize @show="onShow" />
-			<AudioPlayerPlaybackControls :is-playing="isPlaying" @play="onPlay" @pause="onPause" />
+			<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
 		</div>
 	</a-card>
 </template>
@@ -113,12 +122,6 @@ onUnmounted(() => {
 	gap: 1rem;
 }
 
-.yt {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-}
-
 .story-info {
 	flex: 1;
 	display: flex;
@@ -139,5 +142,6 @@ onUnmounted(() => {
 	flex-wrap: nowrap;
 	gap: 1rem;
 	margin-bottom: 1rem;
+	align-items: center;
 }
 </style>

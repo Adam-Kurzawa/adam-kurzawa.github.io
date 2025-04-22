@@ -4,9 +4,10 @@ import { computed, h, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { countCharacters } from '@/utils/functions'
 import { EpubService } from '@/utils/EpubService.js'
-import { ShareAltOutlined, ReadOutlined, SendOutlined, DownloadOutlined } from '@ant-design/icons-vue'
+import { ShareAltOutlined, ReadOutlined, SendOutlined, DownloadOutlined, CustomerServiceOutlined } from '@ant-design/icons-vue'
 import { theme } from 'ant-design-vue'
 import SendToKindle from './SendToKindle.vue'
+import { useAudioStore } from '@/stores/audio'
 
 const props = defineProps([ 'title' ])
 
@@ -14,6 +15,7 @@ const router = useRouter()
 const locale = useLocale()
 const url = useUrl()
 const t = useTranslation()
+const audioStore = useAudioStore()
 
 const { useToken } = theme
 const { token } = useToken()
@@ -30,6 +32,9 @@ const chapters = computed(() => content.value.chapters.length)
 const tags = computed(() => content.value.tags)
 const series = computed(() => content.value.series)
 const charactersCount = computed(() => countCharacters(content.value.chapters))
+const youTubeVideoId = computed(() => content.value.youTubeVideoId)
+const isPending = computed(() => content.value.status === 'PENDING')
+const isPublished = computed(() => content.value.status === 'PUBLISHED')
 
 const saveAsEpub = () => EpubService.saveAsEpub(title.value, content.value.chapters, t("reader.epub-chapter"), content.value.chapterTitles, content.value.tags, locale.value)
 
@@ -47,6 +52,10 @@ const openReader = () => {
         params: { lang: locale.value, title: props.title },
         query: { type: 'story' },
     })
+}
+
+const listenTo = () => {
+    audioStore.setAudioBook(youTubeVideoId.value, series.value)
 }
 
 const filterBySeries = () => {
@@ -68,11 +77,12 @@ const hideSendToKindleModal = () => {
 
 <template>
     <div class="story-card" v-if="content">
-        <a-image :src="imageSrc" :width="'14rem'" :style="{ borderTopLeftRadius: `${token.borderRadiusLG}px`, borderBottomLeftRadius: `${token.borderRadiusLG}px` }" />
+        <a-image :src="imageSrc" :width="'14rem'" :style="[ { borderTopLeftRadius: `${token.borderRadiusLG}px`, borderBottomLeftRadius: `${token.borderRadiusLG}px` }, isPending ? { filter: 'grayscale(100%)' } : { } ]" />
         <a-card :style="{ flex: '1', borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, maxHeight: '21rem', height: '21rem', minHeight: '21rem', overflowY: 'clip' }">
             <template #extra>
-                <a-space>
+                <a-space v-if="isPublished">
                     <a-button type="primary" :icon="h(ReadOutlined)" @click="openReader">{{ t('story-card.read') }}</a-button>
+                    <a-button v-if="youTubeVideoId" type="primary" :icon="h(CustomerServiceOutlined)" @click="listenTo">Słuchaj</a-button>
                     <a-button-group>
                         <a-button @click="saveAsEpub">
                             <template #icon>
@@ -94,8 +104,10 @@ const hideSendToKindleModal = () => {
                 </a-space>
             </template>
             <template #title>
-                <a-typography-title :level="3" class="ant-btn-link title" @click="openReader">{{ title }}</a-typography-title>
+                <a-typography-title v-if="isPublished" :level="3" class="ant-btn-link title" @click="openReader">{{ title }}</a-typography-title>
+                <a-typography-title v-else :level="3" class="title">{{ title }}</a-typography-title>
             </template>
+            <a-badge-ribbon v-if="isPending" :text="t('story-card.pending')" color="volcano" :style="{ marginTop: '-4.75rem', marginRight: '-1.5rem', paddingRight: '1rem' }" ></a-badge-ribbon>
             <div class="content">
                 <div class="descriptions">
                     <div class="tags">
@@ -103,7 +115,7 @@ const hideSendToKindleModal = () => {
                     </div>
                     <p class="justify" :style="{ flex: '1' }">{{ description }}</p>
                 </div>
-                <a-descriptions class="table" bordered size="small" :column="1">
+                <a-descriptions v-if="isPublished" class="table" bordered size="small" :column="1">
                     <a-descriptions-item :label="t('story-card.series-column')" v-if="series !== null">
                         <a-button type="link" size="small" @click="filterBySeries" :style="{ padding: '0', border: 'none' }">{{ series }}</a-button>
                     </a-descriptions-item>

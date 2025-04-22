@@ -18,7 +18,9 @@ const { token } = useToken()
 <style scoped>
 .footer {
   transition: background-color 0.5s ease;
-  padding: 2rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  padding-top: 2rem;
   padding-bottom: 4rem;
   display: flex;
   flex-wrap: nowrap;

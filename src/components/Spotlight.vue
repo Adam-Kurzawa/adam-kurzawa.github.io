@@ -55,4 +55,16 @@ const goToBlog = () => {
     font-weight: 100;
     margin-bottom: 1rem;
 }
+
+@media screen and (max-width: 1280px) {
+  .spotlight {
+    grid-template-columns: repeat(3, minmax(0, 34%));
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .spotlight {
+    grid-template-columns: repeat(2, minmax(0, 50%));
+  }
+}
 </style>

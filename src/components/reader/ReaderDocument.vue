@@ -20,12 +20,13 @@ const paragraphs = computed(() => props.story.chapters[props.chapter - 1])
 const charactersCount = computed(() => countCharacters(props.story.chapters))
 
 const previousPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.max(1, props.chapter - 1) } })
-const previousPageDisabled = computed(() => props.chapter === 1)
+const previousPageEnabled = computed(() => props.chapter !== 1)
 
 const nextPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.min(props.story.chapters.length, props.chapter + 1) } })
 const nextPageDisabled = computed(() => props.chapter === props.story.chapters.length)
+const nextPageEnabled = computed(() => props.chapter !== props.story.chapters.length)
 
-const hasMultiplePages = computed(() => !previousPageDisabled.value || !nextPageDisabled.value)
+const hasMultiplePages = computed(() => previousPageEnabled.value || nextPageEnabled.value)
 
 const isHoveredPreviousChapter = ref(false)
 const onHoverPreviousChapter = () => { isHoveredPreviousChapter.value = true }
@@ -41,38 +42,40 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
     <a-typography-text type="secondary" class="stats">{{ charactersCount }} {{ t("reader.signs") }} | &copy; {{ props.story.year }}</a-typography-text>
     <a-typography-title :style="{ fontFamily: 'Yeseva One', fontWeight: '100' }" class="title">{{ props.story.title }}</a-typography-title>
     <div class="chapter-pager" v-if="hasMultiplePages">
-      <div class="prev-chapter" :class="[themeStore.secondaryTextColor, previousPageDisabled ? 'transparent' : '', isHoveredPreviousChapter ? themeStore.primaryLinkColor : '']">
+      <div class="prev-chapter" v-if="previousPageEnabled" :class="[themeStore.secondaryTextColor, isHoveredPreviousChapter ? themeStore.primaryLinkColor : '']">
         <div class="arrow">←</div>
         <div class="scene-and-title navigable" :class="[story.chapterTitles && story.chapterTitles[props.chapter - 2] ? 'gapped' : '']" @mouseenter="onHoverPreviousChapter" @mouseleave="onUnhoverPreviousChapter" @click="previousPage">
           <div class="prev-scene">{{ t("reader.epub-chapter") }} {{ props.chapter - 1 }}</div>
           <div v-if="story.chapterTitles" class="prev-chapterTitle">{{ props.story.chapterTitles[props.chapter - 2] }}</div>
         </div>
       </div>
+      <div v-else></div>
       <div class="scene-and-title" :class="[themeStore.primaryTextColor, story.chapterTitles ? 'gapped' : '']">
         <div class="scene">{{ t("reader.epub-chapter") }} {{ props.chapter }}</div>
         <div v-if="story.chapterTitles" class="chapterTitle">{{ props.story.chapterTitles[props.chapter - 1] }}</div>
       </div>
-      <div class="next-chapter" :class="[themeStore.secondaryTextColor, nextPageDisabled ? 'transparent' : '', isHoveredNextChapter ? themeStore.primaryLinkColor : '']">
+      <div class="next-chapter" v-if="nextPageEnabled" :class="[themeStore.secondaryTextColor, isHoveredNextChapter ? themeStore.primaryLinkColor : '']">
         <div class="arrow">→</div>
         <div class="scene-and-title navigable" :class="[story.chapterTitles && story.chapterTitles[props.chapter] ? 'gapped' : '']" @mouseenter="onHoverNextChapter" @mouseleave="onUnhoverNextChapter" @click="nextPage">
           <div class="next-scene">{{ t("reader.epub-chapter") }} {{ props.chapter + 1 }}</div>
           <div v-if="story.chapterTitles" class="next-chapterTitle">{{ props.story.chapterTitles[props.chapter] }}</div>
         </div>
       </div>
+      <div v-else></div>
     </div>
     <div v-for="(paragraph, index) in paragraphs" class="paragraph" :class="[ themeStore.primaryTextColor, index !== 0 ? 'indented' : '' ]" :style="{ 'font-size': `${props.fontSize}rem`, 'font-family': props.fontFamily }">
       {{ paragraph }}
     </div>
     <div v-if="nextPageDisabled" class="title" :class="themeStore.primaryTextColor">{{ t("reader.theEnd") }}</div>
     <div class="bottom-chapter-pager" v-if="hasMultiplePages">
-      <div class="prev-chapter" :class="[themeStore.secondaryTextColor, previousPageDisabled ? 'transparent' : '', isHoveredPreviousChapter ? themeStore.primaryLinkColor : '']">
+      <div class="prev-chapter" v-if="previousPageEnabled" :class="[themeStore.secondaryTextColor, isHoveredPreviousChapter ? themeStore.primaryLinkColor : '']">
         <div class="arrow">←</div>
         <div class="scene-and-title navigable" :class="[story.chapterTitles && story.chapterTitles[props.chapter - 2] ? 'gapped' : '']" @mouseenter="onHoverPreviousChapter" @mouseleave="onUnhoverPreviousChapter" @click="previousPage">
           <div class="prev-scene">{{ t("reader.epub-chapter") }} {{ props.chapter - 1 }}</div>
           <div v-if="story.chapterTitles" class="prev-chapterTitle">{{ props.story.chapterTitles[props.chapter - 2] }}</div>
         </div>
       </div>
-      <div class="next-chapter" :class="[themeStore.secondaryTextColor, nextPageDisabled ? 'transparent' : '', isHoveredNextChapter ? themeStore.primaryLinkColor : '']">
+      <div class="next-chapter" v-if="nextPageEnabled" :class="[themeStore.secondaryTextColor, isHoveredNextChapter ? themeStore.primaryLinkColor : '']">
         <div class="arrow">→</div>
         <div class="scene-and-title navigable" :class="[story.chapterTitles && story.chapterTitles[props.chapter] ? 'gapped' : '']" @mouseenter="onHoverNextChapter" @mouseleave="onUnhoverNextChapter" @click="nextPage">
           <div class="next-scene">{{ t("reader.epub-chapter") }} {{ props.chapter + 1 }}</div>
@@ -87,6 +90,8 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 .white-panel {
   transition: padding 0.5s ease, background 0.5s ease;
   margin-bottom: 4rem;
+  margin-left: 15%;
+  margin-right: 15%;
   padding-left: 6rem;
   padding-right: 6rem;
   padding-top: 2rem;
@@ -104,10 +109,6 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 
 .navigable {
   cursor: pointer;
-}
-
-.transparent {
-  color: transparent !important;
 }
 
 .gapped {

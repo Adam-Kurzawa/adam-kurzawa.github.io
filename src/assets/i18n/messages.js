@@ -66,7 +66,8 @@ export const messages = {
             "series-column": "Seria",
             "year-column": "Rok wydania",
             "chapters-column": "Ilość rozdziałów",
-            "characters-column": "Ilość znaków"
+            "characters-column": "Ilość znaków",
+            "pending": "Premiera wkrótce"
         },
         "egzorcyzmy-card": {
             "title": "Antologia \"Fantazmaty V\"",
@@ -205,7 +206,8 @@ export const messages = {
             "series-column": "Series",
             "year-column": "Publication year",
             "chapters-column": "Chapters",
-            "characters-column": "Characters"
+            "characters-column": "Characters",
+            "pending": "Coming soon"
         },
         "egzorcyzmy-card": {
             "title": "Anthology \"Fantazmaty V\"",
