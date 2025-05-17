@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alternata - blog Adama Kurzawy</title>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" href="/favicon.ico">
+		<!-- Feeds PL -->
+		<link rel="alternate" type="application/rss+xml" title="[PL] Alternata RSS feed" href="/pl/rss.xml" />
+		<link rel="alternate" type="application/atom+xml" title="[PL] Alternata Atom feed" href="/pl/atom.xml" />
+		<link rel="alternate" type="application/json" title="[PL] Alternata JSON feed" href="/pl/feed.json" />
+		<!-- Feeds EN -->
+		<link rel="alternate" type="application/rss+xml" title="[EN] Alternata RSS feed" href="/en/rss.xml" />
+		<link rel="alternate" type="application/atom+xml" title="[EN] Alternata Atom feed" href="/en/atom.xml" />
+		<link rel="alternate" type="application/json" title="[EN] Alternata JSON feed" href="/en/feed.json" />
+		<!-- END feeds -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Alternata - blog Adama Kurzawy</title>
 		<!--<script src="https://www.youtube.com/iframe_api"></script>-->
-    <script src="jszip.min.js"></script>
-    <script src="ejs.min.js"></script>
-    <script src="jepub.min.js"></script>
-   </head>
-  <body>
-    <div id="ytplayer" class="yt"></div>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+		<script src="jszip.min.js"></script>
+		<script src="ejs.min.js"></script>
+		<script src="jepub.min.js"></script>
+	</head>
+	<body>
+		<div id="ytplayer" class="yt"></div>
+		<div id="app"></div>
+		<script type="module" src="/src/main.js"></script>
+	</body>
 </html>

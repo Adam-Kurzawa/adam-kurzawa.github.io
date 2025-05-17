@@ -1,0 +1,62 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Alternata",
+    "home_page_url": "https://adamkurzawa.pl",
+    "feed_url": "https://adamkurzawa.pl/en/feed.json",
+    "description": "Adam Kurzawa – Original Science Fiction Blog",
+    "author": {
+        "name": "Adam Kurzawa",
+        "url": "https://adamkurzawa.pl"
+    },
+    "items": [
+        {
+            "id": "bukowe_widziadlo",
+            "content_html": "Deus Vult",
+            "url": "https://adamkurzawa.pl/en/bukowe_widziadlo",
+            "title": "Beech Phantom",
+            "date_modified": "2024-03-31T22:00:00.000Z"
+        },
+        {
+            "id": "innoziemiec",
+            "content_html": null,
+            "url": "https://adamkurzawa.pl/en/innoziemiec",
+            "title": "The Other-earther",
+            "date_modified": "2025-03-31T22:00:00.000Z"
+        },
+        {
+            "id": "klatwa_imetheru",
+            "content_html": "Kemetverse",
+            "url": "https://adamkurzawa.pl/en/klatwa_imetheru",
+            "title": "Curse of Imetheru",
+            "date_modified": "2023-03-31T22:00:00.000Z"
+        },
+        {
+            "id": "powstanie_na_brillar",
+            "content_html": "Konkwistador",
+            "url": "https://adamkurzawa.pl/en/powstanie_na_brillar",
+            "title": "Brillar Uprising",
+            "date_modified": "2023-03-31T22:00:00.000Z"
+        },
+        {
+            "id": "projekt_eclipse",
+            "content_html": "Evo 78",
+            "url": "https://adamkurzawa.pl/en/projekt_eclipse",
+            "title": "Project Eclipse",
+            "date_modified": "2023-03-31T22:00:00.000Z"
+        },
+        {
+            "id": "przyczajony_arakanin",
+            "content_html": "Crimsonverse",
+            "url": "https://adamkurzawa.pl/en/przyczajony_arakanin",
+            "title": "Crouching Spider, Hidden \"Prophet\"",
+            "date_modified": "2025-03-31T22:00:00.000Z"
+        },
+        {
+            "id": "uefa_euro_2224",
+            "content_html": null,
+            "url": "https://adamkurzawa.pl/en/uefa_euro_2224",
+            "title": "Euro 2224",
+            "date_modified": "2024-03-31T22:00:00.000Z"
+        }
+    ]
+}

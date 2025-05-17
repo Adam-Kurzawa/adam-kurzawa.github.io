@@ -16,6 +16,10 @@ export const messages = {
             }
         },
         "page-not-found": "Coś jest nie tegez... Strona o podanym adresie nie istnieje!",
+        "feeds": {
+            "copy-success": "Skopiowano link do schowka",
+            "copy-error": "Nie udało się pobrać linku"
+        },
         "alternata-card": {
             "title": "Antologia \"Alternata\"",
             "subtitle": "Siedem opowiadań z innych światów",
@@ -156,6 +160,10 @@ export const messages = {
             }
         },
         "page-not-found": "Something ain't right... The page you are looking for doesn't exists!",
+        "feeds": {
+            "copy-success": "Copied hyperlink to clipboard",
+            "copy-error": "Cannot fetch feed hyperlink"
+        },
         "alternata-card": {
             "title": "\"Alternata\" The Anthology",
             "subtitle": "Seven stories from another worlds",

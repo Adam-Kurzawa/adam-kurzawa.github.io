@@ -6,6 +6,7 @@ import { useThemeStore } from './stores/theme'
 import { computed } from 'vue'
 import WorkInProgress from './components/WorkInProgress.vue'
 import AudioPlayer from './components/player/AudioPlayer.vue'
+import Feeds from './components/Feeds.vue'
 
 const themeStore = useThemeStore()
 
@@ -24,6 +25,7 @@ const showAudioPlayer = computed(() => import.meta.env.VITE_SHOW_AUDIO_PLAYER ==
       <RouterView v-else :key="$route.fullPath"/>  
     </div>
     <footer>
+      <Feeds />
       <Copyrights />
     </footer>
   </a-config-provider>

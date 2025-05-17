@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "buildindex": "node index_builder.js",
-    "dev": "npm run buildindex && vite",
+    "buildfeeds": "node feeds_builder.js",
+    "dev": "npm run buildindex && npm run buildfeeds && vite",
     "errorpage": "cd ./dist && del 404.html && del temp && copyfiles index.html ./temp && cd ./temp && renamer index.html --replace 404.html && copyfiles 404.html .. && cd .. && del temp && cd ..",
     "addcname": "copyfiles CNAME ./dist",
-    "build": "npm run buildindex && vite build && npm run errorpage && npm run addcname",
+    "build": "npm run buildindex && npm run buildfeeds && vite build && npm run errorpage && npm run addcname",
     "preview": "npm run build && vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
@@ -33,6 +34,7 @@
     "copyfiles": "^2.4.1",
     "del-cli": "^5.1.0",
     "docx4js": "^3.2.20",
+    "feed": "^5.0.1",
     "gh-pages": "^6.1.1",
     "renamer": "^5.0.0",
     "vite": "^5.1.6"

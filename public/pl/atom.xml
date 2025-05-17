@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://adamkurzawa.pl</id>
+    <title>Alternata</title>
+    <updated>2025-05-17T19:11:39.502Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Adam Kurzawa</name>
+        <email>the.alternata@gmail.com</email>
+        <uri>https://adamkurzawa.pl</uri>
+    </author>
+    <link rel="alternate" href="https://adamkurzawa.pl"/>
+    <link rel="self" href="https://adamkurzawa.pl/pl/atom.xml"/>
+    <subtitle>Autorski blog sci-fi Adama Kurzawy</subtitle>
+    <icon>https://adamkurzawa.pl/favicon.ico</icon>
+    <rights>© 2025 Adam Kurzawa</rights>
+    <entry>
+        <title type="html"><![CDATA[Bukowe Widziadło]]></title>
+        <id>bukowe_widziadlo</id>
+        <link href="https://adamkurzawa.pl/pl/bukowe_widziadlo"/>
+        <updated>2024-03-31T22:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Deus Vult]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Innoziemiec]]></title>
+        <id>innoziemiec</id>
+        <link href="https://adamkurzawa.pl/pl/innoziemiec"/>
+        <updated>2025-03-31T22:00:00.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Klątwa Imetheru]]></title>
+        <id>klatwa_imetheru</id>
+        <link href="https://adamkurzawa.pl/pl/klatwa_imetheru"/>
+        <updated>2023-03-31T22:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Kemetverse]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Powstanie na Brillar]]></title>
+        <id>powstanie_na_brillar</id>
+        <link href="https://adamkurzawa.pl/pl/powstanie_na_brillar"/>
+        <updated>2023-03-31T22:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Konkwistador]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Projekt Eclipse]]></title>
+        <id>projekt_eclipse</id>
+        <link href="https://adamkurzawa.pl/pl/projekt_eclipse"/>
+        <updated>2023-03-31T22:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Evo 78]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Przyczajony pająk, ukryty "Prorok"]]></title>
+        <id>przyczajony_arakanin</id>
+        <link href="https://adamkurzawa.pl/pl/przyczajony_arakanin"/>
+        <updated>2025-03-31T22:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Crimsonverse]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Euro 2224]]></title>
+        <id>uefa_euro_2224</id>
+        <link href="https://adamkurzawa.pl/pl/uefa_euro_2224"/>
+        <updated>2024-03-31T22:00:00.000Z</updated>
+    </entry>
+</feed>

@@ -23,7 +23,7 @@ const descriptionParagraphs = ref([ 0, 1 ])
 					<p>{{ t(`egzorcyzmy-card.description.0`) }}</p>
 					<p>{{ t(`egzorcyzmy-card.description.1`) }}</p>
 				</div>
-				<img src="https://fantazmaty.pl/wp-content/uploads/2023/04/Fantazmaty-3-optimized.jpg" class="cover cover-with-borders" />
+				<img src="https://fantazmaty.pl/wp-content/uploads/2024/12/okladka_f4_v2-600x851-optimized.png" class="cover cover-with-borders" />
 			</div>
 			<template #actions>
 				<a-button type="text" :icon="h(ReadOutlined)">{{ t('egzorcyzmy-card.read') }}</a-button>
