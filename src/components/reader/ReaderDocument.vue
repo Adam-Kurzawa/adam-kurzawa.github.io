@@ -75,6 +75,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
           <div v-if="story.chapterTitles" class="prev-chapterTitle">{{ props.story.chapterTitles[props.chapter - 2] }}</div>
         </div>
       </div>
+      <div v-else></div>
       <div class="next-chapter" v-if="nextPageEnabled" :class="[themeStore.secondaryTextColor, isHoveredNextChapter ? themeStore.primaryLinkColor : '']">
         <div class="arrow">→</div>
         <div class="scene-and-title navigable" :class="[story.chapterTitles && story.chapterTitles[props.chapter] ? 'gapped' : '']" @mouseenter="onHoverNextChapter" @mouseleave="onUnhoverNextChapter" @click="nextPage">
@@ -82,6 +83,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
           <div v-if="story.chapterTitles" class="next-chapterTitle">{{ props.story.chapterTitles[props.chapter] }}</div>
         </div>
       </div>
+      <div v-else></div>
     </div>
   </div>
 </template>
