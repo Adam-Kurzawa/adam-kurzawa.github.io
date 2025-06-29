@@ -1,11 +1,12 @@
 export class AlternataClient {
+	static #host = import.meta.env.VITE_ALTERNATA_BFF_HOST
 
     static sendEmail(blob, fileName, recipient, altchaToken) {
 		const formData = new FormData()
 		formData.append("file", blob, `${fileName}.epub`)
 		formData.append("recipient", recipient)
 
-		return fetch("http://localhost:8080/send-email", {
+		return fetch(`${this.#host}/send-email`, {
 			method: "POST",
 			body: formData,
 			headers: {
@@ -29,7 +30,7 @@ export class AlternataClient {
     }
 
 	static addComment(newComment, altchaToken) {
-		return fetch('http://localhost:8080/add-comment', {
+		return fetch(`${this.#host}/add-comment`, {
 			method: "POST",
 			body: JSON.stringify(newComment),
 			headers: {
