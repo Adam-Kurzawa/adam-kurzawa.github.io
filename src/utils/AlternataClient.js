@@ -44,9 +44,14 @@ export class AlternataClient {
 			return Promise.reject("Client error")
 		})
 		.then(response => {
-			if(response.ok) {
+			const status = response.status
+
+			if(status === 200) {
 				console.log("Komentarz dodany pomyślnie")
-				return Promise.resolve()
+				return Promise.resolve(true)
+			} else if(status === 205) {
+				console.log("Komentarz dodany do moderacji")
+				return Promise.resolve(false)
 			} else {
 				console.error("Wystąpił błąd przy wysyłaniu: ", response.status)
 				return Promise.reject("Wrong HTTP response")

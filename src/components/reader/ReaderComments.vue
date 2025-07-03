@@ -47,7 +47,12 @@ const addComment = () => {
 		}
 
 		AlternataClient.addComment(newComment, altcha.value)
-			.then(() => message.success(t('reader.comments.new-comment-added')))
+			.then((success) => {
+				if(success) 
+					message.success(t('reader.comments.new-comment-added'))
+				else
+					message.success("Komentarz dodany do moderacji")
+			})
 			.catch(() => message.error(t('reader.comments.new-comment-rejected')))
 	} catch (e) {
 		message.error(t('reader.comments.new-comment-rejected'))
