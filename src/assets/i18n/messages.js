@@ -128,6 +128,7 @@ export const messages = {
                 'new-comment-empty-content': "Pusta wartość!",
                 'new-comment-wrong-answer': "Zła odpowiedź!",
                 'new-comment-added': "Dodano komentarz",
+                'new-comment-moderated': "Komentarz oczekuje na moderację",
                 'new-comment-rejected': "Wystąpił błąd"
             },
             "bar": {
@@ -270,7 +271,10 @@ export const messages = {
                 "new-comment-submit": "Send",
                 'new-comment-math-tcha-prompt': "How much is a sum of following numbers: ",
                 'new-comment-empty-content': "Empty value!",
-                'new-comment-wrong-answer': "Wrong answer!"
+                'new-comment-wrong-answer': "Wrong answer!",
+                'new-comment-added': "Your comment has been published",
+                'new-comment-moderated': "Your comment awaits moderation",
+                'new-comment-rejected': "An error has occurred"
             },
             "bar": {
                 "share": "Share",

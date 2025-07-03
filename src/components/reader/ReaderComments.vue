@@ -51,7 +51,7 @@ const addComment = () => {
 				if(success) 
 					message.success(t('reader.comments.new-comment-added'))
 				else
-					message.success("Komentarz dodany do moderacji")
+					message.warning(t('reader.comments.new-comment-moderated'))
 			})
 			.catch(() => message.error(t('reader.comments.new-comment-rejected')))
 	} catch (e) {
