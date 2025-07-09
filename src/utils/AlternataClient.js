@@ -30,8 +30,8 @@ export class AlternataClient {
     }
 
 	static addComment(newComment, altchaToken) {
-		return fetch(`${this.#host}/add-comment`, {
-			method: "POST",
+		return fetch(`${this.#host}/comments`, {
+			method: "PUT",
 			body: JSON.stringify(newComment),
 			headers: {
 				'Content-Type': 'application/json',

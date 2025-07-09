@@ -41,7 +41,6 @@ const addComment = () => {
 		const newComment = {
 			name: name,
 			text: text,
-			createdAt: Date.now(),
 			storyTitle: route.params.title,
 			locale: route.params.lang
 		}
