@@ -231,6 +231,8 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   .white-panel {
     padding-left: 2rem;
     padding-right: 2rem;
+    margin-left: 8%;
+    margin-right: 8%;
   }
 }
 
@@ -239,6 +241,22 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
     border-radius: 0;
     border-left: none;
     border-right: none;
+    padding-top: 6rem;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .white-panel {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    padding-top: 9rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 </style>

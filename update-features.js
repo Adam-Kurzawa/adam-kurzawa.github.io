@@ -10,52 +10,42 @@ const token = fs.readFileSync("C:\\Users\\Adam\\alternata_bff_token.txt", 'utf-8
 const signature = fs.readFileSync("C:\\Users\\Adam\\alternata_bff_signature.bin").toString('base64');
 
 // Endpoint backendu
-const endpoint = 'https://alternata-bff.onrender.com/features';
-// const endpoint = 'http://localhost:8080/features';
+// const endpoint = 'https://alternata-bff.onrender.com/features';
+const endpoint = 'http://localhost:8080/features';
 
 async function sendToken() {
   console.log(token)
   console.log("")
   console.log(signature)
-    const collections = await fetch("https://alternata-bff.onrender.com/comments/collections", {
-            method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            token: token,
-            signature: signature
-        })
-    })
-  const postResponse = await collections.text();
+
+  const put = await fetch(endpoint, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          token: token,
+          signature: signature,
+          // null means no update
+          addComment: null,
+          sendToKindle: null,
+          keepAwake: false
+      })
+  });
+
+  const post = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          token: token,
+          signature: signature
+      })
+  });
+
+  const postResponse = await post.text();
   console.log('Odpowiedź z serwera:', postResponse);
-  //  const put = await fetch(endpoint, {
-  //      method: 'PUT',
-  //      headers: {
-  //          'Content-Type': 'application/json'
-  //      },
-  //      body: JSON.stringify({
-  //          token: token,
-  //          signature: signature,
-  //          // null means no update
-  //          addComment: true,
-  //          sendToKindle: true
-  //      })
-  //  });
-//
-  //  const post = await fetch(endpoint, {
-  //      method: 'POST',
-  //      headers: {
-  //          'Content-Type': 'application/json'
-  //      },
-  //      body: JSON.stringify({
-  //          token: token,
-  //          signature: signature
-  //      })
-  //  });
-//
-  //  const postResponse = await post.text();
-  //  console.log('Odpowiedź z serwera:', postResponse);
 }
 
 await sendToken();

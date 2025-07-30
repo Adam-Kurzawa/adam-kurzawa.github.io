@@ -1,14 +1,15 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
 import { ref, watch } from 'vue'
-import { useAsset, useLocale } from '@/utils/hooks'
+import { useTranslation, useAsset, useLocale, useInnerWidth } from '@/utils/hooks'
 import StoryCard from '@/components/StoryCard.vue'
-import { useTranslation } from '@/utils/hooks'
+import StoryCardMobile from '@/components/StoryCardMobile.vue'
 
 const locale = useLocale()
 const router = useRouter()
 const route = useRoute()
 const t = useTranslation()
+const width = useInnerWidth()
 
 locale.value = route.params.lang
 
@@ -62,7 +63,8 @@ const seeAll = () => {
 		<div class="sorting">
 			<a-segmented v-model:value="currentSorting" :options="sortingOptions" @change="changeSorting"></a-segmented>
 		</div>
-		<StoryCard v-for="story in stories" :key="story.key" :title="story.key" />
+		<StoryCard v-if="width > 1024" v-for="story in stories" :key="story.key" :title="story.key" />
+		<StoryCardMobile v-else v-for="story in stories" :key="story.key" :title="story.key" />
 	</main>
 </template>
 
@@ -76,6 +78,7 @@ const seeAll = () => {
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: end;
+	padding-top: 0.25rem;
 }
 
 .series-row {

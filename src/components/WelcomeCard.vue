@@ -35,4 +35,11 @@ const t = useTranslation()
         padding-right: 4rem;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .quote {
+        padding-left: 0;
+        padding-right: 1.25rem;
+    }
+}
 </style>

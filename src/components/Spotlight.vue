@@ -67,4 +67,22 @@ const goToBlog = () => {
     grid-template-columns: repeat(2, minmax(0, 50%));
   }
 }
+
+@media screen and (max-width: 600px) {
+  .spotlight {
+    display: flex;
+    flex-direction: column;
+    padding-right: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    margin-bottom: 1rem;
+    align-items: start;
+  }
+
+  .header > button {
+    padding-left: 0;
+  }
+}
 </style>

@@ -36,6 +36,7 @@ const articles = useAsset(import('@/assets/articles_idx.json'))
 .h2 {
     font-family: 'Yeseva One';
     font-weight: 100;
+	padding-left: 0.25rem;
     margin-bottom: 1rem;
 }
 
@@ -49,6 +50,15 @@ const articles = useAsset(import('@/assets/articles_idx.json'))
 @media screen and (max-width: 1024px) {
 	.entries {
 		margin-top: 2rem;
+		padding-right: 1rem;
+		grid-template-columns: minmax(0, 50%) minmax(0, 50%);
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.entries {
+		display: flex;
+		flex-direction: column;
 	}
 }
 </style>

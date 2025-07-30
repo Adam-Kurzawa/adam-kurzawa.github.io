@@ -56,7 +56,7 @@ const showAudioPlayer = computed(() => import.meta.env.VITE_SHOW_AUDIO_PLAYER ==
   }
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1366px) {
   .content {
     padding-left: 3rem;
     padding-right: 3rem;
@@ -65,7 +65,8 @@ const showAudioPlayer = computed(() => import.meta.env.VITE_SHOW_AUDIO_PLAYER ==
 
 @media screen and (max-width: 1024px) {
   .content {
-    padding-left: 0;
+    padding-top: 6rem;
+    padding-left: 1rem;
     padding-right: 0;
   }
 }

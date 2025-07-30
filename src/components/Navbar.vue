@@ -12,6 +12,8 @@ const t = useTranslation()
 const locale = useLocale()
 const themeStore = useThemeStore()
 
+const showLanguageChanger = computed(() => import.meta.env.VITE_SHOW_LANGUAGE_CHANGER === 'true')
+
 const { useToken } = theme
 const { token } = useToken()
 
@@ -92,7 +94,7 @@ onUnmounted(() =>
 			</a-dropdown>
 			<RouterLink to="/" class="logo" :class="themeStore.primaryTextColor">Alternata</RouterLink>
 			<ThemeButton class="theme-toggle" />
-			<LanguageButton />
+			<LanguageButton v-if="showLanguageChanger" />
 		</span>
 	</nav>
 </template>

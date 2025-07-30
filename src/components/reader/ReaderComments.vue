@@ -1,7 +1,7 @@
 <script setup>
 import { computed, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation, useInnerWidth } from '@/utils/hooks'
 import { useFirestore, useCollection } from 'vuefire'
 import { collection } from 'firebase/firestore'
 import { message } from 'ant-design-vue'
@@ -17,6 +17,14 @@ const props = defineProps([ 'visible' ])
 const route = useRoute()
 const t = useTranslation()
 const firestore = useFirestore()
+const width = useInnerWidth()
+
+const commentsDrawerSize = computed(() => {
+	if(width.value > 1024)
+		return 'large'
+	else
+		return 'default'
+})
 
 const commentsFirestoreCollection = collection(firestore, `${route.params.title}_${route.params.lang}_comments`)
 const commentsUnsorted = useCollection(commentsFirestoreCollection)
@@ -90,7 +98,7 @@ const onSubmit = () => {
 </script>
 
 <template>
-	<a-drawer v-model:open="props.visible" class="x" :title="t('reader.comments.header')" placement="right" @close="$emit('close-comments')" size="large">
+	<a-drawer v-model:open="props.visible" :title="t('reader.comments.header')" placement="right" @close="$emit('close-comments')" :size="commentsDrawerSize">
 		<template #extra>
 			<a-typography-text v-if="comments.length === 1" type="secondary">{{ `${comments.length} ${t('reader.comments.amount-singular')}` }}</a-typography-text>
 			<a-typography-text v-if="comments.length > 1" type="secondary">{{ `${comments.length} ${t('reader.comments.amount-plural')}` }}</a-typography-text>

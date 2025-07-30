@@ -76,11 +76,14 @@ const hideSendToKindleModal = () => {
 </script>
 
 <template>
-    <div class="story-card" v-if="content">
-        <a-image :src="imageSrc" :width="'14rem'" :style="[ { borderTopLeftRadius: `${token.borderRadiusLG}px`, borderBottomLeftRadius: `${token.borderRadiusLG}px` }, isPending ? { filter: 'grayscale(100%)' } : { } ]" />
-        <a-card :style="{ flex: '1', borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, maxHeight: '21rem', height: '21rem', minHeight: '21rem', overflowY: 'clip' }">
-            <template #extra>
-                <a-space v-if="isPublished">
+    <a-card v-if="content">
+        <div class="top-content">
+            <div>
+                <a-image :src="imageSrc" :width="'10rem'" :style="[ isPending ? { filter: 'grayscale(100%)' } : { } ]" />
+            </div>
+            <div class="top-left-content" v-if="isPublished">
+                <a-typography-title :level="3" class="ant-btn-link title" @click="openReader">{{ title }}</a-typography-title>
+                <a-space>
                     <a-button type="primary" :icon="h(ReadOutlined)" @click="openReader">{{ t('story-card.read') }}</a-button>
                     <a-button v-if="youTubeVideoId" type="primary" :icon="h(CustomerServiceOutlined)" @click="listenTo">Słuchaj</a-button>
                     <a-button-group>
@@ -102,33 +105,45 @@ const hideSendToKindleModal = () => {
                         </a-button>
                     </a-button-group>
                 </a-space>
-            </template>
-            <template #title>
-                <a-typography-title v-if="isPublished" :level="3" class="ant-btn-link title" @click="openReader">{{ title }}</a-typography-title>
-                <a-typography-title v-else :level="3" class="title">{{ title }}</a-typography-title>
-            </template>
-            <a-badge-ribbon v-if="isPending" :text="t('story-card.pending')" color="volcano" :style="{ marginTop: '-4.75rem', marginRight: '-1.5rem', paddingRight: '1rem' }" ></a-badge-ribbon>
-            <div class="content">
-                <div class="descriptions">
-                    <div class="tags">
-                        <a-tag v-for="tag in tags">{{ tag }}</a-tag>
-                    </div>
-                    <p class="justify" :style="{ flex: '1' }">{{ description }}</p>
-                </div>
-                <a-descriptions v-if="isPublished" class="table" bordered size="small" :column="1">
+                <a-descriptions class="table" bordered size="small" :column="1">
                     <a-descriptions-item :label="t('story-card.series-column')" v-if="series !== null">
                         <a-button type="link" size="small" @click="filterBySeries" :style="{ padding: '0', border: 'none' }">{{ series }}</a-button>
                     </a-descriptions-item>
                     <a-descriptions-item :label="t('story-card.year-column')">{{ year }}</a-descriptions-item>
                     <a-descriptions-item :label="t('story-card.chapters-column')">{{ chapters }}</a-descriptions-item>
                     <a-descriptions-item :label="t('story-card.characters-column')">{{ charactersCount }}</a-descriptions-item>
+                    <a-descriptions-item :label="'Tags'">
+                        <div class="tags">
+                            <a-tag v-for="tag in tags">{{ tag }}</a-tag>
+                        </div>
+                    </a-descriptions-item>
                 </a-descriptions>
             </div>
-        </a-card>
-    </div>
+            <div class="top-left-content" v-else>
+                <a-typography-title :level="3" class="title">{{ title }}</a-typography-title>
+                <div class="ribbon-alt">{{ t('story-card.pending') }}</div>
+            </div>
+        </div>
+        <p class="justify desc">{{ description }}</p>
+    </a-card>
 </template>
 
 <style scoped>
+.top-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    gap: 1rem;
+}
+
+.top-left-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .story-card {
     display: flex;
     flex-direction: row;
@@ -141,6 +156,17 @@ const hideSendToKindleModal = () => {
     flex-wrap: nowrap;
     gap: 1rem;
     flex: 1;
+}
+
+.ribbon-alt {
+    background-color: #fa541c;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 0.35rem;
+    margin-bottom: 1rem;
 }
 
 .content {
@@ -167,23 +193,21 @@ const hideSendToKindleModal = () => {
 
 .table {
     min-width: 20rem;
-    width: 20rem;
-    max-width: 20rem;
+    width: 100%;
 }
 
-@media screen and (max-width: 1280px) {
-    .table {
-        min-width: 14rem;
-        width: 14rem;
-        max-width: 14rem;
-    }
+.desc {
+    padding: 1rem;
 }
 
-@media screen and (max-width: 1024px) {
-    .table {
-        min-width: 14rem;
-        width: 14rem;
-        max-width: 14rem;
-    }
+.top-left-content > h3 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+@media screen and (max-width: 600px) {
+  .top-content {
+    flex-direction: column;
+  }
 }
 </style>

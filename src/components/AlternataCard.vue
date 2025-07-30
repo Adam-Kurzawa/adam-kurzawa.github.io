@@ -1,13 +1,14 @@
 <script setup>
 import { h, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useTranslation, useAsset, useLocale } from '@/utils/hooks'
+import { useTranslation, useAsset, useLocale, useInnerWidth } from '@/utils/hooks'
 import { ReadOutlined } from '@ant-design/icons-vue'
 import { theme } from 'ant-design-vue'
 
 const router = useRouter()
 const locale = useLocale()
 const t = useTranslation()
+const width = useInnerWidth()
 
 const { useToken } = theme
 const { token } = useToken()
@@ -65,16 +66,30 @@ const openReader = (obj) => {
         <div class="stories">
             <a-card :title="t('alternata-card.subtitle')" :style="{ gridArea: 'ad' }">
                 <!-- Hack! Badge should be top level and contain a-card inside but it breaks grid! -->
-                <a-badge-ribbon :text="t('alternata-card.launch')" color="volcano" :style="{ marginTop: '-4.75rem', marginRight: '-1.5rem', paddingRight: '1rem' }" ></a-badge-ribbon>
+                <a-badge-ribbon v-if="width > 1024" :text="t('alternata-card.launch')" color="volcano" :style="{ marginTop: '-4.75rem', marginRight: '-1.5rem', paddingRight: '1rem' }" ></a-badge-ribbon>
+                <div class="ribbon-alt" v-else>{{ t('alternata-card.launch') }}</div>
                 <p class="justify">{{ t('alternata-card.text') }}</p>
             </a-card>
-            <div v-for="story in stories" :style="{ gridArea: story.key, display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }">
+            <div v-if="width > 600" v-for="story in stories" :style="{ gridArea: story.key, display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }">
                 <a-image :style="{ borderTopLeftRadius: `${token.borderRadiusLG}px`, borderBottomLeftRadius: `${token.borderRadiusLG}px`, height: '100%', width: 'auto' }" :src="story.cover" />
-                <a-card :title="t(`alternata-card.stories.${story.key}.title`)" :style="{ borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, height: '14rem', width: '100%' }" :bodyStyle="{ height: 'calc(14rem - 49px - 56px - 1px)', paddingTop: '0.75rem' }">
+                <a-card :title="t(`alternata-card.stories.${story.key}.title`)" :style="{ borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, borderBottomLeftRadius: `0`, height: '14rem', width: '100%' }" :bodyStyle="{ height: 'calc(14rem - 49px - 56px - 1px)', paddingTop: '0.75rem' }">
                     <p class="justify small-spacing">{{ t(`alternata-card.stories.${story.key}.description`) }}</p>
                     <template #actions>
                         <a-button type="text" size="small" :icon="h(ReadOutlined)" @click="() => openReader(story)">{{ t('alternata-card.read-more') }}</a-button>
                     </template>
+                </a-card>
+            </div>
+            <div v-else v-for="story in stories">
+                <div :style="{ gridArea: story.key, display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }">
+                    <a-image :style="{ borderTopLeftRadius: `${token.borderRadiusLG}px`, height: '10rem', width: 'auto' }" :src="story.cover" />
+                    <a-card :title="t(`alternata-card.stories.${story.key}.title`)" :style="{ borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, borderBottomRightRadius: `0`, height: '10rem', width: '100%' }" :bodyStyle="{ height: 'calc(10rem - 49px - 56px - 1px)', paddingTop: '0.75rem' }">
+                        <template #actions>
+                            <a-button type="text" size="small" :icon="h(ReadOutlined)" @click="() => openReader(story)">{{ t('alternata-card.read-more') }}</a-button>
+                        </template>
+                    </a-card>
+                </div>
+                <a-card :style="{ borderTopRightRadius: `0`, borderTopColor: 'transparent', borderTopLeftRadius: `0`, width: '100%' }">
+                    <p class="justify small-spacing">{{ t(`alternata-card.stories.${story.key}.description`) }}</p>
                 </a-card>
             </div>
         </div>
@@ -95,6 +110,31 @@ const openReader = (obj) => {
 
 .small-spacing {
     line-height: 1.15rem;
+}
+
+.title-alt {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.title-alt-right {
+    padding-left: 1rem;
+}
+
+.title-alt-text {
+    margin-bottom: 1rem;
+}
+
+.ribbon-alt {
+    background-color: #fa541c;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 0.35rem;
+    margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 1800px) {
@@ -121,5 +161,12 @@ const openReader = (obj) => {
         "timestar"
         "revelations";
   }
+}
+
+@media screen and (max-width: 600px) {
+    .stories {
+        display: flex;
+        flex-direction: column;
+    }
 }
 </style>
