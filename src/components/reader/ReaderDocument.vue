@@ -242,21 +242,16 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
     border-left: none;
     border-right: none;
     padding-top: 6rem;
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: 5%;
-    margin-right: 5%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 0%;
+    margin-right: 0%;
   }
 }
 
 @media screen and (max-width: 700px) {
   .white-panel {
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
     padding-top: 9rem;
-    padding-left: 0;
-    padding-right: 0;
   }
 }
 </style>

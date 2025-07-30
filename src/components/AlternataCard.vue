@@ -71,7 +71,8 @@ const openReader = (obj) => {
                 <p class="justify">{{ t('alternata-card.text') }}</p>
             </a-card>
             <div v-if="width > 600" v-for="story in stories" :style="{ gridArea: story.key, display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }">
-                <a-image :style="{ borderTopLeftRadius: `${token.borderRadiusLG}px`, borderBottomLeftRadius: `${token.borderRadiusLG}px`, height: '100%', width: 'auto' }" :src="story.cover" />
+                <a-image v-if="width > 1440" :style="{ borderTopLeftRadius: `${token.borderRadiusLG}px`, borderBottomLeftRadius: `${token.borderRadiusLG}px`, height: '100%', width: 'auto' }" :src="story.cover" />
+                <a-image v-else :style="{ borderTopLeftRadius: `${token.borderRadiusLG}px`, borderBottomLeftRadius: `${token.borderRadiusLG}px`, height: '14rem', width: 'auto' }" :src="story.cover" />
                 <a-card :title="t(`alternata-card.stories.${story.key}.title`)" :style="{ borderTopLeftRadius: `0`, borderBottomLeftRadius: `0`, borderBottomLeftRadius: `0`, height: '14rem', width: '100%' }" :bodyStyle="{ height: 'calc(14rem - 49px - 56px - 1px)', paddingTop: '0.75rem' }">
                     <p class="justify small-spacing">{{ t(`alternata-card.stories.${story.key}.description`) }}</p>
                     <template #actions>
@@ -149,21 +150,6 @@ const openReader = (obj) => {
 }
 
 @media screen and (max-width: 1440px) {
-  .stories {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-        "ad"
-        "walhalla"
-        "laniakea"
-        "slavic"
-        "script"
-        "solstice"
-        "timestar"
-        "revelations";
-  }
-}
-
-@media screen and (max-width: 600px) {
     .stories {
         display: flex;
         flex-direction: column;

@@ -49,7 +49,9 @@ const articles = useAsset(import('@/assets/articles_idx.json'))
 
 @media screen and (max-width: 1024px) {
 	.entries {
+		gap: 1rem;
 		margin-top: 2rem;
+		padding-left: 1rem;
 		padding-right: 1rem;
 		grid-template-columns: minmax(0, 50%) minmax(0, 50%);
 	}

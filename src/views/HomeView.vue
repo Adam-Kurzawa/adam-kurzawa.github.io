@@ -42,4 +42,11 @@ const t = useTranslation()
     gap: 2rem;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .welcome-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
 </style>

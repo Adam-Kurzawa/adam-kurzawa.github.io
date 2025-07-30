@@ -95,4 +95,11 @@ const seeAll = () => {
 	font-weight: 100;
 	margin-top: 0.75rem;
 }
+
+@media screen and (max-width: 1024px) {
+  .entries {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
 </style>

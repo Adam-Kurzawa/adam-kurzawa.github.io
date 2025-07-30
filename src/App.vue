@@ -66,7 +66,7 @@ const showAudioPlayer = computed(() => import.meta.env.VITE_SHOW_AUDIO_PLAYER ==
 @media screen and (max-width: 1024px) {
   .content {
     padding-top: 6rem;
-    padding-left: 1rem;
+    padding-left: 0;
     padding-right: 0;
   }
 }
