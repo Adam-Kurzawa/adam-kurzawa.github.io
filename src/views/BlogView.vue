@@ -55,6 +55,10 @@ const articles = useAsset(import('@/assets/articles_idx.json'))
 		padding-right: 1rem;
 		grid-template-columns: minmax(0, 50%) minmax(0, 50%);
 	}
+
+	.entries-section > .h2 {
+		padding-left: 1.25rem;
+	}
 }
 
 @media screen and (max-width: 600px) {

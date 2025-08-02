@@ -72,7 +72,6 @@ const goToBlog = () => {
   .spotlight {
     display: flex;
     flex-direction: column;
-    padding-right: 1rem;
   }
 
   .header {
