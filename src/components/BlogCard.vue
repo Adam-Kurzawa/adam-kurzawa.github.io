@@ -31,7 +31,7 @@ const openReader = () => {
 </script>
 
 <template>
-    <a-card v-if="content" :class="[ `entry-${props.variant}` ]">
+    <a-card v-if="content">
         <template #cover>
             <a-image :style="{ flex: '1' }" :src="imageSrc" />
         </template>
@@ -46,17 +46,6 @@ const openReader = () => {
 </template>
 
 <style scoped>
-.entry-vertical {
-	display: flex;
-	flex-direction: column;
-}
-
-.entry-horizontal {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-}
-
 .title {
 	font-family: 'Yeseva One';
 	font-weight: 100;
