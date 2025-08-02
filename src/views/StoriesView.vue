@@ -64,7 +64,7 @@ const seeAll = () => {
 			<a-segmented v-model:value="currentSorting" :options="sortingOptions" @change="changeSorting"></a-segmented>
 		</div>
 		<StoryCard v-if="width > 1024" v-for="story in stories" :key="story.key" :title="story.key" />
-		<StoryCardMobile v-else v-for="story in stories" :key="story.key" :title="story.key" />
+		<StoryCardMobile v-else v-for="story in stories" :key="`${story.key}-mobile`" :title="story.key" />
 	</main>
 </template>
 

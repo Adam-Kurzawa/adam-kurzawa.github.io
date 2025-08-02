@@ -1,5 +1,5 @@
 <script setup>
-import { useAsset, useLocale, useTranslation, useUrl } from '@/utils/hooks'
+import { useAsset, useInnerWidth, useLocale, useTranslation, useUrl } from '@/utils/hooks'
 import { computed, h, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { countCharacters } from '@/utils/functions'
@@ -16,6 +16,7 @@ const locale = useLocale()
 const url = useUrl()
 const t = useTranslation()
 const audioStore = useAudioStore()
+const width = useInnerWidth()
 
 const { useToken } = theme
 const { token } = useToken()
@@ -79,7 +80,8 @@ const hideSendToKindleModal = () => {
     <a-card v-if="content">
         <div class="top-content">
             <div>
-                <a-image :src="imageSrc" :width="'10rem'" :style="[ isPending ? { filter: 'grayscale(100%)' } : { } ]" />
+                <a-image v-if="width > 600" :src="imageSrc" :width="'10rem'" :style="[ isPending ? { filter: 'grayscale(100%)' } : { } ]" />
+                <a-image v-else :src="imageSrc" :style="[ isPending ? { filter: 'grayscale(100%)' } : { } ]" />
             </div>
             <div class="top-left-content" v-if="isPublished">
                 <a-typography-title :level="3" class="ant-btn-link title" @click="openReader">{{ title }}</a-typography-title>
