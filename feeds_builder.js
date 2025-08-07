@@ -1,9 +1,9 @@
 import fs from 'fs'
 import { Feed } from 'feed'
 
-const ASSETS_DIR = 'C:\\Users\\Adam\\nodejs\\personal_website\\personal-website\\src\\assets'
-const STORIES_INDEX_FILE = ASSETS_DIR + '\\stories_idx.json'
-const ARTICLES_INDEX_FILE = ASSETS_DIR + '\\articles_idx.json'
+const ASSETS_DIR = '/Users/user/IntelliJ IDEA/personal_website/adam-kurzawa.github.io/src/assets'
+const STORIES_INDEX_FILE = ASSETS_DIR + '/stories_idx.json'
+const ARTICLES_INDEX_FILE = ASSETS_DIR + '/articles_idx.json'
 
 const storiesIndexFile = JSON.parse(fs.readFileSync(STORIES_INDEX_FILE, { encoding: 'utf8' }))
 const articlesIndexFile = JSON.parse(fs.readFileSync(ARTICLES_INDEX_FILE, { encoding: 'utf8' }))

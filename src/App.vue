@@ -40,6 +40,11 @@ const showAudioPlayer = computed(() => import.meta.env.VITE_SHOW_AUDIO_PLAYER ==
   padding-right: 12rem;
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+
+.content > main {
+  width: 100%;
 }
 
 @media screen and (max-width: 1920px) {

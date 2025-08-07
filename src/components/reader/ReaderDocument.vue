@@ -5,6 +5,7 @@ import { useTranslation } from '@/utils/hooks'
 import { countCharacters } from '@/utils/functions'
 import { useThemeStore } from '@/stores/theme'
 import { theme } from 'ant-design-vue'
+import ReaderParagraph from './ReaderParagraph.vue'
 
 const props = defineProps([ 'story', 'chapter', 'fontSize', 'fontFamily' ])
 
@@ -17,7 +18,7 @@ const t = useTranslation()
 const themeStore = useThemeStore()
 
 const paragraphs = computed(() => props.story.chapters[props.chapter - 1])
-const charactersCount = computed(() => countCharacters(props.story.chapters))
+const charactersCount = computed(() => 49294) // TODO! countCharacters(props.story.chapters))
 
 const previousPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.max(1, props.chapter - 1) } })
 const previousPageEnabled = computed(() => props.chapter !== 1)
@@ -63,8 +64,8 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
       </div>
       <div v-else></div>
     </div>
-    <div v-for="(paragraph, index) in paragraphs" class="paragraph" :class="[ themeStore.primaryTextColor, index !== 0 ? 'indented' : '' ]" :style="{ 'font-size': `${props.fontSize}rem`, 'font-family': props.fontFamily }">
-      {{ paragraph }}
+    <div class="paragraphs">
+      <ReaderParagraph v-for="(paragraph, index) in paragraphs" :key="`${props.chapter}_${index}`" :paragraph="paragraph" :index="index" :font-size="props.fontSize" :font-family="props.fontFamily" />
     </div>
     <div v-if="nextPageDisabled" class="title" :class="themeStore.primaryTextColor">{{ t("reader.theEnd") }}</div>
     <div class="bottom-chapter-pager" v-if="hasMultiplePages">
@@ -102,6 +103,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   border-style: solid;
   border-radius: 0.5rem;
   margin-top: 1rem;
+	max-width: 100%;
 }
 
 .arrow {
@@ -210,14 +212,11 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
   font-size: 1.25rem;
 }
 
-.indented {
-  text-indent: 2rem;
-}
-
-.paragraph {
-  transition: color 1s ease, font-size 1s ease;
-  text-align: justify;
-  margin-top: 0.5rem;
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
 }
 
 @media screen and (max-width: 1600px) {

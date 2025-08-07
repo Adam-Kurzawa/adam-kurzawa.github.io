@@ -11,6 +11,7 @@ export const useThemeStore = defineStore('theme', {
     getters: {
         themeAlgorithm: (state) => state.algorithm,
         currentTheme: (state) => state.theme,
+        isLightTheme: (state) => state.theme === 'light',
         primaryBackgroundColor: (state) => `primary-background-color-${state.theme}`, // kolor tła strony
         primaryTextColor: (state) => `primary-text-color-${state.theme}`, // tekst na primaryBackgroundColor
         secondaryTextColor: (state) => `secondary-text-color-${state.theme}`, // tekst na secondaryBackgroundColor

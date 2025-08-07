@@ -26,26 +26,24 @@ const showComments = () => { areCommentsVisible.value = true }
 </script>
 
 <template>
-  <div>
-    <ReaderComments :visible="areCommentsVisible"
-                    @close-comments="closeComments"
-    />
-    <ReaderBar :story="props.story" 
-               :chapter="props.chapter"
-               :font-size="fontSize"
-               :font-family="fontFamily"
-               @set-font-family="setFontFamily"
-               @show-comments="showComments"
-               @increase-font-size="() => setFontSize(fontSize + 0.25)" 
-               @default-font-size="() => setFontSize(1.25)"
-               @decrease-font-size="() => setFontSize(fontSize - 0.25)"
-    />
-    <ReaderDocument :story="props.story"
-                    :chapter="props.chapter"
-                    :font-size="fontSize"
-                    :font-family="fontFamily"
-    />
-  </div>
+  <ReaderComments :visible="areCommentsVisible"
+                  @close-comments="closeComments"
+  />
+  <ReaderBar :story="props.story" 
+              :chapter="props.chapter"
+              :font-size="fontSize"
+              :font-family="fontFamily"
+              @set-font-family="setFontFamily"
+              @show-comments="showComments"
+              @increase-font-size="() => setFontSize(fontSize + 0.25)" 
+              @default-font-size="() => setFontSize(1.25)"
+              @decrease-font-size="() => setFontSize(fontSize - 0.25)"
+  />
+  <ReaderDocument :story="props.story"
+                  :chapter="props.chapter"
+                  :font-size="fontSize"
+                  :font-family="fontFamily"
+  />
 </template>
 
 <style scoped>
