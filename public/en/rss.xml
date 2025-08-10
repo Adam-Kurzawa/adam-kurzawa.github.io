@@ -4,7 +4,7 @@
         <title>Alternata</title>
         <link>https://adamkurzawa.pl</link>
         <description>Adam Kurzawa – Original Science Fiction Blog</description>
-        <lastBuildDate>Thu, 07 Aug 2025 22:33:33 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 09 Aug 2025 18:53:04 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,12 @@
             <guid>bukowe_widziadlo</guid>
             <pubDate>Sun, 31 Mar 2024 22:00:00 GMT</pubDate>
             <description><![CDATA[Deus Vult]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Charon Travel]]></title>
+            <link>https://adamkurzawa.pl/en/charon_travel</link>
+            <guid>charon_travel</guid>
+            <pubDate>Mon, 31 Mar 2025 22:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The Other-earther]]></title>

@@ -1,15 +1,13 @@
 <script setup>
+import { useThemeStore } from '@/stores/theme'
+import { formatFullDate } from '@/utils/dayjs'
 import { useAsset, useLocale } from '@/utils/hooks'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import 'dayjs/locale/en'
-import 'dayjs/locale/pl'
-
-dayjs.extend(relativeTime);
 
 const props = defineProps([ 'title' ])
+
+const themeStore = useThemeStore()
 
 const router = useRouter()
 const locale = useLocale()
@@ -22,23 +20,23 @@ const description = computed(() => content.value.description)
 const publicationDate = computed(() => content.value.publicationDate)
 
 const openReader = () => {
-  router.push({
-    name: "reader",
-    params: { lang: locale.value, title: props.title },
-    query: { type: 'blog' }
-  });
-};
+	router.push({
+		name: "reader",
+		params: { lang: locale.value, title: props.title },
+		query: { type: 'blog' }
+	})
+}
 </script>
 
 <template>
-    <a-card v-if="content">
+    <a-card v-if="content" class="blog-card" :class="`blog-card-${themeStore.currentTheme}`">
         <template #cover>
             <a-image :style="{ flex: '1' }" :src="imageSrc" />
         </template>
         <a-card-meta>
             <template #description>{{ description }}</template>
             <template #title>
-              <a-typography-text type="secondary">{{ dayjs(publicationDate, "DD.MM.YYYY").locale(locale).format('DD MMMM YYYY') }}</a-typography-text>
+              <a-typography-text type="secondary">{{ formatFullDate(publicationDate, locale) }}</a-typography-text>
                 <a-typography-title :level="4" class="ant-btn-link title" @click="openReader">{{ title }}</a-typography-title>
             </template>
         </a-card-meta>
@@ -54,5 +52,19 @@ const openReader = () => {
 	cursor: pointer;
 	width: fit-content;
 	text-wrap: wrap;
+}
+
+.blog-card {
+	transition: background-color 0.5s ease, border-color 1s ease, font-size 1s ease;
+}
+
+.blog-card-light:hover {
+	border-color: #4096ff;
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.blog-card-dark:hover {
+	border-color: #3c89e8;
+	background-color: rgba(256, 256, 256, 0.05);
 }
 </style>

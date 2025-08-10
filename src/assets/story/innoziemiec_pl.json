@@ -1,15 +1,21 @@
 {
-    "title": "Innoziemiec",
-    "series": null,
-    "status": "PENDING",
-    "youTubeVideoId": "dQw4w9WgXcQ",
-    "description": "Kosmiczny turysta rozbija się w XVI-wiecznej Rzeczpospolitej Polsko-Litewsko-Węgierskiej i zostaje wplątany w intrygę na życie króla Stefana Batorego.",
-    "year": 2025,
-    "tags": [ "polska", "komedia" ],
-    "chapterTitles": null,
-    "chapters": [
-        [
-            "Test"
-        ]
+  "title": "Innoziemiec",
+  "series": null,
+  "status": "PENDING",
+  "youTubeVideoId": "dQw4w9WgXcQ",
+  "description": "Kosmiczny turysta rozbija się w XVI-wiecznej Rzeczpospolitej Polsko-Litewsko-Węgierskiej i zostaje wplątany w intrygę na życie króla Stefana Batorego.",
+  "year": 2025,
+  "tags": [
+    "polska",
+    "komedia"
+  ],
+  "chapterTitles": null,
+  "chapters": [
+    [
+      {
+        "type": "text",
+        "value": "Test"
+      }
     ]
+  ]
 }

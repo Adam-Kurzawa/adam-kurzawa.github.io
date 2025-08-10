@@ -7,8 +7,6 @@ import { theme } from 'ant-design-vue'
 const t = useTranslation()
 const locale = useLocale()
 
-const title = ref(t('bukowe-card.title'))
-
 const descriptionParagraphs = ref([ 0, 1, 2, 3 ])
 </script>
 
@@ -16,7 +14,7 @@ const descriptionParagraphs = ref([ 0, 1, 2, 3 ])
     <a-config-provider :theme="{ algorithm: theme.darkAlgorithm, token: { colorBgContainer: 'transparent' } }">
 		<a-card class="card" :bodyStyle="{ flex: '1' }">
 			<template #title>
-				<a-typography-title :level="3" class="ant-btn-link title" >{{ title }}</a-typography-title>
+				<a-typography-title :level="3" class="ant-btn-link title" >{{ t('bukowe-card.title') }}</a-typography-title>
 			</template>
 			<template #actions>
                 <a-config-provider v-if="locale === 'pl'" :theme="{ token: { colorPrimary: '#FF0000' } }">

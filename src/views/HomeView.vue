@@ -15,10 +15,10 @@ const t = useTranslation()
     <Spotlight />
     <AlternataCard />
     <a-typography-title :style="{ fontFamily: 'Yeseva One', fontWeight: '100' }" class="title">Inne wydania</a-typography-title>
-    <!--<div class="bottom-ads">-->
-    <!--  <EgzorcyzmyCard />-->
-    <!--  <BukoweCard />-->
-    <!--</div>-->
+    <div class="bottom-ads">
+      <EgzorcyzmyCard />
+      <BukoweCard />
+    </div>
   </main>
 </template>
 

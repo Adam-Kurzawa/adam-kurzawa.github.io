@@ -6,7 +6,7 @@ import { useThemeStore } from './stores/theme'
 import { computed } from 'vue'
 import WorkInProgress from './components/WorkInProgress.vue'
 import AudioPlayer from './components/player/AudioPlayer.vue'
-import Feeds from './components/Feeds.vue'
+import Feeds from './components/feeds/Feeds.vue'
 
 const themeStore = useThemeStore()
 

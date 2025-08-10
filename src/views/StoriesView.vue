@@ -4,6 +4,11 @@ import { ref, watch } from 'vue'
 import { useTranslation, useAsset, useLocale, useInnerWidth } from '@/utils/hooks'
 import StoryCard from '@/components/StoryCard.vue'
 import StoryCardMobile from '@/components/StoryCardMobile.vue'
+import { theme } from 'ant-design-vue'
+import { CloseOutlined } from '@ant-design/icons-vue'
+
+const { useToken } = theme
+const { token } = useToken()
 
 const locale = useLocale()
 const router = useRouter()
@@ -56,11 +61,15 @@ const seeAll = () => {
 
 <template>
 	<main class="generic-view entries" v-if="storiesIndex">
-		<div class="series-row" v-if="seriesQuery">
-			<a-typography-title class="series-title" :level="2">{{ t('stories-view.series') }} {{ seriesQuery }}</a-typography-title>
-			<a-button @click="seeAll">{{ t('stories-view.see-all') }}</a-button>
-		</div>
-		<div class="sorting">
+		<a-page-header v-if="seriesQuery" class="header" :style="{ borderColor: token.colorBorderSecondary }" :title="`${t('stories-view.series')} ${seriesQuery}`" @back="seeAll" >
+			<template #extra>
+				<a-segmented v-model:value="currentSorting" :options="sortingOptions" @change="changeSorting"></a-segmented>
+			</template>
+			<template #backIcon>
+				<CloseOutlined />
+			</template>
+		</a-page-header>
+		<div v-else class="sorting">
 			<a-segmented v-model:value="currentSorting" :options="sortingOptions" @change="changeSorting"></a-segmented>
 		</div>
 		<StoryCard v-if="width > 1024" v-for="story in stories" :key="story.key" :title="story.key" />
@@ -72,6 +81,12 @@ const seeAll = () => {
 .entries {
 	justify-content: center;
 } 
+
+.header {
+	transition: border-color 1s ease;
+	border-width: 1px;
+	border-style: solid;
+}
 
 .sorting {
 	display: flex;

@@ -33,8 +33,10 @@ const collectNonEmptyParagraphs = (type, props, children) => {
         props.node.content.forEach(paragraph => {
             const text = extractTextFromParagraph(paragraph)
 
-            if (text.length !== 0)
-                paragraphs.push(text)
+            if (text.length !== 0) {
+                const obj = { type: 'text', value: text }
+                paragraphs.push(obj)
+            }
         })
     }
 }

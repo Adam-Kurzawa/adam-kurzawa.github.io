@@ -18,7 +18,7 @@ const t = useTranslation()
 const themeStore = useThemeStore()
 
 const paragraphs = computed(() => props.story.chapters[props.chapter - 1])
-const charactersCount = computed(() => 49294) // TODO! countCharacters(props.story.chapters))
+const charactersCount = computed(() => countCharacters(props.story.chapters))
 
 const previousPage = () => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: Math.max(1, props.chapter - 1) } })
 const previousPageEnabled = computed(() => props.chapter !== 1)

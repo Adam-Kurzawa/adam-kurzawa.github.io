@@ -1,11 +1,11 @@
 {
-    "title": "Bukowe Widziadło",
-    "series": "Deus Vult",
+    "title": "Charon Travel",
+    "series": null,
     "status": "PUBLISHED",
     "youTubeVideoId": null,
-    "description": "W Bieszczadach dochodzi do makabrycznych zbrodni. Zabójca podszywa się pod prastarą, bieszczadzką zjawę. Policja prosi o pomoc zgryźliwego egzorcystę.",
-    "year": 2024,
-    "tags": [ "horror", "groza", "potwór", "egzorcysta", "religia" ],
+    "description": "Wyprawa do greckich zaświatów na wesoło.",
+    "year": 2025,
+    "tags": [ "szort", "humor", "grecja", "charon", "styks" ],
     "chapterTitles": null,
     "chapters": [
         [
@@ -70,95 +70,6 @@
             {
                 "type": "video",
                 "src": "https://www.nlm.nih.gov/web/documentation/TemplateDocumentation/video_files/IN_Intro-800.mp4"
-            },
-            {
-                "type": "gallery",
-                "src": [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png"
-                ]
-            },
-            {
-                "type": "gallery",
-                "src": [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png",
-                    "https://cdn.britannica.com/35/3635-050-96241EC1/Scarlet-macaw-ara-macao.jpg"
-                ]
-            },
-            {
-                "type": "gallery",
-                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur.",
-                "src": [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png",
-                    "https://cdn.britannica.com/35/3635-050-96241EC1/Scarlet-macaw-ara-macao.jpg",
-                    "https://energy-bike.pl/wp-content/uploads/2023/07/2D6957FE-D2FC-48E9-AAE1-158637240F29.jpeg"
-                ]
-            },
-            {
-                "type": "gallery",
-                "src": [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png",
-                    "https://cdn.britannica.com/35/3635-050-96241EC1/Scarlet-macaw-ara-macao.jpg",
-                    "https://energy-bike.pl/wp-content/uploads/2023/07/2D6957FE-D2FC-48E9-AAE1-158637240F29.jpeg",
-                    "https://www.diamondpet.com/wp-content/uploads/2023/07/brown-chihuahua-standing-in-grass-071723.jpg"
-                ]
-            },
-            {
-                "type": "gallery",
-                "src": [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png",
-                    "https://cdn.britannica.com/35/3635-050-96241EC1/Scarlet-macaw-ara-macao.jpg",
-                    "https://energy-bike.pl/wp-content/uploads/2023/07/2D6957FE-D2FC-48E9-AAE1-158637240F29.jpeg",
-                    "https://www.diamondpet.com/wp-content/uploads/2023/07/brown-chihuahua-standing-in-grass-071723.jpg",
-                    "https://as2.ftcdn.net/v2/jpg/02/74/18/23/1000_F_274182321_CPJ6DLoCxt8R6yl2bP6MvwrC3VgK9F3B.jpg"
-                ]
-            },
-            {
-                "type": "gallery",
-                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur.",
-                "src": [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png",
-                    "https://cdn.britannica.com/35/3635-050-96241EC1/Scarlet-macaw-ara-macao.jpg",
-                    "https://energy-bike.pl/wp-content/uploads/2023/07/2D6957FE-D2FC-48E9-AAE1-158637240F29.jpeg",
-                    "https://www.diamondpet.com/wp-content/uploads/2023/07/brown-chihuahua-standing-in-grass-071723.jpg",
-                    "https://as2.ftcdn.net/v2/jpg/02/74/18/23/1000_F_274182321_CPJ6DLoCxt8R6yl2bP6MvwrC3VgK9F3B.jpg",
-                    "https://i.gremicdn.pl/image/free/c73a3979d87eaa30733349cecbf3dddc/?t=resize:fill:948:593,enlarge:1",
-                    "https://storage.googleapis.com/pod_public/1300/175426.jpg"
-                ]
-            },
-            {
-                "type": "table",
-                "description": "Tabela 1 - rozpis czegoś tam",
-                "value": [
-                    [ "",        "Masa", "Średnica", "Satelity" ],
-                    [ "Merkury", "0.1E", "4 934 km", "-" ],
-                    [ "Wenus",   "0.9E", "4 934 km", "-" ],
-                    [ "Ziemia",  "1E",   "4 934 km", "1" ],
-                    [ "Mars",    "0.5E", "4 934 km", "2" ],
-                    [ "Jowisz",  "11E",  "4 934 km", "134" ],
-                    [ "Saturn",  "9E",   "4 934 km", "193" ],
-                    [ "Uran",    "7E",   "4 934 km", "84" ],
-                    [ "Neptun",  "6E",   "4 934 km", "52" ]
-                ]
-            },
-            {
-                "type": "table",
-                "value": [
-                    [ "",        "Masa", "Średnica", "Satelity" ],
-                    [ "Merkury", "0.1E", "4 934 km", "-" ],
-                    [ "Wenus",   "0.9E", "4 934 km", "-" ],
-                    [ "Ziemia",  "1E",   "4 934 km", "1" ],
-                    [ "Mars",    "0.5E", "4 934 km", "2" ],
-                    [ "Jowisz",  "11E",  "4 934 km", "134" ],
-                    [ "Saturn",  "9E",   "4 934 km", "193" ],
-                    [ "Uran",    "7E",   "4 934 km", "84" ],
-                    [ "Neptun",  "6E",   "4 934 km", "52" ]
-                ]
             }
         ]
     ]

@@ -3,15 +3,12 @@ import { computed, ref } from 'vue'
 import { useAsset, useInnerWidth, useLocale, useTranslation } from '@/utils/hooks'
 import BlogCard from './BlogCard.vue'
 import { useRouter } from 'vue-router'
-import { theme } from 'ant-design-vue'
+import ReadMoreCard from './ReadMoreCard.vue'
 
 const router = useRouter()
 const locale = useLocale()
 const t = useTranslation()
 const width = useInnerWidth()
-
-const { useToken } = theme
-const { token } = useToken()
 
 const articles = useAsset(import('@/assets/articles_idx.json'))
 
@@ -37,12 +34,7 @@ const goToBlog = () => {
         </div>
         <div class="spotlight">
             <BlogCard v-for="entry in newest" :key="entry.key" :title="entry.key" />
-            <a-button class="arrow" v-if="width > 600 && width < 1281" @click="goToBlog" :style="{ borderColor: token.colorBorderSecondary }">
-                <div class="arrow-content">
-                    <img class="arrow-right" src="/arrow_right.png"></img>
-                    <a-typography-text strong>Zobacz wszystkie</a-typography-text>
-                </div>
-            </a-button>
+            <ReadMoreCard v-if="width > 600 && width < 1281" key="read_more_spotlight" />
         </div>
     </div>
 </template>
@@ -65,23 +57,6 @@ const goToBlog = () => {
     font-family: 'Yeseva One';
     font-weight: 100;
     margin-bottom: 1rem;
-}
-
-.arrow-right {
-    max-width: 50%;
-}
-
-.arrow {
-    height: 100%;
-    box-shadow: none !important;
-}
-
-.arrow-content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 2rem;
-    align-items: center;
 }
 
 @media screen and (max-width: 1280px) {

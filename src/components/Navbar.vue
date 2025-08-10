@@ -56,7 +56,7 @@ onUnmounted(() =>
 				<RouterLink :to="localizedLink('blog')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.blog") }}</RouterLink>
 				<RouterLink :to="localizedLink('about')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.about") }}</RouterLink>
 				<ThemeButton class="theme-toggle" />
-				<LanguageButton />
+				<LanguageButton v-if="showLanguageChanger" />
 			</span>
 		</span>
 		<span class="navbar-medium">
@@ -66,7 +66,7 @@ onUnmounted(() =>
 			<RouterLink :to="localizedLink('blog')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.blog") }}</RouterLink>
 			<RouterLink :to="localizedLink('about')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.about") }}</RouterLink>
 			<ThemeButton class="theme-toggle" />
-			<LanguageButton />
+			<LanguageButton v-if="showLanguageChanger" />
 		</span>
 		<span class="navbar-minimal">
 			<a-dropdown>

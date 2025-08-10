@@ -16,7 +16,7 @@ const articles = useAsset(import('@/assets/articles_idx.json'))
 </script>
 
 <template>
-	<main class="generic-view" v-if="articles">
+	<main class="generic-view entries-section" v-if="articles">
 		<div class="entries-section" v-for="[year, entries] in articles">
 			<a-typography-title class="h2" :level="2" :style="{ borderTopColor: token.colorBorderSecondary }">{{ year }}</a-typography-title>
 			<div class="entries">

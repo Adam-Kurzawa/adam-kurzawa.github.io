@@ -12,6 +12,10 @@ body {
   padding: 0 !important;
 }
 
+.indented {
+  	text-indent: 2rem;
+}
+
 .navlink {
   transition: color 0.5s ease;
   text-decoration: none;

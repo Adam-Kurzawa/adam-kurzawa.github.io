@@ -1,13 +1,13 @@
 <script setup>
 import { useAsset, useInnerWidth, useLocale, useTranslation, useUrl } from '@/utils/hooks'
-import { computed, h, ref } from 'vue'
+import { computed, h } from 'vue'
 import { useRouter } from 'vue-router'
 import { countCharacters } from '@/utils/functions'
-import { EpubService } from '@/utils/EpubService.js'
-import { ShareAltOutlined, ReadOutlined, SendOutlined, DownloadOutlined, CustomerServiceOutlined } from '@ant-design/icons-vue'
-import { theme } from 'ant-design-vue'
-import SendToKindle from './SendToKindle.vue'
+import { ReadOutlined, CustomerServiceOutlined } from '@ant-design/icons-vue'
 import { useAudioStore } from '@/stores/audio'
+import StoryCardShareButtons from './StoryCardShareButtons.vue'
+import StoryCardDescriptions from './StoryCardDescriptions.vue'
+import { useThemeStore } from '@/stores/theme'
 
 const props = defineProps([ 'title' ])
 
@@ -17,11 +17,7 @@ const url = useUrl()
 const t = useTranslation()
 const audioStore = useAudioStore()
 const width = useInnerWidth()
-
-const { useToken } = theme
-const { token } = useToken()
-
-const kindleModalOpen = ref(false)
+const themeStore = useThemeStore()
 
 const imageSrc = useAsset(import(`@/assets/story/covers/${props.title}.jpg`))
 const content = useAsset(import(`@/assets/story/${props.title}_${locale.value}.json`))
@@ -37,16 +33,6 @@ const youTubeVideoId = computed(() => content.value.youTubeVideoId)
 const isPending = computed(() => content.value.status === 'PENDING')
 const isPublished = computed(() => content.value.status === 'PUBLISHED')
 
-const saveAsEpub = () => EpubService.saveAsEpub(title.value, content.value.chapters, t("reader.epub-chapter"), content.value.chapterTitles, content.value.tags, locale.value)
-
-const share = () => { 
-    navigator.share({
-        url: url.value,
-        title: title.value,
-        text: 'Alternata - personal blog by Adam Kurzawa'
-    })
-}
-
 const openReader = () => {
     router.push({
         name: 'reader',
@@ -58,26 +44,10 @@ const openReader = () => {
 const listenTo = () => {
     audioStore.setAudioBook(youTubeVideoId.value, series.value)
 }
-
-const filterBySeries = () => {
-    router.push({
-        name: 'stories',
-        params: { lang: locale.value },
-        query: { series: series.value },
-    })
-}
-
-const showSendToKindleModal = () => {
-    kindleModalOpen.value = true
-}
-
-const hideSendToKindleModal = () => {
-    kindleModalOpen.value = false
-}
 </script>
 
 <template>
-    <a-card v-if="content">
+    <a-card v-if="content" class="story-card" :class="`story-card-${themeStore.currentTheme}`">
         <div class="top-content">
             <div>
                 <a-image v-if="width > 600" :src="imageSrc" :width="'10rem'" :style="[ isPending ? { filter: 'grayscale(100%)' } : { } ]" />
@@ -88,38 +58,9 @@ const hideSendToKindleModal = () => {
                 <a-space>
                     <a-button type="primary" :icon="h(ReadOutlined)" @click="openReader">{{ t('story-card.read') }}</a-button>
                     <a-button v-if="youTubeVideoId" type="primary" :icon="h(CustomerServiceOutlined)" @click="listenTo">Słuchaj</a-button>
-                    <a-button-group>
-                        <a-button @click="saveAsEpub">
-                            <template #icon>
-                                <DownloadOutlined />
-                            </template>
-                        </a-button>
-                        <a-button @click="showSendToKindleModal">
-                            <template #icon>
-                                <SendToKindle :story="content" :visible="kindleModalOpen" @hide="hideSendToKindleModal" />
-                                <SendOutlined />
-                            </template>
-                        </a-button>
-                        <a-button @click="share">
-                            <template #icon>
-                                <ShareAltOutlined />
-                            </template>
-                        </a-button>
-                    </a-button-group>
+                    <StoryCardShareButtons :content="content" :locale="locale" :url="url" />
                 </a-space>
-                <a-descriptions class="table" bordered size="small" :column="1">
-                    <a-descriptions-item :label="t('story-card.series-column')" v-if="series !== null">
-                        <a-button type="link" size="small" @click="filterBySeries" :style="{ padding: '0', border: 'none' }">{{ series }}</a-button>
-                    </a-descriptions-item>
-                    <a-descriptions-item :label="t('story-card.year-column')">{{ year }}</a-descriptions-item>
-                    <a-descriptions-item :label="t('story-card.chapters-column')">{{ chapters }}</a-descriptions-item>
-                    <a-descriptions-item :label="t('story-card.characters-column')">{{ charactersCount }}</a-descriptions-item>
-                    <a-descriptions-item :label="'Tags'">
-                        <div class="tags">
-                            <a-tag v-for="tag in tags">{{ tag }}</a-tag>
-                        </div>
-                    </a-descriptions-item>
-                </a-descriptions>
+                <StoryCardDescriptions v-if="isPublished" :locale="locale" :series="series" :year="year" :chapters="chapters" :characters-count="charactersCount" />
             </div>
             <div class="top-left-content" v-else>
                 <a-typography-title :level="3" class="title">{{ title }}</a-typography-title>
@@ -127,10 +68,27 @@ const hideSendToKindleModal = () => {
             </div>
         </div>
         <p class="justify desc">{{ description }}</p>
+        <div class="tags">
+            <a-tag v-for="tag in tags">{{ tag }}</a-tag>
+        </div>
     </a-card>
 </template>
 
 <style scoped>
+.story-card {
+	transition: background-color 0.5s ease, border-color 1s ease, font-size 1s ease;
+}
+
+.story-card-light:hover {
+	border-color: #4096ff;
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.story-card-dark:hover {
+	border-color: #3c89e8;
+	background-color: rgba(256, 256, 256, 0.05);
+}
+
 .top-content {
     display: flex;
     flex-direction: row;
@@ -152,12 +110,8 @@ const hideSendToKindleModal = () => {
     flex-wrap: nowrap;
 }
 
-.descriptions {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 1rem;
-    flex: 1;
+.desc {
+    margin-top: 1rem;
 }
 
 .ribbon-alt {
@@ -191,15 +145,6 @@ const hideSendToKindleModal = () => {
     flex-direction: row;
     flex-wrap: wrap;
     row-gap: 0.5rem;
-}
-
-.table {
-    min-width: 20rem;
-    width: 100%;
-}
-
-.desc {
-    padding: 1rem;
 }
 
 .top-left-content > h3 {

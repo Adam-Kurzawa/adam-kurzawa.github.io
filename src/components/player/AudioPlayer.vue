@@ -6,6 +6,7 @@ import AudioPlayerMaximize from './AudioPlayerMaximize.vue'
 import AudioPlayerSlider from './AudioPlayerSlider.vue'
 import { useYouTube } from '../hooks/useYouTube'
 import { useAudioStore } from '@/stores/audio'
+import AudioPlayerPlaybackInfo from './AudioPlayerPlaybackInfo.vue'
 
 const { youTubePlayer, state, title, duration } = useYouTube()
 const audioStore = useAudioStore()
@@ -74,20 +75,17 @@ audioStore.$onAction(({ args }) => {
 
 <template>
 	<a-card class="audioplayer" :class="[ isMinimized ? 'minimized' : 'maximized' ]">
-		<div v-if="!isMinimized">
+		<div v-if="isMinimized" class="minimized-layout">
+			<AudioPlayerMaximize @show="onShow" />
+			<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
+		</div>
+		<div v-else>
 			<div class="maximized-layout">
 				<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
-				<div class="story-info">
-					<a-typography-text type="secondary">{{ audioStore.series ?? '-' }}</a-typography-text>
-					<a-typography-text strong :ellipsis="{ expandable: false, tooltip: false, rows: 1 }" :style="{ minWidth: '10.5rem', maxWidth: '10.5rem' }">{{ title ?? '-' }}</a-typography-text>
-				</div>
+				<AudioPlayerPlaybackInfo :series="audioStore.series" :title="title" />
 				<AudioPlayerMinimize @hide="onHide" />
 			</div>
 			<AudioPlayerSlider v-model="progress" :duration="duration" @seekto="onSeekTo" />
-		</div>
-		<div v-else class="minimized-layout">
-			<AudioPlayerMaximize @show="onShow" />
-			<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
 		</div>
 	</a-card>
 </template>
@@ -120,20 +118,6 @@ audioStore.$onAction(({ args }) => {
 	flex-direction: column;
 	flex-wrap: nowrap;
 	gap: 1rem;
-}
-
-.story-info {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-}
-
-.progress-info {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
 }
 
 .maximized-layout {
