@@ -1,0 +1,12 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Alternata",
+    "home_page_url": "https://adamkurzawa.pl",
+    "feed_url": "https://adamkurzawa.pl/en/feed.json",
+    "description": "Adam Kurzawa – Original Science Fiction Blog",
+    "author": {
+        "name": "Adam Kurzawa",
+        "url": "https://adamkurzawa.pl"
+    },
+    "items": []
+}

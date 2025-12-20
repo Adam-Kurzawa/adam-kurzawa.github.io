@@ -1,0 +1,1 @@
+const t="W drodze do Walhalli",e="Yggdraverse",s="Test",o=2025,a=["sci-fi"],c=null,l=[[{type:"text",value:"Test"}]],r={title:t,series:e,description:s,year:2025,tags:a,chapterTitles:null,chapters:l};export{c as chapterTitles,l as chapters,r as default,s as description,e as series,a as tags,t as title,o as year};

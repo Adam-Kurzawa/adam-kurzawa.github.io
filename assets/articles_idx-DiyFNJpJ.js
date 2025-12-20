@@ -1,0 +1,1 @@
+const e=[["2026",[{key:"religion_future",publicationDate:"04.07.2026"},{key:"kardashev",publicationDate:"20.05.2026"},{key:"fermi-ciemny-las",publicationDate:"20.02.2026"},{key:"ai-ternet",publicationDate:"05.02.2026"}]],["2025",[{key:"sick_ai",publicationDate:"12.10.2025"}]]];export{e as default};

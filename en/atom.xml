@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://adamkurzawa.pl</id>
+    <title>Alternata</title>
+    <updated>2025-12-20T23:51:18.877Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Adam Kurzawa</name>
+        <email>the.alternata@gmail.com</email>
+        <uri>https://adamkurzawa.pl</uri>
+    </author>
+    <link rel="alternate" href="https://adamkurzawa.pl"/>
+    <link rel="self" href="https://adamkurzawa.pl/en/atom.xml"/>
+    <subtitle>Adam Kurzawa – Original Science Fiction Blog</subtitle>
+    <icon>https://adamkurzawa.pl/favicon.ico</icon>
+    <rights>© 2025 Adam Kurzawa</rights>
+</feed>

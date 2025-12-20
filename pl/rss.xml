@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Alternata</title>
+        <link>https://adamkurzawa.pl</link>
+        <description>Autorski blog sci-fi Adama Kurzawy</description>
+        <lastBuildDate>Sat, 20 Dec 2025 23:51:18 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>pl</language>
+        <copyright>© 2025 Adam Kurzawa</copyright>
+        <atom:link href="https://adamkurzawa.pl/pl/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Bukowe Widziadło]]></title>
+            <link>https://adamkurzawa.pl/pl/bukowe_widziadlo</link>
+            <guid isPermaLink="false">bukowe_widziadlo</guid>
+            <pubDate>Sun, 31 Mar 2024 22:00:00 GMT</pubDate>
+            <description><![CDATA[Deus Vult]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Charon Travel]]></title>
+            <link>https://adamkurzawa.pl/pl/charon_travel</link>
+            <guid isPermaLink="false">charon_travel</guid>
+            <pubDate>Mon, 31 Mar 2025 22:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Innoziemiec]]></title>
+            <link>https://adamkurzawa.pl/pl/innoziemiec</link>
+            <guid isPermaLink="false">innoziemiec</guid>
+            <pubDate>Mon, 31 Mar 2025 22:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Klątwa Imetheru]]></title>
+            <link>https://adamkurzawa.pl/pl/klatwa_imetheru</link>
+            <guid isPermaLink="false">klatwa_imetheru</guid>
+            <pubDate>Fri, 31 Mar 2023 22:00:00 GMT</pubDate>
+            <description><![CDATA[Kemetverse]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Powstanie na Brillar]]></title>
+            <link>https://adamkurzawa.pl/pl/powstanie_na_brillar</link>
+            <guid isPermaLink="false">powstanie_na_brillar</guid>
+            <pubDate>Fri, 31 Mar 2023 22:00:00 GMT</pubDate>
+            <description><![CDATA[Konkwistador]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Projekt Eclipse]]></title>
+            <link>https://adamkurzawa.pl/pl/projekt_eclipse</link>
+            <guid isPermaLink="false">projekt_eclipse</guid>
+            <pubDate>Fri, 31 Mar 2023 22:00:00 GMT</pubDate>
+            <description><![CDATA[Evo 78]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Przyczajony pająk, ukryty "Prorok"]]></title>
+            <link>https://adamkurzawa.pl/pl/przyczajony_arakanin</link>
+            <guid isPermaLink="false">przyczajony_arakanin</guid>
+            <pubDate>Mon, 31 Mar 2025 22:00:00 GMT</pubDate>
+            <description><![CDATA[Crimsonverse]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Euro 2224]]></title>
+            <link>https://adamkurzawa.pl/pl/uefa_euro_2224</link>
+            <guid isPermaLink="false">uefa_euro_2224</guid>
+            <pubDate>Sun, 31 Mar 2024 22:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>
