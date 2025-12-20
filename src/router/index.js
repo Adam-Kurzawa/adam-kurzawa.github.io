@@ -16,27 +16,27 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/:lang/about',
+      path: '/about',
       name: 'about',
       component: AboutView
     },
     {
-      path: '/:lang/stories', // ?series='xxx'
+      path: '/stories',
       name: 'stories',
       component: StoriesView
     },
     {
-      path: '/:lang/books',
+      path: '/books',
       name: 'books',
       component: BooksView
     },
     {
-      path: '/:lang/blog',
+      path: '/blog',
       name: 'blog',
       component: BlogView
     },
     {
-      path: '/:lang/:title/:chapter?',
+      path: '/:title/:chapter?',
       name: 'reader',
       component: ReaderView
     },

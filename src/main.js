@@ -9,8 +9,7 @@ import { firebaseApp } from './firebase'
 import App from './App.vue'
 import router from './router'
 import Antd from 'ant-design-vue'
-import VueGtag from 'vue-gtag'
-import VueCookies from 'vue-cookies'
+import { createGtag, configure } from 'vue-gtag'
 import 'ant-design-vue/dist/reset.css'
 
 const i18n = createI18n({
@@ -21,27 +20,18 @@ const i18n = createI18n({
 
 const pinia = createPinia()
 
-const gtag = {
-    bootstrap: false,
-    enabled: true,
-    config: {
-        id: import.meta.env.VITE_GTAG_ID,
-        params: {
-            anonymize_ip: true
-        }
-    }
-}
-
-const cookies = {
-    // expires: '365d'
-}
+configure({
+  tagId: import.meta.env.VITE_GTAG_ID,
+  pageTracker: {
+    router
+  },
+  initMode: 'manual'
+})
 
 const app = createApp(App)
 app.use(i18n)
 app.use(Antd)
 app.use(router)
 app.use(pinia)
-app.use(VueGtag, gtag)
-app.use(VueCookies, cookies)
 app.use(VueFire, { firebaseApp })
 app.mount('#app')

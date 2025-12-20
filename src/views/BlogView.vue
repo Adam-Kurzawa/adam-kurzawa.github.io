@@ -1,16 +1,10 @@
 <script setup>
-import { useRoute } from 'vue-router'
-import { useLocale, useAsset } from '@/utils/hooks'
+import { useAsset } from '@/utils/hooks'
 import BlogCard from '@/components/BlogCard.vue'
 import { theme } from 'ant-design-vue'
 
-const locale = useLocale()
-const route = useRoute()
-
 const { useToken } = theme
 const { token } = useToken()
-
-locale.value = route.params.lang
 
 const articles = useAsset(import('@/assets/articles_idx.json'))
 </script>

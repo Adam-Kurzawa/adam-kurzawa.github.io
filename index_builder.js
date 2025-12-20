@@ -3,11 +3,11 @@ import * as fs from 'fs';
 const UTF_8 = 'utf8'
 
 const COVERS_DIR = 'covers'
-const ASSETS_DIR = '/Users/user/IntelliJ IDEA/personal_website/adam-kurzawa.github.io/src/assets'
-const STORIES_DIR = ASSETS_DIR + '/story'
-const STORIES_INDEX_FILE = ASSETS_DIR + '/stories_idx.json'
-const ARTICLES_DIR = ASSETS_DIR + '/blog'
-const ARTICLES_INDEX_FILE = ASSETS_DIR + '/articles_idx.json'
+const ASSETS_DIR = 'C:\\Users\\Adam\\nodejs\\personal_website\\personal-website\\src\\assets'
+const STORIES_DIR = ASSETS_DIR + '\\story'
+const STORIES_INDEX_FILE = ASSETS_DIR + '\\stories_idx.json'
+const ARTICLES_DIR = ASSETS_DIR + '\\blog'
+const ARTICLES_INDEX_FILE = ASSETS_DIR + '\\articles_idx.json'
 
 const STORIES_INDEX = {
 	'pl': [],

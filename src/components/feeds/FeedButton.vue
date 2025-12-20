@@ -1,14 +1,13 @@
 <script setup>
 import { message } from 'ant-design-vue'
-import { useLocale, useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/hooks'
 
 const props = defineProps([ 'name', 'file' ])
 
 const t = useTranslation()
-const locale = useLocale()
 
 const copyFeedUrlToClipboard = (feed) => {
-    const url = `https://adamkurzawa.pl/${locale.value}/${feed}`
+    const url = `https://adamkurzawa.pl/pl/${feed}`
 
     navigator.clipboard.writeText(url).then(
         function() {

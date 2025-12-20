@@ -2,7 +2,7 @@
 import { useTranslation } from '@/utils/hooks'
 import { useRouter } from 'vue-router'
 
-const props = defineProps([ 'series', 'year', 'chapters', 'charactersCount', 'locale' ])
+const props = defineProps([ 'series', 'year', 'chapters', 'charactersCount' ])
 
 const router = useRouter()
 const t = useTranslation()
@@ -10,7 +10,6 @@ const t = useTranslation()
 const filterBySeries = () => {
     router.push({
         name: 'stories',
-        params: { lang: props.locale },
         query: { series: props.series },
     })
 }

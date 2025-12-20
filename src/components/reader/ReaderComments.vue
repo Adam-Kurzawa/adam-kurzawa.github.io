@@ -50,7 +50,7 @@ const addComment = () => {
 			name: name,
 			text: text,
 			storyTitle: route.params.title,
-			locale: route.params.lang
+			locale: 'pl'
 		}
 
 		AlternataClient.addComment(newComment, altcha.value)

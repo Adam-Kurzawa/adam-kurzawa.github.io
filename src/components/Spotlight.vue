@@ -1,12 +1,11 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { useAsset, useInnerWidth, useLocale, useTranslation } from '@/utils/hooks'
+import { useAsset, useInnerWidth, useTranslation } from '@/utils/hooks'
 import BlogCard from './BlogCard.vue'
 import { useRouter } from 'vue-router'
 import ReadMoreCard from './ReadMoreCard.vue'
 
 const router = useRouter()
-const locale = useLocale()
 const t = useTranslation()
 const width = useInnerWidth()
 
@@ -20,8 +19,7 @@ const newest = computed(() => {
 
 const goToBlog = () => {
     router.push({
-        name: 'blog',
-        params: { lang: locale.value }
+        name: 'blog'
     })
 }
 </script>

@@ -1,5 +1,5 @@
 <script setup>
-import { useAsset, useLocale, useTranslation, useUrl } from '@/utils/hooks'
+import { useAsset, useTranslation, useUrl } from '@/utils/hooks'
 import { computed, h } from 'vue'
 import { useRouter } from 'vue-router'
 import { countCharacters } from '@/utils/functions'
@@ -13,7 +13,6 @@ import { useThemeStore } from '@/stores/theme'
 const props = defineProps([ 'title' ])
 
 const router = useRouter()
-const locale = useLocale()
 const url = useUrl()
 const t = useTranslation()
 const audioStore = useAudioStore()
@@ -23,7 +22,7 @@ const { useToken } = theme
 const { token } = useToken()
 
 const imageSrc = useAsset(import(`@/assets/story/covers/${props.title}.jpg`))
-const content = useAsset(import(`@/assets/story/${props.title}_${locale.value}.json`))
+const content = useAsset(import(`@/assets/story/${props.title}_pl.json`))
 
 const title = computed(() => content.value.title)
 const description = computed(() => content.value.description)
@@ -39,7 +38,7 @@ const isPublished = computed(() => content.value.status === 'PUBLISHED')
 const openReader = () => {
     router.push({
         name: 'reader',
-        params: { lang: locale.value, title: props.title },
+        params: { title: props.title },
         query: { type: 'story' },
     })
 }
@@ -57,7 +56,7 @@ const listenTo = () => {
                 <a-space v-if="isPublished">
                     <a-button type="primary" :icon="h(ReadOutlined)" @click="openReader">{{ t('story-card.read') }}</a-button>
                     <a-button v-if="youTubeVideoId" type="primary" :icon="h(CustomerServiceOutlined)" @click="listenTo">Słuchaj</a-button>
-                    <StoryCardShareButtons :content="content" :locale="locale" :url="url" />
+                    <StoryCardShareButtons :content="content" :url="url" />
                 </a-space>
             </template>
             <template #title>
@@ -72,7 +71,7 @@ const listenTo = () => {
                     </div>
                     <p class="justify desc" :style="{ flex: '1' }">{{ description }}</p>
                 </div>
-                <StoryCardDescriptions v-if="isPublished" :locale="locale" :series="series" :year="year" :chapters="chapters" :characters-count="charactersCount" />
+                <StoryCardDescriptions v-if="isPublished" :series="series" :year="year" :chapters="chapters" :characters-count="charactersCount" />
             </div>
         </a-card>
     </div>

@@ -7,7 +7,10 @@ import { computed } from 'vue'
 import WorkInProgress from './components/WorkInProgress.vue'
 import AudioPlayer from './components/player/AudioPlayer.vue'
 import Feeds from './components/feeds/Feeds.vue'
+import CookieConsent from './components/CookieConsent.vue'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
+const cookies = useCookies()
 const themeStore = useThemeStore()
 
 const hideContent = computed(() => import.meta.env.VITE_HIDE_CONTENT === 'true')
@@ -20,6 +23,7 @@ const showAudioPlayer = computed(() => import.meta.env.VITE_SHOW_AUDIO_PLAYER ==
       <Navbar />
     </header>
     <div class="content" :class="themeStore.primaryBackgroundColor">
+      <CookieConsent />
       <AudioPlayer v-if="showAudioPlayer"/>
       <WorkInProgress v-if="hideContent" />
       <RouterView v-else :key="$route.fullPath"/>  

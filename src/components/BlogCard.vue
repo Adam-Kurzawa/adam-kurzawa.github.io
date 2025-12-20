@@ -1,7 +1,7 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme'
 import { formatFullDate } from '@/utils/dayjs'
-import { useAsset, useLocale } from '@/utils/hooks'
+import { useAsset } from '@/utils/hooks'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -10,10 +10,9 @@ const props = defineProps([ 'title' ])
 const themeStore = useThemeStore()
 
 const router = useRouter()
-const locale = useLocale()
 
 const imageSrc = useAsset(import(`@/assets/blog/covers/${props.title}.jpg`))
-const content = useAsset(import(`@/assets/blog/${props.title}_${locale.value}.json`))
+const content = useAsset(import(`@/assets/blog/${props.title}_pl.json`))
 
 const title = computed(() => content.value.title)
 const description = computed(() => content.value.description)
@@ -22,7 +21,7 @@ const publicationDate = computed(() => content.value.publicationDate)
 const openReader = () => {
 	router.push({
 		name: "reader",
-		params: { lang: locale.value, title: props.title },
+		params: { title: props.title },
 		query: { type: 'blog' }
 	})
 }
@@ -36,7 +35,7 @@ const openReader = () => {
         <a-card-meta>
             <template #description>{{ description }}</template>
             <template #title>
-              <a-typography-text type="secondary">{{ formatFullDate(publicationDate, locale) }}</a-typography-text>
+              <a-typography-text type="secondary">{{ formatFullDate(publicationDate, 'pl') }}</a-typography-text>
                 <a-typography-title :level="4" class="ant-btn-link title" @click="openReader">{{ title }}</a-typography-title>
             </template>
         </a-card-meta>

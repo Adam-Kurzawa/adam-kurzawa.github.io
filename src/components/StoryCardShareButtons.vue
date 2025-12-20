@@ -5,7 +5,7 @@ import { EpubService } from '@/utils/EpubService.js'
 import { ShareAltOutlined, SendOutlined, DownloadOutlined } from '@ant-design/icons-vue'
 import SendToKindle from './SendToKindle.vue'
 
-const props = defineProps([ 'content', 'locale', 'url' ])
+const props = defineProps([ 'content', 'url' ])
 
 const t = useTranslation()
 
@@ -18,7 +18,7 @@ const saveAsEpub = () =>
         t("reader.epub-chapter"), 
         props.content.chapterTitles, 
         props.content.tags, 
-        props.locale
+        'pl'
     )
 
 const share = () => { 

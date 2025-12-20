@@ -1,21 +1,22 @@
 <script setup>
-import { useLocale, useTranslation } from '@/utils/hooks'
-import { computed, ref, watch } from 'vue'
+import { useTranslation } from '@/utils/hooks'
+import { computed, ref } from 'vue'
 import { EpubService } from '@/utils/EpubService.js'
 import Altcha from './Altcha.vue'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
 const props = defineProps([ 'story', 'visible' ])
 const emit = defineEmits([ 'hide' ])
 
 const t = useTranslation()
-const locale = useLocale()
+const cookies = useCookies()
 
 const sendingToKindle = ref(false)
 const showSendingConfirmation = ref(0)
 const cancelSendingButtonDisabled = ref(false)
 const okText = ref(t('story-card.send'))
 const cancelText = ref(t('story-card.cancel'))
-const kindleAddress = ref($cookies.get('kindle-address') ?? '')
+const kindleAddress = ref(cookies.get('kindle-address') ?? '')
 const altcha = ref(null)
 const sendToKindleButtonDisabled = ref(false)
 const domain = computed(() => import.meta.env.VITE_SEND_TO_KINDLE_DOMAIN)
@@ -33,7 +34,7 @@ const disableSendToKindleButton = computed(() => {
 	}
 })
 
-const sendToKindle = (to) => EpubService.sendAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles, props.story.tags, locale.value, to, altcha.value)
+const sendToKindle = (to) => EpubService.sendAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles, props.story.tags, 'pl', to, altcha.value)
 
 const onAltchaVerified = (token) => {
 	altcha.value = token
@@ -44,7 +45,7 @@ const handleSendingToKindle = () => {
     cancelSendingButtonDisabled.value = true
     okText.value = t('story-card.sending')
     const address = `${kindleAddress.value}@${domain.value}`
-    $cookies.set('kindle-address', kindleAddress.value)
+    cookies.set('kindle-address', kindleAddress.value)
 
     sendToKindle(address)
 		.then(x => {

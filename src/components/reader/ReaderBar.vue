@@ -2,10 +2,11 @@
 import { h, onMounted, ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { EpubService } from '@/utils/EpubService.js'
-import { useLocale, useTranslation, useUrl } from '@/utils/hooks'
+import { useTranslation, useUrl } from '@/utils/hooks'
 import { ShareAltOutlined, OrderedListOutlined, SendOutlined, DownloadOutlined, BookOutlined, BookTwoTone } from '@ant-design/icons-vue'
 import { theme } from 'ant-design-vue'
 import SendToKindle from './../SendToKindle.vue'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
 const props = defineProps([ 'fontSize', 'fontFamily', 'story', 'chapter' ])
 
@@ -15,8 +16,8 @@ const { token } = useToken()
 const t = useTranslation()
 const router = useRouter()
 const route = useRoute()
-const locale = useLocale()
 const url = useUrl()
+const cookies = useCookies()
 
 const chapterTitles = computed(() => {
 	const titles = props.story.chapterTitles
@@ -53,24 +54,24 @@ const hideSendToKindleModal = () => {
 
 const bookmarkProgress = () => {
 	if(isBookmarked.value) {
-		$cookies.remove(`${props.story.title} scroll`)
-		$cookies.remove(`${props.story.title} chapter`)
+		cookies.remove(`${props.story.title} scroll`)
+		cookies.remove(`${props.story.title} chapter`)
 		isBookmarked.value = false
 		showBookmarkTooltip()
 	} else {
 		const appHeight = document.querySelector('#app').clientHeight
 		const scrollPosition = window.scrollY
 		const progress = scrollPosition / appHeight
-		$cookies.set(`${props.story.title} scroll`, progress)
-		$cookies.set(`${props.story.title} chapter`, props.chapter)
+		cookies.set(`${props.story.title} scroll`, progress)
+		cookies.set(`${props.story.title} chapter`, props.chapter)
 		isBookmarked.value = true
 		showBookmarkTooltip()
 	}
 }
 
 onMounted(() => {
-	const cookieValue = $cookies.get(`${props.story.title} scroll`)
-	const chapterCookie = parseInt($cookies.get(`${props.story.title} chapter`) ?? '-1')
+	const cookieValue = cookies.get(`${props.story.title} scroll`)
+	const chapterCookie = parseInt(cookies.get(`${props.story.title} chapter`) ?? '-1')
 	isBookmarked.value = cookieValue !== undefined && cookieValue !== null
 
 	if(chapterCookie === props.chapter) {
@@ -82,7 +83,7 @@ onMounted(() => {
 	}
 })
 
-const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles, props.story.tags, locale.value)
+const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles, props.story.tags, 'pl')
 
 const share = () => {
 	navigator.share({

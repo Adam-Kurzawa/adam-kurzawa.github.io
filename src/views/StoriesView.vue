@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
 import { ref, watch } from 'vue'
-import { useTranslation, useAsset, useLocale, useInnerWidth } from '@/utils/hooks'
+import { useTranslation, useAsset, useInnerWidth } from '@/utils/hooks'
 import StoryCard from '@/components/StoryCard.vue'
 import StoryCardMobile from '@/components/StoryCardMobile.vue'
 import { theme } from 'ant-design-vue'
@@ -10,13 +10,10 @@ import { CloseOutlined } from '@ant-design/icons-vue'
 const { useToken } = theme
 const { token } = useToken()
 
-const locale = useLocale()
 const router = useRouter()
 const route = useRoute()
 const t = useTranslation()
 const width = useInnerWidth()
-
-locale.value = route.params.lang
 
 const seriesQuery = route.query.series
 
@@ -29,7 +26,7 @@ const sortByDate = (a, b) => b.year - a.year
 const storiesIndex = useAsset(import('@/assets/stories_idx.json'))
 
 const loadStories = (sorter) => {
-	const storiesForLocale = storiesIndex.value ? storiesIndex.value[locale.value] : []
+	const storiesForLocale = storiesIndex.value ? storiesIndex.value['pl'] : []
 
 	if(seriesQuery)
 		return storiesForLocale
@@ -53,8 +50,7 @@ const changeSorting = (a) => {
 
 const seeAll = () => {
     router.push({
-        name: 'stories',
-        params: { lang: locale.value }
+        name: 'stories'
     })
 }
 </script>

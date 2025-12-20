@@ -1,11 +1,10 @@
 <script setup>
-import { useLocale, useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/hooks'
 import { useRouter } from 'vue-router'
 import { theme } from 'ant-design-vue'
 import { useThemeStore } from '@/stores/theme'
 
 const router = useRouter()
-const locale = useLocale()
 
 const themeStore = useThemeStore()
 const t = useTranslation()
@@ -15,8 +14,7 @@ const { token } = useToken()
 
 const goToBlog = () => {
     router.push({
-        name: 'blog',
-        params: { lang: locale.value }
+        name: 'blog'
     })
 }
 </script>

@@ -1,12 +1,11 @@
 <script setup>
 import { h, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useTranslation, useAsset, useLocale, useInnerWidth } from '@/utils/hooks'
+import { useTranslation, useAsset, useInnerWidth } from '@/utils/hooks'
 import { ReadOutlined } from '@ant-design/icons-vue'
 import { theme } from 'ant-design-vue'
 
 const router = useRouter()
-const locale = useLocale()
 const t = useTranslation()
 const width = useInnerWidth()
 
@@ -54,7 +53,7 @@ const stories = ref([
 const openReader = (obj) => {
     router.push({
         name: 'reader',
-        params: { lang: locale.value, title: obj.title },
+        params: { title: obj.title },
         query: { type: 'fragment' },
     })
 }

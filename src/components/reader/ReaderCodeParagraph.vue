@@ -45,10 +45,12 @@ const formattedCode = computedAsync(
 
 .code-light {
   	background-color: lightgray;
+	color: black;
 }
 
 .code-dark {
   	background-color: darkslategray;
+	color: white;
 }
 
 .code-language {

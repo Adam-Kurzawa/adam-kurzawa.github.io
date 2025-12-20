@@ -15,7 +15,7 @@ const themeStore = useThemeStore()
 <style scoped>
 .pull-quote {
 	transition: color 1s ease, font-size 1s ease;
-	border: 0.5rem solid rgb(129, 129, 221);
+	border: 0.4rem solid rgb(129, 129, 221);
 	border-bottom-left-radius: 2rem;
 	border-top-right-radius: 2rem;
 	padding: 2rem;
