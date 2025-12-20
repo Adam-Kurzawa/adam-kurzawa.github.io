@@ -67,7 +67,7 @@ const listenTo = () => {
             <div class="content">
                 <div class="descriptions">
                     <div class="tags">
-                        <a-tag v-for="tag in tags">{{ tag }}</a-tag>
+                        <a-tag v-for="tag in tags" :key="tag">{{ tag }}</a-tag>
                     </div>
                     <p class="justify desc" :style="{ flex: '1' }">{{ description }}</p>
                 </div>

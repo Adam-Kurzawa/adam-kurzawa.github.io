@@ -1,6 +1,5 @@
 <script setup>
-import { useAsset, useTranslation } from '@/utils/hooks'
-import { ref } from 'vue'
+import { useTranslation } from '@/utils/hooks'
 import LargeButton from './LargeButton.vue'
 
 const t = useTranslation()
@@ -9,7 +8,7 @@ const openLink = (link) => {
 	window.open(link, '_blank')
 }
 
-const storiesLinks = ref([
+const storiesLinks = [
 	{
 		name: "Nowa Fantastyka",
 		profile: "@TheEagle",
@@ -34,9 +33,9 @@ const storiesLinks = ref([
 		link: "ss.pl/theEagle",
 		icon: '/wattpad.png'
 	}
-])
+]
 
-const contactLinks = ref([
+const contactLinks = [
 	{
 		name: "LinkedIn",
 		profile: "TheEagle",
@@ -49,9 +48,9 @@ const contactLinks = ref([
 		link: "gm.pl/theEagle",
 		icon: '/gmail.png'
 	}
-])
+]
 
-const supportLinks = ref([
+const supportLinks = [
 	{
 		name: "BuyCoffee",
 		profile: "TheEagle",
@@ -64,7 +63,7 @@ const supportLinks = ref([
 		link: "p.pl/theEagle",
 		icon: '/patronite.png'
 	}
-])
+]
 </script>
 
 <template>
@@ -78,15 +77,15 @@ const supportLinks = ref([
 				<a-typography-text>Nostrud sunt adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. adipisicing Lorem commodo ipsum. Ex magna adipisicing ullamco fugiat et sit minim eu Lorem ad irure et. Esse id ut reprehenderit in proident fugiat exercitation labore ullamco tempor. Aliquip culpa sunt ex ipsum sint do nisi ut commodo fugiat ad. Aute ad culpa consequat aliqua.</a-typography-text>
 				<a-typography-text>Swoje opowiadania zawsze publikuję również na różnych portalach, forach i blogach.</a-typography-text>
 				<a-space>
-					<LargeButton v-for="link in storiesLinks" :header="link.name" :text="link.profile" :icon="link.icon" @click="() => openLink(link.link)" />
+					<LargeButton v-for="link in storiesLinks" :header="link.name" :text="link.profile" :icon="link.icon" @click="openLink(link.link)" />
 				</a-space>
 				<a-typography-text>Nie jestem social-mediową bestią ale możesz do mnie napisać wiadomość na jednym z portali.</a-typography-text>
 				<a-space>
-					<LargeButton v-for="link in contactLinks" :header="link.name" :text="link.profile" :icon="link.icon" @click="() => console.warn(`Redirect to ${link.link}`)" />
+					<LargeButton v-for="link in contactLinks" :header="link.name" :text="link.profile" :icon="link.icon" @click="console.warn(`Redirect to ${link.link}`)" />
 				</a-space>
 				<a-typography-text>Jeśli chcesz mnie wesprzeć i dać grosza na piwo, możesz to zrobić na dedykowanych portalach.</a-typography-text>
 				<a-space>
-					<LargeButton v-for="link in supportLinks" :header="link.name" :text="link.profile" :icon="link.icon" @click="() => console.warn(`Redirect to ${link.link}`)" />
+					<LargeButton v-for="link in supportLinks" :header="link.name" :text="link.profile" :icon="link.icon" @click="console.warn(`Redirect to ${link.link}`)" />
 				</a-space>
 			</div>
 		</a-card>
