@@ -37,6 +37,32 @@
                 "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur."
             },
             {
+                "type": "header",
+                "value": "Another section"
+            },
+            {
+                "type": "listing",
+                "flavour": "numbered",
+                "value": [
+                    "Value A",
+                    "Value B",
+                    "Value C"
+                ]
+            },
+            {
+                "type": "listing",
+                "flavour": "dotted",
+                "value": [
+                    "Value A",
+                    "Value B",
+                    "Value C"
+                ]
+            },
+            {
+                "type": "dialog",
+                "value": "– Widziałem to dawno temu – powiedział Jim."
+            },
+            {
                 "type": "quote",
                 "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur."
             },
@@ -64,12 +90,12 @@
             },
             {
                 "type": "video",
-                "src": "https://www.nlm.nih.gov/web/documentation/TemplateDocumentation/video_files/IN_Intro-800.mp4",
+                "src": "https://i1.jbzd.com.pl/contents/2025/12/YR0lgXPapEA6jDOw4jfrmWmoAZgL7CLL.mp4",
                 "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae."
             },
             {
                 "type": "video",
-                "src": "https://www.nlm.nih.gov/web/documentation/TemplateDocumentation/video_files/IN_Intro-800.mp4"
+                "src": "https://i1.jbzd.com.pl/contents/2025/12/YR0lgXPapEA6jDOw4jfrmWmoAZgL7CLL.mp4"
             },
             {
                 "type": "gallery",

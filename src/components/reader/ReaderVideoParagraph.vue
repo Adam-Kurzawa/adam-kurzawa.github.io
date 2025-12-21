@@ -8,7 +8,9 @@ const themeStore = useThemeStore()
 
 <template>
 	<div class="video">
-		<iframe :src="props.paragraph.src" class="video-src"></iframe>
+		<video class="video-src" controls>
+			<source :src="props.paragraph.src" />
+		</video>
 		<div v-if="props.paragraph.value" class="video-value" :class="[ themeStore.primaryTextColor ]" :style="{ 'font-size': `${props.fontSize}rem`, 'font-family': props.fontFamily }">
 			{{ props.paragraph.value }}
 		</div>

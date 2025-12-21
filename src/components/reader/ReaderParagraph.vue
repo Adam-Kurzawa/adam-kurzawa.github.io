@@ -2,8 +2,10 @@
 import ReaderCodeParagraph from './ReaderCodeParagraph.vue';
 import ReaderDialogParagraph from './ReaderDialogParagraph.vue';
 import ReaderGalleryParagraph from './ReaderGalleryParagraph.vue';
+import ReaderHeaderParagraph from './ReaderHeaderParagraph.vue';
 import ReaderImageParagraph from './ReaderImageParagraph.vue';
 import ReaderItalicsParagraph from './ReaderItalicsParagraph.vue';
+import ReaderListingParagraph from './ReaderListingParagraph.vue';
 import ReaderPullQuoteParagraph from './ReaderPullQuoteParagraph.vue';
 import ReaderQuoteParagraph from './ReaderQuoteParagraph.vue';
 import ReaderTableParagraph from './ReaderTableParagraph.vue';
@@ -19,6 +21,8 @@ const props = defineProps([ 'paragraph', 'index', 'fontSize', 'fontFamily' ])
 	<ReaderTableParagraph v-else-if="props.paragraph.type === 'table'" :paragraph="props.paragraph" :index="props.index" :font-size="props.fontSize" :font-family="props.fontFamily" />
 	<ReaderCodeParagraph v-else-if="props.paragraph.type === 'code'" :paragraph="props.paragraph" :index="props.index" :font-size="props.fontSize" :font-family="props.fontFamily" />
 	<ReaderQuoteParagraph v-else-if="props.paragraph.type === 'quote'" :paragraph="props.paragraph" :index="props.index" :font-size="props.fontSize" :font-family="props.fontFamily" />
+	<ReaderListingParagraph v-else-if="props.paragraph.type === 'listing'" :paragraph="props.paragraph" :font-size="props.fontSize" :font-family="props.fontFamily" />
+	<ReaderHeaderParagraph v-else-if="props.paragraph.type === 'header'" :paragraph="props.paragraph" />
 	<ReaderPullQuoteParagraph v-else-if="props.paragraph.type === 'pull-quote'" :paragraph="props.paragraph" :index="props.index" :font-size="props.fontSize" :font-family="props.fontFamily" />
 	<ReaderItalicsParagraph v-else-if="props.paragraph.type === 'italics'" :paragraph="props.paragraph" :index="props.index" :font-size="props.fontSize" :font-family="props.fontFamily" />
 	<ReaderImageParagraph v-else-if="props.paragraph.type === 'image'" :paragraph="props.paragraph" :index="props.index" :font-size="props.fontSize" :font-family="props.fontFamily" />
