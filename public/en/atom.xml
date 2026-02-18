@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://adamkurzawa.pl</id>
     <title>Alternata</title>
-    <updated>2025-12-21T22:01:45.986Z</updated>
+    <updated>2026-02-18T22:29:13.690Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Adam Kurzawa</name>
@@ -13,5 +13,5 @@
     <link rel="self" href="https://adamkurzawa.pl/en/atom.xml"/>
     <subtitle>Adam Kurzawa – Original Science Fiction Blog</subtitle>
     <icon>https://adamkurzawa.pl/favicon.ico</icon>
-    <rights>© 2025 Adam Kurzawa</rights>
+    <rights>© 2026 Adam Kurzawa</rights>
 </feed>

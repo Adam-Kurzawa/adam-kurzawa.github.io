@@ -3,7 +3,7 @@ import WorkInProgress from '@/components/WorkInProgress.vue'
 </script>
 
 <template>
-  <main class="generic-view">
+  <main class="content generic-view">
     <WorkInProgress />
   </main>
 </template>

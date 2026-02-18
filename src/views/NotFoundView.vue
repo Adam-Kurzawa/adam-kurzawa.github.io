@@ -5,7 +5,7 @@ const t = useTranslation()
 </script>
 
 <template>
-  <main>
+  <main class="content">
     <a-result status="404" title="404" :sub-title="t('page-not-found')" />
   </main>
 </template>

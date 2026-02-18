@@ -4,11 +4,11 @@
         <title>Alternata</title>
         <link>https://adamkurzawa.pl</link>
         <description>Adam Kurzawa – Original Science Fiction Blog</description>
-        <lastBuildDate>Sun, 21 Dec 2025 22:01:45 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 18 Feb 2026 22:29:13 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
-        <copyright>© 2025 Adam Kurzawa</copyright>
+        <copyright>© 2026 Adam Kurzawa</copyright>
         <atom:link href="https://adamkurzawa.pl/en/rss.xml" rel="self" type="application/rss+xml"/>
     </channel>
 </rss>

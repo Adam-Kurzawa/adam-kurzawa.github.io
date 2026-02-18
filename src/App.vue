@@ -1,12 +1,12 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue'
-import Copyrights from './components/Copyrights.vue'
+import Copyrights from './components/footer/Copyrights.vue'
 import { useThemeStore } from './stores/theme'
 import { computed } from 'vue'
 import WorkInProgress from './components/WorkInProgress.vue'
 import AudioPlayer from './components/player/AudioPlayer.vue'
-import Feeds from './components/feeds/Feeds.vue'
+import Feeds from './components/footer/Feeds.vue'
 import CookieConsent from './components/CookieConsent.vue'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
@@ -18,65 +18,19 @@ const showAudioPlayer = computed(() => import.meta.env.VITE_SHOW_AUDIO_PLAYER ==
 </script>
 
 <template>
-  <a-config-provider :theme="{ algorithm: themeStore.themeAlgorithm }">
-    <header>
-      <Navbar />
-    </header>
-    <div class="content" :class="themeStore.primaryBackgroundColor">
-      <CookieConsent />
-      <AudioPlayer v-if="showAudioPlayer"/>
-      <WorkInProgress v-if="hideContent" />
-      <RouterView v-else :key="$route.fullPath"/>  
-    </div>
-    <footer>
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white dark:bg-slate-950 h-28">
+    <Navbar />
+  </header>
+  <div :class="themeStore.primaryBackgroundColor">
+    <CookieConsent />
+    <AudioPlayer v-if="showAudioPlayer"/>
+    <WorkInProgress v-if="hideContent" />
+    <RouterView v-else :key="$route.fullPath"/>  
+  </div>
+  <footer class="bg-slate-50 py-20 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
       <Feeds />
       <Copyrights />
-    </footer>
-  </a-config-provider>
+    </div>
+  </footer>
 </template>
-
-<style scoped>
-.content {
-  transition: padding 0.5s ease, background-color 0.5s ease;
-  padding-top: 10rem;
-  padding-bottom: 5rem;
-  padding-left: 12rem;
-  padding-right: 12rem;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.content > main {
-  width: 100%;
-}
-
-@media screen and (max-width: 1920px) {
-  .content {
-    padding-left: 8rem;
-    padding-right: 8rem;
-  }
-}
-
-@media screen and (max-width: 1600px) {
-  .content {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
-}
-
-@media screen and (max-width: 1366px) {
-  .content {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .content {
-    padding-top: 6rem;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-</style>

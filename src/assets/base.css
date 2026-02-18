@@ -1,1 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Madimi+One&family=Yeseva+One&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Madimi+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Yeseva+One&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --text-xs:   0.6575rem;
+    --text-sm:   0.765rem;
+    --text-base: 0.875rem;
+    --text-lg:   0.985rem;
+    --text-xl:   1.095rem;
+    --text-2xl:  1.3125rem;
+    --text-3xl:  1.64rem;
+    --text-4xl:  1.969rem;
+    --text-5xl:  2.625rem;
+    --text-6xl:  3.285rem;
+    --text-7xl:  3.9375rem;
+    --text-8xl:  5.25rem;
+    --text-9xl:  7rem;
+    --font-sans: "Inter";
+}

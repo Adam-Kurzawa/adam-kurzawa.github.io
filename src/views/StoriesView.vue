@@ -1,19 +1,15 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useTranslation, useAsset, useInnerWidth } from '@/utils/hooks'
-import StoryCard from '@/components/StoryCard.vue'
-import StoryCardMobile from '@/components/StoryCardMobile.vue'
-import { theme } from 'ant-design-vue'
-import { CloseOutlined } from '@ant-design/icons-vue'
-
-const { useToken } = theme
-const { token } = useToken()
+import LazyStoryThumbnail from '@/components/thumbnails/LazyStoryThumbnail.vue'
+import StoriesFilters from '@/components/stories/StoriesFilters.vue'
+import Breadcrumbs from '@/components/system/Breadcrumbs.vue'
+import ViewHeader from '@/components/system/ViewHeader.vue'
 
 const router = useRouter()
 const route = useRoute()
 const t = useTranslation()
-const width = useInnerWidth()
 
 const seriesQuery = route.query.series
 
@@ -38,9 +34,11 @@ const loadStories = (sorter) => {
 }
 
 const stories = ref([])
+const series = ref([])
 
 watch(storiesIndex, () => {
 	stories.value = loadStories(sortByTitle)
+	series.value = storiesIndex.value['pl'].map(x => x.series).filter(x => x != undefined)
 })
 
 const changeSorting = (a) => {
@@ -56,20 +54,26 @@ const seeAll = () => {
 </script>
 
 <template>
-	<main class="generic-view entries" v-if="storiesIndex">
-		<a-page-header v-if="seriesQuery" class="header" :style="{ borderColor: token.colorBorderSecondary }" :title="`${t('stories-view.series')} ${seriesQuery}`" @back="seeAll" >
-			<template #extra>
+	<main class="flex-grow" v-if="storiesIndex">
+		<div class="animate-in fade-in duration-500 max-w-7xl mx-auto px-6 pt-40 dark:bg-slate-950 transition-colors">
+        	<Breadcrumbs class="px-6" :locations="[ { name: 'Opowiadania', target: '/stories' } ]" />
+			<ViewHeader title="Biblioteka opowiadań" description="Przeglądaj pełną bibliotekę tekstów. Wybierz gatunek lub skorzystaj z wyszukiwarki, aby odnaleźć interesującą Cię historię." />
+			<!--<a-page-header v-if="seriesQuery" class="header" :title="`${t('stories-view.series')} ${seriesQuery}`" @back="seeAll" >
+				<template #extra>
+					<a-segmented v-model:value="currentSorting" :options="sortingOptions" @change="changeSorting"></a-segmented>
+				</template>
+				<template #backIcon>
+					<CloseOutlined />
+				</template>
+			</a-page-header>
+			<div v-else class="sorting">
 				<a-segmented v-model:value="currentSorting" :options="sortingOptions" @change="changeSorting"></a-segmented>
-			</template>
-			<template #backIcon>
-				<CloseOutlined />
-			</template>
-		</a-page-header>
-		<div v-else class="sorting">
-			<a-segmented v-model:value="currentSorting" :options="sortingOptions" @change="changeSorting"></a-segmented>
+			</div>-->
+			<StoriesFilters :series="series" :selected-series="seriesQuery" />
+			<div class="space-y-10">
+				<LazyStoryThumbnail v-for="story in stories" :key="story.key" :title="story.key" />
+			</div>
 		</div>
-		<StoryCard v-if="width > 1024" v-for="story in stories" :key="story.key" :title="story.key" />
-		<StoryCardMobile v-else v-for="story in stories" :key="`${story.key}-mobile`" :title="story.key" />
 	</main>
 </template>
 

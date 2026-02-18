@@ -1,127 +1,53 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
-import ThemeButton from './ThemeButton.vue'
-import { useThemeStore } from '@/stores/theme'
-import { MenuOutlined } from '@ant-design/icons-vue'
-import { theme } from 'ant-design-vue'
 
 const t = useTranslation()
-const themeStore = useThemeStore()
-
-const showLanguageChanger = computed(() => import.meta.env.VITE_SHOW_LANGUAGE_CHANGER === 'true')
-
-const { useToken } = theme
-const { token } = useToken()
-
-const scrollThreshold = 30
-const isScrolled = ref(false)
-
-const makeBackgroundSolid = (event) => {
-  isScrolled.value = window.scrollY > scrollThreshold
-}
-
-const readerLink = (title) => computed(() => {
-  return { name: 'reader', params: { title: title } }
-})
 
 const link = (view) => computed(() => {
   return { name: view }
 })
-
-onMounted(() => {
-  window.addEventListener('scroll', makeBackgroundSolid)
-})
-
-onUnmounted(() => 
-  window.removeEventListener('scroll', makeBackgroundSolid)
-)
 </script>
 
 <template>
-	<nav class="navbar" :class="[ isScrolled ? 'navbar-solid' : '', themeStore.primaryBackgroundColor ]" :style="{ borderBottomColor: token.colorBorderSecondary }">
-		<span class="navbar-full">
-			<span class="navbar-section">
-				<RouterLink :to="readerLink('innoziemiec')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.innoziemiec") }}</RouterLink>
-				<RouterLink :to="readerLink('klatwa_imetheru')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.klątwa_imetheru") }}</RouterLink>
-				<RouterLink :to="readerLink('projekt_eclipse')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.projekt_eclipse") }}</RouterLink>
-				<RouterLink :to="link('stories')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.stories") }}</RouterLink>
-			</span>
-			<RouterLink to="/" class="logo" :class="themeStore.primaryTextColor">Alternata</RouterLink>
-			<span class="navbar-section">
-				<RouterLink :to="link('books')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.books") }}</RouterLink>
-				<RouterLink :to="link('blog')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.blog") }}</RouterLink>
-				<RouterLink :to="link('about')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.about") }}</RouterLink>
-				<ThemeButton class="theme-toggle" />
-			</span>
-		</span>
-		<span class="navbar-medium">
-			<RouterLink to="/" class="logo" :class="themeStore.primaryTextColor">Alternata</RouterLink>
-			<RouterLink :to="link('stories')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.stories") }}</RouterLink>
-			<RouterLink :to="link('books')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.books") }}</RouterLink>
-			<RouterLink :to="link('blog')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.blog") }}</RouterLink>
-			<RouterLink :to="link('about')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.about") }}</RouterLink>
-			<ThemeButton class="theme-toggle" />
-		</span>
-		<span class="navbar-minimal">
-			<a-dropdown>
-				<template #overlay>
-					<a-menu>
-						<a-menu-item key="1">
-							<RouterLink :to="link('stories')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.stories") }}</RouterLink>
-						</a-menu-item>
-						<a-menu-item key="2">
-							<RouterLink :to="link('books')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.books") }}</RouterLink>
-						</a-menu-item>
-						<a-menu-item key="3">
-							<RouterLink :to="link('blog')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.blog") }}</RouterLink>
-						</a-menu-item>
-						<a-menu-item key="4">
-							<RouterLink :to="link('about')" class="navlink" :class="themeStore.primaryTextColor">{{ t("navbar.about") }}</RouterLink>
-						</a-menu-item>
-					</a-menu>
-				</template>
-				<a-button :style="{ marginTop: '0.25rem' }">
-					<template #icon>
-						<MenuOutlined />
-					</template>
-				</a-button>
-			</a-dropdown>
-			<RouterLink to="/" class="logo" :class="themeStore.primaryTextColor">Alternata</RouterLink>
-			<ThemeButton class="theme-toggle" />
-		</span>
-	</nav>
+  <div class="max-w-[1400px] mx-auto h-full px-6 md:px-12">
+    <div class="flex justify-between items-center h-full relative">
+      <div class="hidden lg:flex flex-1"></div>
+			<RouterLink to="/" class="logo">Alternata</RouterLink>
+      <nav class="hidden lg:flex items-center justify-end space-x-8 flex-1">
+				<RouterLink :to="link('stories')" class="group relative text-[11px] font-bold uppercase tracking-[0.2em] transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          {{ t("navbar.stories") }}
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-blue-600 transition-all duration-300 group-hover:w-full "></span>
+        </RouterLink>
+				<RouterLink :to="link('blog')" class="group relative text-[11px] font-bold uppercase tracking-[0.2em] transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          {{ t("navbar.blog") }}
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-blue-600 transition-all duration-300 group-hover:w-full "></span>
+        </RouterLink>
+				<RouterLink :to="link('about')" class="group relative text-[11px] font-bold uppercase tracking-[0.2em] transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          {{ t("navbar.about") }}
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-blue-600 transition-all duration-300 group-hover:w-full "></span>
+        </RouterLink>
+      </nav>
+      <div class="flex items-center gap-5 pl-8 border-l border-slate-200 dark:border-slate-800 ml-8">
+        <button class="!text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all hover:scale-110 active:scale-95" title="Tryb ciemny">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" aria-hidden="true">
+            <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="lg:hidden flex items-center gap-4">
+        <button class="p-2 text-slate-500 dark:text-slate-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" aria-hidden="true">
+            <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-.navbar-solid {
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-}
-
-.theme-toggle {
-  margin-top: 0.25rem;
-}
-
-.navbar {
-  transition: background-color 0.5s ease;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding-top: 1.5rem;
-  padding-bottom: 2rem;
-  z-index: 100;
-}
-
-.navbar-section {
-  transition: gap 1s ease;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-  margin-bottom: 0.35rem;
-}
-
 .logo {
   transition: color 0.5s ease;
   text-decoration: none;
@@ -129,90 +55,9 @@ onUnmounted(() =>
   font-weight: 300 !important;
   font-style: normal !important;
   font-size: 2rem;
-  margin-top: 0.25rem;
 }
 
 .logo:hover {
   color: #3c89e8;
-}
-
-.collapsed-link {
-  margin-top: 1rem;
-}
-
-/* Sizing */
-/* Full size */
-.navbar-full {
-  display: grid;
-  grid-template-columns: 45% 10% 45%;
-  justify-items: center;
-}
-
-.navbar-medium {
-  display: none;
-}
-
-.navbar-minimal {
-  display: none;
-}
-
-/* Medium size */
-@media screen and (max-width: 1440px) {
-  .navbar-full {
-    display: none;
-  }
-
-  .navbar-medium {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 3rem;
-    grid-template-columns: 25% 75%;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
-  .logo {
-    flex: 1;
-  }
-
-  .navbar-minimal {
-    display: none;
-  }
-}
-
-/* Minimal size */
-@media screen and (max-width: 1024px) {
-  .navbar-full {
-    display: none;
-  }
-
-  .navbar-medium {
-    display: none;
-  }
-
-  .navbar-minimal {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
-  .logo {
-    flex: 1;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .navbar-minimal {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onUnmounted, ref, watch, watchEffect } from 'vue'
+import { onUnmounted, ref } from 'vue'
 import AudioPlayerPlaybackControls from './AudioPlayerPlaybackControls.vue'
 import AudioPlayerMinimize from './AudioPlayerMinimize.vue'
 import AudioPlayerMaximize from './AudioPlayerMaximize.vue'
@@ -7,6 +7,7 @@ import AudioPlayerSlider from './AudioPlayerSlider.vue'
 import { useYouTube } from '../hooks/useYouTube'
 import { useAudioStore } from '@/stores/audio'
 import AudioPlayerPlaybackInfo from './AudioPlayerPlaybackInfo.vue'
+import AudioPlayerHeader from './AudioPlayerHeader.vue'
 
 const { youTubePlayer, state, title, duration } = useYouTube()
 const audioStore = useAudioStore()
@@ -74,43 +75,43 @@ audioStore.$onAction(({ args }) => {
 </script>
 
 <template>
-	<a-card class="audioplayer" :class="[ isMinimized ? 'minimized' : 'maximized' ]">
+	<div class="audioplayer p-8 fixed right-6 bottom-6 z-[200] bg-white rounded-3xl transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] translate-x-0 opacity-100" :class="[ isMinimized ? 'minimized' : 'maximized' ]">
 		<div v-if="isMinimized" class="minimized-layout">
 			<AudioPlayerMaximize @show="onShow" />
 			<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
 		</div>
 		<div v-else>
 			<div class="maximized-layout">
-				<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
-				<AudioPlayerPlaybackInfo :series="audioStore.series" :title="title" />
+				<AudioPlayerHeader />
 				<AudioPlayerMinimize @hide="onHide" />
 			</div>
+			<AudioPlayerPlaybackInfo :series="audioStore.series" :title="title" />
 			<AudioPlayerSlider v-model="progress" :duration="duration" @seekto="onSeekTo" />
+			<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
 		</div>
-	</a-card>
+	</div>
 </template>
 
 <style scoped>
 .audioplayer {
-	min-width: 20rem;
-	width: 20rem;
-	max-width: 20rem;
-	min-height: 10rem;
-	height: 10rem;
-	max-height: 10rem;
-	position: fixed;
-	bottom: 3rem;
-	z-index: 200;
-	box-shadow: 0px 0px 50px 0px rgba(163, 163, 163, 1);
-	transition: all 0.5s ease-out allow-discrete;
+	min-width: 30rem;
+	width: 30rem;
+	max-width: 30rem;
+	box-shadow: 0px 0px 30px 0px rgba(163, 163, 163, 0.5);
 }
 
 .maximized {
 	right: 3rem;
+	min-height: 22rem;
+	height: 22rem;
+	max-height: 22rem;
 }
 
 .minimized {
-	right: -15rem
+	right: -24rem;
+	min-height: 10rem;
+	height: 10rem;
+	max-height: 10rem;
 }
 
 .minimized-layout {
@@ -124,6 +125,7 @@ audioStore.$onAction(({ args }) => {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	justify-content: space-between;
 	gap: 1rem;
 	margin-bottom: 1rem;
 	align-items: center;

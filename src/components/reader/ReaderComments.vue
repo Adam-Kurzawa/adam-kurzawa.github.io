@@ -9,6 +9,11 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import Altcha from '../Altcha.vue'
 import { AlternataClient } from '@/utils/AlternataClient'
+import Header3 from '../system/Header3.vue'
+import PrimaryButton from '../system/PrimaryButton.vue'
+import SendIcon from '../icons/SendIcon.vue'
+import IconButton from '../system/IconButton.vue'
+import CloseIcon from '../icons/CloseIcon.vue'
 
 dayjs.extend(relativeTime);
 
@@ -98,7 +103,60 @@ const onSubmit = () => {
 </script>
 
 <template>
-	<a-drawer v-model:open="props.visible" :title="t('reader.comments.header')" placement="right" @close="$emit('close-comments')" :size="commentsDrawerSize">
+	<div class="fixed inset-y-0 right-0 z-[250] w-200 bg-white dark:bg-slate-900 shadow-2xl transform transition-transform duration-500 ease-in-out border-r border-slate-100 dark:border-slate-800 translate-x-0" v-bind:hidden="!props.visible">
+		<div class="flex flex-col h-full">
+			<div class="p-8 flex justify-between items-center">
+				<div>
+					<Header3 class="mt-2" value="Komentarze" />
+					<p v-if="comments.length === 1" class="!text-xs font-bold !uppercase tracking-widest text-blue-600 mt-1">{{ `${comments.length} ${t('reader.comments.amount-singular')}` }}</p>
+					<p v-else-if="comments.length > 1" class="!text-xs font-bold !uppercase tracking-widest text-blue-600 mt-1">{{ `${comments.length} ${t('reader.comments.amount-plural')}` }}</p>
+				</div>
+				<IconButton @click="$emit('close-comments')">
+					<CloseIcon />
+				</IconButton>
+			</div>
+			<div v-if="comments.length === 0" class="flex-1 overflow-y-auto p-8 no-scrollbar">
+				<div class="h-full flex flex-col items-center justify-center text-center animate-in fade-in zoom-in-95 duration-700">
+					<div class="relative mb-6">
+						<div class="absolute inset-0 bg-blue-600/10 blur-3xl rounded-full"></div>
+						<div class="relative w-20 h-20 bg-blue-50 dark:bg-blue-900/20 rounded-[1rem] flex items-center justify-center text-blue-600">
+							<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square" aria-hidden="true">
+								<path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"></path>
+							</svg>
+						</div>
+					</div>
+					<p class="text-lg font-serif text-slate-900 dark:text-white mb-2">Cisza przed burzą...</p>
+					<p class="text-sm text-slate-500 dark:text-slate-400 max-w-[240px] leading-relaxed font-light">{{ t('reader.comments.empty-comments') }}</p>
+				</div>
+			</div>
+			<div v-else class="space-y-2 overflow-y-auto no-scrollbar flex-1">
+				<template v-for="comment in comments">
+					{{ comment }}
+				</template>
+			</div>
+			<div class="p-8 bg-slate-50/50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800">
+				<div class="space-y-4">
+					<div class="relative">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true">
+							<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+							<circle cx="12" cy="7" r="4"></circle>
+						</svg>
+						<input placeholder="Twój pseudonim..." class="w-full pl-12 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[1rem] focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-sm dark:text-white placeholder:text-slate-400" type="text" value="">
+					</div>
+					<div class="relative">
+						<textarea placeholder="Napisz co myślisz..." rows="3" class="w-full p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[1rem] focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-sm dark:text-white placeholder:text-slate-400 resize-none"></textarea>
+					</div>
+					<div class="relative">
+						<Altcha @verified="onAltchaVerified" />
+					</div>
+					<PrimaryButton value="Opublikuj komentarz">
+						<SendIcon />
+					</PrimaryButton>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--<a-drawer v-model:open="props.visible" :title="t('reader.comments.header')" placement="right" @close="$emit('close-comments')" :size="commentsDrawerSize">
 		<template #extra>
 			<a-typography-text v-if="comments.length === 1" type="secondary">{{ `${comments.length} ${t('reader.comments.amount-singular')}` }}</a-typography-text>
 			<a-typography-text v-if="comments.length > 1" type="secondary">{{ `${comments.length} ${t('reader.comments.amount-plural')}` }}</a-typography-text>
@@ -141,7 +199,7 @@ const onSubmit = () => {
 				<a-button type="primary" :disabled="altcha === undefined || altcha === null" @click="onSubmit">{{ t('reader.comments.new-comment-submit') }}</a-button>
 			</a-form-item>
 		</a-form>
-	</a-drawer>
+	</a-drawer>-->
 </template>
 
 <style scoped>

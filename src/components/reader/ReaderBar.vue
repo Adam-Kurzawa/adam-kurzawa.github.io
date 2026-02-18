@@ -1,38 +1,23 @@
 <script setup>
-import { h, onMounted, ref, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { h, onMounted, ref } from 'vue'
 import { EpubService } from '@/utils/EpubService.js'
 import { useTranslation, useUrl } from '@/utils/hooks'
-import { ShareAltOutlined, OrderedListOutlined, SendOutlined, DownloadOutlined, BookOutlined, BookTwoTone } from '@ant-design/icons-vue'
-import { theme } from 'ant-design-vue'
+import { ShareAltOutlined, SendOutlined, DownloadOutlined } from '@ant-design/icons-vue'
 import SendToKindle from './../SendToKindle.vue'
 import { useCookies } from '@vueuse/integrations/useCookies'
+import SecondaryButton from '../system/SecondaryButton.vue'
+import ChaptersIcon from '../icons/ChaptersIcon.vue'
+import PrimaryButton from '../system/PrimaryButton.vue'
+import CommentIcon from '../icons/CommentIcon.vue'
 
 const props = defineProps([ 'fontSize', 'fontFamily', 'story', 'chapter' ])
 
-const { useToken } = theme
-const { token } = useToken()
-
 const t = useTranslation()
-const router = useRouter()
-const route = useRoute()
 const url = useUrl()
 const cookies = useCookies()
 
-const chapterTitles = computed(() => {
-	const titles = props.story.chapterTitles
-
-	if(titles && titles !== null)
-		return titles;
-	else 
-		return Array
-			.apply(null, Array(props.story.chapters.length))
-			.map((el, index) => `${t("reader.epub-chapter")} ${index + 1}`)
-})
-
 const isBookmarked = ref()
 const bookmarkTooltipVisible = ref(false)
-const menuChapterVisible = ref(false)
 const kindleModalOpen = ref(false)
 
 const hideBookmarkTooltip = () => {
@@ -92,30 +77,23 @@ const share = () => {
 		text: 'Alternata - personal blog by Adam Kurzawa'
 	})
 }
-
-const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: chapterNumber } })
 </script>
 
 <template>
-	<div class="floating-bar" :style="{ borderBottomColor: token.colorBorderSecondary, backgroundColor: token.colorBgContainer }">
-		<a-button type="primary" @click="$emit('show-comments')">{{ t('reader.comments.header') }}</a-button>
-		<a-popover v-model:open="menuChapterVisible" :title="t('reader.bar.chapters-menu-title')" trigger="click">
-			<template #content>
-				<a-timeline :style="{ marginLeft: '0.25rem', marginTop: '1rem' }">
-				<a-timeline-item v-for="(chapterTitle, index) in chapterTitles">
-					<a-button v-if="(index + 1) === props.chapter" type="link" :style="{ padding: '0', marginTop: '-1rem' }" @click="() => jumpToChapter(index + 1)">{{ chapterTitle }}</a-button>
-					<a-button v-else type="text" :style="{ padding: '0', marginTop: '-1rem' }" @click="() => jumpToChapter(index + 1)">{{ chapterTitle }}</a-button>
-				</a-timeline-item>
-				</a-timeline>
-			</template>
-			<a-button :icon="h(OrderedListOutlined)"></a-button>
-		</a-popover>
-    <a-tooltip v-if="isBookmarked" placement="bottom" :open="bookmarkTooltipVisible" :title="t('reader.bar.bookmarked')">
-		<a-button :icon="h(BookTwoTone)" @click="bookmarkProgress"></a-button>
-    </a-tooltip>
-    <a-tooltip v-else placement="bottom" :open="bookmarkTooltipVisible" :title="t('reader.bar.unbookmarked')">
-		<a-button :icon="h(BookOutlined)" @click="bookmarkProgress"></a-button>
-    </a-tooltip>
+	<div class="flex fixed justify-center bg-white py-8 top-[6rem] w-full gap-8">
+		<div class="flex items-center gap-2">
+			<SecondaryButton value="Rozdziały" @click="$emit('show-chapters')">
+				<ChaptersIcon />
+			</SecondaryButton>
+			<PrimaryButton :value="t('reader.comments.header')" @click="$emit('show-comments')" >
+				<CommentIcon />
+			</PrimaryButton>
+			<button @click="bookmarkProgress" :class="[ isBookmarked ? '!text-sky-600' : '!text-slate-400' ]" class="p-2 rounded-xl border transition-all bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800">
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark" aria-hidden="true">
+					<path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"></path>
+				</svg>
+			</button>
+		</div>
 		<a-button-group>
       		<a-button :icon="h(DownloadOutlined)" @click="saveAsEpub">{{ t('reader.bar.download-epub') }}</a-button>
 			<a-button :icon="h(SendOutlined)" @click="showSendToKindleModal">{{ t('send-to-kindle.button') }}</a-button>

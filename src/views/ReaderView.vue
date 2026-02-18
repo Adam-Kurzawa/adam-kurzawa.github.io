@@ -23,7 +23,7 @@ const resolveChapter = () => {
 </script>
 
 <template>
-  <main>
+  <main class="content bg-slate-50">
     <Reader v-if="story" :story="story" :chapter="resolveChapter()" />
   </main>
 </template>

@@ -1,20 +1,19 @@
 <script setup>
 import { useAsset } from '@/utils/hooks'
-import BlogCard from '@/components/BlogCard.vue'
-import { theme } from 'ant-design-vue'
-
-const { useToken } = theme
-const { token } = useToken()
+import BlogYearSection from '@/components/blog/BlogYearSection.vue'
+import ViewHeader from '@/components/system/ViewHeader.vue'
+import Breadcrumbs from '@/components/system/Breadcrumbs.vue'
 
 const articles = useAsset(import('@/assets/articles_idx.json'))
 </script>
 
 <template>
-	<main class="generic-view entries-section" v-if="articles">
-		<div class="entries-section" v-for="[year, entries] in articles">
-			<a-typography-title class="h2" :level="2" :style="{ borderTopColor: token.colorBorderSecondary }">{{ year }}</a-typography-title>
-			<div class="entries">
-				<BlogCard v-for="entry in entries" :key="entry.key" :title="entry.key" />
+	<main class="flex-grow" v-if="articles">
+		<div class="animate-in fade-in duration-500 max-w-7xl mx-auto mb-20 px-6 pt-40 dark:bg-slate-950 transition-colors">
+        	<Breadcrumbs class="px-6" :locations="[ { name: 'Blog', target: '/blog' } ]" />
+			<ViewHeader title="Blog" description="Blah blah blah" />
+			<div class="space-y-10">
+				<BlogYearSection v-for="[year, entries] in articles" :year="year" :titles="entries.map(x => x.key)" />
 			</div>
 		</div>
 	</main>

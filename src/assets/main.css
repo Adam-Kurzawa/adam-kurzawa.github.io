@@ -1,6 +1,4 @@
 @import "./base.css";
-@import "./light-theme.css";
-@import "./dark-theme.css";
 
 html {
   overflow-y: scroll;
@@ -10,6 +8,7 @@ html,
 body {
   margin: 0 !important;
   padding: 0 !important;
+  font-family: "Inter";
 }
 
 .indented {
@@ -69,7 +68,11 @@ body {
 }
 
 .font-yeseva {
-  font-family: 'Yeseva One';
+  font-family: "Yeseva One";
+}
+
+.font-inter {
+  font-family: "Inter";
 }
 
 .font-madimi {
@@ -78,4 +81,46 @@ body {
 
 .ant-input-textarea-show-count::after {
   content: none !important;
+}
+
+
+
+.content {
+  transition: padding 0.5s ease, background-color 0.5s ease;
+  padding-top: 10rem;
+  padding-bottom: 5rem;
+  padding-left: 12rem;
+  padding-right: 12rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 1920px) {
+  .content {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .content {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .content {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .content {
+    padding-top: 6rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
