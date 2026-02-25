@@ -16,6 +16,10 @@ const link = (view) => computed(() => {
       <div class="hidden lg:flex flex-1"></div>
 			<RouterLink to="/" class="logo">Alternata</RouterLink>
       <nav class="hidden lg:flex items-center justify-end space-x-8 flex-1">
+        <RouterLink :to="link('codex')" class="group relative text-[11px] font-bold uppercase tracking-[0.2em] transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          {{ t("navbar.codex") }}
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-blue-600 transition-all duration-300 group-hover:w-full "></span>
+        </RouterLink>
 				<RouterLink :to="link('stories')" class="group relative text-[11px] font-bold uppercase tracking-[0.2em] transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
           {{ t("navbar.stories") }}
           <span class="absolute -bottom-1 left-0 w-0 h-px bg-blue-600 transition-all duration-300 group-hover:w-full "></span>

@@ -25,5 +25,12 @@ const openReader = () => {
 </script>
 
 <template>
-    <BlogThumbnail v-if="content" :title="title" :img="imageSrc" :publication-date="publicationDate" :description="description" />
+    <BlogThumbnail v-if="content" 
+		:title="title" 
+		:img="imageSrc" 
+		:publication-date="publicationDate" 
+		:description="description" 
+		@read="openReader" 
+		@share="() => {}"
+	/>
 </template>

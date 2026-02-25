@@ -6,6 +6,7 @@ import LazyStoryThumbnail from '@/components/thumbnails/LazyStoryThumbnail.vue'
 import StoriesFilters from '@/components/stories/StoriesFilters.vue'
 import Breadcrumbs from '@/components/system/Breadcrumbs.vue'
 import ViewHeader from '@/components/system/ViewHeader.vue'
+import GenericView from '@/GenericView.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -54,27 +55,14 @@ const seeAll = () => {
 </script>
 
 <template>
-	<main class="flex-grow" v-if="storiesIndex">
-		<div class="animate-in fade-in duration-500 max-w-7xl mx-auto px-6 pt-40 dark:bg-slate-950 transition-colors">
-        	<Breadcrumbs class="px-6" :locations="[ { name: 'Opowiadania', target: '/stories' } ]" />
-			<ViewHeader title="Biblioteka opowiadań" description="Przeglądaj pełną bibliotekę tekstów. Wybierz gatunek lub skorzystaj z wyszukiwarki, aby odnaleźć interesującą Cię historię." />
-			<!--<a-page-header v-if="seriesQuery" class="header" :title="`${t('stories-view.series')} ${seriesQuery}`" @back="seeAll" >
-				<template #extra>
-					<a-segmented v-model:value="currentSorting" :options="sortingOptions" @change="changeSorting"></a-segmented>
-				</template>
-				<template #backIcon>
-					<CloseOutlined />
-				</template>
-			</a-page-header>
-			<div v-else class="sorting">
-				<a-segmented v-model:value="currentSorting" :options="sortingOptions" @change="changeSorting"></a-segmented>
-			</div>-->
-			<StoriesFilters :series="series" :selected-series="seriesQuery" />
-			<div class="space-y-10">
-				<LazyStoryThumbnail v-for="story in stories" :key="story.key" :title="story.key" />
-			</div>
+	<GenericView>
+		<Breadcrumbs class="px-6" :locations="[ { name: 'Opowiadania', target: '/stories' } ]" />
+		<ViewHeader title="Biblioteka opowiadań" description="Przeglądaj pełną bibliotekę tekstów. Wybierz gatunek lub skorzystaj z wyszukiwarki, aby odnaleźć interesującą Cię historię." />
+		<StoriesFilters :series="series" :selected-series="seriesQuery" />
+		<div class="space-y-10">
+			<LazyStoryThumbnail v-for="story in stories" :key="story.key" :title="story.key" />
 		</div>
-	</main>
+	</GenericView>
 </template>
 
 <style scoped>

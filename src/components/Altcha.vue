@@ -1,16 +1,12 @@
 <script setup>
 import { useTemplateRef, onMounted, onUnmounted, computed } from 'vue';
 import 'altcha'
-import { theme } from 'ant-design-vue'
 import { useTranslation } from '@/utils/hooks'
 
 const emit = defineEmits([ 'verified' ])
 const t = useTranslation()
 
 const altchaWidget = useTemplateRef('altcha-widget')
-
-const { useToken } = theme
-const { token } = useToken()
 
 const challengeUrl = computed(() => import.meta.env.VITE_ALTERNATA_BFF_HOST + '/challenge')
 
@@ -35,5 +31,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <altcha-widget ref="altcha-widget" :challengeurl="challengeUrl" :strings="JSON.stringify({ label: t('altcha.label') })" :style="`--altcha-color-border: ${token.colorBorder}; --altcha-border-radius: 6px; --altcha-max-width: 100%;`"></altcha-widget>
+    <altcha-widget ref="altcha-widget" :challengeurl="challengeUrl" :strings="JSON.stringify({ label: t('altcha.label') })" :style="`--altcha-color-border: oklch(92.9% 0.013 255.508); --altcha-border-radius: 1rem; --altcha-max-width: 100%;`"></altcha-widget>
 </template>

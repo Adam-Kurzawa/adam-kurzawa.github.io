@@ -2,7 +2,9 @@
 import { ref } from "vue";
 import { addGtag } from "vue-gtag";
 import { useCookies } from '@vueuse/integrations/useCookies'
-import { useTranslation } from '@/utils/hooks';
+import { useTranslation } from '@/utils/hooks'
+import Modal from "./system/Modal.vue"
+import Description from "./system/Description.vue"
 
 const cookies = useCookies()
 const t = useTranslation()
@@ -23,20 +25,22 @@ const rejectOptional = () => {
 </script>
 
 <template>
-    <a-modal v-if="open" v-model:open="open" title="Ciasteczka" :closable="false" :maskClosable="false">
-        <template #footer>
-            <div class="footer">
-                <a-button size="large" key="back" type="primary" @click="rejectOptional">{{ t('cookies.reject') }}</a-button>
-                <a-button size="large" key="submit" type="primary" @click="acceptAll">{{ t('cookies.accept') }}</a-button>
-            </div>
-        </template>
+    <Modal 
+        v-if="open" 
+        title="Cookies"
+        :yes="t('cookies.accept')"
+        :no="t('cookies.reject')"
+        :visibility="open"
+        @close="rejectOptional"
+        @accept="acceptAll"
+    >
         <div class="center">
     		<img src="/mr_cookie.png" />
         </div>
-        <p>{{ t('cookies.p1') }}</p>
-        <p>{{ t('cookies.p2') }}</p>
-        <p>{{ t('cookies.p3') }}</p>
-    </a-modal>
+        <Description :value="t('cookies.p1')" />
+        <Description :value="t('cookies.p2')" />
+        <Description :value="t('cookies.p3')" />
+    </Modal>
 </template>
 
 <style scoped>
@@ -49,11 +53,6 @@ p {
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: center;
-}
-
-.footer {
-    display: grid;
-    grid-template-columns: 50% 50%;
 }
 
 img {

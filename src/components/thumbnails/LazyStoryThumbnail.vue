@@ -34,7 +34,7 @@ const openReader = () => {
 }
 
 const listenTo = () => {
-    audioStore.setAudioBook(youTubeVideoId.value, series.value)
+    audioStore.setAudioBook(youTubeVideoId.value, series.value, imageSrc.value)
 }
 </script>
 

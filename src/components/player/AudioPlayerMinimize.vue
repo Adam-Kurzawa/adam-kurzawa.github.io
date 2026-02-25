@@ -9,6 +9,3 @@ import { ArrowRightOutlined } from '@ant-design/icons-vue';
 		</template>
 	</a-button>
 </template>
-
-<style scoped>
-</style>

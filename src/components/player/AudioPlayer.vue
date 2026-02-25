@@ -4,7 +4,7 @@ import AudioPlayerPlaybackControls from './AudioPlayerPlaybackControls.vue'
 import AudioPlayerMinimize from './AudioPlayerMinimize.vue'
 import AudioPlayerMaximize from './AudioPlayerMaximize.vue'
 import AudioPlayerSlider from './AudioPlayerSlider.vue'
-import { useYouTube } from '../hooks/useYouTube'
+import { useYouTube } from '@/utils/useYouTube'
 import { useAudioStore } from '@/stores/audio'
 import AudioPlayerPlaybackInfo from './AudioPlayerPlaybackInfo.vue'
 import AudioPlayerHeader from './AudioPlayerHeader.vue'
@@ -75,19 +75,18 @@ audioStore.$onAction(({ args }) => {
 </script>
 
 <template>
-	<div class="audioplayer p-8 fixed right-6 bottom-6 z-[200] bg-white rounded-3xl transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] translate-x-0 opacity-100" :class="[ isMinimized ? 'minimized' : 'maximized' ]">
+	<div class="audioplayer p-8 fixed right-6 bottom-6 z-[200] bg-white rounded-[1rem] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] translate-x-0 opacity-100" :class="[ isMinimized ? 'minimized' : 'maximized' ]">
 		<div v-if="isMinimized" class="minimized-layout">
 			<AudioPlayerMaximize @show="onShow" />
-			<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
+			<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" class="pl-1" />
 		</div>
 		<div v-else>
 			<div class="maximized-layout">
 				<AudioPlayerHeader />
 				<AudioPlayerMinimize @hide="onHide" />
 			</div>
-			<AudioPlayerPlaybackInfo :series="audioStore.series" :title="title" />
+			<AudioPlayerPlaybackInfo :series="audioStore.series" :cover="audioStore.cover" :title="title" :state="state" @play="onPlay" @pause="onPause" />
 			<AudioPlayerSlider v-model="progress" :duration="duration" @seekto="onSeekTo" />
-			<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
 		</div>
 	</div>
 </template>
@@ -102,9 +101,9 @@ audioStore.$onAction(({ args }) => {
 
 .maximized {
 	right: 3rem;
-	min-height: 22rem;
-	height: 22rem;
-	max-height: 22rem;
+	min-height: 20rem;
+	height: 20rem;
+	max-height: 20rem;
 }
 
 .minimized {
@@ -118,7 +117,7 @@ audioStore.$onAction(({ args }) => {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	gap: 1rem;
+	gap: 1.5rem;
 }
 
 .maximized-layout {

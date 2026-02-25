@@ -3,9 +3,10 @@ import HomeView from '@/views/HomeView.vue'
 import ReaderView from '@/views/ReaderView.vue'
 import AboutView from '@/views/AboutView.vue'
 import BlogView from '@/views/BlogView.vue'
-import BooksView from '@/views/BooksView.vue'
 import StoriesView from '@/views/StoriesView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import CodexView from '@/views/CodexView.vue'
+import WikiView from '@/views/WikiView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,9 +27,14 @@ const router = createRouter({
       component: StoriesView
     },
     {
-      path: '/books',
-      name: 'books',
-      component: BooksView
+      path: '/codex',
+      name: 'codex',
+      component: CodexView
+    },
+    {
+      path: '/wiki/:universum',
+      name: 'wiki',
+      component: WikiView
     },
     {
       path: '/blog',

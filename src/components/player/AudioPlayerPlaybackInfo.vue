@@ -1,12 +1,15 @@
 <script setup>
-const props = defineProps([ 'series', 'title' ])
+import AudioPlayerPlaybackControls from './AudioPlayerPlaybackControls.vue'
+
+const props = defineProps([ 'series', 'title', 'cover', 'state', 'play' ])
 </script>
 
 <template>
 	<div class="story-info">
 		<div class="flex gap-6 mb-10">
-			<div class="w-24 h-24 flex-shrink-0 rounded-2xl overflow-hidden shadow-xl border border-white/10">
-				<img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&amp;fit=crop&amp;q=80&amp;w=400">
+			<div class="w-24 h-24 flex-shrink-0 rounded-[1rem] overflow-hidden shadow-xl relative bg-slate-200">
+				<AudioPlayerPlaybackControls :state="props.state" @play="$emit('play')" @pause="$emit('pause')" class="absolute bg-black/25 !text-white w-full h-full flex items-center justify-center" />
+				<img v-if="cover" class="w-full h-full object-cover" :src="props.cover">
 			</div>
 			<div class="flex flex-col justify-center">
 				<p class="!text-base text-slate-500 dark:text-slate-400 font-regular">{{ props.series ?? '-' }}</p>

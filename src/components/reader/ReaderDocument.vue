@@ -1,24 +1,17 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
 import { countCharacters } from '@/utils/functions'
-import { useThemeStore } from '@/stores/theme'
-import { theme } from 'ant-design-vue'
 import ReaderParagraph from './ReaderParagraph.vue'
 import Header1 from '../system/Header1.vue'
-import Header3 from '../system/Header3.vue'
 import Header2 from '../system/Header2.vue'
 
 const props = defineProps([ 'story', 'chapter', 'fontSize', 'fontFamily' ])
 
-const { useToken } = theme
-const { token } = useToken()
-
 const router = useRouter()
 const route = useRoute()
 const t = useTranslation()
-const themeStore = useThemeStore()
 
 const paragraphs = computed(() => props.story.chapters[props.chapter - 1])
 const charactersCount = computed(() => countCharacters(props.story.chapters))
@@ -31,14 +24,6 @@ const nextPageDisabled = computed(() => props.chapter === props.story.chapters.l
 const nextPageEnabled = computed(() => props.chapter !== props.story.chapters.length)
 
 const hasMultiplePages = computed(() => previousPageEnabled.value || nextPageEnabled.value)
-
-const isHoveredPreviousChapter = ref(false)
-const onHoverPreviousChapter = () => { isHoveredPreviousChapter.value = true }
-const onUnhoverPreviousChapter = () => { isHoveredPreviousChapter.value = false }
-
-const isHoveredNextChapter = ref(false)
-const onHoverNextChapter = () => { isHoveredNextChapter.value = true }
-const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 </script>
 
 <template>
@@ -64,7 +49,7 @@ const onUnhoverNextChapter = () => { isHoveredNextChapter.value = false }
 			</button>
 			<div v-else></div>
 		</div>
-		<div class="py-10 px-15 rounded-3xl bg-white">
+		<div class="py-10 px-15 rounded-[1rem] bg-white border-slate-200 border-1">
 			<div class="mb-20 text-center space-y-5">
 				<div class="flex items-center justify-center gap-4 !text-xs !font-semibold text-slate-300 uppercase tracking-[0.2em] mt-2 mb-4">
 					<span>{{ charactersCount }} {{ t("reader.signs") }}</span>

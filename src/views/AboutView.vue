@@ -1,11 +1,12 @@
 <script setup>
-import AboutMe from '@/components/AboutMe.vue'
+import AboutMe from '@/components/about/AboutMe.vue'
+import Breadcrumbs from '@/components/system/Breadcrumbs.vue';
+import GenericView from '@/GenericView.vue';
 </script>
 
 <template>
-	<main class="flex-grow">
-		<div class="animate-in fade-in duration-500 max-w-7xl mx-auto px-6 pt-40 pb-20 dark:bg-slate-950 transition-colors">
-			<AboutMe />
-		</div>
-	</main>
+	<GenericView>
+		<Breadcrumbs class="px-6 mb-20" :locations="[ { name: 'O mnie', target: '/about' } ]" />
+		<AboutMe />
+	</GenericView>
 </template>

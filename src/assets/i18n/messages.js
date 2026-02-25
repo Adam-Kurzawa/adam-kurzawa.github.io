@@ -103,6 +103,7 @@ export const messages = {
             "stories": "Opowiadania",
             "books": "Książki",
             "blog": "Blog",
+            "codex": "Codex",
             "about": "O mnie"
         },
         "welcome": {

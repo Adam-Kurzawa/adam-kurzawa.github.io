@@ -18,7 +18,7 @@ const rest = computed(() => props.titles.slice(1))
             </div>
         </div>
         <div class="flex-grow">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
                 <LazyBlogThumbnail class="md:col-span-2" :title="first" />
                 <LazyBlogThumbnail v-for="title in rest" class="md:col-span-1" :key="title" :title="title" />
             </div>

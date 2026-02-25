@@ -1,0 +1,13 @@
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps([ 'size' ])
+const size = computed(() => props.size ?? '16' )
+</script>
+
+<template>
+    <svg xmlns="http://www.w3.org/2000/svg" :width="size" :height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right group-hover:translate-x-2 transition-transform" aria-hidden="true">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+</template>

@@ -8,6 +8,7 @@ import OpenBookIcon from '../icons/OpenBookIcon.vue';
 import SeriesIcon from '../icons/SeriesIcon.vue';
 import ShareIcon from '../icons/ShareIcon.vue';
 import DataRow from '../system/DataRow.vue';
+import Description from '../system/Description.vue';
 import IconButton from '../system/IconButton.vue';
 import PrimaryButton from '../system/PrimaryButton.vue';
 import Stats from '../system/Stats.vue';
@@ -17,7 +18,7 @@ const props = defineProps([ 'title', 'img', 'series', 'tags', 'publicationDate',
 </script>
 
 <template>
-    <div class="relative bg-white dark:bg-slate-900 rounded-[1rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-800 flex flex-col md:row-span-1 md:flex-row group">
+    <div class="relative bg-white dark:bg-slate-900 rounded-[1rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col md:row-span-1 md:flex-row group">
         <div class="absolute inset-0">
             <img class="w-full object-cover opacity-50 blur-xl" :src="props.img">
             <div class="absolute inset-0 bg-gradient-to-l from-white via-white to-transparent"></div>
@@ -42,10 +43,10 @@ const props = defineProps([ 'title', 'img', 'series', 'tags', 'publicationDate',
                         <HeadphonesIcon />
                     </PrimaryButton>
                     <div class="flex gap-2">
-                        <IconButton>
+                        <IconButton @click="$emit('download')">
                             <DownloadIcon />
                         </IconButton>
-                        <IconButton>
+                        <IconButton @click="$emit('share')">
                             <ShareIcon />
                         </IconButton>
                     </div>
@@ -54,9 +55,9 @@ const props = defineProps([ 'title', 'img', 'series', 'tags', 'publicationDate',
             <div class="flex flex-wrap gap-3 mb-8">
                 <Tag v-for="tag in props.tags" :value="tag" />
             </div>
-            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-10 flex-1 text-base md:text-lg font-light">{{ props.description }}</p>
+            <Description :value="props.description" />
             <DataRow>
-                <Stats label="Rok" :value="props.publicationDate">
+                <Stats label="Rok wydania" :value="props.publicationDate">
                     <CalendarIcon />
                 </Stats>
                 <Stats label="Rozdziały" :value="props.chaptersCount">

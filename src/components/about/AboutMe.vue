@@ -1,7 +1,6 @@
 <script setup>
 import { useTranslation } from '@/utils/hooks'
-import LargeButton from './LargeButton.vue'
-import Header1 from './system/Header1.vue'
+import Header1 from '@/components/system/Header1.vue'
 
 const t = useTranslation()
 

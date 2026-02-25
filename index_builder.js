@@ -6,6 +6,8 @@ const COVERS_DIR = 'covers'
 const ASSETS_DIR = 'C:\\Users\\Adam\\nodejs\\personal_website\\personal-website\\src\\assets'
 const STORIES_DIR = ASSETS_DIR + '\\story'
 const STORIES_INDEX_FILE = ASSETS_DIR + '\\stories_idx.json'
+const CODEX_DIR = ASSETS_DIR + '\\codex'
+const CODEX_INDEX_FILE = ASSETS_DIR + '\\codex_idx.json'
 const ARTICLES_DIR = ASSETS_DIR + '\\blog'
 const ARTICLES_INDEX_FILE = ASSETS_DIR + '\\articles_idx.json'
 
@@ -15,6 +17,29 @@ const STORIES_INDEX = {
 }
 
 const ARTICLES_INDEX = {}
+
+const CODEX_INDEX = {
+	'crimsonverse': {
+		title: "Karmazynowe gwiazdy",
+		description: 'Gwiezdna Husaria i Zjednoczona Rzeczpospolita Polska walcząca o swoje miejsce w Drodze Mlecznej.',
+		values: []
+	},
+	'deusvult': {
+		title: "Deus Vult",
+		description: 'Opowieści z przyszłości niedalekiej i odległej, poruszające tematy religijne i mistyczne.',
+		values: []
+	},
+	'ds': {
+		title: "Doktryna Solarna",
+		description: 'Space opera opowiadająca o upadku Federacji Solarnej, wypeczeniu wzniosłych idei i wojnie z drapieżnym wszechświatem.',
+		values: []
+	},
+	'solstice': {
+		title: "Solstice",
+		description: 'Brutalna IIWŚ, długa Zimna Wojna, agresywny wyścig kosmiczny nie tylko między kapitalistycznym Zachodem a komunistycznym Wschodem, ale i przeciwko ambintym wenom z siostrzanej Wenus.',
+		values: []
+	}
+}
 
 const onSavingResult = (e) => {
     if (e && e !== null)
@@ -99,5 +124,39 @@ fs.readdir(ARTICLES_DIR, (err, files) => {
 		const ARTICLES_INDEX_TMP = Object.entries(ARTICLES_INDEX).sort(sortByYear)
 
 		fs.writeFileSync(ARTICLES_INDEX_FILE, JSON.stringify(ARTICLES_INDEX_TMP), onSavingResult)
+	}
+})
+
+fs.readdir(CODEX_DIR, (err, files) => {
+	if (err) {
+		console.error('Unable to read directory: ' + err)
+	} else {
+		files
+			.forEach(folder => {
+				const dir = CODEX_DIR + `\\${folder}`
+				const result = fs.readdirSync(dir)
+				const jsons = result.filter(x => x.endsWith(".json"))
+				const dirIndex = []
+
+				jsons.forEach(json => {
+					const data = fs.readFileSync(dir + '\\' + json, UTF_8)
+					const d = JSON.parse(data)
+					const key = json.replace('.json', '')
+
+					dirIndex.push({
+						key: key,
+						title: d.title
+					})
+				})
+
+				CODEX_INDEX[folder] = {
+					...CODEX_INDEX[folder],
+					logo: `/${folder}.png`,
+					cover: `/${folder}_cover.webp`,
+					values: dirIndex
+				}
+			})
+
+		fs.writeFileSync(CODEX_INDEX_FILE, JSON.stringify(CODEX_INDEX), onSavingResult)
 	}
 })

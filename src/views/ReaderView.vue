@@ -18,7 +18,7 @@ const resolveChapter = () => {
   if(routedChapter)
     return Number(routedChapter)
   else
-    return parseInt(cookies.get(`${story.value.title} chapter`) ?? '1')
+    return parseInt(cookies.get(`${story.value.title}_chapter`) ?? '1')
 }
 </script>
 

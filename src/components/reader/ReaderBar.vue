@@ -1,20 +1,28 @@
 <script setup>
-import { h, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { EpubService } from '@/utils/EpubService.js'
 import { useTranslation, useUrl } from '@/utils/hooks'
-import { ShareAltOutlined, SendOutlined, DownloadOutlined } from '@ant-design/icons-vue'
 import SendToKindle from './../SendToKindle.vue'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import SecondaryButton from '../system/SecondaryButton.vue'
 import ChaptersIcon from '../icons/ChaptersIcon.vue'
 import PrimaryButton from '../system/PrimaryButton.vue'
 import CommentIcon from '../icons/CommentIcon.vue'
+import DownloadIcon from '../icons/DownloadIcon.vue'
+import SendIcon from '../icons/SendIcon.vue'
+import ShareIcon from '../icons/ShareIcon.vue'
+import IconButton from '../system/IconButton.vue'
+import BookmarkIcon from '../icons/BookmarkIcon.vue'
+import Modal from '../system/Modal.vue'
 
 const props = defineProps([ 'fontSize', 'fontFamily', 'story', 'chapter' ])
 
+const scrollCookieName = encodeURIComponent(`${props.story.title}_scroll`)
+const chapterCookieName = encodeURIComponent(`${props.story.title}_chapter`)
+
 const t = useTranslation()
 const url = useUrl()
-const cookies = useCookies()
+const cookies = useCookies([ scrollCookieName, chapterCookieName ])
 
 const isBookmarked = ref()
 const bookmarkTooltipVisible = ref(false)
@@ -39,25 +47,27 @@ const hideSendToKindleModal = () => {
 
 const bookmarkProgress = () => {
 	if(isBookmarked.value) {
-		cookies.remove(`${props.story.title} scroll`)
-		cookies.remove(`${props.story.title} chapter`)
+		cookies.remove(scrollCookieName)
+		cookies.remove(chapterCookieName)
 		isBookmarked.value = false
 		showBookmarkTooltip()
 	} else {
 		const appHeight = document.querySelector('#app').clientHeight
 		const scrollPosition = window.scrollY
 		const progress = scrollPosition / appHeight
-		cookies.set(`${props.story.title} scroll`, progress)
-		cookies.set(`${props.story.title} chapter`, props.chapter)
+		cookies.set(scrollCookieName, progress)
+		cookies.set(chapterCookieName, props.chapter)
 		isBookmarked.value = true
+	console.log(cookies.getAll())
 		showBookmarkTooltip()
 	}
 }
 
 onMounted(() => {
-	const cookieValue = cookies.get(`${props.story.title} scroll`)
-	const chapterCookie = parseInt(cookies.get(`${props.story.title} chapter`) ?? '-1')
+	const cookieValue = cookies.get(scrollCookieName)
+	const chapterCookie = parseInt(cookies.get(chapterCookieName) ?? '-1')
 	isBookmarked.value = cookieValue !== undefined && cookieValue !== null
+	console.log(cookies.getAll())
 
 	if(chapterCookie === props.chapter) {
 		const progress = parseFloat(cookieValue ?? '0')
@@ -80,7 +90,8 @@ const share = () => {
 </script>
 
 <template>
-	<div class="flex fixed justify-center bg-white py-8 top-[6rem] w-full gap-8">
+	<Modal title="Test" yes="Ok" no="No" :visibility="kindleModalOpen" @close="hideSendToKindleModal">Text</Modal>
+	<div class="flex fixed justify-center bg-white py-8 top-[6rem] w-full gap-8 z-50 shadow-lg">
 		<div class="flex items-center gap-2">
 			<SecondaryButton value="Rozdziały" @click="$emit('show-chapters')">
 				<ChaptersIcon />
@@ -88,18 +99,22 @@ const share = () => {
 			<PrimaryButton :value="t('reader.comments.header')" @click="$emit('show-comments')" >
 				<CommentIcon />
 			</PrimaryButton>
-			<button @click="bookmarkProgress" :class="[ isBookmarked ? '!text-sky-600' : '!text-slate-400' ]" class="p-2 rounded-xl border transition-all bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800">
-				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark" aria-hidden="true">
-					<path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"></path>
-				</svg>
-			</button>
+			<IconButton @click="bookmarkProgress" :class="[ isBookmarked ? '!text-blue-900' : '!text-slate-600' ]">
+				<BookmarkIcon />
+			</IconButton>
 		</div>
-		<a-button-group>
-      		<a-button :icon="h(DownloadOutlined)" @click="saveAsEpub">{{ t('reader.bar.download-epub') }}</a-button>
-			<a-button :icon="h(SendOutlined)" @click="showSendToKindleModal">{{ t('send-to-kindle.button') }}</a-button>
-      		<SendToKindle :story="props.story" :visible="kindleModalOpen" @hide="hideSendToKindleModal" />
-			<a-button :icon="h(ShareAltOutlined)" @click="share">{{ t('reader.bar.share') }}</a-button>
-		</a-button-group>
+		<div class="lg:flex items-center gap-1 px-4 border-l border-r border-slate-100 dark:border-slate-800 h-8 mx-4">
+			<SecondaryButton :value="t('send-to-kindle.button')" @click="showSendToKindleModal">
+				<SendIcon />
+			</SecondaryButton>
+			<IconButton @click="saveAsEpub" class="!text-slate-600 dark:text-slate-400">
+				<DownloadIcon />
+			</IconButton>
+			<IconButton @click="share" class="!text-slate-600 dark:text-slate-400">
+				<ShareIcon />
+			</IconButton>
+		</div>
+		<SendToKindle :story="props.story" :visible="kindleModalOpen" @hide="hideSendToKindleModal" />
 		<a-select v-model:value="props.fontFamily" style="width: 10rem" @change="(value) => $emit('set-font-family', value)">
 			<a-select-option value="Times New Roman" :style="{ fontFamily: 'Times New Roman' }">Times New Roman</a-select-option>
 			<a-select-option value="Georgia" :style="{ fontFamily: 'Georgia' }">Georgia</a-select-option>
