@@ -75,58 +75,16 @@ audioStore.$onAction(({ args }) => {
 </script>
 
 <template>
-	<div class="audioplayer p-8 fixed right-6 bottom-6 z-[200] bg-white rounded-[1rem] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] translate-x-0 opacity-100" :class="[ isMinimized ? 'minimized' : 'maximized' ]">
-		<div v-if="isMinimized" class="minimized-layout">
-			<AudioPlayerMaximize @show="onShow" />
-			<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" class="pl-1" />
+	<div v-if="isMinimized" class="flex flex-col gap-[1.5rem] absolute shadow-2xl border border-slate-200 p-8 fixed right-[-1rem] pr-[2rem] bottom-6 z-[200] bg-white rounded-[1rem]">
+		<AudioPlayerMaximize @show="onShow" />
+		<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
+	</div>
+	<div v-else class="flex flex-col absolute shadow-2xl border border-slate-200 p-8 fixed right-6 bottom-6 z-[200] bg-white rounded-[1rem]">
+		<div class="flex flex-row justify-between gap-[1rem] mb-[1rem] items-center w-[30rem]">
+			<AudioPlayerHeader />
+			<AudioPlayerMinimize @hide="onHide" />
 		</div>
-		<div v-else>
-			<div class="maximized-layout">
-				<AudioPlayerHeader />
-				<AudioPlayerMinimize @hide="onHide" />
-			</div>
-			<AudioPlayerPlaybackInfo :series="audioStore.series" :cover="audioStore.cover" :title="title" :state="state" @play="onPlay" @pause="onPause" />
-			<AudioPlayerSlider v-model="progress" :duration="duration" @seekto="onSeekTo" />
-		</div>
+		<AudioPlayerPlaybackInfo :series="audioStore.series" :cover="audioStore.cover" :title="title" :state="state" @play="onPlay" @pause="onPause" />
+		<AudioPlayerSlider v-model="progress" :duration="duration" @seekto="onSeekTo" />
 	</div>
 </template>
-
-<style scoped>
-.audioplayer {
-	min-width: 30rem;
-	width: 30rem;
-	max-width: 30rem;
-	box-shadow: 0px 0px 30px 0px rgba(163, 163, 163, 0.5);
-}
-
-.maximized {
-	right: 3rem;
-	min-height: 20rem;
-	height: 20rem;
-	max-height: 20rem;
-}
-
-.minimized {
-	right: -24rem;
-	min-height: 10rem;
-	height: 10rem;
-	max-height: 10rem;
-}
-
-.minimized-layout {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	gap: 1.5rem;
-}
-
-.maximized-layout {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	gap: 1rem;
-	margin-bottom: 1rem;
-	align-items: center;
-}
-</style>

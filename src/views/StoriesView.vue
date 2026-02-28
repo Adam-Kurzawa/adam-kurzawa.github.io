@@ -56,7 +56,7 @@ const seeAll = () => {
 
 <template>
 	<GenericView>
-		<Breadcrumbs class="px-6" :locations="[ { name: 'Opowiadania', target: '/stories' } ]" />
+		<Breadcrumbs :locations="[ { name: 'Opowiadania', target: '/stories' } ]" />
 		<ViewHeader title="Biblioteka opowiadań" description="Przeglądaj pełną bibliotekę tekstów. Wybierz gatunek lub skorzystaj z wyszukiwarki, aby odnaleźć interesującą Cię historię." />
 		<StoriesFilters :series="series" :selected-series="seriesQuery" />
 		<div class="space-y-10">

@@ -5,7 +5,7 @@ const t = useTranslation()
 </script>
 
 <template>
-    <section class="max-w-5xl mx-auto mt-10 px-6 py-16 md:pt-24 border-b border-slate-50">
+    <section class="max-w-5xl mx-auto mt-10 px-6 md:pt-24 border-b border-slate-50">
         <p class="text-lg text-slate-600 leading-relaxed font-light">
             {{ t('welcome.text') }} {{ t('welcome.buycoffee') }} {{ t('welcome.text2') }} {{ t('welcome.patronite') }}.
         </p>

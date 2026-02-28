@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import Reader from '@/components/reader/Reader.vue'
-import { useAsset } from '@/utils/hooks'
+import { computeAsset, useAsset } from '@/utils/hooks'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
 const route = useRoute()
@@ -9,7 +9,13 @@ const route = useRoute()
 const title = route.params.title
 const type = route?.query?.type ?? 'story'
 
-const story = useAsset(import(`@/assets/${type}/${title}_pl.json`))
+const story = computeAsset(() => {
+  if(type !== 'story' && type !== 'blog') 
+    return import(`@/assets/codex/${type}/${title}.json`)
+  else
+    return import(`@/assets/${type}/${title}_pl.json`)
+})
+
 const cookies = useCookies()
 
 const resolveChapter = () => {
@@ -18,7 +24,7 @@ const resolveChapter = () => {
   if(routedChapter)
     return Number(routedChapter)
   else
-    return parseInt(cookies.get(`${story.value.title}_chapter`) ?? '1')
+    return parseInt(cookies.get(`${story.value.title} chapter`) ?? '1')
 }
 </script>
 

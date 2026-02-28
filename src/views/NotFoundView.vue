@@ -1,11 +1,12 @@
 <script setup>
+import GenericView from '@/GenericView.vue';
 import { useTranslation } from '@/utils/hooks'
 
 const t = useTranslation()
 </script>
 
 <template>
-  <main class="content">
-    <a-result status="404" title="404" :sub-title="t('page-not-found')" />
-  </main>
+  <GenericView>
+    <p>{{ t('page-not-found') }}</p>
+  </GenericView>
 </template>

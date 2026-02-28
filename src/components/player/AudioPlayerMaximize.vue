@@ -1,11 +1,10 @@
 <script setup>
-import { ArrowLeftOutlined } from '@ant-design/icons-vue';
+import ArrowRightIcon from '../icons/ArrowRightIcon.vue';
+import IconButton from '../system/IconButton.vue';
 </script>
 
 <template>
-	<a-button type="text" shape="circle" size="large" @click="$emit('show')">
-		<template #icon>
-			<ArrowLeftOutlined />
-		</template>
-	</a-button>
+	<IconButton @click="$emit('show')">
+		<ArrowRightIcon class="rotate-180" />
+	</IconButton>
 </template>

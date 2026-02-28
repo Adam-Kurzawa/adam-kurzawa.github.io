@@ -6,7 +6,7 @@ import GenericView from '@/GenericView.vue';
 
 <template>
 	<GenericView>
-		<Breadcrumbs class="px-6 mb-20" :locations="[ { name: 'O mnie', target: '/about' } ]" />
+		<Breadcrumbs class="mb-20" :locations="[ { name: 'O mnie', target: '/about' } ]" />
 		<AboutMe />
 	</GenericView>
 </template>

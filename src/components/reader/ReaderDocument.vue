@@ -6,6 +6,10 @@ import { countCharacters } from '@/utils/functions'
 import ReaderParagraph from './ReaderParagraph.vue'
 import Header1 from '../system/Header1.vue'
 import Header2 from '../system/Header2.vue'
+import SecondaryButton from '../system/SecondaryButton.vue'
+import ShortArrowLeftIcon from '../icons/ShortArrowLeftIcon.vue'
+import PrimaryButton from '../system/PrimaryButton.vue'
+import ShortArrowRightIcon from '../icons/ShortArrowRightIcon.vue'
 
 const props = defineProps([ 'story', 'chapter', 'fontSize', 'fontFamily' ])
 
@@ -29,24 +33,15 @@ const hasMultiplePages = computed(() => previousPageEnabled.value || nextPageEna
 <template>
 	<div class="flex-grow items-center max-w-[1200px] mx-auto py-20 animate-in fade-in slide-in-from-bottom-8 duration-1000">
 		<div class="flex justify-between px-10 mb-10" v-if="hasMultiplePages">
-			<button v-if="previousPageEnabled" @click="previousPage" class="flex items-center gap-2 !text-xs !font-semibold !uppercase tracking-widest !text-slate-400 hover:text-blue-600 transition-colors">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left" aria-hidden="true">
-					<path d="m15 18-6-6 6-6"></path>
-				</svg>
-				{{ t("reader.epub-chapter") }} {{ props.chapter - 1 }}
-			</button>
-			<button v-else @click="previousPage" class="flex items-center gap-2 !text-xs !font-semibold !uppercase tracking-widest !text-slate-400 hover:text-blue-600 transition-colors">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left" aria-hidden="true">
-					<path d="m15 18-6-6 6-6"></path>
-				</svg>
-				Powrót do listy
-			</button>
-			<button v-if="nextPageEnabled" @click="nextPage" class="flex items-center gap-2 px-6 py-3 bg-slate-900 dark:bg-white dark:text-slate-900 !text-white rounded-2xl !text-xs !font-semibold !uppercase tracking-[0.2em] hover:scale-105 transition-all">
-				{{ t("reader.epub-chapter") }} {{ props.chapter + 1 }}
-				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true">
-					<path d="m9 18 6-6-6-6"></path>
-				</svg>
-			</button>
+      <SecondaryButton v-if="previousPageEnabled" @click="previousPage" :value="`${t('reader.epub-chapter')} ${props.chapter - 1}`" class="border-none">
+        <ShortArrowLeftIcon />
+      </SecondaryButton>
+      <SecondaryButton v-else @click="previousPage" value="Powrót do listy" class="border-none">
+        <ShortArrowLeftIcon />
+      </SecondaryButton>
+      <PrimaryButton v-if="nextPageEnabled" @click="nextPage" :value="`${t('reader.epub-chapter')} ${props.chapter + 1}`" class="flex-row-reverse">
+        <ShortArrowRightIcon />
+      </PrimaryButton>
 			<div v-else></div>
 		</div>
 		<div class="py-10 px-15 rounded-[1rem] bg-white border-slate-200 border-1">
@@ -56,33 +51,24 @@ const hasMultiplePages = computed(() => previousPageEnabled.value || nextPageEna
 					<span class="w-1.5 h-1.5 rounded-full bg-slate-200"></span>
 					<span>&copy; {{ props.story.year }}</span>
 				</div>
-				<Header1 :value="props.story.title" />
+				<Header1 class="!mt-10" :value="props.story.title" />
 			</div>
-			<Header2 v-if="story.chapterTitles" class="mb-10" :value="props.story.chapterTitles[props.chapter - 1]" />
+			<Header2 v-if="story.chapterTitles" class="!mb-5" :value="props.story.chapterTitles[props.chapter - 1]" />
 			<div class="flex flex-col gap-[0.5rem]">
 				<ReaderParagraph v-for="(paragraph, index) in paragraphs" :key="`${props.chapter}_${index}`" :paragraph="paragraph" :index="index" :font-size="props.fontSize" :font-family="props.fontFamily" />
 			</div>
-			<Header1 class="w-full text-center mt-10" v-if="nextPageDisabled" :value="t('reader.theEnd')" />
+			<Header1 class="w-full text-center !mt-10" v-if="nextPageDisabled" :value="t('reader.theEnd')" />
 		</div>
 		<div class="flex justify-between px-10 mt-10" v-if="hasMultiplePages">
-			<button v-if="previousPageEnabled" @click="previousPage" class="flex items-center gap-2 !text-xs !font-semibold !uppercase tracking-widest !text-slate-400 hover:text-blue-600 transition-colors">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left" aria-hidden="true">
-					<path d="m15 18-6-6 6-6"></path>
-				</svg>
-				{{ t("reader.epub-chapter") }} {{ props.chapter - 1 }}
-			</button>
-			<button v-else @click="previousPage" class="flex items-center gap-2 !text-xs !font-semibold !uppercase tracking-widest !text-slate-400 hover:text-blue-600 transition-colors">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left" aria-hidden="true">
-					<path d="m15 18-6-6 6-6"></path>
-				</svg>
-				Powrót do listy
-			</button>
-			<button v-if="nextPageEnabled" @click="nextPage" class="flex items-center gap-2 px-6 py-3 bg-slate-900 dark:bg-white dark:text-slate-900 !text-white rounded-2xl !text-xs !font-semibold !uppercase tracking-[0.2em] hover:scale-105 transition-all">
-				{{ t("reader.epub-chapter") }} {{ props.chapter + 1 }}
-				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true">
-					<path d="m9 18 6-6-6-6"></path>
-				</svg>
-			</button>
+      <SecondaryButton v-if="previousPageEnabled" @click="previousPage" :value="`${t('reader.epub-chapter')} ${props.chapter - 1}`" class="border-none">
+        <ShortArrowLeftIcon />
+      </SecondaryButton>
+      <SecondaryButton v-else @click="previousPage" value="Powrót do listy" class="border-none">
+        <ShortArrowLeftIcon />
+      </SecondaryButton>
+      <PrimaryButton v-if="nextPageEnabled" @click="nextPage" :value="`${t('reader.epub-chapter')} ${props.chapter + 1}`" class="flex-row-reverse">
+        <ShortArrowRightIcon />
+      </PrimaryButton>
 			<div v-else></div>
 		</div>
 	</div>

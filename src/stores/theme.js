@@ -1,11 +1,9 @@
 import { defineStore } from 'pinia'
-import { theme } from 'ant-design-vue'
 
 export const useThemeStore = defineStore('theme', {
     state: () => {
         return {
-            theme: 'light',
-            algorithm: theme.defaultAlgorithm
+            theme: 'light'
         }
     },
     getters: {
@@ -21,10 +19,8 @@ export const useThemeStore = defineStore('theme', {
         toggle() {
             if (this.theme == 'light') {
                 this.theme = 'dark'
-                this.algorithm = theme.darkAlgorithm
             } else {
                 this.theme = 'light'
-                this.algorithm = theme.defaultAlgorithm
             }
         }
     }

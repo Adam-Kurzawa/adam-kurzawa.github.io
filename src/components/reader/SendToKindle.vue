@@ -2,8 +2,9 @@
 import { useTranslation } from '@/utils/hooks'
 import { computed, ref } from 'vue'
 import { EpubService } from '@/utils/EpubService.js'
-import Altcha from './Altcha.vue'
+import Altcha from './../Altcha.vue'
 import { useCookies } from '@vueuse/integrations/useCookies'
+import Modal from '../system/Modal.vue'
 
 const props = defineProps([ 'story', 'visible' ])
 const emit = defineEmits([ 'hide' ])
@@ -80,14 +81,22 @@ const handleSendingToKindle = () => {
 </script>
 
 <template>
-	<a-modal v-model:open="props.visible" :title="t('send-to-kindle.button')" :okText="okText" :cancelText="cancelText" :ok-button-props="{ disabled: disableSendToKindleButton }" :cancel-button-props="{ disabled: cancelSendingButtonDisabled }" :confirm-loading="sendingToKindle" @ok="handleSendingToKindle" @cancel="() => emit('hide')">
+	<Modal 
+		v-if="props.visible" 
+        :title="t('send-to-kindle.button')"
+        :yes="okText"
+        :no="cancelText"
+        :visibility="props.visible"
+        @close="emit('hide')"
+        @accept="handleSendingToKindle"
+	>
 		<div v-if="showSendingConfirmation === 1" class="success">
 			<img src="/success.png" />
-			<a-typography-text strong>Wysłano plik!</a-typography-text>
+			<p>Wysłano plik!</p>
 		</div>
 		<div v-else-if="showSendingConfirmation === 2" class="success">
 			<img src="/failure.png" />
-			<a-typography-text strong>Wystąpił błąd!</a-typography-text>
+			<p>Wystąpił błąd!</p>
 		</div>
 		<div v-else class="inputs">
 			<div class="info">
@@ -99,7 +108,8 @@ const handleSendingToKindle = () => {
 			<a-input v-model:value="kindleAddress" :addon-after="`@${domain}`" />
 			<Altcha @verified="onAltchaVerified" />
 		</div>
-	</a-modal>
+	</Modal>
+	<!--:ok-button-props="{ disabled: disableSendToKindleButton }" :cancel-button-props="{ disabled: cancelSendingButtonDisabled }" :confirm-loading="sendingToKindle"-->
 </template>
 
 <style scoped>

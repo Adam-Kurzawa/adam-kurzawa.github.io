@@ -10,7 +10,7 @@ const articles = useAsset(import('@/assets/articles_idx.json'))
 
 <template>
 	<GenericView>
-		<Breadcrumbs class="px-6" :locations="[ { name: 'Blog', target: '/blog' } ]" />
+		<Breadcrumbs :locations="[ { name: 'Blog', target: '/blog' } ]" />
 		<ViewHeader title="Blog" description="Blah blah blah" />
 		<div class="space-y-30">
 			<BlogYearSection v-for="[year, entries] in articles" :year="year" :titles="entries.map(x => x.key)" />

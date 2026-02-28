@@ -12,6 +12,11 @@ export function useLocale() {
     return locale
 }
 
+export function computeAsset(fileFn) {
+    const file = fileFn()
+    return useAsset(file)
+}
+
 export function useAsset(file) {
     const fileRef = ref()
     file.then(module => fileRef.value = module.default)

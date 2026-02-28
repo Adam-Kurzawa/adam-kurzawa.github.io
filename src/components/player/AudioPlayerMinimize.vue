@@ -1,11 +1,10 @@
 <script setup>
-import { ArrowRightOutlined } from '@ant-design/icons-vue';
+import IconButton from '../system/IconButton.vue';
+import ArrowRightIcon from '../icons/ArrowRightIcon.vue';
 </script>
 
 <template>
-	<a-button type="text" shape="circle" size="large" @click="$emit('hide')">
-		<template #icon>
-			<ArrowRightOutlined />
-		</template>
-	</a-button>
+	<IconButton @click="$emit('hide')">
+		<ArrowRightIcon />
+	</IconButton>
 </template>

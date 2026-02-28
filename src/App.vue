@@ -9,6 +9,8 @@ import AudioPlayer from './components/player/AudioPlayer.vue'
 import Feeds from './components/footer/Feeds.vue'
 import CookieConsent from './components/CookieConsent.vue'
 import { useCookies } from '@vueuse/integrations/useCookies'
+import Notifications from './components/Notifications.vue'
+import Gallery from './components/Gallery.vue'
 
 const cookies = useCookies()
 const themeStore = useThemeStore()
@@ -23,6 +25,8 @@ const showAudioPlayer = computed(() => import.meta.env.VITE_SHOW_AUDIO_PLAYER ==
   </header>
   <div :class="themeStore.primaryBackgroundColor">
     <CookieConsent />
+    <Notifications />
+    <Gallery />
     <AudioPlayer v-if="showAudioPlayer"/>
     <WorkInProgress v-if="hideContent" />
     <RouterView v-else :key="$route.fullPath"/>  

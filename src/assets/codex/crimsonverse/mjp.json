@@ -1,0 +1,184 @@
+{
+    "title": "Michał Jan Podhorodecki",
+    "chapters": [
+        [
+            {
+                "type": "text",
+                "value": "Lorem ipsum dolor sit amet, <b>consectetur adipiscing elit</b>. Sed sed dolor <i>pellentesque, lobortis diam sit amet</i>, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur."
+            },
+            {
+                "type": "text",
+                "value": "Lorem ipsum dolor sit amet, <mark>consectetur adipiscing elit</mark>. Sed sed dolor <del>pellentesque, lobortis diam sit amet</del>, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur."
+            },
+            {
+                "type": "text",
+                "value": "Lorem ipsum dolor sit amet, <ins>consectetur adipiscing elit</ins>. Sed sed dolor E<sub>y</sub> = m * c<sup>2</sup> venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur."
+            },
+            {
+                "type": "code",
+                "language": "java",
+                "value": "// Simple Java program\n// FileName: HelloWorld.java\npublic class HelloWorld {\n\n// Your program begins with a call to main().\n// Prints Hello, World to the terminal window.\npublic static void main(String[] args)\n{\nSystem.out.println(\"Hello, World\");\n}\n}"
+            },
+            {
+                "type": "code",
+                "language": "javascript",
+                "value": "export function countCharacters(arrayOfArrayOfStrings) {return arrayOfArrayOfStrings.reduce((accumulator, arrayOfStrings) =>accumulator +arrayOfStrings.reduce((intermediate, string) => intermediate + string.length,0),0);}"
+            },
+            {
+                "type": "quote",
+                "author": "Mahatma Ghandi",
+                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur."
+            },
+            {
+                "type": "header",
+                "value": "Another section"
+            },
+            {
+                "type": "listing",
+                "flavour": "numbered",
+                "value": [
+                    "Value A",
+                    "Value B",
+                    "Value C"
+                ]
+            },
+            {
+                "type": "listing",
+                "flavour": "dotted",
+                "value": [
+                    "Value A",
+                    "Value B",
+                    "Value C"
+                ]
+            },
+            {
+                "type": "dialog",
+                "value": "– Widziałem to dawno temu – powiedział Jim."
+            },
+            {
+                "type": "quote",
+                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur."
+            },
+            {
+                "type": "pull-quote",
+                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae."
+            },
+            {
+                "type": "italics",
+                "author": "Introduction to quantum physics",
+                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur."
+            },
+            {
+                "type": "italics",
+                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur."
+            },
+            {
+                "type": "image",
+                "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
+                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae."
+            },
+            {
+                "type": "image",
+                "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png"
+            },
+            {
+                "type": "video",
+                "src": "https://i1.jbzd.com.pl/contents/2025/12/YR0lgXPapEA6jDOw4jfrmWmoAZgL7CLL.mp4",
+                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae."
+            },
+            {
+                "type": "video",
+                "src": "https://i1.jbzd.com.pl/contents/2025/12/YR0lgXPapEA6jDOw4jfrmWmoAZgL7CLL.mp4"
+            },
+            {
+                "type": "gallery",
+                "src": [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png"
+                ]
+            },
+            {
+                "type": "gallery",
+                "src": [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png",
+                    "https://cdn.britannica.com/35/3635-050-96241EC1/Scarlet-macaw-ara-macao.jpg"
+                ]
+            },
+            {
+                "type": "gallery",
+                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur.",
+                "src": [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png",
+                    "https://cdn.britannica.com/35/3635-050-96241EC1/Scarlet-macaw-ara-macao.jpg",
+                    "https://energy-bike.pl/wp-content/uploads/2023/07/2D6957FE-D2FC-48E9-AAE1-158637240F29.jpeg"
+                ]
+            },
+            {
+                "type": "gallery",
+                "src": [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png",
+                    "https://cdn.britannica.com/35/3635-050-96241EC1/Scarlet-macaw-ara-macao.jpg",
+                    "https://energy-bike.pl/wp-content/uploads/2023/07/2D6957FE-D2FC-48E9-AAE1-158637240F29.jpeg",
+                    "https://www.diamondpet.com/wp-content/uploads/2023/07/brown-chihuahua-standing-in-grass-071723.jpg"
+                ]
+            },
+            {
+                "type": "gallery",
+                "src": [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png",
+                    "https://cdn.britannica.com/35/3635-050-96241EC1/Scarlet-macaw-ara-macao.jpg",
+                    "https://energy-bike.pl/wp-content/uploads/2023/07/2D6957FE-D2FC-48E9-AAE1-158637240F29.jpeg",
+                    "https://www.diamondpet.com/wp-content/uploads/2023/07/brown-chihuahua-standing-in-grass-071723.jpg",
+                    "https://as2.ftcdn.net/v2/jpg/02/74/18/23/1000_F_274182321_CPJ6DLoCxt8R6yl2bP6MvwrC3VgK9F3B.jpg"
+                ]
+            },
+            {
+                "type": "gallery",
+                "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed dolor pellentesque, lobortis diam sit amet, venenatis massa. Etiam turpis mi, rutrum vel gravida vel, congue et dui. Nulla laoreet porttitor tellus, pulvinar vulputate dolor rhoncus vitae. Aenean mauris quam, euismod ut tincidunt in, tristique vel nisi. Praesent elit massa, commodo vel ante elementum, finibus eleifend lorem. Suspendisse tempor lorem ac gravida porta. Sed eu urna sapien. Donec tincidunt nunc placerat leo tempor, quis mollis sapien tincidunt. Praesent facilisis ut nisl eget pellentesque. Integer massa dui, interdum ac viverra in, tempor vitae elit. Vestibulum ornare tempor sapien eu consectetur.",
+                "src": [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/2560px-Aspect_ratio_-_4x3.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aspect_ratio_-_16x9.svg/2560px-Aspect_ratio_-_16x9.svg.png",
+                    "https://cdn.britannica.com/35/3635-050-96241EC1/Scarlet-macaw-ara-macao.jpg",
+                    "https://energy-bike.pl/wp-content/uploads/2023/07/2D6957FE-D2FC-48E9-AAE1-158637240F29.jpeg",
+                    "https://www.diamondpet.com/wp-content/uploads/2023/07/brown-chihuahua-standing-in-grass-071723.jpg",
+                    "https://as2.ftcdn.net/v2/jpg/02/74/18/23/1000_F_274182321_CPJ6DLoCxt8R6yl2bP6MvwrC3VgK9F3B.jpg",
+                    "https://i.gremicdn.pl/image/free/c73a3979d87eaa30733349cecbf3dddc/?t=resize:fill:948:593,enlarge:1",
+                    "https://storage.googleapis.com/pod_public/1300/175426.jpg"
+                ]
+            },
+            {
+                "type": "table",
+                "description": "Tabela 1 - rozpis czegoś tam",
+                "value": [
+                    [ "",        "Masa", "Średnica", "Satelity" ],
+                    [ "Merkury", "0.1E", "4 934 km", "-" ],
+                    [ "Wenus",   "0.9E", "4 934 km", "-" ],
+                    [ "Ziemia",  "1E",   "4 934 km", "1" ],
+                    [ "Mars",    "0.5E", "4 934 km", "2" ],
+                    [ "Jowisz",  "11E",  "4 934 km", "134" ],
+                    [ "Saturn",  "9E",   "4 934 km", "193" ],
+                    [ "Uran",    "7E",   "4 934 km", "84" ],
+                    [ "Neptun",  "6E",   "4 934 km", "52" ]
+                ]
+            },
+            {
+                "type": "table",
+                "value": [
+                    [ "",        "Masa", "Średnica", "Satelity" ],
+                    [ "Merkury", "0.1E", "4 934 km", "-" ],
+                    [ "Wenus",   "0.9E", "4 934 km", "-" ],
+                    [ "Ziemia",  "1E",   "4 934 km", "1" ],
+                    [ "Mars",    "0.5E", "4 934 km", "2" ],
+                    [ "Jowisz",  "11E",  "4 934 km", "134" ],
+                    [ "Saturn",  "9E",   "4 934 km", "193" ],
+                    [ "Uran",    "7E",   "4 934 km", "84" ],
+                    [ "Neptun",  "6E",   "4 934 km", "52" ]
+                ]
+            }
+        ]
+    ]
+}

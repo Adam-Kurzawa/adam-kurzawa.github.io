@@ -1,48 +1,27 @@
 <script setup>
-import { useThemeStore } from '@/stores/theme';
-import { computed, ref } from 'vue';
-import { theme } from 'ant-design-vue'
+import { computed } from 'vue';
+import Description from '../system/Description.vue';
+import { useGalleryStore } from '@/stores/gallery';
 
 const props = defineProps([ 'paragraph', 'index', 'fontSize', 'fontFamily' ])
 
-const themeStore = useThemeStore()
+const galleryStore = useGalleryStore()
 
-const { useToken } = theme
-const { token } = useToken()
-
-const visible = ref(false);
 const galleryThumbnails = computed(() => props.paragraph.src.slice(0, 6))
 const gallerySizeClass = computed(() => `gallery-src-${galleryThumbnails.value.length}`)
-const galleryValueClass = computed(() => `gallery-value-${galleryThumbnails.value.length}`)
 
 const openGallery = () => {
-	visible.value = true
-}
-
-const onVisibleChange = (vis) => {
-	visible.value = vis
+	galleryStore.open(props.paragraph.src)
 }
 </script>
 
 <template>
-	<div :style="{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', alignItems: 'center', justifyContent: 'center' }">
-		<a-card class="gallery" :style="{ width: 'fit-content' }">
-			<div class="gallery-src" :class="gallerySizeClass">
-				<img v-for="(thumbnail, index) in galleryThumbnails" :style="{ gridArea: `src${index}` }" :src="thumbnail" />
-			</div>
-			<div v-if="props.paragraph.value" class="gallery-value" :class="[ themeStore.primaryTextColor, galleryValueClass ]" :style="{ 'font-size': `${props.fontSize}rem`, 'font-family': props.fontFamily }">
-				{{ props.paragraph.value }}
-			</div>
-			<div class="gallery-overlay" :style="{ borderRadius: `${token.borderRadiusLG}px` }" @click="openGallery">
-				Preview
-			</div>
-			<div class="gallery-src-all">
-				<a-image-preview-group :preview="{ visible, onVisibleChange: onVisibleChange  }">
-					<a-image v-for="img in props.paragraph.src" :src="img" />
-				</a-image-preview-group>
-			</div>
-		</a-card>
-	</div>
+	<button class="flex flex-row items-center justify-center bg-slate-50 border border-slate-100 rounded-[1rem] p-6 gap-4 hover:bg-slate-100 cursor-pointer" @click="openGallery">
+		<div class="gallery-src" :class="gallerySizeClass">
+			<img v-for="(thumbnail, index) in galleryThumbnails" :style="{ gridArea: `src${index}` }" :src="thumbnail" />
+		</div>
+		<Description v-if="props.paragraph.value" :value="props.paragraph.value" class="gallery-value" :style="{ 'font-size': `${props.fontSize}rem` }"/>
+	</button>
 </template>
 
 <style scoped>
@@ -68,7 +47,7 @@ const onVisibleChange = (vis) => {
 	gap: 0.5rem;
 }
 
-.gallery:hover > .ant-card-body > .gallery-overlay {
+.gallery:hover > .gallery-overlay {
 	opacity: 1;
 	cursor: pointer;
 }
@@ -134,34 +113,7 @@ const onVisibleChange = (vis) => {
 		"src3 src4 src5";
 }
 
-.gallery-src-all {
-	display: none;
-}
-
 .gallery-value {
-	font-style: italic;
 	text-align: justify;
-	line-height: 1.25rem;
-	margin-top: 1rem;
-}
-
-.gallery-value-2 {
-	max-width: 20.5rem;
-}
-
-.gallery-value-3 {
-	max-width: 15.5rem;
-}
-
-.gallery-value-4 {
-	max-width: 20.5rem;
-}
-
-.gallery-value-5 {
-	max-width: 31.5rem;
-}
-
-.gallery-value-6 {
-	max-width: 23.5rem;
 }
 </style>
