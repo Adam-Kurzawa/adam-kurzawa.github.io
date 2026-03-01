@@ -5,7 +5,7 @@ const props = defineProps([ 'value' ])
 </script>
 
 <template>
-    <a class="text-xs !font-semibold uppercase text-blue-600 hover:text-blue-800 transition-colors flex items-center gap-1 group tracking-widest" @click="$emit('click')">
+    <a class="text-xs !font-semibold uppercase text-blue-600 hover:text-blue-800 transition-colors flex items-center gap-1 group tracking-widest cursor-pointer">
         {{ props.value }}
         <ArrowRightIcon />
     </a>

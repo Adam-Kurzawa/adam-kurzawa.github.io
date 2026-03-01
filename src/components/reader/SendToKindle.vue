@@ -5,6 +5,8 @@ import { EpubService } from '@/utils/EpubService.js'
 import Altcha from './../Altcha.vue'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import Modal from '../system/Modal.vue'
+import Description from '../system/Description.vue'
+import Input from '../system/Input.vue'
 
 const props = defineProps([ 'story', 'visible' ])
 const emit = defineEmits([ 'hide' ])
@@ -98,14 +100,18 @@ const handleSendingToKindle = () => {
 			<img src="/failure.png" />
 			<p>Wystąpił błąd!</p>
 		</div>
-		<div v-else class="inputs">
-			<div class="info">
-				<p>{{t('send-to-kindle.info.top')}}</p>
-				<p>{{t('send-to-kindle.info.a')}}</p>
-				<p>{{t('send-to-kindle.info.b1')}} (adam.kurzawa.70@gmail.com) {{t('send-to-kindle.info.b2')}}</p>
-				<p>{{t('send-to-kindle.info.bottom')}}</p>
+		<div v-else class="flex flex-col gap-4">
+			<div>
+				<Description :value="t('send-to-kindle.info.top')" />
+				<Description :value="t('send-to-kindle.info.a')" class="pl-4" />
+				<Description :value="`${t('send-to-kindle.info.b1')} (adam.kurzawa.70@gmail.com) ${t('send-to-kindle.info.b2')}`" class="pl-4" />
+				<Description :value="t('send-to-kindle.info.bottom')" />
 			</div>
-			<a-input v-model:value="kindleAddress" :addon-after="`@${domain}`" />
+			<Input type="text" v-model="kindleAddress" placeholder="Twój email" required>
+				<template v-slot:postfix>
+					<p class="text-slate-400 bg-slate-50 !my-0 mx-4">@{{ domain }}</p>
+				</template>
+			</Input>
 			<Altcha @verified="onAltchaVerified" />
 		</div>
 	</Modal>
@@ -113,21 +119,6 @@ const handleSendingToKindle = () => {
 </template>
 
 <style scoped>
-.inputs {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	gap: 0.75rem;
-}
-
-.info {
-	padding-top: 0.25rem;
-}
-
-.info > p {
-	margin-bottom: 0.25rem;
-}
-
 .success {
     display: flex;
     flex-direction: column;

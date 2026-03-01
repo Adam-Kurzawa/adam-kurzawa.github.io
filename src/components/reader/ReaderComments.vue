@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
 import { useFirestore, useCollection } from 'vuefire'
@@ -13,6 +13,8 @@ import IconButton from '../system/IconButton.vue'
 import CloseIcon from '../icons/CloseIcon.vue'
 import Comment from '../system/Comment.vue'
 import { useNotificationStore } from '@/stores/notification'
+import PersonIcon from '../icons/PersonIcon.vue'
+import Input from '../system/Input.vue'
 
 const props = defineProps([ 'visible' ])
 
@@ -56,35 +58,19 @@ const addComment = () => {
 	}
 }
 
-const checkString = async (rule, value) => {
-	const response = value ? value.trim() : ''
-
-	if(response.length === 0)
-		return Promise.reject(t('reader.comments.new-comment-empty-content'))
-	else
-		return Promise.resolve()
-}
-
-const newCommentValidationRules = {
-	name: [{ required: true, validator: checkString, trigger: 'change' }],
-	text: [{ required: true, validator: checkString, trigger: 'change' }]
-}
-
 const onAltchaVerified = (token) => {
 	altcha.value = token
 }
 
+const isEmpty = (rf) => {
+	return rf === undefined || rf === null || rf.length === 0
+}
+
 const onSubmit = () => {
 	try {
-  		validate()
-    		.then(() => {
-				addComment()
-				commentAuthor.value = null
-				commentText.value = null
-    		})
-    		.catch(err => {
-      			console.log('error', err);
-    		});
+		addComment()
+		commentAuthor.value = null
+		commentText.value = null
 	} catch (e) {
 		notificationStore.error(t('reader.comments.new-comment-rejected'))
 	}
@@ -119,25 +105,19 @@ const onSubmit = () => {
 						<p class="text-sm text-slate-500 dark:text-slate-400 max-w-[240px] leading-relaxed font-light">{{ t('reader.comments.empty-comments') }}</p>
 					</div>
 				</div>
-				<div v-else class="space-y-6 overflow-y-auto no-scrollbar flex-1 px-8">
+				<div v-else class="space-y-6 overflow-y-auto no-scrollbar flex-1 px-8 pb-8">
 					<Comment v-for="comment in comments" :key="comment.id" :name="comment.name" :timestamp="comment.createdAt" :value="comment.text" />
 				</div>
-				<div class="p-8 bg-slate-50/50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800">
-					<div class="space-y-4">
-						<div class="relative">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true">
-								<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-								<circle cx="12" cy="7" r="4"></circle>
-							</svg>
-							<input placeholder="Twój pseudonim..." v-model="commentAuthor" class="w-full pl-12 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[1rem] focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-sm dark:text-white placeholder:text-slate-400" type="text" value="">
-						</div>
-						<div class="relative">
-							<textarea placeholder="Napisz co myślisz..." v-model="commentText" rows="3" class="w-full p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[1rem] focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-sm dark:text-white placeholder:text-slate-400 resize-none"></textarea>
-						</div>
-						<div class="relative">
-							<Altcha @verified="onAltchaVerified" />
-						</div>
-						<PrimaryButton value="Opublikuj komentarz" @click="onSubmit">
+				<div class="p-8 bg-slate-50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800">
+					<div class="space-y-2">
+						<Input placeholder="Twój pseudonim..." v-model="commentAuthor" type="text" required>
+							<template v-slot:prefix>
+								<PersonIcon class="text-slate-400 mx-4" />
+							</template>
+						</Input>
+						<Input placeholder="Napisz co myślisz..." v-model="commentText" type="textarea" required />
+						<Altcha @verified="onAltchaVerified" />
+						<PrimaryButton value="Opublikuj komentarz" @click="onSubmit" class="!mt-2" :disabled="isEmpty(commentAuthor) || isEmpty(commentText)" >
 							<SendIcon />
 						</PrimaryButton>
 					</div>
@@ -146,22 +126,3 @@ const onSubmit = () => {
 		</div>
 	</div>
 </template>
-
-<style scoped>
-.comments-list {
-  display: flex;
-  flex-direction: column;
-  height: calc(100% - 16.5rem);
-  overflow: auto;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.small-margin-bottom {
-	margin-bottom: 0.5rem !important;
-}
-
-.colorful-avatar {
-	background-color: darkslateblue;
-}
-</style>

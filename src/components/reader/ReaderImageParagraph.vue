@@ -1,36 +1,19 @@
 <script setup>
-import { useThemeStore } from '@/stores/theme'
+import { useGalleryStore } from '@/stores/gallery';
+import Description from '../system/Description.vue';
 
 const props = defineProps([ 'paragraph', 'index', 'fontSize', 'fontFamily' ])
 
-const themeStore = useThemeStore()
+const galleryStore = useGalleryStore()
+
+const openGallery = () => {
+	galleryStore.open([ props.paragraph.src ])
+}
 </script>
 
 <template>
-	<div class="image">
-		<a-image :src="props.paragraph.src" :width="'50%'" />
-		<div v-if="props.paragraph.value" class="image-value" :class="[ themeStore.primaryTextColor ]" :style="{ 'font-size': `${props.fontSize}rem`, 'font-family': props.fontFamily }">
-			{{ props.paragraph.value }}
-		</div>
-	</div>
+	<button class="flex flex-row items-center justify-center bg-slate-50 border border-slate-100 rounded-[1rem] p-6 gap-4 hover:bg-slate-100 cursor-pointer" @click="openGallery">
+		<img :src="props.paragraph.src" class="w-[50%]" />
+		<Description v-if="props.paragraph.value" :value="props.paragraph.value" class="text-justify" :style="{ 'font-size': `${props.fontSize}rem` }" />
+	</button>
 </template>
-
-<style scoped>
-.image {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	align-items: center;
-	gap: 1rem;
-	padding-top: 1.5rem;
-	padding-bottom: 1.5rem;
-}
-
-.image-value {
-	font-style: italic;
-	text-align: justify;
-	padding-left: 25%;
-	padding-right: 25%;
-	line-height: 1.25rem;
-}
-</style>

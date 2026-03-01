@@ -1,20 +1,21 @@
 <script setup>
-import { message } from 'ant-design-vue'
 import { useTranslation } from '@/utils/hooks'
+import { useNotificationStore } from '@/stores/notification'
 
 const props = defineProps([ 'name', 'file' ])
 
 const t = useTranslation()
+const notificationStore = useNotificationStore()
 
 const copyFeedUrlToClipboard = (feed) => {
     const url = `https://adamkurzawa.pl/pl/${feed}`
 
     navigator.clipboard.writeText(url).then(
         function() {
-            message.success(t('feeds.copy-success'))
+            notificationStore.success(t('feeds.copy-success'))
         }, 
         function(err) {
-            message.error(t('feeds.copy-error'))
+            notificationStore.error(t('feeds.copy-error'))
         }
     );
 }

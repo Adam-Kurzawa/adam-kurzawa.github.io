@@ -20,7 +20,7 @@ const openGallery = () => {
 		<div class="gallery-src" :class="gallerySizeClass">
 			<img v-for="(thumbnail, index) in galleryThumbnails" :style="{ gridArea: `src${index}` }" :src="thumbnail" />
 		</div>
-		<Description v-if="props.paragraph.value" :value="props.paragraph.value" class="gallery-value" :style="{ 'font-size': `${props.fontSize}rem` }"/>
+		<Description v-if="props.paragraph.value" :value="props.paragraph.value" class="text-justify" :style="{ 'font-size': `${props.fontSize}rem` }"/>
 	</button>
 </template>
 
@@ -111,9 +111,5 @@ const openGallery = () => {
         "src0 src0 src1"
 		"src0 src0 src2"
 		"src3 src4 src5";
-}
-
-.gallery-value {
-	text-align: justify;
 }
 </style>

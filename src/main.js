@@ -8,9 +8,7 @@ import { VueFire } from 'vuefire'
 import { firebaseApp } from './firebase'
 import App from './App.vue'
 import router from './router'
-import Antd from 'ant-design-vue'
 import { createGtag, configure } from 'vue-gtag'
-import 'ant-design-vue/dist/reset.css'
 
 const i18n = createI18n({
     legacy: false,
@@ -30,7 +28,6 @@ configure({
 
 const app = createApp(App)
 app.use(i18n)
-app.use(Antd)
 app.use(router)
 app.use(pinia)
 app.use(VueFire, { firebaseApp })

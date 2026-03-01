@@ -3,21 +3,19 @@ import { defineStore } from 'pinia'
 export const useGalleryStore = defineStore('gallery', {
     state: () => {
         return {
-            images: [
-                '/bukowe_widziadlo.jpg'
-            ]
+            _images: []
         }
     },
     getters: {
-        getImages: (state) => state.images,
-        hasImages: (state) => state.images.length > 0
+        images: (state) => state._images,
+        hasNoImages: (state) => state._images.length === 0
     },
     actions: {
         open(images) {
-            this.images = images
+            this._images = images
         },
         clear() {
-            this.images = []
+            this._images = []
         }
     }
 })

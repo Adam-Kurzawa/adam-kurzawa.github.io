@@ -82,7 +82,7 @@ const share = () => {
 
 <template>
 	<SendToKindle :story="props.story" :visible="kindleModalOpen" @hide="hideSendToKindleModal" />
-	<div class="flex fixed justify-center bg-white py-8 top-[6rem] w-full gap-8 z-50 shadow-lg">
+	<div class="flex fixed justify-center bg-white py-8 top-[6rem] w-full gap-8 left-0 z-50 shadow-lg">
 		<div class="flex items-center gap-2">
 			<SecondaryButton value="Rozdziały" @click="$emit('show-chapters')">
 				<ChaptersIcon />

@@ -10,7 +10,7 @@ const props = defineProps([ 'title', 'no', 'yes', 'visibility' ])
 
 <template>
     <div class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-in fade-in duration-300" :hidden="!props.visibility">
-        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-[1rem] shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden animate-in zoom-in-95 duration-300">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-2xl rounded-[1rem] shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden animate-in zoom-in-95 duration-300">
             <div class="px-8 pb-2 pt-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-950/50">
                 <Header3 :value="props.title" class="!mt-2" />
                 <IconButton @click="$emit('close')">

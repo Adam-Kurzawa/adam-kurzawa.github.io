@@ -31,5 +31,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <altcha-widget ref="altcha-widget" :challengeurl="challengeUrl" :strings="JSON.stringify({ label: t('altcha.label') })" :style="`--altcha-color-border: oklch(92.9% 0.013 255.508); --altcha-border-radius: 1rem; --altcha-max-width: 100%;`"></altcha-widget>
+    <altcha-widget ref="altcha-widget" :challengeurl="challengeUrl" :strings="JSON.stringify({ label: t('altcha.label') })" :style="`--altcha-color-border: oklch(92.9% 0.013 255.508); --altcha-border-radius: 0.5rem; --altcha-max-width: 100%;`"></altcha-widget>
 </template>

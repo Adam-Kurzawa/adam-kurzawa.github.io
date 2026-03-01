@@ -15,48 +15,10 @@ body {
   	text-indent: 2rem;
 }
 
-.navlink {
-  transition: color 0.5s ease;
-  text-decoration: none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: lighter;
-  margin-top: 0.75rem;
-}
-
-.navlink:hover {
-  color: #3c89e8;
-}
-
-.router-link-active.navlink {
-  color: #1668dc;
-}
-
-.generic-view {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
 .yt {
 	position: absolute;
 	top: 0px;
 	left: 0px;
-}
-
-.ant-timeline-item {
-  padding-bottom: 0.25rem !important;
-}
-
-.ant-timeline-item-last {
-  padding: 0 !important;
-}
-
-.ant-timeline-item-last .ant-timeline-item-content {
-  min-height: 0 !important;
-}
-
-.justify {
-	text-align: justify;
 }
 
 .font-segoe {
@@ -77,50 +39,4 @@ body {
 
 .font-madimi {
   font-family: "Madimi One";
-}
-
-.ant-input-textarea-show-count::after {
-  content: none !important;
-}
-
-
-
-.content {
-  transition: padding 0.5s ease, background-color 0.5s ease;
-  padding-top: 10rem;
-  padding-bottom: 5rem;
-  padding-left: 12rem;
-  padding-right: 12rem;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-@media screen and (max-width: 1920px) {
-  .content {
-    padding-left: 8rem;
-    padding-right: 8rem;
-  }
-}
-
-@media screen and (max-width: 1600px) {
-  .content {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
-}
-
-@media screen and (max-width: 1366px) {
-  .content {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .content {
-    padding-top: 6rem;
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
