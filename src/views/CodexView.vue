@@ -13,7 +13,16 @@ const codexIdx = useAsset(import('@/assets/codex_idx.json'))
 		<Breadcrumbs :locations="[ { name: 'Codex', target: '/codex' } ]" />
 		<ViewHeader title="Codex" description="Witaj w sercu uniwersów Alternaty. Tutaj gromadzimy wiedzę o postaciach, technologiach i historii światów, które narodziły się w wyobraźni. Wybierz ścieżkę, by dowiedzieć się więcej." />
 		<div class="py-20 space-y-48">
-			<CodexSection v-for="(value, key, index) in codexIdx" :key="key" :universum="key" :index="index + 1" :cover="value.cover" :logo="value.logo" :description="value.description" />
+			<CodexSection 
+				v-for="(value, key, index) in codexIdx"
+				:key="key"
+				:universum="key" 
+				:index="index + 1" 
+				:cover="value.cover" 
+				:logo="value.logo" 
+				:description="value.description" 
+				:links="value.values" 
+			/>
 		</div>
 	</GenericView>
 </template>

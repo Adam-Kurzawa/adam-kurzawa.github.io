@@ -6,7 +6,7 @@ const props = defineProps([ 'title', 'description' ])
 </script>
 
 <template>
-    <div class="animate-in fade-in duration-500 max-w-5xl pt-20 pb-10 dark:bg-slate-950 transition-colors">
+    <div class="animate-in fade-in duration-500 max-w-5xl space-y-4 dark:bg-slate-950 transition-colors">
         <Header1 :value="props.title" />
         <Description :value="props.description" class="max-w-2xl" />
     </div>

@@ -1,22 +1,14 @@
 <script setup>
-import { useRouter } from 'vue-router';
-import SecondaryButton from '../system/SecondaryButton.vue';
+import WikiLetterSection from './WikiLetterSection.vue';
+import { computed } from 'vue';
 
 const props = defineProps([ 'entries', 'universum' ])
 
-const router = useRouter()
-
-const openEntry = (title) => {
-    router.push({
-        name: 'reader',
-        params: { title: title },
-		query: { type: props.universum }
-    })
-}
+const entriesByLetter = computed(() => Object.groupBy(props.entries, ({ title }) => title[0]))
 </script>
 
 <template>
-    <div class="flex flex-col gap-5">
-        <SecondaryButton v-for="entry in props.entries" :key="entry.key" :value="entry.title" @click="openEntry(entry.key)" />
+    <div class="flex flex-col gap-12">
+        <WikiLetterSection v-if="entriesByLetter" v-for="(links, letter) in entriesByLetter" :key="letter" :universum="props.universum" :letter="letter" :links="links" />
     </div>
 </template>

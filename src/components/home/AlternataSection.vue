@@ -6,6 +6,7 @@ import Header1 from './../system/Header1.vue'
 import HighlightedTag from './../system/HighlightedTag.vue'
 import AlternataThumbnail from '../thumbnails/AlternataThumbnail.vue'
 import Description from '../system/Description.vue'
+import ViewHeader from '../system/ViewHeader.vue'
 
 const router = useRouter()
 const t = useTranslation()
@@ -64,8 +65,7 @@ const openReader = (obj) => {
                 <div class="flex items-center gap-3 mb-4">
                     <HighlightedTag :value="t('alternata-card.launch')" />
                 </div>
-                <Header1 :value="t('alternata-card.title')" />
-                <Description :value="t('alternata-card.text')" class="max-w-2xl" />
+                <ViewHeader :title="t('alternata-card.title')" :description="t('alternata-card.text')" />
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <AlternataThumbnail v-for="story in stories" :key="story.key" :title="t(`alternata-card.stories.${story.key}.title`)" :img="story.cover" :description="t(`alternata-card.stories.${story.key}.description`)" />
