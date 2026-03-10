@@ -3,12 +3,13 @@ import { useAsset } from '@/utils/hooks'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import BlogThumbnail from './BlogThumbnail.vue'
+import { useStaticAsset } from '@/utils/useStaticAsset'
 
 const props = defineProps([ 'title' ])
 
 const router = useRouter()
 
-const imageSrc = useAsset(import(`@/assets/blog/covers/${props.title}.jpg`))
+const imageSrc = useStaticAsset(`${props.title}.jpg`)
 const content = useAsset(import(`@/assets/blog/${props.title}_pl.json`))
 
 const title = computed(() => content.value.title)

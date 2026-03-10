@@ -5,13 +5,14 @@ import { useRouter } from 'vue-router'
 import { countCharacters } from '@/utils/functions'
 import { useAudioStore } from '@/stores/audio'
 import StoryThumbnail from './StoryThumbnail.vue'
+import { useStaticAsset } from '@/utils/useStaticAsset'
 
 const props = defineProps([ 'title' ])
 
 const router = useRouter()
 const audioStore = useAudioStore()
 
-const imageSrc = useAsset(import(`@/assets/story/covers/${props.title}.jpg`))
+const imageSrc = useStaticAsset(`${props.title}.jpg`)
 const content = useAsset(import(`@/assets/story/${props.title}_pl.json`))
 
 const title = computed(() => content.value.title)

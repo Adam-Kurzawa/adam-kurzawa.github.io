@@ -7,6 +7,7 @@ import { useCookies } from '@vueuse/integrations/useCookies'
 import Modal from '../system/Modal.vue'
 import Description from '../system/Description.vue'
 import Input from '../system/Input.vue'
+import { useStaticAsset } from '@/utils/useStaticAsset'
 
 const props = defineProps([ 'story', 'visible' ])
 const emit = defineEmits([ 'hide' ])
@@ -93,11 +94,11 @@ const handleSendingToKindle = () => {
         @accept="handleSendingToKindle"
 	>
 		<div v-if="showSendingConfirmation === 1" class="success">
-			<img src="/success.png" />
+			<img :src="useStaticAsset('success.png')" />
 			<p>Wysłano plik!</p>
 		</div>
 		<div v-else-if="showSendingConfirmation === 2" class="success">
-			<img src="/failure.png" />
+			<img :src="useStaticAsset('failure.png')" />
 			<p>Wystąpił błąd!</p>
 		</div>
 		<div v-else class="flex flex-col gap-4">

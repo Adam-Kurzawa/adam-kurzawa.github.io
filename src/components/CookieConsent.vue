@@ -5,6 +5,7 @@ import { useCookies } from '@vueuse/integrations/useCookies'
 import { useTranslation } from '@/utils/hooks'
 import Modal from "./system/Modal.vue"
 import Description from "./system/Description.vue"
+import { useStaticAsset } from "@/utils/useStaticAsset";
 
 const cookies = useCookies()
 const t = useTranslation()
@@ -35,7 +36,7 @@ const rejectOptional = () => {
         @accept="acceptAll"
     >
         <div class="center">
-    		<img src="/mr_cookie.png" />
+    		<img :src="useStaticAsset('mr_cookie.png')" />
         </div>
         <Description :value="t('cookies.p1')" />
         <Description :value="t('cookies.p2')" />
@@ -44,10 +45,6 @@ const rejectOptional = () => {
 </template>
 
 <style scoped>
-p {
-    text-align: justify;
-}
-
 .center {
     display: flex;
     flex-wrap: nowrap;

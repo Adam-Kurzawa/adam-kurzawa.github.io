@@ -1,7 +1,7 @@
 <script setup>
-import OpenBookIcon from '../icons/OpenBookIcon.vue';
-import PrimaryButton from '../system/PrimaryButton.vue';
-import SecondaryButton from '../system/SecondaryButton.vue';
+import OpenBookIcon from '../icons/OpenBookIcon.vue'
+import Header4 from '../system/Header4.vue';
+import SecondaryButton from '../system/SecondaryButton.vue'
 
 const props = defineProps([ 'title', 'img', 'description' ])
 </script>
@@ -16,9 +16,9 @@ const props = defineProps([ 'title', 'img', 'description' ])
                 </SecondaryButton>
             </div>
         </div>
-        <div class="px-4 pb-4">
-            <h4 class="text-lg font-bold text-slate-900 mb-2">{{ props.title }}</h4>
-            <p class="text-slate-500 text-xs leading-relaxed line-clamp-3 mb-4">{{ props.description }}</p>
+        <div class="px-4 pb-4 flex flex-col gap-4">
+            <Header4 :value="props.title" />
+            <p class="text-slate-500 text-xs leading-relaxed line-clamp-4">{{ props.description }}</p>
         </div>
     </div>
 </template>

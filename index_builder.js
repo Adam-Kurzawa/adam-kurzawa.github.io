@@ -151,8 +151,8 @@ fs.readdir(CODEX_DIR, (err, files) => {
 
 				CODEX_INDEX[folder] = {
 					...CODEX_INDEX[folder],
-					logo: `/${folder}.png`,
-					cover: `/${folder}_cover.webp`,
+					logo: `${folder}.png`,
+					cover: `${folder}_cover.webp`,
 					values: dirIndex
 				}
 			})

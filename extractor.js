@@ -1,7 +1,7 @@
 import docx4js from "docx4js"
 import * as fs from 'fs';
 
-const sourceFilePath = "C:\\Users\\Adam\\OneDrive\\Projekty\\Evo 78\\Projekt Eclipse.docx"
+const sourceFilePath = "B:\\OneDrive\\Projekty\\Doktryna Solarna\\Wywarstwienie.docx"
 const resultFilePath = `${sourceFilePath.slice(0, -4)}json`
 const docx = await docx4js.docx.load(sourceFilePath)
 const paragraphs = []

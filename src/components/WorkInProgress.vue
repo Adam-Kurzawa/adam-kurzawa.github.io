@@ -1,5 +1,6 @@
 <script setup>
 import { useTranslation } from '@/utils/hooks'
+import { useStaticAsset } from '@/utils/useStaticAsset';
 
 const t = useTranslation()
 </script>
@@ -7,7 +8,7 @@ const t = useTranslation()
 <template>
 	<a-result :title="t('work-in-progress')">
 		<template #icon>
-			<img src="/roadblock.png" :style="{ height: '15rem' }" />
+			<img :src="useStaticAsset('roadblock.png')" :style="{ height: '15rem' }" />
 		</template>
 	</a-result>
 </template>

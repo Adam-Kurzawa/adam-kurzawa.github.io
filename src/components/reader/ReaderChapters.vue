@@ -37,12 +37,12 @@ const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: {
 					</IconButton>
 				</div>
 				<div class="space-y-2 overflow-y-auto no-scrollbar flex-1">
-					<button class="w-full text-left p-4 rounded-[0.5rem] transition-all group hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent" v-for="(chapterTitle, index) in chapterTitles" :class="[ (index + 1) === props.chapter ? '!bg-blue-50 !dark:bg-blue-900/20 border !border-blue-100 !dark:border-blue-900/30' : '' ]">
-						<div v-if="(index + 1) === props.chapter" class="flex items-center gap-3" @click="() => jumpToChapter(index + 1)">
+					<button class="w-full text-left p-4 rounded-[0.5rem] cursor-pointer transition-all group hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent" v-for="(chapterTitle, index) in chapterTitles" :class="[ (index + 1) === props.chapter ? '!bg-blue-50 !dark:bg-blue-900/20 border !border-blue-100 !dark:border-blue-900/30' : '' ]" @click="() => jumpToChapter(index + 1)">
+						<div v-if="(index + 1) === props.chapter" class="flex items-center gap-3">
 							<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
 							<span class="text-base font-medium text-blue-600 dark:text-blue-400">{{ chapterTitle }}</span>
 						</div>
-						<div v-else class="flex items-center gap-3" @click="() => jumpToChapter(index + 1)">
+						<div v-else class="flex items-center gap-3">
 							<span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>
 							<span class="text-base font-medium text-slate-600 dark:text-slate-400">{{ chapterTitle }}</span>
 						</div>

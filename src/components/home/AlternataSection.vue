@@ -2,48 +2,47 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useTranslation } from '@/utils/hooks'
-import Header1 from './../system/Header1.vue'
 import HighlightedTag from './../system/HighlightedTag.vue'
 import AlternataThumbnail from '../thumbnails/AlternataThumbnail.vue'
-import Description from '../system/Description.vue'
 import ViewHeader from '../system/ViewHeader.vue'
+import { useStaticAsset } from '@/utils/useStaticAsset'
 
 const router = useRouter()
 const t = useTranslation()
 
 const stories = ref([
     {
-        cover: '/walhalla.jpg',
+        cover: useStaticAsset('walhalla.jpg'),
         title: 'w_drodze_do_walhalli',
         key: 'walhalla'
     },
     {
-        cover: '/laniakea.jpg',
+        cover: useStaticAsset('laniakea.jpg'),
         title: 'w_drodze_do_walhalli',
         key: 'laniakea'
     },
     {
-        cover: '/nowa_baśń.jpg',
+        cover: useStaticAsset('nowa_baśń.jpg'),
         title: 'w_drodze_do_walhalli',
         key: 'slavic'
     },
     {
-        cover: '/pismo.jpg',
+        cover: useStaticAsset('pismo.jpg'),
         title: 'w_drodze_do_walhalli',
         key: 'script'
     },
     {
-        cover: '/solstice.jpg',
+        cover: useStaticAsset('solstice.jpg'),
         title: 'w_drodze_do_walhalli',
         key: 'solstice'
     },
     {
-        cover: '/timestar.jpg',
+        cover: useStaticAsset('timestar.jpg'),
         title: 'w_drodze_do_walhalli',
         key: 'timestar'
     },
     {
-        cover: '/revelations.jpg',
+        cover: useStaticAsset('revelations.jpg'),
         title: 'w_drodze_do_walhalli',
         key: 'revelations'
     }

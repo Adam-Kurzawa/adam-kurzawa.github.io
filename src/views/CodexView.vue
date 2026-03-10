@@ -4,6 +4,7 @@ import Breadcrumbs from '@/components/system/Breadcrumbs.vue'
 import ViewHeader from '@/components/system/ViewHeader.vue'
 import GenericView from '@/GenericView.vue'
 import { useAsset } from '@/utils/hooks'
+import { useStaticAsset } from '@/utils/useStaticAsset'
 
 const codexIdx = useAsset(import('@/assets/codex_idx.json'))
 </script>
@@ -18,8 +19,8 @@ const codexIdx = useAsset(import('@/assets/codex_idx.json'))
 				:key="key"
 				:universum="key" 
 				:index="index + 1" 
-				:cover="value.cover" 
-				:logo="value.logo" 
+				:cover="useStaticAsset(value.cover)" 
+				:logo="useStaticAsset(value.logo)" 
 				:description="value.description" 
 				:links="value.values" 
 			/>
