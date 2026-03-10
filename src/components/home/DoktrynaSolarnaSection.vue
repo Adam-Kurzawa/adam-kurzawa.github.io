@@ -1,5 +1,5 @@
 <script setup>
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 import { useStaticAsset } from '@/utils/useStaticAsset';
 
 const t = useTranslation()

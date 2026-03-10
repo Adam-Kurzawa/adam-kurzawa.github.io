@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 
 const t = useTranslation()
 

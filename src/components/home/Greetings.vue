@@ -1,5 +1,5 @@
 <script setup>
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 
 const t = useTranslation()
 </script>

@@ -1,5 +1,5 @@
 <script setup>
-import { useAsset } from '@/utils/hooks'
+import { useAsset } from '@/utils/useAsset'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import BlogThumbnail from './BlogThumbnail.vue'
@@ -19,8 +19,7 @@ const publicationDate = computed(() => content.value.publicationDate)
 const openReader = () => {
 	router.push({
 		name: "reader",
-		params: { title: props.title },
-		query: { type: 'blog' }
+		params: { title: props.title, type: 'blog' }
 	})
 }
 </script>

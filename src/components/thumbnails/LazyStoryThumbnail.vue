@@ -1,8 +1,7 @@
 <script setup>
-import { useAsset } from '@/utils/hooks'
+import { useAsset } from '@/utils/useAsset'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { countCharacters } from '@/utils/functions'
 import { useAudioStore } from '@/stores/audio'
 import StoryThumbnail from './StoryThumbnail.vue'
 import { useStaticAsset } from '@/utils/useStaticAsset'
@@ -21,7 +20,7 @@ const year = computed(() => content.value.year)
 const chapters = computed(() => content.value.chapters.length)
 const tags = computed(() => content.value.tags)
 const series = computed(() => content.value.series)
-const charactersCount = computed(() => countCharacters(content.value.chapters))
+const charactersCount = computed(() => 0)
 const youTubeVideoId = computed(() => content.value.youTubeVideoId)
 const isPending = computed(() => content.value.status === 'PENDING')
 const isPublished = computed(() => content.value.status === 'PUBLISHED')
@@ -29,8 +28,7 @@ const isPublished = computed(() => content.value.status === 'PUBLISHED')
 const openReader = () => {
     router.push({
         name: 'reader',
-        params: { title: props.title },
-        query: { type: 'story' },
+        params: { title: props.title, type: 'story' }
     })
 }
 

@@ -10,8 +10,7 @@ const router = useRouter()
 const openEntry = (title) => {
     router.push({
         name: 'reader',
-        params: { title: title },
-		query: { type: props.universum }
+        params: { title: title, type: props.universum }
     })
 }
 </script>

@@ -1,5 +1,5 @@
 <script setup>
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 import ViewHeader from '../system/ViewHeader.vue'
 import Description from '../system/Description.vue'
 import LargeButton from '../system/LargeButton.vue'

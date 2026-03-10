@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 import { useFirestore, useCollection } from 'vuefire'
 import { collection } from 'firebase/firestore'
 import Altcha from '../Altcha.vue'

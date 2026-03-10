@@ -1,29 +1,29 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 import Header3 from '../system/Header3.vue'
 import CloseIcon from '../icons/CloseIcon.vue'
 import IconButton from '../system/IconButton.vue'
 
-const props = defineProps([ 'visible', 'story', 'chapter' ])
+const props = defineProps([ 'visible', 'metadata', 'chapterNumber' ])
 
 const t = useTranslation()
 const router = useRouter()
 const route = useRoute()
 
 const chapterTitles = computed(() => {
-	const titles = props.story.chapterTitles
+	const titles = props.metadata.chapterTitles
 
 	if(titles && titles !== null)
 		return titles;
 	else 
 		return Array
-			.apply(null, Array(props.story.chapters.length))
+			.apply(null, Array(props.metadata.chapters))
 			.map((el, index) => `${t("reader.epub-chapter")} ${index + 1}`)
 })
 
-const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: { lang: route.params.lang, title: route.params.title, chapter: chapterNumber } })
+const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: { title: route.params.title, chapter: chapterNumber, type: route.params.type } })
 </script>
 
 <template>
@@ -37,8 +37,8 @@ const jumpToChapter = (chapterNumber) => router.push({ name: 'reader', params: {
 					</IconButton>
 				</div>
 				<div class="space-y-2 overflow-y-auto no-scrollbar flex-1">
-					<button class="w-full text-left p-4 rounded-[0.5rem] cursor-pointer transition-all group hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent" v-for="(chapterTitle, index) in chapterTitles" :class="[ (index + 1) === props.chapter ? '!bg-blue-50 !dark:bg-blue-900/20 border !border-blue-100 !dark:border-blue-900/30' : '' ]" @click="() => jumpToChapter(index + 1)">
-						<div v-if="(index + 1) === props.chapter" class="flex items-center gap-3">
+					<button class="w-full text-left p-4 rounded-[0.5rem] cursor-pointer transition-all group hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent" v-for="(chapterTitle, index) in chapterTitles" :class="[ (index + 1) === props.chapterNumber ? '!bg-blue-50 !dark:bg-blue-900/20 border !border-blue-100 !dark:border-blue-900/30' : '' ]" @click="() => jumpToChapter(index + 1)">
+						<div v-if="(index + 1) === props.chapterNumber" class="flex items-center gap-3">
 							<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
 							<span class="text-base font-medium text-blue-600 dark:text-blue-400">{{ chapterTitle }}</span>
 						</div>

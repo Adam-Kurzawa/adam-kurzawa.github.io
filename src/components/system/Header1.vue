@@ -1,7 +1,9 @@
 <script setup>
+import { H1_STYLE } from './headers';
+
 const props = defineProps([ 'value' ])
 </script>
 
 <template>
-    <h2 class="text-4xl md:text-5xl font-serif text-slate-900 tracking-tight">{{ props.value }}</h2>
+    <h1 :class="H1_STYLE">{{ props.value }}</h1>
 </template>

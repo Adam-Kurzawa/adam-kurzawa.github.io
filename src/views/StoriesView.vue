@@ -1,7 +1,8 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
-import { computed, ref, watch } from 'vue'
-import { useTranslation, useAsset, useInnerWidth } from '@/utils/hooks'
+import { ref, watch } from 'vue'
+import { useAsset } from '@/utils/useAsset'
+import { useTranslation } from '@/utils/useTranslation'
 import LazyStoryThumbnail from '@/components/thumbnails/LazyStoryThumbnail.vue'
 import StoriesFilters from '@/components/stories/StoriesFilters.vue'
 import Breadcrumbs from '@/components/system/Breadcrumbs.vue'

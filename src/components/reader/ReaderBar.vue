@@ -1,7 +1,8 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { EpubService } from '@/utils/EpubService.js'
-import { useTranslation, useUrl } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
+import { useUrl } from '@/utils/useUrl'
 import SendToKindle from './SendToKindle.vue'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import SecondaryButton from '../system/SecondaryButton.vue'
@@ -13,11 +14,12 @@ import ShareIcon from '../icons/ShareIcon.vue'
 import IconButton from '../system/IconButton.vue'
 import BookmarkIcon from '../icons/BookmarkIcon.vue'
 import { useNotificationStore } from '@/stores/notification'
+import { useToggle } from '@vueuse/core'
 
-const props = defineProps([ 'fontSize', 'fontFamily', 'story', 'chapter' ])
+const props = defineProps([ 'fontSize', 'font', 'htmlContent', 'htmlChapters', 'metadata', 'chapterNumber' ])
 
-const scrollCookieName = encodeURIComponent(`${props.story.title}_scroll`)
-const chapterCookieName = encodeURIComponent(`${props.story.title}_chapter`)
+const scrollCookieName = encodeURIComponent(`${props.metadata.documentId}_scroll`)
+const chapterCookieName = encodeURIComponent(`${props.metadata.documentId}_chapter`)
 
 const t = useTranslation()
 const url = useUrl()
@@ -25,15 +27,7 @@ const cookies = useCookies([ scrollCookieName, chapterCookieName ])
 const notificationStore = useNotificationStore()
 
 const isBookmarked = ref()
-const kindleModalOpen = ref(false)
-
-const showSendToKindleModal = () => {
-	kindleModalOpen.value = true
-}
-
-const hideSendToKindleModal = () => {
-    kindleModalOpen.value = false
-}
+const [ kindleModalOpen, toogleKindleModalVisibility ] = useToggle()
 
 const bookmarkProgress = () => {
 	if(isBookmarked.value) {
@@ -49,7 +43,7 @@ const bookmarkProgress = () => {
 		notificationStore.success('Zapisano zakładkę')
 
 		cookies.set(scrollCookieName, progress)
-		cookies.set(chapterCookieName, props.chapter)
+		cookies.set(chapterCookieName, props.chapterNumber)
 		isBookmarked.value = true
 	}
 }
@@ -59,7 +53,7 @@ onMounted(() => {
 	const chapterCookie = parseInt(cookies.get(chapterCookieName) ?? '-1')
 	isBookmarked.value = cookieValue !== undefined && cookieValue !== null
 
-	if(chapterCookie === props.chapter) {
+	if(chapterCookie === props.chapterNumber) {
 		const progress = parseFloat(cookieValue ?? '0')
 		const appHeight = document.querySelector('#app').clientHeight
 		const viewportHeight = window.innerHeight
@@ -69,19 +63,19 @@ onMounted(() => {
 	}
 })
 
-const saveAsEpub = () => EpubService.saveAsEpub(props.story.title, props.story.chapters, t("reader.epub-chapter"), props.story.chapterTitles, props.story.tags, 'pl')
+const saveAsEpub = () => EpubService.saveAsEpub(props.metadata, props.htmlChapters, t("reader.epub-chapter"), 'pl')
 
 const share = () => {
 	navigator.share({
 		url: url.value,
-		title: props.story.title,
+		title: props.metadata.title,
 		text: 'Alternata - personal blog by Adam Kurzawa'
 	})
 }
 </script>
 
 <template>
-	<SendToKindle :story="props.story" :visible="kindleModalOpen" @hide="hideSendToKindleModal" />
+	<SendToKindle :story="props.htmlContent" :visible="kindleModalOpen" @hide="toogleKindleModalVisibility" />
 	<div class="flex fixed justify-center bg-white py-8 top-[6rem] w-full gap-8 left-0 z-50 shadow-lg">
 		<div class="flex items-center gap-2">
 			<SecondaryButton value="Rozdziały" @click="$emit('show-chapters')">
@@ -95,7 +89,7 @@ const share = () => {
 			</IconButton>
 		</div>
 		<div class="lg:flex items-center gap-1 px-4 border-l border-r border-slate-100 dark:border-slate-800 h-8 mx-4">
-			<SecondaryButton :value="t('send-to-kindle.button')" @click="showSendToKindleModal">
+			<SecondaryButton :value="t('send-to-kindle.button')" @click="toogleKindleModalVisibility">
 				<SendIcon />
 			</SecondaryButton>
 			<IconButton @click="saveAsEpub" class="!text-slate-600 dark:text-slate-400">
@@ -115,7 +109,7 @@ const share = () => {
 			</select>
 			<div class="flex flex-row">
 				<SecondaryButton class="rounded-br-none rounded-tr-none" value="+" @click="$emit('increase-font-size')" />
-				<SecondaryButton class="rounded-bl-none rounded-tl-none border-l-0" value="-" @click="$emit('decrease-font-size')" :disabled="props.fontSize <= 0.25" />
+				<SecondaryButton class="rounded-bl-none rounded-tl-none border-l-0" value="-" @click="$emit('decrease-font-size')" :disabled="props.font.value <= 0.25" />
 			</div>
 		</div>
 	</div>

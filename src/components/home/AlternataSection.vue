@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 import HighlightedTag from './../system/HighlightedTag.vue'
 import AlternataThumbnail from '../thumbnails/AlternataThumbnail.vue'
 import ViewHeader from '../system/ViewHeader.vue'
@@ -51,8 +51,7 @@ const stories = ref([
 const openReader = (obj) => {
     router.push({
         name: 'reader',
-        params: { title: obj.title },
-        query: { type: 'fragment' },
+        params: { title: obj.title, type: 'fragment' }
     })
 }
 </script>

@@ -1,6 +1,6 @@
 <script setup>
 import GenericView from '@/GenericView.vue';
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 
 const t = useTranslation()
 </script>

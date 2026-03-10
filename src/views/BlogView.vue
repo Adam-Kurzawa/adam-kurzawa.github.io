@@ -1,5 +1,5 @@
 <script setup>
-import { useAsset } from '@/utils/hooks'
+import { useAsset } from '@/utils/useAsset'
 import BlogYearSection from '@/components/blog/BlogYearSection.vue'
 import ViewHeader from '@/components/system/ViewHeader.vue'
 import Breadcrumbs from '@/components/system/Breadcrumbs.vue'

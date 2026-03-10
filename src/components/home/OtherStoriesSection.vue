@@ -2,7 +2,7 @@
 import { useStaticAsset } from '@/utils/useStaticAsset';
 import PromotedStoryThumbnail from '../thumbnails/PromotedStoryThumbnail.vue';
 import Header2 from './../system/Header2.vue'
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 
 const t = useTranslation()
 </script>

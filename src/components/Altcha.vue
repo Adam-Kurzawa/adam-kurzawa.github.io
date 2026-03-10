@@ -1,7 +1,7 @@
 <script setup>
 import { useTemplateRef, onMounted, onUnmounted, computed } from 'vue';
 import 'altcha'
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 
 const emit = defineEmits([ 'verified' ])
 const t = useTranslation()

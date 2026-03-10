@@ -1,5 +1,5 @@
 <script setup>
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 import { computed, ref } from 'vue'
 import { EpubService } from '@/utils/EpubService.js'
 import Altcha from './../Altcha.vue'

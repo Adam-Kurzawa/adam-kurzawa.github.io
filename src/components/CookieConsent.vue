@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { addGtag } from "vue-gtag";
 import { useCookies } from '@vueuse/integrations/useCookies'
-import { useTranslation } from '@/utils/hooks'
+import { useTranslation } from '@/utils/useTranslation'
 import Modal from "./system/Modal.vue"
 import Description from "./system/Description.vue"
 import { useStaticAsset } from "@/utils/useStaticAsset";

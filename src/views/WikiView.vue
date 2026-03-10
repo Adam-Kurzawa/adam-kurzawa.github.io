@@ -3,7 +3,7 @@ import Breadcrumbs from '@/components/system/Breadcrumbs.vue'
 import ViewHeader from '@/components/system/ViewHeader.vue'
 import WikiList from '@/components/wiki/WikiList.vue';
 import GenericView from '@/GenericView.vue'
-import { useAsset } from '@/utils/hooks';
+import { useAsset } from '@/utils/useAsset';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 

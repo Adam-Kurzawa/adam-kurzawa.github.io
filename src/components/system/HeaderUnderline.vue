@@ -6,7 +6,7 @@ const props = defineProps([ 'value' ])
     <div class="underline"></div>
 </template>
 
-<style scoped>
+<style>
 .underline {
     display: block;
     width: 80px;

@@ -34,7 +34,7 @@ body {
 }
 
 .font-inter {
-  font-family: "Inter";
+  font-family: "Inter" !important;
 }
 
 .font-madimi {

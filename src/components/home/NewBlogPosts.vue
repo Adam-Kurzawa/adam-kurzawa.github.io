@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
-import { useAsset, useTranslation } from '@/utils/hooks'
+import { useAsset } from '@/utils/useAsset'
+import { useTranslation } from '@/utils/useTranslation'
 import { useRouter } from 'vue-router'
 import Header2 from '../system/Header2.vue'
 import Hyperlink from '../system/Hyperlink.vue'

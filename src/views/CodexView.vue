@@ -3,7 +3,7 @@ import CodexSection from '@/components/codex/CodexSection.vue'
 import Breadcrumbs from '@/components/system/Breadcrumbs.vue'
 import ViewHeader from '@/components/system/ViewHeader.vue'
 import GenericView from '@/GenericView.vue'
-import { useAsset } from '@/utils/hooks'
+import { useAsset } from '@/utils/useAsset'
 import { useStaticAsset } from '@/utils/useStaticAsset'
 
 const codexIdx = useAsset(import('@/assets/codex_idx.json'))

@@ -42,7 +42,7 @@ const router = createRouter({
       component: BlogView
     },
     {
-      path: '/:title/:chapter?',
+      path: '/:type/:title/:chapter?',
       name: 'reader',
       component: ReaderView
     },
