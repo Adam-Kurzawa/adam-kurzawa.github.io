@@ -6,7 +6,7 @@
   "scripts": {
     "buildindex": "node index_builder.js",
     "buildfeeds": "node feeds_builder.js",
-    "dev": "npm run buildindex && npm run buildfeeds && vite",
+    "dev": "npm run buildindex && vite",
     "errorpage": "cd ./dist && del 404.html && del temp && copyfiles index.html ./temp && cd ./temp && renamer index.html --replace 404.html && copyfiles 404.html .. && cd .. && del temp && cd ..",
     "addcname": "copyfiles CNAME ./dist",
     "build": "npm run buildindex && npm run buildfeeds && vite build && npm run errorpage && npm run addcname",

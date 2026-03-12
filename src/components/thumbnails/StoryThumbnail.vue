@@ -58,13 +58,13 @@ const props = defineProps([ 'title', 'img', 'series', 'tags', 'publicationDate',
             <Description :value="props.description" />
             <DataRow>
                 <Stats label="Rok wydania" :value="props.publicationDate">
-                    <CalendarIcon />
+                    <CalendarIcon class="text-blue-500" />
                 </Stats>
                 <Stats label="Rozdziały" :value="props.chaptersCount">
-                    <HashIcon />
+                    <HashIcon class="text-blue-500" />
                 </Stats>
                 <Stats label="Znaki" :value="props.charactersCount">
-                    <DocumentIcon />
+                    <DocumentIcon class="text-blue-500" />
                 </Stats>
             </DataRow>
         </div>

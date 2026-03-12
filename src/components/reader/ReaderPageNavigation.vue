@@ -13,6 +13,8 @@ const router = useRouter()
 const route = useRoute()
 const t = useTranslation()
 
+const toStories = () => router.push({ name: 'stories' })
+
 const previousPage = () => router.push({ name: 'reader', params: { title: route.params.title, chapter: Math.max(1, props.chapterNumber - 1) }, type: route.params.type })
 const previousPageEnabled = computed(() => props.chapterNumber !== 1)
 
@@ -28,7 +30,7 @@ const hasMultiplePages = computed(() => props.metadata.chaptersCount > 1)
       <SecondaryButton v-if="previousPageEnabled" @click="previousPage" :value="`${t('reader.epub-chapter')} ${props.chapterNumber - 1}`" class="border-none">
         <ShortArrowLeftIcon />
       </SecondaryButton>
-      <SecondaryButton v-else @click="previousPage" value="Powrót do listy" class="border-none">
+      <SecondaryButton v-else @click="toStories" value="Powrót do listy" class="border-none">
         <ShortArrowLeftIcon />
       </SecondaryButton>
       <PrimaryButton v-if="nextPageEnabled" @click="nextPage" :value="`${t('reader.epub-chapter')} ${props.chapterNumber + 1}`" class="flex-row-reverse">
@@ -41,7 +43,7 @@ const hasMultiplePages = computed(() => props.metadata.chaptersCount > 1)
       <SecondaryButton v-if="previousPageEnabled" @click="previousPage" :value="`${t('reader.epub-chapter')} ${props.chapterNumber - 1}`" class="border-none">
         <ShortArrowLeftIcon />
       </SecondaryButton>
-      <SecondaryButton v-else @click="previousPage" value="Powrót do listy" class="border-none">
+      <SecondaryButton v-else @click="toStories" value="Powrót do listy" class="border-none">
         <ShortArrowLeftIcon />
       </SecondaryButton>
       <PrimaryButton v-if="nextPageEnabled" @click="nextPage" :value="`${t('reader.epub-chapter')} ${props.chapterNumber + 1}`" class="flex-row-reverse">

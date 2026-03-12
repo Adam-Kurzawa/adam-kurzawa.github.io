@@ -1,36 +1,28 @@
 <script setup>
-import { useAsset } from '@/utils/useAsset'
-import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import BlogThumbnail from './BlogThumbnail.vue'
 import { useStaticAsset } from '@/utils/useStaticAsset'
 
-const props = defineProps([ 'title' ])
+const props = defineProps([ 'metadata' ])
 
 const router = useRouter()
-
-const imageSrc = useStaticAsset(`${props.title}.jpg`)
-const content = useAsset(import(`@/assets/blog/${props.title}_pl.json`))
-
-const title = computed(() => content.value.title)
-const description = computed(() => content.value.description)
-const publicationDate = computed(() => content.value.publicationDate)
+const imageSrc = useStaticAsset(`${props.metadata.documentId}.jpg`)
 
 const openReader = () => {
 	router.push({
 		name: "reader",
-		params: { title: props.title, type: 'blog' }
+		params: { title: props.metadata.documentId, type: 'blog' }
 	})
 }
 </script>
 
 <template>
-    <BlogThumbnail v-if="content" 
-		:title="title" 
-		:img="imageSrc" 
-		:publication-date="publicationDate" 
-		:description="description" 
-		@read="openReader" 
-		@share="() => {}"
+    <BlogThumbnail :title="props.metadata.title" 
+		           :img="imageSrc" 
+		           :publication-date="props.metadata.publicationDate" 
+		           :description="props.metadata.description" 
+				   :tags="props.metadata.tags"
+		           @read="openReader" 
+		           @share="() => {}"
 	/>
 </template>

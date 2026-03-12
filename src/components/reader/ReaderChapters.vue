@@ -19,7 +19,7 @@ const chapterTitles = computed(() => {
 		return titles;
 	else 
 		return Array
-			.apply(null, Array(props.metadata.chapters))
+			.apply(null, Array(props.metadata.chaptersCount))
 			.map((el, index) => `${t("reader.epub-chapter")} ${index + 1}`)
 })
 

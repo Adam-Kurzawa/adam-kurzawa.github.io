@@ -1,7 +1,3 @@
-<script setup>
-const props = defineProps([ 'value' ])
-</script>
-
 <template>
     <div class="underline"></div>
 </template>

@@ -4,7 +4,9 @@ import IconButton from '../system/IconButton.vue';
 </script>
 
 <template>
-	<IconButton @click="$emit('show')">
-		<ArrowRightIcon class="rotate-180" />
-	</IconButton>
+	<div>
+		<IconButton @click="$emit('show')" class="ml-3">
+			<ArrowRightIcon class="rotate-180" />
+		</IconButton>
+	</div>
 </template>

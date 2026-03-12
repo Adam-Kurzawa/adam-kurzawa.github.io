@@ -1,55 +1,39 @@
 <script setup>
-import { useAsset } from '@/utils/useAsset'
-import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAudioStore } from '@/stores/audio'
 import StoryThumbnail from './StoryThumbnail.vue'
 import { useStaticAsset } from '@/utils/useStaticAsset'
+import { numberify } from '@/utils/numberify'
 
-const props = defineProps([ 'title' ])
+const props = defineProps([ 'metadata' ])
 
 const router = useRouter()
 const audioStore = useAudioStore()
-
-const imageSrc = useStaticAsset(`${props.title}.jpg`)
-const content = useAsset(import(`@/assets/story/${props.title}_pl.json`))
-
-const title = computed(() => content.value.title)
-const description = computed(() => content.value.description)
-const year = computed(() => content.value.year)
-const chapters = computed(() => content.value.chapters.length)
-const tags = computed(() => content.value.tags)
-const series = computed(() => content.value.series)
-const charactersCount = computed(() => 0)
-const youTubeVideoId = computed(() => content.value.youTubeVideoId)
-const isPending = computed(() => content.value.status === 'PENDING')
-const isPublished = computed(() => content.value.status === 'PUBLISHED')
+const imageSrc = useStaticAsset(`${props.metadata.documentId}.jpg`)
 
 const openReader = () => {
     router.push({
         name: 'reader',
-        params: { title: props.title, type: 'story' }
+        params: { title: props.metadata.documentId, type: 'story' }
     })
 }
 
 const listenTo = () => {
-    audioStore.setAudioBook(youTubeVideoId.value, series.value, imageSrc.value)
+    audioStore.setAudioBook(props.metadata.youTubeVideoId, props.metadata.series, imageSrc)
 }
 </script>
 
 <template>
-    <StoryThumbnail 
-        v-if="content"
-        :title="title" 
-        :img="imageSrc"
-        :publication-date="year" 
-        :description="description" 
-        :audio="youTubeVideoId" 
-        :series="series"
-        :tags="tags"
-        :chapters-count="chapters"
-        :characters-count="charactersCount"
-        @read="openReader"
-        @listen-to="listenTo"
+    <StoryThumbnail :title="props.metadata.title" 
+                    :img="imageSrc"
+                    :publication-date="props.metadata.publicationDate" 
+                    :description="props.metadata.description" 
+                    :audio="props.metadata.youTubeVideoId" 
+                    :series="props.metadata.series"
+                    :tags="props.metadata.tags"
+                    :chapters-count="props.metadata.chaptersCount"
+                    :characters-count="numberify(Number(props.metadata.charactersCount))"
+                    @read="openReader"
+                    @listen-to="listenTo"
     />
 </template>

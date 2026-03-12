@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useAsset } from '@/utils/useAsset'
 import { useTranslation } from '@/utils/useTranslation'
 import LazyStoryThumbnail from '@/components/thumbnails/LazyStoryThumbnail.vue'
@@ -8,6 +8,7 @@ import StoriesFilters from '@/components/stories/StoriesFilters.vue'
 import Breadcrumbs from '@/components/system/Breadcrumbs.vue'
 import ViewHeader from '@/components/system/ViewHeader.vue'
 import GenericView from '@/GenericView.vue'
+import { useMetaindex } from '@/utils/useMetaindex'
 
 const router = useRouter()
 const route = useRoute()
@@ -21,48 +22,36 @@ const currentSorting = ref('Alfabetycznie');
 const sortByTitle = (a, b) => a.title.localeCompare(b.title)
 const sortByDate = (a, b) => b.year - a.year
 
-const storiesIndex = useAsset(import('@/assets/stories_idx.json'))
+const metaindex = useMetaindex()
 
-const loadStories = (sorter) => {
-	const storiesForLocale = storiesIndex.value ? storiesIndex.value['pl'] : []
+const stories = computed(() => {
+	const storiesIndex = Object.values(metaindex.value.story)
 
 	if(seriesQuery)
-		return storiesForLocale
-			.filter(x => x.series && x.series === seriesQuery)
-			.sort(sorter)
+		return storiesIndex
+			.filter(story => story.series && story.series === seriesQuery)
 	else 
-		return storiesForLocale
-			.sort(sorter)
-}
-
-const stories = ref([])
-const series = ref([])
-
-watch(storiesIndex, () => {
-	stories.value = loadStories(sortByTitle)
-	series.value = storiesIndex.value['pl'].map(x => x.series).filter(x => x != undefined)
+		return storiesIndex
 })
 
-const changeSorting = (a) => {
-	const sorter = a === 'Alfabetycznie' ? sortByTitle : sortByDate
-	stories.value = loadStories(sorter)
-}
-
-const seeAll = () => {
-    router.push({
-        name: 'stories'
-    })
-}
+const series = computed(() => {
+	return Object
+		.values(metaindex.value.story)
+		.map(story => story.series)
+		.filter(serie => serie !== undefined && serie !== null)
+})
 </script>
 
 <template>
 	<GenericView>
 		<Breadcrumbs :locations="[ { name: 'Opowiadania', target: '/stories' } ]" />
 		<ViewHeader title="Biblioteka opowiadań" description="Przeglądaj pełną bibliotekę tekstów. Wybierz gatunek lub skorzystaj z wyszukiwarki, aby odnaleźć interesującą Cię historię." />
-		<StoriesFilters :series="series" :selected-series="seriesQuery" />
-		<div class="space-y-10">
-			<LazyStoryThumbnail v-for="story in stories" :key="story.key" :title="story.key" />
-		</div>
+		<template v-if="metaindex">
+			<StoriesFilters :series="series" :selected-series="seriesQuery" />
+			<div class="space-y-10">
+				<LazyStoryThumbnail v-for="story in stories" :key="story.documentId" :metadata="story" />
+			</div>
+		</template>
 	</GenericView>
 </template>
 

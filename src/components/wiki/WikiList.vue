@@ -9,6 +9,12 @@ const entriesByLetter = computed(() => Object.groupBy(props.entries, ({ title })
 
 <template>
     <div class="flex flex-col gap-12">
-        <WikiLetterSection v-if="entriesByLetter" v-for="(links, letter) in entriesByLetter" :key="letter" :universum="props.universum" :letter="letter" :links="links" />
+        <WikiLetterSection v-if="entriesByLetter" 
+                           v-for="(links, letter) in entriesByLetter" 
+                           :key="letter" 
+                           :universum="props.universum" 
+                           :letter="letter" 
+                           :links="links" 
+        />
     </div>
 </template>

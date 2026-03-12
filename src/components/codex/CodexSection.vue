@@ -10,7 +10,7 @@ const props = defineProps([ 'universum', 'cover', 'logo', 'index', 'description'
 
 const router = useRouter()
 
-const exploreAll = () => router.push({ name: 'wiki', params: { lang: 'pl', universum: props.universum } })
+const exploreAll = () => router.push({ name: 'wiki', params: { universum: props.universum } })
 </script>
 
 <template>
@@ -38,7 +38,7 @@ const exploreAll = () => router.push({ name: 'wiki', params: { lang: 'pl', unive
                 </div>
                 <div class="lg:w-2/5">
                     <div class="flex flex-col gap-4">
-                        <LargeButton v-for="value in props.links" :key="value.key" :title="value.title" description="Test">
+                        <LargeButton v-for="value in props.links.slice(0, 5)" :key="value.key" :title="value.title" :description="value.description">
                             <PersonIcon class="!m-3 group-hover/btn:scale-120 transition-transform" />
                         </LargeButton>
                     </div>

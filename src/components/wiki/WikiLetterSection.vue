@@ -18,8 +18,8 @@ const openEntry = (title) => {
 <template>
 	<article class="flex flex-col gap-4">
 		<Header2 :value="props.letter" />
-		<div class="grid gap-4 grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-			<LargeButton v-for="value in props.links" :key="value.key" :title="value.title" description="Test" @click="openEntry(value.key)">
+		<div class="grid gap-4 grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+			<LargeButton v-for="value in props.links" :key="value.key" :title="value.title" :description="value.description" @click="openEntry(value.key)">
 				<PersonIcon class="!m-3 group-hover/btn:scale-120 transition-transform" />
 			</LargeButton>
 		</div>

@@ -4,7 +4,7 @@
         <title>Alternata</title>
         <link>https://adamkurzawa.pl</link>
         <description>Autorski blog sci-fi Adama Kurzawy</description>
-        <lastBuildDate>Tue, 10 Mar 2026 18:21:58 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 11 Mar 2026 22:45:52 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pl</language>
@@ -21,12 +21,6 @@
             <title><![CDATA[Charon Travel]]></title>
             <link>https://adamkurzawa.pl/pl/charon_travel</link>
             <guid isPermaLink="false">charon_travel</guid>
-            <pubDate>Mon, 31 Mar 2025 22:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Innoziemiec]]></title>
-            <link>https://adamkurzawa.pl/pl/innoziemiec</link>
-            <guid isPermaLink="false">innoziemiec</guid>
             <pubDate>Mon, 31 Mar 2025 22:00:00 GMT</pubDate>
         </item>
         <item>
@@ -49,13 +43,6 @@
             <guid isPermaLink="false">projekt_eclipse</guid>
             <pubDate>Fri, 31 Mar 2023 22:00:00 GMT</pubDate>
             <description><![CDATA[Evo 78]]></description>
-        </item>
-        <item>
-            <title><![CDATA[Przyczajony pająk, ukryty "Prorok"]]></title>
-            <link>https://adamkurzawa.pl/pl/przyczajony_arakanin</link>
-            <guid isPermaLink="false">przyczajony_arakanin</guid>
-            <pubDate>Mon, 31 Mar 2025 22:00:00 GMT</pubDate>
-            <description><![CDATA[Crimsonverse]]></description>
         </item>
         <item>
             <title><![CDATA[Euro 2224]]></title>

@@ -1,19 +1,26 @@
 <script setup>
-import { onUnmounted, ref } from 'vue'
+import { onUnmounted, ref, computed } from 'vue'
 import AudioPlayerPlaybackControls from './AudioPlayerPlaybackControls.vue'
 import AudioPlayerMinimize from './AudioPlayerMinimize.vue'
 import AudioPlayerMaximize from './AudioPlayerMaximize.vue'
-import AudioPlayerSlider from './AudioPlayerSlider.vue'
 import { useYouTube } from '@/utils/useYouTube'
 import { useAudioStore } from '@/stores/audio'
 import AudioPlayerPlaybackInfo from './AudioPlayerPlaybackInfo.vue'
 import AudioPlayerHeader from './AudioPlayerHeader.vue'
+import Slider from '../system/Slider.vue'
 
 const { youTubePlayer, state, title, duration } = useYouTube()
 const audioStore = useAudioStore()
 
+const toTimeString = (seconds) => {
+	const withLeadingZero = (n) => n < 10 ? `0${n}` : n
+	const rounded = Math.floor(seconds)
+	return `${withLeadingZero(Math.floor(rounded / 60))}:${withLeadingZero(rounded % 60)}`
+}
+
 const isMinimized = ref(true)
 const progress = ref(0)
+const videoNotLoaded = computed(() => duration.value === 0)
 
 let interval = null
 
@@ -75,16 +82,20 @@ audioStore.$onAction(({ args }) => {
 </script>
 
 <template>
-	<div v-if="isMinimized" class="flex flex-col gap-[1.5rem] absolute shadow-2xl border border-slate-200 p-8 fixed right-[-1rem] pr-[2rem] bottom-6 z-[200] bg-white rounded-[1rem]">
+	<div v-if="isMinimized" class="flex flex-col gap-[1.5rem] absolute shadow-2xl border border-slate-200 p-6 fixed right-[-1rem] pr-[2rem] bottom-6 z-[200] bg-white rounded-[1rem]">
 		<AudioPlayerMaximize @show="onShow" />
-		<AudioPlayerPlaybackControls :state="state" @play="onPlay" @pause="onPause" />
+		<AudioPlayerPlaybackControls :state="state" :cover="audioStore.cover" :is-maximized="false" @play="onPlay" @pause="onPause" />
 	</div>
-	<div v-else class="flex flex-col absolute shadow-2xl border border-slate-200 p-8 fixed right-6 bottom-6 z-[200] bg-white rounded-[1rem]">
-		<div class="flex flex-row justify-between gap-[1rem] mb-[1rem] items-center w-[30rem]">
+	<div v-else class="flex flex-col gap-4 absolute shadow-2xl border border-slate-200 p-8 fixed right-6 bottom-6 z-[200] bg-white rounded-[1rem]">
+		<div class="absolute inset-0 overflow-hidden rounded-[1rem] z-1">
+            <img class="w-full object-cover opacity-40 blur-xl" :src="audioStore.cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-white to-transparent"></div>
+        </div>
+		<div class="flex flex-row w-full justify-between gap-[1rem] items-center w-[30rem] z-2">
 			<AudioPlayerHeader />
 			<AudioPlayerMinimize @hide="onHide" />
 		</div>
-		<AudioPlayerPlaybackInfo :series="audioStore.series" :cover="audioStore.cover" :title="title" :state="state" @play="onPlay" @pause="onPause" />
-		<AudioPlayerSlider v-model="progress" :duration="duration" @seekto="onSeekTo" />
+		<AudioPlayerPlaybackInfo class="flex-1 z-2" :series="audioStore.series" :cover="audioStore.cover" :title="title" :state="state" @play="onPlay" @pause="onPause" />
+		<Slider v-if="!videoNotLoaded" class="mt-6 z-2" :max="duration" :value="progress" :format="toTimeString" @change="onSeekTo"  />
 	</div>
 </template>
