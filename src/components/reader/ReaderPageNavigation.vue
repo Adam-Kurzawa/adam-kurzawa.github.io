@@ -27,10 +27,10 @@ const hasMultiplePages = computed(() => props.metadata.chaptersCount > 1)
 <template>
 	<div class="flex-grow items-center max-w-[1200px] mx-auto py-20 animate-in fade-in slide-in-from-bottom-8 duration-1000">
 		<div class="flex justify-between px-10 mb-10" v-if="hasMultiplePages">
-      <SecondaryButton v-if="previousPageEnabled" @click="previousPage" :value="`${t('reader.epub-chapter')} ${props.chapterNumber - 1}`" class="border-none">
+      <SecondaryButton v-if="previousPageEnabled" @click="previousPage" :value="`${t('reader.epub-chapter')} ${props.chapterNumber - 1}`" class="border-none !bg-transparent">
         <ShortArrowLeftIcon />
       </SecondaryButton>
-      <SecondaryButton v-else @click="toStories" value="Powrót do listy" class="border-none">
+      <SecondaryButton v-else @click="toStories" value="Powrót do listy" class="border-none !bg-transparent">
         <ShortArrowLeftIcon />
       </SecondaryButton>
       <PrimaryButton v-if="nextPageEnabled" @click="nextPage" :value="`${t('reader.epub-chapter')} ${props.chapterNumber + 1}`" class="flex-row-reverse">
@@ -40,10 +40,10 @@ const hasMultiplePages = computed(() => props.metadata.chaptersCount > 1)
 		</div>
 		<slot></slot>
 		<div class="flex justify-between px-10 mt-10" v-if="hasMultiplePages">
-      <SecondaryButton v-if="previousPageEnabled" @click="previousPage" :value="`${t('reader.epub-chapter')} ${props.chapterNumber - 1}`" class="border-none">
+      <SecondaryButton v-if="previousPageEnabled" @click="previousPage" :value="`${t('reader.epub-chapter')} ${props.chapterNumber - 1}`" class="border-none !bg-transparent">
         <ShortArrowLeftIcon />
       </SecondaryButton>
-      <SecondaryButton v-else @click="toStories" value="Powrót do listy" class="border-none">
+      <SecondaryButton v-else @click="toStories" value="Powrót do listy" class="border-none !bg-transparent">
         <ShortArrowLeftIcon />
       </SecondaryButton>
       <PrimaryButton v-if="nextPageEnabled" @click="nextPage" :value="`${t('reader.epub-chapter')} ${props.chapterNumber + 1}`" class="flex-row-reverse">

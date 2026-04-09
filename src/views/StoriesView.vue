@@ -1,7 +1,6 @@
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
-import { computed, ref, watch } from 'vue'
-import { useAsset } from '@/utils/useAsset'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 import { useTranslation } from '@/utils/useTranslation'
 import LazyStoryThumbnail from '@/components/thumbnails/LazyStoryThumbnail.vue'
 import StoriesFilters from '@/components/stories/StoriesFilters.vue'
@@ -9,29 +8,47 @@ import Breadcrumbs from '@/components/system/Breadcrumbs.vue'
 import ViewHeader from '@/components/system/ViewHeader.vue'
 import GenericView from '@/GenericView.vue'
 import { useMetaindex } from '@/utils/useMetaindex'
+import StoriesSorter from '@/components/stories/StoriesSorter.vue'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
-const router = useRouter()
+const cookies = useCookies()
 const route = useRoute()
 const t = useTranslation()
 
 const seriesQuery = route.query.series
 
-const sortingOptions = ref([ 'Alfabetycznie', 'Od najnowszych' ]);
-const currentSorting = ref('Alfabetycznie');
-
 const sortByTitle = (a, b) => a.title.localeCompare(b.title)
-const sortByDate = (a, b) => b.year - a.year
+const sortByDate = (a, b) => {
+	const result = Number(b.publicationDate.slice(-4)) - Number(a.publicationDate.slice(-4))
+	return result === 0 ? sortByTitle(a, b) : result
+}
 
 const metaindex = useMetaindex()
 
 const stories = computed(() => {
 	const storiesIndex = Object.values(metaindex.value.story)
+	const sorting = cookies.get('sorting')
+	let sorter = undefined
+
+	switch (sorting) {
+		case 'ALPHABETICALLY':
+			sorter = sortByTitle
+			break
+		case 'NEWEST_FIRST':
+			sorter = sortByDate
+			break
+		default:
+			sorter = sortByTitle
+			break
+	}
 
 	if(seriesQuery)
 		return storiesIndex
 			.filter(story => story.series && story.series === seriesQuery)
+			.toSorted(sorter)
 	else 
 		return storiesIndex
+			.toSorted(sorter)
 })
 
 const series = computed(() => {
@@ -47,7 +64,10 @@ const series = computed(() => {
 		<Breadcrumbs :locations="[ { name: 'Opowiadania', target: '/stories' } ]" />
 		<ViewHeader title="Biblioteka opowiadań" description="Przeglądaj pełną bibliotekę tekstów. Wybierz gatunek lub skorzystaj z wyszukiwarki, aby odnaleźć interesującą Cię historię." />
 		<template v-if="metaindex">
-			<StoriesFilters :series="series" :selected-series="seriesQuery" />
+			<div class="flex flex-row items-center">
+				<StoriesFilters :series="series" :selected-series="seriesQuery" class="flex-1" />
+				<StoriesSorter />
+			</div>
 			<div class="space-y-10">
 				<LazyStoryThumbnail v-for="story in stories" :key="story.documentId" :metadata="story" />
 			</div>

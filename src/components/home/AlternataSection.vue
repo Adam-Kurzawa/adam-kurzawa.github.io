@@ -13,45 +13,42 @@ const t = useTranslation()
 const stories = ref([
     {
         cover: useStaticAsset('walhalla.jpg'),
-        title: 'w_drodze_do_walhalli',
         key: 'walhalla'
     },
     {
         cover: useStaticAsset('laniakea.jpg'),
-        title: 'w_drodze_do_walhalli',
         key: 'laniakea'
     },
     {
         cover: useStaticAsset('nowa_baśń.jpg'),
-        title: 'w_drodze_do_walhalli',
         key: 'slavic'
     },
     {
         cover: useStaticAsset('pismo.jpg'),
-        title: 'w_drodze_do_walhalli',
         key: 'script'
     },
     {
         cover: useStaticAsset('solstice.jpg'),
-        title: 'w_drodze_do_walhalli',
         key: 'solstice'
     },
     {
         cover: useStaticAsset('timestar.jpg'),
-        title: 'w_drodze_do_walhalli',
         key: 'timestar'
     },
     {
         cover: useStaticAsset('revelations.jpg'),
-        title: 'w_drodze_do_walhalli',
         key: 'revelations'
+    },
+    {
+        cover: useStaticAsset('timestar.jpg'),
+        key: 'dinoverse'
     }
 ])
 
 const openReader = (obj) => {
     router.push({
         name: 'reader',
-        params: { title: obj.title, type: 'fragment' }
+        params: { title: obj.key, type: 'fragment' }
     })
 }
 </script>
@@ -65,8 +62,8 @@ const openReader = (obj) => {
                 </div>
                 <ViewHeader :title="t('alternata-card.title')" :description="t('alternata-card.text')" />
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <AlternataThumbnail v-for="story in stories" :key="story.key" :title="t(`alternata-card.stories.${story.key}.title`)" :img="story.cover" :description="t(`alternata-card.stories.${story.key}.description`)" />
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <AlternataThumbnail v-for="story in stories" :key="story.key" @click="openReader(story)" :title="t(`alternata-card.stories.${story.key}.title`)" :img="story.cover" :description="t(`alternata-card.stories.${story.key}.description`)" />
             </div>
         </div>
     </section>

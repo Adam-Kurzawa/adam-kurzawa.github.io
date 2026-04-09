@@ -15,7 +15,7 @@ const metaindex = useMetaindex()
 const newestBlogPost = computed(() => {
     return metaindex.value.blog
         .reduce((a, [y, e]) => [...a, ...e], [])
-        .slice(0, 5)
+        .slice(0, 6)
 })
 
 const goToBlog = () => {

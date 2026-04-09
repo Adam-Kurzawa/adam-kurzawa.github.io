@@ -5,7 +5,7 @@ const t = useTranslation()
 </script>
 
 <template>
-    <section class="max-w-5xl mx-auto mt-10 px-6 md:pt-24 border-b border-slate-50">
+    <section class="max-w-5xl mx-auto mt-40 py-10 px-6 border-b border-t border-slate-200">
         <p class="text-lg text-slate-600 leading-[1.80rem] font-light">
             {{ t('welcome.text') }} {{ t('welcome.buycoffee') }} {{ t('welcome.text2') }} {{ t('welcome.patronite') }}.
         </p>
@@ -18,7 +18,6 @@ p::first-letter {
 	margin-right: 0.5rem;
 	margin-top: 0.9rem;
 	line-height: 2rem;
-    color: lightgrey;
     font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 	float: left;
 }
